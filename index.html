@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>A&BS AUTOPROFIS | Kfz-Service Meisterbetrieb Mariendorf – Berlin</title>
-<meta name="description" content="A&BS AUTOPROFIS – Ihr professioneller Kfz-Service am Mariendorfer Damm 49, 12109 Berlin. Ölwechsel ab 69€ inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
+<meta name="description" content="A&BS AUTOPROFIS – Ihr professioneller Kfz-Service am Mariendorfer Damm 49, 12109 Berlin. Eröffnungsangebot: Ölwechsel ab 69€ inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
 <link rel="canonical" href="https://www.absprofis.de/">
 
 <!-- Open Graph / Social Media -->
@@ -62,8 +62,6 @@
   /* Buttons */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
-  .btn-soon { background: #e8e2d0 !important; color: #6b6a60 !important; cursor: not-allowed; box-shadow: none !important; }
-  .soon-pill { background: var(--primary); color: var(--gold-light); font-size: 10px; padding: 3px 7px; border-radius: 999px; }
   
   .wa-btn { background: var(--success) !important; color: #fff !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
@@ -88,6 +86,11 @@
   .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: var(--primary); box-shadow: 0 28px 70px rgba(0,0,0,.4); border: 3px solid var(--gold); }
   .logo-card img { width: 100%; border-radius: 18px; display: block; }
   .logo-card h3 { margin: 14px 0 4px; font-size: 26px; }
+
+  /* Live Countdown Box im Hero */
+  .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); padding: 14px; border-radius: 16px; text-align: center; max-width: 480px; }
+  .cd-val { font-size: 22px; font-weight: 900; color: var(--gold-light); }
+  .cd-lbl { font-size: 10px; text-transform: uppercase; color: #cbd5ff; letter-spacing: 1px; }
 
   /* USP Bar */
   .usp-bar { background: #fff; border-bottom: 1px solid #eae5d9; padding: 20px 24px; }
@@ -176,7 +179,7 @@
   .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 14px 0; }
   .footer-contact .phone { color: #fff; font-size: 20px; font-weight: 900; }
 
-  /* ===== MOBILE & RESPONSIVE OPTIMIERUNGEN (EINZEILIGER CLEAN HEADER) ===== */
+  /* ===== MOBILE & RESPONSIVE OPTIMIERUNGEN ===== */
   @media(max-width: 1023px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
@@ -191,19 +194,18 @@
     .brand strong { font-size: 15px; }
     .brand span { font-size: 8px; letter-spacing: 1px; }
     
-    /* Perfekte einzeilige Anordnung im Handy-Modus ohne Umbruch */
     .header-actions { gap: 6px; flex-wrap: nowrap; }
     .header-actions .wa-btn, .header-actions .call-btn { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
     .header-actions .wa-btn svg { width: 18px; height: 18px; }
     .header-actions .wa-btn .label, .header-actions .call-btn .label { display: none; }
-    .header-actions .btn-soon { display: none; }
 
     .hero { padding: 32px 16px 28px; }
     .hero h1 { font-size: 36px; }
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .reviews-grid, .usp-inner, .benefits-grid { grid-template-columns: 1fr; }
+    .grid-3, .reviews-grid, .usp-inner, .benefits-grid, .countdown-box { grid-template-columns: 1fr; }
+    .countdown-box { grid-template-columns: repeat(4, 1fr); }
     .wrap { padding: 40px 16px; }
     .info-highlight-box, .contact-grid { padding: 20px; }
     .wa-float { display: grid; }
@@ -220,12 +222,12 @@
 
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
-  <span class="aufbau-pill">ERÖFFNUNGSANGEBOT GÜLTIG AB 16.11.</span>
+  <span class="aufbau-pill">ERÖFFNUNGSANGEBOT GÜLTIG AB 16.11.2026</span>
 </div>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span>✦ ERÖFFNUNGSANGEBOT AB <b>16.11.</b></span>
+    <span>✦ ERÖFFNUNGSANGEBOT AB <b>16.11.2026</b></span>
     <span>• www.absprofis.de</span>
     <span>• ✉️ <a href="mailto:info@absprofis.de">info@absprofis.de</a></span>
     <span>• Mariendorfer Damm 49, 12109 Berlin</span>
@@ -257,14 +259,13 @@
     <a class="call-btn" href="tel:017672625377" aria-label="Anrufen">
       📞 <span class="label">Anrufen</span>
     </a>
-    <button class="btn btn-soon" type="button" disabled>Termin <span class="soon-pill">IN KÜRZE</span></button>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG AB 16.11.</span>
+      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG AB 16.11.2026</span>
       <h1>ÖLWECHSEL<br><span>ab 69 €</span></h1>
       <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
@@ -273,8 +274,16 @@
         <div>✓ 21-Punkte-Check</div>
         <div>✓ Fehlerspeicher kostenlos</div>
       </div>
+
+      <!-- Live Countdown zur Eröffnung -->
+      <div class="countdown-box" id="countdown">
+        <div><div class="cd-val" id="days">00</div><div class="cd-lbl">Tage</div></div>
+        <div><div class="cd-val" id="hours">00</div><div class="cd-lbl">Std</div></div>
+        <div><div class="cd-val" id="mins">00</div><div class="cd-lbl">Min</div></div>
+        <div><div class="cd-val" id="secs">00</div><div class="cd-lbl">Sek</div></div>
+      </div>
       
-      <div class="cta">
+      <div class="cta" style="margin-top:20px;">
         <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Termin%20anfragen!" target="_blank" rel="noopener">Per WhatsApp schreiben</a>
         <a class="btn" href="tel:017672625377" style="background:#fff;color:var(--primary)!important">📞 Jetzt anrufen</a>
       </div>
@@ -603,6 +612,30 @@
   <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr</p>
   <p style="font-size:12px;color:#8fa3d4;margin-top:10px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
+
+<script>
+  // Live Countdown Script für den 16.11.2026 um 08:00 Uhr
+  const countDownDate = new Date("Nov 16, 2026 08:00:00").getTime();
+  const x = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
+    document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
+    
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; font-weight:900; color:#25D366;'>WIR HABEN GEÖFFNET! JETZT VORBEIKOMMEN!</div>";
+    }
+  }, 1000);
+</script>
 
 </body>
 </html>
