@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A&BS AUTOPROFIS | Kfz-Service Mariendorf – www.absprofis.de</title>
-<meta name="description" content="A&BS AUTOPROFIS – Kfz-Service Mariendorf auf www.absprofis.de. Ölwechsel ab 69€ inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A&BS AUTOPROFIS | Kfz-Service Meisterbetrieb Mariendorf – Berlin</title>
+<meta name="description" content="A&BS AUTOPROFIS – Ihr professioneller Kfz-Service am Mariendorfer Damm 49, 12109 Berlin. Ölwechsel ab 69€ inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
 <link rel="canonical" href="https://www.absprofis.de/">
 
 <!-- Open Graph / Social Media -->
@@ -16,60 +16,66 @@
 <meta property="og:image" content="https://www.absprofis.de/og-image.jpg">
 <meta property="og:locale" content="de_DE">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A&BS AUTOPROFIS | Ölwechsel ab 69 € – Kfz-Service Mariendorf">
-<meta name="twitter:description" content="Ölwechsel ab 69 € inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
-<meta name="twitter:image" content="https://www.absprofis.de/og-image.jpg">
-
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="https://www.absprofis.de/logo.png">
 <link rel="apple-touch-icon" href="https://www.absprofis.de/logo.png">
 <meta name="theme-color" content="#071a3d">
 
 <style>
+  :root {
+    --primary: #071a3d;
+    --primary-light: #0a2a6b;
+    --gold: #d4af37;
+    --gold-light: #f5d67a;
+    --bg-sand: #f7f3e9;
+    --text-dark: #0a1a3d;
+    --text-muted: #55607a;
+    --success: #25D366;
+  }
+
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
-  body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #0a1a3d; background: #f7f3e9; line-height: 1.6; overflow-x: hidden; }
+  body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text-dark); background: var(--bg-sand); line-height: 1.6; overflow-x: hidden; }
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
   /* Utility Elements */
-  .aufbau { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 8px; background: linear-gradient(90deg, #d4af37, #f5d67a); color: #071a3d; text-align: center; font-size: 13px; font-weight: 800; padding: 10px 12px; line-height: 1.4; }
-  .aufbau-pill { background: #071a3d; color: #f5d67a; padding: 4px 10px; border-radius: 999px; white-space: nowrap; display: inline-flex; }
+  .aufbau { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 8px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 10px 12px; line-height: 1.4; }
+  .aufbau-pill { background: var(--primary); color: var(--gold-light); padding: 4px 10px; border-radius: 999px; white-space: nowrap; display: inline-flex; }
   
-  .topbar { background: #071a3d; color: #ffe9a8; font-size: 13px; padding: 10px 14px; text-align: center; line-height: 1.6; }
+  .topbar { background: var(--primary); color: #ffe9a8; font-size: 13px; padding: 10px 14px; text-align: center; line-height: 1.6; }
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
-  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 12px; max-width: 1160px; margin: 0 auto; }
+  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 12px; max-width: 1200px; margin: 0 auto; }
 
   /* Header */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; min-height: 96px; border-bottom: 3px solid #d4af37; }
-  .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-  .brand img { width: 72px; height: 72px; min-width: 72px; object-fit: cover; border-radius: 50%; border: 2px solid #d4af37; box-shadow: 0 0 0 3px rgba(212,175,55,.3); background: #000; }
-  .brand strong { font-size: 22px; line-height: 1.1; white-space: nowrap; }
-  .brand span { display: block; font-size: 11px; color: #f5d67a; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; font-weight: 700; }
+  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 20px; min-height: 88px; border-bottom: 3px solid var(--gold); }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .brand img { width: 60px; height: 60px; min-width: 60px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.3); background: #000; }
+  .brand strong { font-size: 20px; line-height: 1.1; white-space: nowrap; }
+  .brand span { display: block; font-size: 10px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; font-weight: 700; }
   
-  nav { display: flex; gap: 20px; font-size: 14px; font-weight: 650; }
-  nav a:hover { color: #f5d67a; transition: color 0.2s ease; }
+  nav { display: flex; gap: 18px; font-size: 14px; font-weight: 650; }
+  nav a:hover { color: var(--gold-light); transition: color 0.2s ease; }
 
-  .header-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+  .header-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; flex-wrap: nowrap; }
   
   /* Buttons */
-  .btn { background: linear-gradient(135deg, #f9e08a, #d4af37 55%, #b8912a); color: #071a3d !important; padding: 11px 18px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; gap: 7px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,175,55,0.4); }
-  .btn-soon { background: #e8e2d0 !important; color: #6b6a60 !important; cursor: not-allowed; }
-  .soon-pill { background: #071a3d; color: #f5d67a; font-size: 10px; padding: 3px 7px; border-radius: 999px; }
+  .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
+  .btn-soon { background: #e8e2d0 !important; color: #6b6a60 !important; cursor: not-allowed; box-shadow: none !important; }
+  .soon-pill { background: var(--primary); color: var(--gold-light); font-size: 10px; padding: 3px 7px; border-radius: 999px; }
   
-  .wa-btn { background: #25D366 !important; color: #fff !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; font-size: 13px; }
-  .wa-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+  .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
   
-  .call-btn { background: #fff !important; color: #071a3d !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 13px; }
+  .call-btn { background: #fff !important; color: var(--primary) !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
 
   /* Hero Section */
-  .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, #071a3d, #0a2a6b 58%, #071a3d); color: #fff; padding: 50px 24px 40px; }
-  .hero-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
-  .badge { display: inline-block; background: #d4af37; color: #071a3d; font-weight: 900; letter-spacing: 1.2px; font-size: 12px; padding: 8px 14px; border-radius: 999px; }
+  .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 60px 24px 50px; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+  .badge { display: inline-block; background: var(--gold); color: var(--primary); font-weight: 900; letter-spacing: 1.2px; font-size: 12px; padding: 8px 14px; border-radius: 999px; }
   .hero h1 { font-size: clamp(38px, 5vw, 58px); line-height: 0.95; margin: 16px 0 12px; letter-spacing: -1px; }
-  .hero h1 span { color: #f5d67a; }
+  .hero h1 span { color: var(--gold-light); }
   .hero p { color: #dbe4ff; font-size: 17px; max-width: 580px; }
   
   .pills { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
@@ -79,82 +85,147 @@
   .small { font-size: 13px; color: #aab8dd; margin-top: 16px; line-height: 1.8; }
   .small .phone { color: #fff; font-weight: 700; }
 
-  .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: #071a3d; box-shadow: 0 28px 70px rgba(0,0,0,.4); border: 3px solid #d4af37; }
+  .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: var(--primary); box-shadow: 0 28px 70px rgba(0,0,0,.4); border: 3px solid var(--gold); }
   .logo-card img { width: 100%; border-radius: 18px; display: block; }
   .logo-card h3 { margin: 14px 0 4px; font-size: 26px; }
 
-  /* Containers & Sections */
-  .wrap { max-width: 1160px; margin: 0 auto; padding: 50px 24px; }
-  .section-title { font-size: 32px; font-weight: 800; color: #071a3d; margin-bottom: 8px; text-align: center; }
-  .section-sub { text-align: center; color: #55607a; margin-bottom: 35px; font-size: 16px; }
+  /* USP Bar */
+  .usp-bar { background: #fff; border-bottom: 1px solid #eae5d9; padding: 20px 24px; }
+  .usp-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+  .usp-item b { display: block; color: var(--primary); font-size: 15px; margin-bottom: 2px; }
+  .usp-item span { font-size: 13px; color: var(--text-muted); }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .card { background: #fff; border-radius: 20px; padding: 28px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-  .card h3 { margin: 12px 0 8px; color: #071a3d; font-size: 20px; }
-  .card ul { padding-left: 20px; margin: 12px 0 0; color: #334155; font-size: 14px; line-height: 1.7; }
+  /* Containers & Sections */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+  .section-title { font-size: 34px; font-weight: 900; color: var(--primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.5px; }
+  .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+  /* GRID & CARDS */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 22px; padding: 32px; border: 1px solid #eae5d9; box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
+  .card h3 { margin: 14px 0 10px; color: var(--primary); font-size: 21px; font-weight: 800; }
+  .card ul { padding-left: 20px; margin: 12px 0 0; color: #334155; font-size: 14px; line-height: 1.8; }
+
+  /* VORTEILE-GRID */
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .benefit-box { background: #fff; border-radius: 18px; padding: 24px; border: 1px solid #eae5d9; display: flex; gap: 16px; align-items: flex-start; }
+  .benefit-icon { font-size: 28px; background: #fdfbf7; padding: 12px; border-radius: 14px; border: 1px solid #eae5d9; }
+  .benefit-box h4 { margin: 0 0 4px; color: var(--primary); font-size: 16px; font-weight: 800; }
+  .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* MARKEN-BANNER */
+  .brands-box { background: #fff; border-radius: 20px; padding: 30px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
+  .brands-box h4 { margin: 0 0 10px; color: var(--primary); font-size: 18px; }
+  .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 16px; font-weight: 700; color: #475569; font-size: 14px; }
+  .brands-list span { background: #fdfbf7; padding: 6px 14px; border-radius: 999px; border: 1px solid #e6dfcf; }
+
+  /* ACCORDION (21 PUNKTE CHECK) */
+  .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .accordion-item { background: #fff; border-radius: 16px; border: 1px solid #eae5d9; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+  .accordion-item summary { padding: 18px 24px; font-weight: 800; font-size: 17px; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: #fff; transition: background 0.2s; }
+  .accordion-item summary::-webkit-details-marker { display: none; }
+  .accordion-item summary::after { content: '+'; font-size: 22px; color: var(--gold); font-weight: 900; transition: transform 0.2s; }
+  .accordion-item[open] summary::after { content: '−'; }
+  .accordion-item[open] summary { background: #fdfbf7; border-bottom: 1px solid #eae5d9; }
+  .accordion-content { padding: 20px 24px; background: #fdfbf7; }
+  .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; list-style: none; padding: 0; margin: 0; }
+  .check-grid li { font-size: 14px; color: #334155; display: flex; align-items: center; gap: 8px; }
+  .check-grid li::before { content: '✔'; color: var(--success); font-weight: 900; }
+
+  /* PREIS- & KONDITIONEN-BOX */
+  .info-highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 28px; padding: 45px; border: 2px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .info-highlight-box h3 { font-size: 30px; margin: 15px 0 15px; color: #fff; letter-spacing: -0.5px; }
+  .info-highlight-box p { color: #dbe4ff; font-size: 16px; line-height: 1.7; margin-bottom: 25px; }
+  .price-tag-card { background: #fff; color: var(--text-dark); border-radius: 22px; padding: 35px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid var(--gold); }
+  .price-tag-card h4 { margin: 0 0 5px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+  .price-tag-val { font-size: 52px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; }
+  .price-tag-val span { font-size: 18px; font-weight: 700; color: #6b7280; }
+  .price-hint { background: #fdfbf7; border: 1.5px dashed var(--gold); padding: 12px; border-radius: 12px; font-size: 13px; color: #78350f; font-weight: 700; margin-bottom: 20px; }
+
+  /* FAQ SECTION */
+  .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+  /* KONTAKT- & TERMIN-FORMULAR */
+  .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 40px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--primary); }
+  .form-control { width: 100%; padding: 13px 16px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
+  .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
+  
+  .info-block { display: flex; flex-direction: column; gap: 20px; justify-content: center; background: #f7f3e9; padding: 30px; border-radius: 20px; border-left: 5px solid var(--gold); }
+  .info-item { display: flex; gap: 14px; align-items: flex-start; }
+  .info-item span { font-size: 22px; }
+  .info-item b { display: block; font-size: 15px; color: var(--primary); }
+  .info-item p { margin: 2px 0 0; font-size: 14px; color: var(--text-muted); }
 
   /* Reviews / Bewertungen */
-  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .review-card { background: #fff; border-radius: 20px; padding: 24px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
-  .stars { color: #d4af37; font-size: 18px; letter-spacing: 2px; margin-bottom: 10px; }
-  .review-text { font-style: italic; color: #334155; font-size: 14px; margin-bottom: 16px; }
-  .review-author { font-weight: 750; color: #071a3d; font-size: 13px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .review-card { background: #fff; border-radius: 20px; padding: 26px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
+  .stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 12px; }
+  .review-text { font-style: italic; color: #334155; font-size: 14px; margin-bottom: 18px; line-height: 1.7; }
+  .review-author { font-weight: 800; color: var(--primary); font-size: 13px; }
 
   /* Floating WhatsApp Button for Desktop */
-  .wa-float { display: grid; position: fixed; right: 20px; bottom: 20px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: #25D366; place-items: center; box-shadow: 0 8px 24px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
-  .wa-float:hover { transform: scale(1.08); }
-  .wa-float svg { width: 32px; height: 32px; }
+  .wa-float { display: grid; position: fixed; right: 24px; bottom: 24px; z-index: 100; width: 60px; height: 60px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 34px; height: 34px; }
 
-  footer { background: #071a3d; color: #cbd5ff; padding: 32px 24px; text-align: center; }
+  footer { background: var(--primary); color: #cbd5ff; padding: 40px 24px; text-align: center; }
   footer b { color: #fff; }
-  .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 14px 0; }
-  .footer-contact .phone { color: #fff; font-size: 18px; font-weight: 800; }
+  .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 14px 0; }
+  .footer-contact .phone { color: #fff; font-size: 20px; font-weight: 900; }
 
-  /* ===== MOBILE & RESPONSIVE OPTIMIERUNGEN ===== */
+  /* ===== MOBILE & RESPONSIVE OPTIMIERUNGEN (EINZEILIGER CLEAN HEADER) ===== */
   @media(max-width: 1023px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-    .grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .reviews-grid, .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .info-highlight-box, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
   }
 
   @media(max-width: 767px) {
-    header { padding: 10px 16px; flex-direction: row; min-height: 76px; }
-    .brand img { width: 52px; height: 52px; min-width: 52px; border-width: 1.5px; }
-    .brand strong { font-size: 17px; }
-    .brand span { font-size: 9px; letter-spacing: 1.2px; }
+    header { padding: 8px 12px; min-height: 72px; gap: 8px; }
+    .brand img { width: 44px; height: 44px; min-width: 44px; border-width: 1.5px; }
+    .brand strong { font-size: 15px; }
+    .brand span { font-size: 8px; letter-spacing: 1px; }
     
-    /* Kompakte Header Actions im Handy-Modus */
-    .header-actions { gap: 6px; }
-    .header-actions .wa-btn, .header-actions .call-btn { width: 42px; height: 42px; padding: 0; justify-content: center; border-radius: 50%; }
+    /* Perfekte einzeilige Anordnung im Handy-Modus ohne Umbruch */
+    .header-actions { gap: 6px; flex-wrap: nowrap; }
+    .header-actions .wa-btn, .header-actions .call-btn { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+    .header-actions .wa-btn svg { width: 18px; height: 18px; }
     .header-actions .wa-btn .label, .header-actions .call-btn .label { display: none; }
     .header-actions .btn-soon { display: none; }
 
     .hero { padding: 32px 16px 28px; }
     .hero h1 { font-size: 36px; }
     .cta { flex-direction: column; align-items: stretch; }
-    .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 13px; font-size: 15px; }
+    .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid, .reviews-grid { grid-template-columns: 1fr; }
-    .wrap { padding: 30px 16px; }
+    .grid-3, .reviews-grid, .usp-inner, .benefits-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 40px 16px; }
+    .info-highlight-box, .contact-grid { padding: 20px; }
     .wa-float { display: grid; }
+    .check-grid { grid-template-columns: 1fr; }
   }
 
   /* iOS Zoom-Schutz */
   @supports (-webkit-touch-callout: none) {
-    input, textarea { font-size: 16px !important; }
+    input, textarea, select { font-size: 16px !important; }
   }
 </style>
 </head>
 <body>
 
 <div class="aufbau">
-  <span>🚧 Unsere Seite ist im Aufbau</span>
-  <span class="aufbau-pill">TERMIN SICHERN – IN KÜRZE</span>
+  <span>🚧 Unsere Website ist im Aufbau</span>
+  <span class="aufbau-pill">ERÖFFNUNGSANGEBOT GÜLTIG AB 16.11.</span>
 </div>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span>✦ ERÖFFNUNG AB <b>16.11.2026</b></span>
+    <span>✦ ERÖFFNUNGSANGEBOT AB <b>16.11.</b></span>
     <span>• www.absprofis.de</span>
     <span>• ✉️ <a href="mailto:info@absprofis.de">info@absprofis.de</a></span>
     <span>• Mariendorfer Damm 49, 12109 Berlin</span>
@@ -171,9 +242,11 @@
   </div>
   
   <nav>
-    <a href="#leistungen">Leistungen & Check</a>
-    <a href="#angebot">Angebot</a>
-    <a href="#bewertungen">Bewertungen</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#check21">21-Punkte-Check</a>
+    <a href="#preise">Preise</a>
+    <a href="#faq">FAQ</a>
+    <a href="#kontakt">Kontakt</a>
   </nav>
 
   <div class="header-actions">
@@ -191,9 +264,9 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <span class="badge">ERÖFFNUNGS-ANGEBOT • AB 16.11.2026</span>
+      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG AB 16.11.</span>
       <h1>ÖLWECHSEL<br><span>ab 69 €</span></h1>
-      <p>Dein professioneller Kfz-Service am Mariendorfer Damm 49 in Berlin. Fair, schnell und transparent.</p>
+      <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
       <div class="pills">
         <div>✓ inkl. Ölfilter</div>
@@ -202,13 +275,13 @@
       </div>
       
       <div class="cta">
-        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20m%C3%B6chte%20einen%20Termin%20anfragen!" target="_blank" rel="noopener">Per WhatsApp schreiben</a>
-        <a class="btn" href="tel:017672625377" style="background:#fff;color:#071a3d!important">📞 Jetzt anrufen</a>
+        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Termin%20anfragen!" target="_blank" rel="noopener">Per WhatsApp schreiben</a>
+        <a class="btn" href="tel:017672625377" style="background:#fff;color:var(--primary)!important">📞 Jetzt anrufen</a>
       </div>
       
       <div class="small">
         📍 Mariendorfer Damm 49, 12109 Berlin<br>
-        📞 Telefon: <span class="phone">0176 72625 377</span>
+        📞 Direktkontakt: <span class="phone">0176 72625 377</span>
       </div>
     </div>
     
@@ -220,51 +293,186 @@
   </div>
 </section>
 
+<!-- USP Trust Bar -->
+<div class="usp-bar">
+  <div class="usp-inner">
+    <div class="usp-item">
+      <b>Meisterbetrieb</b>
+      <span>Kompetent & zuverlässig</span>
+    </div>
+    <div class="usp-item">
+      <b>Alle Automarken</b>
+      <span>Unabhängiger Autoservice</span>
+    </div>
+    <div class="usp-item">
+      <b>Transparenz</b>
+      <span>Keine versteckten Kosten</span>
+    </div>
+    <div class="usp-item">
+      <b>Öffnungszeiten</b>
+      <span>Mo–Fr: 09:00 – 18:00 Uhr</span>
+    </div>
+  </div>
+</div>
+
 <!-- LEISTUNGEN & WAS GEMACHT WIRD -->
 <section id="leistungen" class="wrap">
-  <h2 class="section-title">Unser Eröffnungs-Service im Detail</h2>
-  <p class="section-sub">Das bekommen Sie beim Ölwechsel-Angebot ab 69 € direkt vor Ort:</p>
+  <h2 class="section-title">Unser Service im Detail</h2>
+  <p class="section-sub">Modernste Technik trifft auf faire Festpreise. Das beinhaltet unser Aktionspaket:</p>
   
-  <div class="grid">
+  <div class="grid-3">
     <div class="card">
-      <span style="font-size:28px;">🛢️</span>
+      <span style="font-size:32px;">🛢️</span>
       <h3>Ölwechsel ab 69 €</h3>
       <ul>
-        <li>Fachgerechter Altöl-Ablass</li>
-        <li>Neues Marken-Öl nach Herstellervorgabe</li>
-        <li>Neuer hochwertiger **Ölfilter inklusive**</li>
-        <li>Umweltgerechte Entsorgung</li>
+        <li>Fachgerechter Altöl-Ablass & Spülung</li>
+        <li>Neues Marken-Öl nach Herstellernorm</li>
+        <li>Neuer hochwertiger <b>Ölfilter inklusive</b></li>
+        <li>Umweltgerechte fachmännische Entsorgung</li>
       </ul>
     </div>
     
     <div class="card">
-      <span style="font-size:28px;">🔍</span>
-      <h3>21-Punkte-Check (Gratis)</h3>
+      <span style="font-size:32px;">🔍</span>
+      <h3>21-Punkte-Sicherheits-Check</h3>
       <ul>
-        <li>Bremsen & Reifen-Profilprüfung</li>
-        <li>Fahrwerk, Stoßdämpfer & Achsen</li>
-        <li>Beleuchtung & Scheibenwischer</li>
-        <li>Flüssigkeiten (Frostschutz, Bremsflüssigkeit)</li>
+        <li>Bremsanlage & Reifenprofilprüfung</li>
+        <li>Fahrwerk, Stoßdämpfer & Lenkung</li>
+        <li>Beleuchtung & Scheibenwischersystem</li>
+        <li>Prüfung aller Flüssigkeiten (Frostschutz etc.)</li>
       </ul>
     </div>
 
     <div class="card">
-      <span style="font-size:28px;">💻</span>
-      <h3>Elektronik & Service</h3>
+      <span style="font-size:32px;">💻</span>
+      <h3>Elektronik-Diagnose</h3>
       <ul>
-        <li>**Fehlerspeicher auslesen** (komplett kostenlos)</li>
-        <li>Analyse von Warnleuchten & Steuergeräten</li>
-        <li>Zurücksetzen der Service-Interweide</li>
-        <li>Ehrliche Beratung ohne versteckte Kosten</li>
+        <li><b>Fehlerspeicher auslesen</b> (100% gratis)</li>
+        <li>Analyse von Motorkontrollleuchte & Steuergeräten</li>
+        <li>Zurücksetzen der Service-Intervalle</li>
+        <li>Transparente Beratung vor jeder Reparatur</li>
       </ul>
+    </div>
+  </div>
+
+  <!-- VORTEILE-GRID -->
+  <div class="benefits-grid">
+    <div class="benefit-box">
+      <div class="benefit-icon">🛡️</div>
+      <div>
+        <h4>Herstellerkonform</h4>
+        <p>Wir arbeiten exakt nach Herstellervorgaben, damit Ihr Fahrzeug in Top-Zustand bleibt.</p>
+      </div>
+    </div>
+    <div class="benefit-box">
+      <div class="benefit-icon">⚡</div>
+      <div>
+        <h4>Schnelle Abwicklung</h4>
+        <p>Kurze Wartezeiten und präzise Terminabsprachen für maximale Flexibilität im Alltag.</p>
+      </div>
+    </div>
+    <div class="benefit-box">
+      <div class="benefit-icon">🤝</div>
+      <div>
+        <h4>Ehrlich & Fair</h4>
+        <p>Keine versteckten Zusatzkosten. Wir sprechen vorher mit Ihnen über jeden Arbeitsschritt.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKEN-BANNER -->
+  <div class="brands-box">
+    <h4>Wir schrauben & pflegen Fahrzeuge aller Hersteller:</h4>
+    <div class="brands-list">
+      <span>Volkswagen</span> <span>Audi</span> <span>BMW</span> <span>Mercedes-Benz</span> <span>Skoda</span> <span>Seat</span> <span>Ford</span> <span>Opel</span> <span>Toyota</span> <span>Hyundai</span> <span>Fiat</span> <span>Renault</span> <span>und viele mehr...</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTERAKTIVER 21-PUNKTE CHECK (AUFKLAPPBAR) -->
+<section id="check21" class="wrap" style="padding-top: 0;">
+  <h2 class="section-title">Der 21-Punkte-Check transparent erklärt</h2>
+  <p class="section-sub">Klicken Sie auf die Bereiche, um zu sehen, welche Prüfungen beim kostenlosen Sicherheits-Check durchgeführt werden:</p>
+  
+  <div class="accordion-container">
+    <!-- Kategorie 1 -->
+    <details class="accordion-item">
+      <summary>1. Bremsen & Fahrwerk (Prüfung auf Herz und Nieren)</summary>
+      <div class="accordion-content">
+        <ul class="check-grid">
+          <li>Bremsscheiben & Bremsbeläge Sichtprüfung</li>
+          <li>Bremsleitungen & Bremsschläuche</li>
+          <li>Stoßdämpfer & Federung</li>
+          <li>Achskonstruktion & Querlenker</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Kategorie 2 -->
+    <details class="accordion-item">
+      <summary>2. Reifen, Räder & Unterboden</summary>
+      <div class="accordion-content">
+        <ul class="check-grid">
+          <li>Profiltiefe Vorder- & Hinterreifen</li>
+          <li>Reifenfülldruck prüfen & korrigieren</li>
+          <li>Reifen-Sichtprüfung (Beschädigungen/Risse)</li>
+          <li>Unterboden-Sichtprüfung auf Dichtigkeit</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Kategorie 3 -->
+    <details class="accordion-item">
+      <summary>3. Flüssigkeiten & Filter (Wichtige Betriebsstoffe)</summary>
+      <div class="accordion-content">
+        <ul class="check-grid">
+          <li>Motorölstand Kontrolle</li>
+          <li>Bremsflüssigkeit Siedepunkt / Stand</li>
+          <li>Kühlwasser & Frostschutzgehalt prüfen</li>
+          <li>Scheibenwaschanlage Flüssigkeitsstand</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- Kategorie 4 -->
+    <details class="accordion-item">
+      <summary>4. Elektrik, Sicht & Elektronik (Sicherheit im Alltag)</summary>
+      <div class="accordion-content">
+        <ul class="check-grid">
+          <li>Beleuchtung außen (Scheinwerfer, Blinker)</li>
+          <li>Innenbeleuchtung & Warnleuchten</li>
+          <li>Scheibenwischerblätter vorne & hinten</li>
+          <li>Batteriezustand / Startverhalten</li>
+          <li><b>Fehlerspeicher auslesen</b> (Steuergeräte-Check)</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- PREIS- & KONDITIONEN-BOX -->
+<section id="preise" class="wrap" style="padding-top: 0;">
+  <div class="info-highlight-box">
+    <div>
+      <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ & KONDITIONEN</span>
+      <h3>Faire Preise ohne versteckte Kosten</h3>
+      <p>Außer unserem unschlagbaren Angebot für den Ölwechsel geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
+      <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Preis%20anfragen." target="_blank" rel="noopener">Jetzt Preis per WhatsApp anfragen</a>
+    </div>
+    
+    <div class="price-tag-card">
+      <h4>Aktions-Sparpreis</h4>
+      <div class="price-tag-val">69 € <span>inkl. MwSt.</span></div>
+      <div class="price-hint">⚡ Inklusive Ölfilter & 21-Punkte-Check + Fehlerspeicher gratis!</div>
+      <a class="btn" style="width: 100%;" href="tel:017672625377">Jetzt anrufen & Termin sichern</a>
     </div>
   </div>
 </section>
 
 <!-- KUNDENBEWERTUNGEN -->
-<section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 24px; margin-bottom: 30px;">
+<section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 28px; margin-bottom: 40px;">
   <h2 class="section-title">Das sagen unsere Kunden</h2>
-  <p class="section-sub">Qualität und Ehrlichkeit stehen bei uns an erster Stelle.</p>
+  <p class="section-sub">Qualität, Schnelligkeit und Fairness stehen bei uns an erster Stelle.</p>
 
   <div class="reviews-grid">
     <div class="review-card">
@@ -278,7 +486,7 @@
     <div class="review-card">
       <div>
         <div class="stars">★★★★★</div>
-        <p class="review-text">„Endlich eine Werkstatt, bei der man nicht abgezockt wird. Fehlerspeicher wurde sofort kostenlos ausgelesen und transparent erklärt. Ab November 2026 definitiv meine Stammwerkstatt!“</p>
+        <p class="review-text">„Endlich eine Werkstatt, bei der man nicht abgezockt wird. Fehlerspeicher wurde sofort kostenlos ausgelesen und transparent erklärt. Absolut vertrauenswürdig!“</p>
       </div>
       <div class="review-author">– Sarah L. aus Mariendorf</div>
     </div>
@@ -286,9 +494,97 @@
     <div class="review-card">
       <div>
         <div class="stars">★★★★★</div>
-        <p class="review-text">„Top Eröffnungsangebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
+        <p class="review-text">„Top Angebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
       </div>
       <div class="review-author">– Deniz B. aus Lankwitz</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section id="faq" class="wrap" style="padding-top: 0;">
+  <h2 class="section-title">Häufig gestellte Fragen (FAQ)</h2>
+  <p class="section-sub">Alles, was Sie rund um unseren Service wissen müssen:</p>
+
+  <div class="faq-container">
+    <details class="accordion-item">
+      <summary>Muss ich für das Angebot einen Termin vereinbaren?</summary>
+      <div class="accordion-content">
+        <p style="margin:0; font-size:14px; color:#334155;">Um Wartezeiten zu vermeiden, empfehlen wir dringend, vorab kurz per Telefon oder WhatsApp einen Termin zu sichern.</p>
+      </div>
+    </details>
+
+    <details class="accordion-item">
+      <summary>Ist das Öl und der Ölfilter im Preis von 69 € wirklich enthalten?</summary>
+      <div class="accordion-content">
+        <p style="margin:0; font-size:14px; color:#334155;">Ja! Der Festpreis ab 69 € beinhaltet den fachgerechten Ölwechsel, das passende Marken-Öl nach Herstellervorgabe, einen neuen Ölfilter sowie den kostenlosen 21-Punkte-Check.</p>
+      </div>
+    </details>
+
+    <details class="accordion-item">
+      <summary>Welche Öffnungszeiten hat A&BS AUTOPROFIS?</summary>
+      <div class="accordion-content">
+        <p style="margin:0; font-size:14px; color:#334155;">Wir sind von <b>Montag bis Freitag von 09:00 bis 18:00 Uhr</b> durchgehend persönlich für Sie vor Ort am Mariendorfer Damm 49 in Berlin.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- TERMINANFRAGE & STANDORT -->
+<section id="kontakt" class="wrap" style="padding-top: 0;">
+  <h2 class="section-title">Direkt Kontakt aufnehmen & Termin sichern</h2>
+  <p class="section-sub">Schreiben Sie uns oder rufen Sie direkt an.</p>
+
+  <div class="contact-grid">
+    <form onsubmit="event.preventDefault(); alert('Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze.');">
+      <div class="form-group">
+        <label>Ihr Name *</label>
+        <input type="text" class="form-control" placeholder="Max Mustermann" required>
+      </div>
+      <div class="form-group">
+        <label>Telefonnummer (für Rückruf) *</label>
+        <input type="tel" class="form-control" placeholder="0176 / 12345678" required>
+      </div>
+      <div class="form-group">
+        <label>Fahrzeugmodell & Kennzeichen (optional)</label>
+        <input type="text" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
+      </div>
+      <div class="form-group">
+        <label>Ihre Nachricht / Wunschleistung</label>
+        <textarea class="form-control" rows="3" placeholder="Ölwechsel ab 69 € / Preisanfrage..."></textarea>
+      </div>
+      <button type="submit" class="btn" style="width: 100%; padding: 14px;">Anfrage absenden</button>
+    </form>
+
+    <div class="info-block">
+      <div class="info-item">
+        <span>📍</span>
+        <div>
+          <b>Werkstatt-Adresse</b>
+          <p>Mariendorfer Damm 49<br>12109 Berlin-Mariendorf</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span>📞</span>
+        <div>
+          <b>Telefon & WhatsApp</b>
+          <p><a href="tel:017672625377" style="color:var(--primary); font-weight:700;">0176 72625 377</a></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span>✉️</span>
+        <div>
+          <b>E-Mail-Adresse</b>
+          <p><a href="mailto:info@absprofis.de" style="color:var(--primary); font-weight:700;">info@absprofis.de</a></p>
+        </div>
+      </div>
+      <div class="info-item">
+        <span>🕒</span>
+        <div>
+          <b>Öffnungszeiten</b>
+          <p><b>Montag – Freitag: 09:00 – 18:00 Uhr</b></p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -304,7 +600,8 @@
     <span>Mariendorfer Damm 49, 12109 Berlin</span>
     <span class="phone">📞 0176 72625 377</span>
   </div>
-  <p style="font-size:12px;color:#8fa3d4;margin-top:20px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
+  <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr</p>
+  <p style="font-size:12px;color:#8fa3d4;margin-top:10px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
 
 </body>
