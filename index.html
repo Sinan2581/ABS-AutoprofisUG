@@ -39,6 +39,228 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
+  /* ===== NEU: EINGANGSANIMATION (LOGO-AUTO FÄHRT -> WARNUNGEN -> TROPFEN & SCHLÜSSEL -> WIRD ZUM LOGO) ===== */
+  .intro-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: radial-gradient(circle at 50% 45%, #0f295e 0%, #05122c 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #fff;
+    pointer-events: all;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .intro-splash.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .intro-stage {
+    position: relative;
+    width: 280px;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Drei verschieden gestaltete Warnlampen (Rot, Gelb, Blau) */
+  .intro-alerts {
+    position: absolute;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 5;
+  }
+  .warn-lamp {
+    display: inline-flex;
+    align-items: center;
+     gap: 5px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+  /* 1. Rote Öl-Warnleuchte (achteckig/abgerundet mit rotem Puls) */
+  .warn-oil {
+    background: rgba(220, 38, 38, 0.25);
+    border: 2px solid #ef4444;
+    color: #fecaca;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
+    animation: warnPop1 1.95s ease forwards;
+  }
+  /* 2. Gelbe Motor-Warnleuchte (Dreiecks-/Rauten-Look mit gelbem Rahmen) */
+  .warn-engine {
+    background: rgba(245, 158, 11, 0.22);
+    border: 2px dashed #fbbf24;
+    color: #fde68a;
+    border-radius: 999px;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+    animation: warnPop2 1.95s ease forwards;
+  }
+  /* 3. Blaue Diagnose/Wartungs-Anzeige (Technik-Badge) */
+  .warn-service {
+    background: rgba(56, 189, 248, 0.2);
+    border: 2px solid #38bdf8;
+    color: #bae6fd;
+    border-radius: 4px 12px 4px 12px;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+    animation: warnPop3 1.95s ease forwards;
+  }
+
+  /* Das fahrende Auto im Stil des A&BS-Logos */
+  .intro-car-scene {
+    position: relative;
+    width: 210px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: logoCarDrive 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .logo-style-car {
+    width: 185px;
+    height: auto;
+    filter: drop-shadow(0 6px 16px rgba(212, 175, 55, 0.35));
+  }
+
+  /* Goldener Öltropfen & Schraubenschlüssel, die sich zum Logo-Werkzeug verbinden */
+  .intro-tools-layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 6;
+  }
+  .tool-drop {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    top: 22px;
+    right: 48px;
+    opacity: 0;
+    filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8));
+    animation: dropJoinLogo 1.95s ease forwards;
+  }
+  .tool-wrench {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    bottom: 18px;
+    left: 44px;
+    opacity: 0;
+    filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8));
+    animation: wrenchJoinLogo 1.95s ease forwards;
+  }
+
+  /* Das finale runde Logo, das aus Auto + Tropfen + Schlüssel entsteht */
+  .intro-final-logo {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    background: #000;
+    box-shadow: 0 0 0 5px rgba(212,175,55,0.28), 0 15px 35px rgba(0,0,0,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.55);
+    z-index: 8;
+    animation: finalLogoMorph 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .intro-final-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .intro-road {
+    width: 210px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin-top: -6px;
+    animation: roadShrinkToCircle 1.95s ease forwards;
+  }
+  .intro-caption {
+    margin-top: 10px;
+    font-size: 12.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    animation: captionMorph 1.95s ease forwards;
+  }
+
+  @keyframes logoCarDrive {
+    0% { transform: translateX(130px) scale(0.85); opacity: 0; }
+    24% { transform: translateX(0) scale(1); opacity: 1; }
+    32% { transform: translateX(-6px) rotate(-1.8deg); }
+    40% { transform: translateX(5px) rotate(1.5deg); }
+    48% { transform: translateX(-3px) rotate(-0.8deg); }
+    56% { transform: translateX(0) rotate(0deg) scale(0.95); opacity: 1; }
+    72% { transform: translateX(0) scale(0.68); opacity: 0; }
+    100% { transform: translateX(0) scale(0.5); opacity: 0; }
+  }
+  @keyframes warnPop1 {
+    0%, 18% { opacity: 0; transform: translateY(10px) scale(0.7); }
+    26%, 54% { opacity: 1; transform: translateY(0) scale(1); }
+    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
+  }
+  @keyframes warnPop2 {
+    0%, 22% { opacity: 0; transform: translateY(10px) scale(0.7); }
+    30%, 54% { opacity: 1; transform: translateY(0) scale(1.05); }
+    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
+  }
+  @keyframes warnPop3 {
+    0%, 26% { opacity: 0; transform: translateY(10px) scale(0.7); }
+    34%, 54% { opacity: 1; transform: translateY(0) scale(1); }
+    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
+  }
+  @keyframes dropJoinLogo {
+    0%, 40% { opacity: 0; transform: translate(22px, -28px) scale(0.5); }
+    52% { opacity: 1; transform: translate(0, 0) scale(1.1); }
+    68% { opacity: 1; transform: translate(-38px, 34px) scale(0.75); }
+    76%, 100% { opacity: 0; transform: translate(-45px, 40px) scale(0.3); }
+  }
+  @keyframes wrenchJoinLogo {
+    0%, 40% { opacity: 0; transform: translate(-28px, 24px) rotate(-45deg) scale(0.5); }
+    54% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1.1); }
+    68% { opacity: 1; transform: translate(38px, -28px) rotate(25deg) scale(0.8); }
+    76%, 100% { opacity: 0; transform: translate(45px, -32px) rotate(35deg) scale(0.3); }
+  }
+  @keyframes finalLogoMorph {
+    0%, 58% { opacity: 0; transform: scale(0.45) rotate(-8deg); }
+    72% { opacity: 1; transform: scale(1.06) rotate(0deg); }
+    86% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.12); }
+  }
+  @keyframes roadShrinkToCircle {
+    0%, 55% { width: 210px; opacity: 0.85; }
+    72%, 100% { width: 80px; opacity: 0; }
+  }
+  @keyframes captionMorph {
+    0% { opacity: 0; transform: translateY(5px); }
+    20%, 88% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; }
+  }
+
   /* Hilfsklasse für Klammer-Zusätze: Immer auf eigener Zeile */
   .sub-bracket {
     display: block;
@@ -168,6 +390,30 @@
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 
+  /* ===== NEUIGKEIT 1: COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK-SCHLIESSEN) ===== */
+  .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
+  .dash-box h3 { margin: 0 0 6px; font-size: clamp(17px, 4.5vw, 23px); color: #fff; font-weight: 900; white-space: nowrap; }
+  .dash-box p { margin: 0 auto 20px; font-size: 14px; color: #dbe4ff; max-width: 600px; }
+  .dash-lights { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 780px; margin: 0 auto; }
+  .dash-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 8px; color: #fff; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; font: inherit; }
+  .dash-btn span.ico { font-size: 24px; line-height: 1; }
+  .dash-btn span.lbl { font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .dash-btn:hover { background: rgba(255,255,255,0.15); }
+  .dash-btn.active { background: rgba(212,175,55,0.28); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+  .dash-info { margin-top: 18px; background: #fff; color: var(--primary); border-radius: 16px; padding: 18px; text-align: left; display: none; border-left: 5px solid var(--gold); position: relative; }
+  .dash-info.show { display: block; animation: fadeIn 0.25s ease; }
+  .dash-info-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
+  .dash-info b { display: block; font-size: 15px; color: var(--primary); }
+  .dash-close-btn { background: #f1f5f9; border: 0; color: var(--primary); width: 26px; height: 26px; border-radius: 50%; font-weight: 900; cursor: pointer; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; }
+  .dash-info p { color: #334155; font-size: 13.5px; margin: 0 0 12px; max-width: none; }
+
+  /* ===== NEUIGKEIT 2: IN 4 SCHRITTEN ZUM FERTIGEN AUTO ===== */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+  .step-card { background: #fff; border-radius: 18px; padding: 20px 18px; border: 1px solid #eae5d9; position: relative; text-align: left; box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
+  .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--gold-light); font-weight: 900; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 2px solid var(--gold); }
+  .step-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--primary); white-space: nowrap; }
+  .step-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
   /* REVIEWS: Sauber untereinander */
   .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 860px; margin: 0 auto; }
   .review-card { background: #fff; border-radius: 16px; padding: 18px 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
@@ -226,7 +472,7 @@
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
-  /* KONTAKT- & TERMIN-FORMULAR */
+  /* KONTAKT- & TERMIN-FORMULAR + NEUIGKEIT 3 (1-Klick-Navigation) */
   .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--primary); line-height: 1.3; }
@@ -239,6 +485,10 @@
   .info-item b { display: block; font-size: 14.5px; color: var(--primary); }
   .info-item p { margin: 2px 0 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.45; }
   .nowrap-hours { white-space: nowrap; font-weight: 800; color: var(--primary); font-size: clamp(11.5px, 3.3vw, 13.5px); display: inline-block; }
+
+  .route-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+  .route-btn { background: #fff; border: 1.5px solid var(--primary); color: var(--primary); padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
+  .route-btn:hover { background: var(--primary); color: #fff; }
 
   /* Floating WhatsApp Button */
   .wa-float { display: grid; position: fixed; right: 18px; bottom: 18px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
@@ -254,7 +504,7 @@
   @media(max-width: 1080px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-    .grid-3, .benefits-grid, .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
     .usp-inner, .advisor-options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .info-highlight-box, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -289,12 +539,13 @@
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .benefits-grid, .news-grid { grid-template-columns: 1fr; }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid { grid-template-columns: 1fr; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
+    .dash-lights { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .wrap { padding: 36px 14px; }
-    .info-highlight-box, .contact-grid, .advisor-box { padding: 20px 16px; }
+    .info-highlight-box, .contact-grid, .advisor-box, .dash-box { padding: 20px 16px; }
     .info-block { padding: 18px 14px; }
     .check-grid { grid-template-columns: 1fr; }
   }
@@ -306,6 +557,57 @@
 </style>
 </head>
 <body>
+
+<!-- ===== NEU: EINGANGSANIMATION (LOGO-AUTO FÄHRT -> 3 VERSCHIEDENE WARNLAMPEN -> TROPFEN & SCHLÜSSEL -> WIRD ZUM LOGO) ===== -->
+<div class="intro-splash" id="introSplash" onclick="hideIntroSplash()">
+  <div class="intro-stage">
+    <!-- 3 unterschiedlich gestaltete Warnleuchten -->
+    <div class="intro-alerts">
+      <span class="warn-lamp warn-oil">🛢️ ÖLDRUCK</span>
+      <span class="warn-lamp warn-engine">⚠️ MOTOR</span>
+      <span class="warn-lamp warn-service">🔧 SERVICE</span>
+    </div>
+
+    <!-- Fahrendes Auto exakt im geschwungenen Gold-Weiß-Stil des A&BS-Logos -->
+    <div class="intro-car-scene">
+      <svg class="logo-style-car" viewBox="0 0 240 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Goldene geschwungene Dach-Silhouette wie im Logo -->
+        <path d="M18 54 C42 36, 75 18, 128 18 C168 18, 196 32, 222 46" stroke="#d4af37" stroke-width="4" stroke-linecap="round"/>
+        <path d="M36 48 C65 30, 96 24, 145 25 C175 26, 198 36, 214 47" stroke="#f5d67a" stroke-width="2" stroke-linecap="round"/>
+        <!-- Dynamische weiße Karosserie-Linien wie im Logo -->
+        <path d="M12 58 L48 46 L142 44 C172 44, 198 49, 226 57 L208 64 L24 64 Z" fill="rgba(255,255,255,0.12)" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Kühlergrill-Streifen & Scheinwerfer-Linie vorne links -->
+        <path d="M16 54 L36 50 M15 58 L34 55 M18 62 L36 60" stroke="#f5d67a" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Räder im Gold-Look -->
+        <circle cx="62" cy="64" r="13" fill="#071a3d" stroke="#d4af37" stroke-width="3.5"/>
+        <circle cx="62" cy="64" r="5" fill="#ffffff"/>
+        <circle cx="176" cy="64" r="13" fill="#071a3d" stroke="#d4af37" stroke-width="3.5"/>
+        <circle cx="176" cy="64" r="5" fill="#ffffff"/>
+      </svg>
+    </div>
+
+    <!-- Goldener Öltropfen & Schraubenschlüssel verbinden sich -->
+    <div class="intro-tools-layer">
+      <!-- Goldener Öltropfen SVG -->
+      <svg class="tool-drop" viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 3 C18 3, 32 19, 32 28 C32 35.7, 25.7 40, 18 40 C10.3 40, 4 35.7, 4 28 C4 19, 18 3, 18 3 Z" fill="#d4af37" stroke="#fff" stroke-width="2"/>
+        <path d="M12 26 C12 31, 15 34, 19 35" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <!-- Goldener Schraubenschlüssel SVG -->
+      <svg class="tool-wrench" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36 6 C31 6, 27 9, 26 14 L10 30 C7 33, 7 38, 10 41 C13 44, 18 44, 21 41 L37 25 C42 24, 45 20, 45 15 C45 13, 44 12, 43 12 L38 17 L34 13 L39 8 C39 7, 37 6, 36 6 Z" fill="#f5d67a" stroke="#d4af37" stroke-width="2.2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- Das echte runde A&BS-Logo entsteht am Ende aus der Animation -->
+    <div class="intro-final-logo">
+      <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
+    </div>
+
+    <div class="intro-road"></div>
+  </div>
+  <div class="intro-caption">A&BS AUTOPROFIS • MEISTERQUALITÄT IN MARIENDORF</div>
+</div>
 
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
@@ -341,8 +643,8 @@
     <nav>
       <a href="#leistungen">Leistungen</a>
       <a href="#news">Vorteile</a>
+      <a href="#ablauf">Ablauf</a>
       <a href="#check21">21-Punkte-Check</a>
-      <a href="#preise">Preise</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
 
@@ -503,7 +805,7 @@
     </div>
   </div>
 
-  <!-- 3 Neuigkeiten (Garantiert einzeilige Überschriften) -->
+  <!-- 3 Werkstatt-Vorteile (Garantiert einzeilige Überschriften) -->
   <div id="news" style="margin-top: 50px;">
     <h2 class="section-title">Aktuelles & Werkstatt-Vorteile</h2>
     <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
@@ -527,10 +829,74 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
+  <!-- ===== NEUIGKEIT 1: INTERAKTIVES COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK ZUM SCHLIESSEN) ===== -->
+  <div class="dash-box">
+    <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
+    <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
+    <div class="dash-lights">
+      <button type="button" class="dash-btn" onclick="showDashInfo('oil', this)">
+        <span class="ico">🛢️</span>
+        <span class="lbl">Ölkanne</span>
+      </button>
+      <button type="button" class="dash-btn" onclick="showDashInfo('engine', this)">
+        <span class="ico">⚠️</span>
+        <span class="lbl">Motor-Check</span>
+      </button>
+      <button type="button" class="dash-btn" onclick="showDashInfo('brake', this)">
+        <span class="ico">🛑</span>
+        <span class="lbl">Bremsanlage</span>
+      </button>
+      <button type="button" class="dash-btn" onclick="showDashInfo('battery', this)">
+        <span class="ico">🔋</span>
+        <span class="lbl">Batterie</span>
+      </button>
+      <button type="button" class="dash-btn" onclick="showDashInfo('coolant', this)">
+        <span class="ico">🌡️</span>
+        <span class="lbl">Kühlwasser</span>
+      </button>
+    </div>
+    <div id="dashInfoBox" class="dash-info">
+      <div class="dash-info-header">
+        <b id="dashInfoTitle">Hinweis zur Warnleuchte</b>
+        <button type="button" class="dash-close-btn" onclick="closeDashInfo()" title="Schließen">✕</button>
+      </div>
+      <p id="dashInfoText">Bitte wählen Sie ein Symbol aus.</p>
+      <a id="dashWaLink" class="wa-btn" href="https://wa.me/4917672625377" target="_blank" rel="noopener">Jetzt kostenlos auslesen lassen</a>
+    </div>
+  </div>
+
+  <!-- ===== NEUIGKEIT 2: IN 4 SCHRITTEN ZUM FERTIGEN AUTO ===== -->
+  <div id="ablauf" style="margin-top: 50px;">
+    <h2 class="section-title">In 4 Schritten zum sicheren Auto</h2>
+    <p class="section-sub">So einfach und transparent läuft Ihr Besuch bei uns ab:</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Kurz melden</h4>
+        <p>Einfach per WhatsApp schreiben oder kurz durchrufen – wir finden schnell Ihren Wunschtermin.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Gratis Vorab-Check</h4>
+        <p>Wir lesen den Fehlerspeicher kostenlos aus und prüfen Ihr Auto auf unserer Bühne.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Klare Absprache</h4>
+        <p>Sie erfahren vorab genau, was gemacht werden muss – ohne versteckte Zusatzkosten.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Sicher weiterfahren</h4>
+        <p>Pünktliche Übergabe in geprüfter Meisterqualität inklusive dokumentiertem Service.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER (Ebenfalls mit Zweitklick-Schließen) -->
   <div id="berater" class="advisor-box" style="margin-top: 50px;">
     <h3>Was fehlt Ihrem Fahrzeug gerade?</h3>
-    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen für unsere Sofort-Empfehlung:</p>
+    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen (erneuter Klick schließt die Box):</p>
     
     <div class="advisor-options">
       <div class="advisor-chip" onclick="showAdvisor('oil', this)">🛢️ Ölwechsel fällig</div>
@@ -780,7 +1146,7 @@
   </div>
 </section>
 
-<!-- TERMINANFRAGE & STANDORT -->
+<!-- TERMINANFRAGE & STANDORT (Inkl. Neuigkeit 3: 1-Klick-Navigation & Adresse kopieren) -->
 <section id="kontakt" class="wrap" style="padding-top: 0;">
   <h2 class="section-title">Kontakt & Termin sichern</h2>
   <p class="section-sub">Schreiben Sie uns direkt per WhatsApp oder rufen Sie uns an.</p>
@@ -815,9 +1181,14 @@
     <div class="info-block">
       <div class="info-item">
         <span>📍</span>
-        <div>
+        <div style="width:100%;">
           <b>Werkstatt-Adresse</b>
           <p>Mariendorfer Damm 49<br>12109 Berlin-Mariendorf</p>
+          <!-- NEUIGKEIT 3: Direkt-Navigation & Kopieren -->
+          <div class="route-actions">
+            <a class="route-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route starten</a>
+            <button type="button" class="route-btn" id="copyAddrBtn" onclick="copyWorkshopAddress()">📋 Adresse kopieren</button>
+          </div>
         </div>
       </div>
       <div class="info-item">
@@ -861,6 +1232,15 @@
 </footer>
 
 <script>
+  // Eingangsanimation nach 1,95 Sekunden automatisch sanft ausblenden
+  function hideIntroSplash() {
+    const splash = document.getElementById("introSplash");
+    if (splash) splash.classList.add("hide");
+  }
+  window.addEventListener("DOMContentLoaded", function() {
+    setTimeout(hideIntroSplash, 1950);
+  });
+
   // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00 - 18:00 Uhr) für Header UND Hero-Box
   function updateLiveStatus() {
     const now = new Date();
@@ -937,6 +1317,74 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
+  // Neuigkeit 1: Cockpit-Warnleuchten-Lexikon (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
+  function showDashInfo(type, btnEl) {
+    const box = document.getElementById('dashInfoBox');
+    const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
+
+    document.querySelectorAll('.dash-btn').forEach(b => b.classList.remove('active'));
+
+    if (isAlreadyActive) {
+      box.classList.remove('show');
+      return;
+    }
+
+    btnEl.classList.add('active');
+    const title = document.getElementById('dashInfoTitle');
+    const text = document.getElementById('dashInfoText');
+    const link = document.getElementById('dashWaLink');
+
+    const data = {
+      oil: {
+        t: "🛢️ Rote/Gelbe Ölkanne (Öldruck oder Ölstand)",
+        d: "Achtung: Bei roter Lampe Motor sofort abstellen! Bei gelber Lampe zeitnah Ölstand prüfen. Bei uns erhalten Sie den kompletten Ölwechsel inkl. Ölfilter & Check schon ab 69 €.",
+        wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Öl-Warnleuchte. Ich brauche bitte Hilfe / einen Termin."
+      },
+      engine: {
+        t: "⚠️ Motorkontrollleuchte (Steuergerät / Abgas)",
+        d: "Ein Sensor oder die Einspritzung meldet einen Fehler. Wir lesen Ihren Fehlerspeicher vor Ort am Mariendorfer Damm komplett kostenlos aus!",
+        wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Motorkontrollleuchte. Können Sie den Fehlerspeicher kostenlos auslesen?"
+      },
+      brake: {
+        t: "🛑 Bremsen-Warnleuchte (Verschleiß / Bremsflüssigkeit)",
+        d: "Sicherheit geht vor: Entweder sind die Bremsbeläge verschlissen oder Bremsflüssigkeit fehlt. Kommen Sie zum kostenlosen Sicherheits-Check vorbei.",
+        wa: "Hallo A&BS AUTOPROFIS, meine Bremsen-Warnleuchte ist an. Ich möchte das kurz prüfen lassen."
+      },
+      battery: {
+        t: "🔋 Batterie- / Generatorleuchte",
+        d: "Die Batterie wird während der Fahrt nicht richtig geladen (oft Lichtmaschine oder Riemen) oder ist schwach. Wir messen die Spannung sofort durch.",
+        wa: "Hallo A&BS AUTOPROFIS, meine Batterieleuchte brennt. Haben Sie kurzfristig Zeit zum Durchmessen?"
+      },
+      coolant: {
+        t: "🌡️ Kühlmittel- / Temperatur-Warnung",
+        d: "Überhitzungsgefahr! Bitte Kühlwasserstand und Frostschutz prüfen lassen. Unser Frostschutz-Check ist für Sie komplett kostenlos.",
+        wa: "Hallo A&BS AUTOPROFIS, meine Kühlwasser-Lampe leuchtet. Ich möchte gerne zum Gratis-Check vorbeikommen."
+      }
+    };
+
+    const item = data[type];
+    title.innerText = item.t;
+    text.innerText = item.d;
+    link.href = "https://wa.me/4917672625377?text=" + encodeURIComponent(item.wa);
+    box.classList.add('show');
+  }
+
+  function closeDashInfo() {
+    document.querySelectorAll('.dash-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('dashInfoBox').classList.remove('show');
+  }
+
+  // Neuigkeit 3: Adresse in Zwischenablage kopieren
+  function copyWorkshopAddress() {
+    const addr = "Mariendorfer Damm 49, 12109 Berlin";
+    const btn = document.getElementById("copyAddrBtn");
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(addr);
+    }
+    btn.innerText = "✔ Kopiert!";
+    setTimeout(() => { btn.innerText = "📋 Adresse kopieren"; }, 2000);
+  }
+
   // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung
   function sendToWhatsApp(event) {
     event.preventDefault();
@@ -958,11 +1406,14 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // Interaktiver Service-Berater Logik
+  // Interaktiver Service-Berater Logik (1. Klick öffnet, 2. Klick auf denselben Button schließt wieder)
   function showAdvisor(type, element) {
+    const wasActive = element.classList.contains('active');
     document.querySelectorAll('.advisor-chip').forEach(chip => chip.classList.remove('active'));
     document.querySelectorAll('.advisor-result').forEach(res => res.classList.remove('show'));
     
+    if (wasActive) return;
+
     element.classList.add('active');
     if(type === 'oil') document.getElementById('advisorResultOil').classList.add('show');
     if(type === 'check') document.getElementById('advisorResultCheck').classList.add('show');
