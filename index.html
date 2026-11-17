@@ -24,11 +24,11 @@
 <style>
   :root {
     --primary: #071a3d;
-    --primary-light: #0a2a6b;
+    --primary-light: #0d2759;
     --gold: #d4af37;
     --gold-light: #f5d67a;
     --bg-sand: #f7f3e9;
-    --text-dark: #0a1a3d;
+    --text-dark: #071a3d;
     --text-muted: #55607a;
     --success: #25D366;
   }
@@ -39,34 +39,69 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
-  /* Utility Elements */
-  .aufbau { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 8px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 10px 12px; line-height: 1.4; }
-  .aufbau-pill { background: var(--primary); color: var(--gold-light); padding: 4px 10px; border-radius: 999px; white-space: nowrap; display: inline-flex; }
+  /* Kompakter 2-Zeilen-Top-Banner */
+  .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 10px 14px; line-height: 1.4; }
+  .aufbau-line2 { font-size: 11px; font-weight: 700; color: #000; opacity: 0.85; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
   
   .topbar { background: var(--primary); color: #ffe9a8; font-size: 13px; padding: 10px 14px; text-align: center; line-height: 1.6; }
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
-  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 12px; max-width: 1200px; margin: 0 auto; }
+  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 16px; max-width: 1200px; margin: 0 auto; }
+
+  /* Header Widgets */
+  .header-widget-group { display: flex; align-items: center; position: relative; }
+  
+  .status-pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.2; }
+  .status-pill:hover { background: rgba(255,255,255,0.2); }
+  .status-main { display: flex; align-items: center; gap: 5px; font-weight: 700; }
+  .status-sub { font-size: 9px; color: #cbd5ff; margin-left: 12px; }
+
+  .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.2; }
+  .live-widget:hover { background: rgba(255,255,255,0.2); }
+  .widget-sub-small { font-size: 9px; color: #cbd5ff; }
+
+  .pulse-dot { width: 6px; height: 6px; background-color: var(--success); border-radius: 50%; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse 1.6s infinite; flex-shrink: 0; }
+  @keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  /* Popups für die Header-Widgets */
+  .widget-popup { display: none; position: absolute; top: 125%; right: 0; background: #fff; color: var(--primary); padding: 14px 18px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); width: 240px; z-index: 100; font-size: 13px; text-align: left; border: 1px solid #eae5d9; }
+  .widget-popup.active { display: block; }
+  .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; }
+  .widget-popup div { margin-top: 4px; font-size: 12px; }
+
+  /* Animierte Logo-Sprechblase beim Anklicken des Logos */
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; position: relative; cursor: pointer; }
+  .brand img { width: 54px; height: 54px; min-width: 54px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.3); background: #000; transition: transform 0.2s; }
+  .brand img:hover { transform: scale(1.05); }
+  
+  .logo-speech-bubble { display: none; position: absolute; top: 110%; left: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--primary); padding: 10px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 8px 20px rgba(0,0,0,0.25); width: 240px; z-index: 100; text-align: left; animation: popIn 0.25s ease-out; }
+  .logo-speech-bubble.active { display: block; }
+  @keyframes popIn {
+    0% { opacity: 0; transform: translateY(-6px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
 
   /* Header */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 20px; min-height: 88px; border-bottom: 3px solid var(--gold); }
-  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
-  .brand img { width: 60px; height: 60px; min-width: 60px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.3); background: #000; }
-  .brand strong { font-size: 20px; line-height: 1.1; white-space: nowrap; }
-  .brand span { display: block; font-size: 10px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; font-weight: 700; }
+  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px; min-height: 84px; border-bottom: 3px solid var(--gold); }
+  .brand strong { font-size: 18px; line-height: 1.1; white-space: nowrap; }
+  .brand span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px; font-weight: 700; }
   
-  nav { display: flex; gap: 18px; font-size: 14px; font-weight: 650; }
+  nav { display: flex; gap: 16px; font-size: 14px; font-weight: 650; }
   nav a:hover { color: var(--gold-light); transition: color 0.2s ease; }
 
-  .header-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; flex-wrap: nowrap; }
+  .header-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; flex-wrap: nowrap; }
   
   /* Buttons */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
   
-  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
   
-  .call-btn { background: #fff !important; color: var(--primary) !important; padding: 10px 16px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
+  .call-btn { background: #fff !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
 
   /* Hero Section */
   .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 60px 24px 50px; }
@@ -88,7 +123,7 @@
   .logo-card h3 { margin: 14px 0 4px; font-size: 26px; }
 
   /* Live Countdown Box im Hero */
-  .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); padding: 14px; border-radius: 16px; text-align: center; max-width: 480px; }
+  .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); padding: 14px; border-radius: 16px; text-align: center; max-width: 480px; backdrop-filter: blur(8px); }
   .cd-val { font-size: 22px; font-weight: 900; color: var(--gold-light); }
   .cd-lbl { font-size: 10px; text-transform: uppercase; color: #cbd5ff; letter-spacing: 1px; }
 
@@ -109,6 +144,28 @@
   .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
   .card h3 { margin: 14px 0 10px; color: var(--primary); font-size: 21px; font-weight: 800; }
   .card ul { padding-left: 20px; margin: 12px 0 0; color: #334155; font-size: 14px; line-height: 1.8; }
+
+  /* NEU: 3 Neuigkeiten (Mit kostenlosem Lichttest an erster Stelle) */
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+  .news-card { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
+  .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: 17px; font-weight: 800; }
+  .news-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* REVIEWS: Sauber untereinander */
+  .reviews-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
+  .review-card { background: #fff; border-radius: 16px; padding: 20px 24px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
+  .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 8px; }
+  .review-text { font-style: italic; color: #334155; font-size: 13px; margin-bottom: 12px; line-height: 1.6; }
+  .review-author { font-weight: 800; color: var(--primary); font-size: 12px; }
+
+  /* INTERAKTIVER SCHADENS- & SERVICE-BERATER */
+  .advisor-box { background: #fff; border-radius: 24px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 40px; text-align: center; }
+  .advisor-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+  .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 10px 18px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: all 0.2s; font-size: 14px; }
+  .advisor-chip:hover, .advisor-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .advisor-result { margin-top: 25px; padding: 20px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 15px; color: #334155; display: none; }
+  .advisor-result.show { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
   /* VORTEILE-GRID */
   .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
@@ -162,13 +219,6 @@
   .info-item b { display: block; font-size: 15px; color: var(--primary); }
   .info-item p { margin: 2px 0 0; font-size: 14px; color: var(--text-muted); }
 
-  /* Reviews / Bewertungen */
-  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .review-card { background: #fff; border-radius: 20px; padding: 26px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
-  .stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 12px; }
-  .review-text { font-style: italic; color: #334155; font-size: 14px; margin-bottom: 18px; line-height: 1.7; }
-  .review-author { font-weight: 800; color: var(--primary); font-size: 13px; }
-
   /* Floating WhatsApp Button for Desktop */
   .wa-float { display: grid; position: fixed; right: 24px; bottom: 24px; z-index: 100; width: 60px; height: 60px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
   .wa-float:hover { transform: scale(1.1); }
@@ -183,28 +233,31 @@
   @media(max-width: 1023px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-    .grid-3, .reviews-grid, .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .benefits-grid, .news-grid { grid-template-columns: repeat(2, 1fr); }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .info-highlight-box, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
   }
 
   @media(max-width: 767px) {
-    header { padding: 8px 12px; min-height: 72px; gap: 8px; }
-    .brand img { width: 44px; height: 44px; min-width: 44px; border-width: 1.5px; }
-    .brand strong { font-size: 15px; }
-    .brand span { font-size: 8px; letter-spacing: 1px; }
+    header { padding: 6px 10px; min-height: 70px; gap: 6px; }
+    .brand img { width: 38px; height: 38px; min-width: 38px; border-width: 1.5px; }
+    .brand strong { font-size: 13px; }
+    .brand span { font-size: 7px; letter-spacing: 0.8px; }
     
-    .header-actions { gap: 6px; flex-wrap: nowrap; }
-    .header-actions .wa-btn, .header-actions .call-btn { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
-    .header-actions .wa-btn svg { width: 18px; height: 18px; }
+    .header-actions { gap: 4px; flex-wrap: nowrap; }
+    .header-actions .wa-btn, .header-actions .call-btn { width: 34px; height: 34px; padding: 0; justify-content: center; border-radius: 50%; }
+    .header-actions .wa-btn svg { width: 16px; height: 16px; }
     .header-actions .wa-btn .label, .header-actions .call-btn .label { display: none; }
+    
+    .status-pill, .live-widget { padding: 4px 6px; font-size: 9px; }
+    .status-sub, .widget-sub-small { font-size: 8px; }
 
     .hero { padding: 32px 16px 28px; }
     .hero h1 { font-size: 36px; }
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .reviews-grid, .usp-inner, .benefits-grid, .countdown-box { grid-template-columns: 1fr; }
+    .grid-3, .usp-inner, .benefits-grid, .news-grid, .countdown-box { grid-template-columns: 1fr; }
     .countdown-box { grid-template-columns: repeat(4, 1fr); }
     .wrap { padding: 40px 16px; }
     .info-highlight-box, .contact-grid { padding: 20px; }
@@ -222,12 +275,11 @@
 
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
-  <span class="aufbau-pill">ERÖFFNUNGSANGEBOT GÜLTIG AB 16.11.2026</span>
+  <span class="aufbau-line2">Eröffnungsangebot gültig bis Jahresende 2026</span>
 </div>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span>✦ ERÖFFNUNGSANGEBOT AB <b>16.11.2026</b></span>
     <span>• www.absprofis.de</span>
     <span>• ✉️ <a href="mailto:info@absprofis.de">info@absprofis.de</a></span>
     <span>• Mariendorfer Damm 49, 12109 Berlin</span>
@@ -235,23 +287,58 @@
 </div>
 
 <header>
-  <div class="brand">
+  <div class="brand" onclick="toggleLogoBubble(event)">
     <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
     <div>
       <strong>A&BS AUTOPROFIS</strong>
       <span>Kfz-Service Mariendorf</span>
     </div>
+    <!-- Animierte Logo-Sprechblase -->
+    <div class="logo-speech-bubble" id="logoBubble">
+      ✨ Meisterqualität am Mariendorfer Damm – Ehrlich, fair und präzise für Ihr Auto!
+    </div>
   </div>
   
   <nav>
     <a href="#leistungen">Leistungen</a>
+    <a href="#news">News</a>
     <a href="#check21">21-Punkte-Check</a>
     <a href="#preise">Preise</a>
-    <a href="#faq">FAQ</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 
   <div class="header-actions">
+    
+    <!-- BUTTON 1: Status & Öffnungszeiten -->
+    <div class="header-widget-group">
+      <div class="status-pill" onclick="togglePopup('statusPopup', event)" title="Klicken für Countdown-Details">
+        <div class="status-main">
+          <div class="pulse-dot" id="statusDot"></div>
+          <span id="headerStatusText">Wir öffnen in Kürze</span>
+        </div>
+        <div class="status-sub">09:00 - 18:00 Uhr</div>
+      </div>
+      <div class="widget-popup" id="statusPopup">
+        <b>⏳ Öffnungs-Countdown</b>
+        <div id="countdownToOpen" style="font-size:12px; margin-top:6px; font-weight:700; color:var(--primary);">Berechne...</div>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:6px; border-top:1px solid #f3e8cb; padding-top:4px;">Mo–Fr: 09:00 – 18:00 Uhr</div>
+      </div>
+    </div>
+
+    <!-- BUTTON 2: Wetter, Zeit ohne Sekunden & Datum darunter -->
+    <div class="header-widget-group">
+      <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
+        <span id="headerWeatherMini">🌤️ Berlin 12°C</span>
+        <div class="widget-sub-small" id="headerDateTimeMini">12:00 | 17.11.2026</div>
+      </div>
+      <div class="widget-popup" id="weatherPopup">
+        <b>📍 Berlin-Mariendorf</b>
+        <div id="popupWeather" style="font-weight:700; margin-bottom:4px;">🌤️ Wetter: 12°C, Heiter</div>
+        <div id="popupTime" style="font-size:11px; color:var(--text-muted);">⏰ 12:00:00 Uhr</div>
+        <div id="popupDate" style="font-size:11px; color:var(--text-muted);">📅 Mo, 17.11.2026</div>
+      </div>
+    </div>
+
     <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       <span class="label">WhatsApp</span>
@@ -265,7 +352,7 @@
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG AB 16.11.2026</span>
+      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG BIS JAHRESENDE 2026</span>
       <h1>ÖLWECHSEL<br><span>ab 69 €</span></h1>
       <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
@@ -327,7 +414,7 @@
 <!-- LEISTUNGEN & WAS GEMACHT WIRD -->
 <section id="leistungen" class="wrap">
   <h2 class="section-title">Unser Service im Detail</h2>
-  <p class="section-sub">Modernste Technik trifft auf faire Festpreise. Das beinhaltet unser Aktionspaket:</p>
+  <p class="section-sub">Solides Handwerk trifft auf faire Festpreise. Das beinhaltet unser Aktionspaket:</p>
   
   <div class="grid-3">
     <div class="card">
@@ -346,7 +433,7 @@
       <h3>21-Punkte-Sicherheits-Check</h3>
       <ul>
         <li>Bremsanlage & Reifenprofilprüfung</li>
-        <li>Fahrwerk, Stoßdämpfer & Lenkung</li>
+        <li>Fahrwerk, Stoßdämpfer & Achsen</li>
         <li>Beleuchtung & Scheibenwischersystem</li>
         <li>Prüfung aller Flüssigkeiten (Frostschutz etc.)</li>
       </ul>
@@ -361,6 +448,56 @@
         <li>Zurücksetzen der Service-Intervalle</li>
         <li>Transparente Beratung vor jeder Reparatur</li>
       </ul>
+    </div>
+  </div>
+
+  <!-- NEU: 3 Neuigkeiten (Mit kostenlosem Lichttest & Frostschutz an 1. Stelle) -->
+  <div id="news" style="margin-top: 50px;">
+    <h2 class="section-title" style="font-size: 28px;">Aktuelles & Werkstatt-Vorteile</h2>
+    <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als neuer Kunde erwartet:</p>
+    
+    <div class="news-grid">
+      <div class="news-card">
+        <span style="font-size: 24px;">💡</span>
+        <h4>1. Kostenloser Lichttest & Frostschutz-Check</h4>
+        <p>Kommen Sie vorbei! Wir prüfen Ihre Beleuchtung und den Frostschutz für die kalte Jahreszeit komplett gratis als Begrüßungsgeschenk.</p>
+      </div>
+      <div class="news-card">
+        <span style="font-size: 24px;">🤝</span>
+        <h4>2. Transparente Festpreise</h4>
+        <p>Keine bösen Überraschungen. Jede Reparatur wird vorab klar und ehrlich mit Ihnen besprochen.</p>
+      </div>
+      <div class="news-card">
+        <span style="font-size: 24px;">📋</span>
+        <h4>3. Digitale Service-Historie</h4>
+        <p>Alle Wartungen und Checks werden lückenlos dokumentiert, damit Ihr Scheckheft und Fahrzeugwert optimal gepflegt bleiben.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
+  <div id="berater" class="advisor-box" style="margin-top: 50px;">
+    <h3 style="margin:0 0 8px; color:var(--primary); font-size:22px;">Was fehlt Ihrem Fahrzeug gerade?</h3>
+    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen für unsere Sofort-Empfehlung:</p>
+    
+    <div class="advisor-options">
+      <div class="advisor-chip" onclick="showAdvisor('oil', this)">🛢️ Ölwechsel fällig</div>
+      <div class="advisor-chip" onclick="showAdvisor('check', this)">⚠️ Warnleuchte an</div>
+      <div class="advisor-chip" onclick="showAdvisor('brake', this)">🛑 Bremsen quietschen</div>
+      <div class="advisor-chip" onclick="showAdvisor('general', this)">🔧 Allgemeine Inspektion</div>
+    </div>
+
+    <div id="advisorResultOil" class="advisor-result">
+      <b>Empfehlung zum Ölwechsel:</b> Unser Aktionsangebot bis Jahresende ab 69 € beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check.
+    </div>
+    <div id="advisorResultCheck" class="advisor-result">
+      <b>Empfehlung zur Elektronik:</b> Bei brennenden Kontrollleuchten lesen wir Ihren Fehlerspeicher **komplett kostenlos** aus, analysieren das Steuergerät und beraten Sie fair.
+    </div>
+    <div id="advisorResultBrake" class="advisor-result">
+      <b>Empfehlung zu den Bremsen:</b> Quietschende Bremsen sollten umgehend geprüft werden. Nutzen Sie unseren Sicherheits-Check direkt vor Ort am Mariendorfer Damm 49.
+    </div>
+    <div id="advisorResultGeneral" class="advisor-result">
+      <b>Empfehlung zur Inspektion:</b> Wir arbeiten exakt nach Herstellervorgaben für alle Automarken. Fragen Sie Ihr individuelles Anliegen einfach per WhatsApp oder Telefon an!
     </div>
   </div>
 
@@ -481,7 +618,7 @@
 <!-- KUNDENBEWERTUNGEN -->
 <section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 28px; margin-bottom: 40px;">
   <h2 class="section-title">Das sagen unsere Kunden</h2>
-  <p class="section-sub">Qualität, Schnelligkeit und Fairness stehen bei uns an erster Stelle.</p>
+  <p class="section-sub">Qualität, Schnelligkeit und Fairness sprechen sich auch über den Bezirk hinaus rum.</p>
 
   <div class="reviews-grid">
     <div class="review-card">
@@ -506,6 +643,22 @@
         <p class="review-text">„Top Angebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
       </div>
       <div class="review-author">– Deniz B. aus Lankwitz</div>
+    </div>
+
+    <div class="review-card">
+      <div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Obwohl ich aus Spandau komme, nehme ich den Weg gerne auf mich. Ehrliche Arbeit, super freundlicher Meister und faire Preise. Hier fahre ich ab jetzt immer hin!“</p>
+      </div>
+      <div class="review-author">– Thomas W. aus Spandau</div>
+    </div>
+
+    <div class="review-card">
+      <div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">„Man merkt sofort, dass hier Profis am Werk sind. Die 69-Euro-Aktion für den Ölwechsel ist genial. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
+      </div>
+      <div class="review-author">– Katrin M. aus Marzahn</div>
     </div>
   </div>
 </section>
@@ -545,24 +698,24 @@
   <p class="section-sub">Schreiben Sie uns oder rufen Sie direkt an.</p>
 
   <div class="contact-grid">
-    <form onsubmit="event.preventDefault(); alert('Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze.');">
+    <form id="whatsappForm" onsubmit="sendToWhatsApp(event);">
       <div class="form-group">
         <label>Ihr Name *</label>
-        <input type="text" class="form-control" placeholder="Max Mustermann" required>
+        <input type="text" id="waName" class="form-control" placeholder="Max Mustermann" required>
       </div>
       <div class="form-group">
         <label>Telefonnummer (für Rückruf) *</label>
-        <input type="tel" class="form-control" placeholder="0176 / 12345678" required>
+        <input type="tel" id="waPhone" class="form-control" placeholder="0176 / 12345678" required>
       </div>
       <div class="form-group">
         <label>Fahrzeugmodell & Kennzeichen (optional)</label>
-        <input type="text" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
+        <input type="text" id="waCar" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
       </div>
       <div class="form-group">
         <label>Ihre Nachricht / Wunschleistung</label>
-        <textarea class="form-control" rows="3" placeholder="Ölwechsel ab 69 € / Preisanfrage..."></textarea>
+        <textarea id="waMsg" class="form-control" rows="3" placeholder="Ölwechsel ab 69 € / Preisanfrage..."></textarea>
       </div>
-      <button type="submit" class="btn" style="width: 100%; padding: 14px;">Anfrage absenden</button>
+      <button type="submit" class="btn" style="width: 100%; padding: 14px;">Per WhatsApp anfragen</button>
     </form>
 
     <div class="info-block">
@@ -609,12 +762,12 @@
     <span>Mariendorfer Damm 49, 12109 Berlin</span>
     <span class="phone">📞 0176 72625 377</span>
   </div>
-  <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr</p>
+  <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr | Eröffnungsangebot gültig bis Jahresende 2026</p>
   <p style="font-size:12px;color:#8fa3d4;margin-top:10px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
 
 <script>
-  // Live Countdown Script für den 16.11.2026 um 08:00 Uhr
+  // Live Countdown Script für den Hero-Bereich (Eröffnung 16.11.2026)
   const countDownDate = new Date("Nov 16, 2026 08:00:00").getTime();
   const x = setInterval(function() {
     const now = new Date().getTime();
@@ -635,6 +788,121 @@
       document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; font-weight:900; color:#25D366;'>WIR HABEN GEÖFFNET! JETZT VORBEIKOMMEN!</div>";
     }
   }, 1000);
+
+  // Live Öffnungszeiten-Logik (Mo-Fr 09:00 - 18:00 Uhr) mit Echtzeit-Countdown bis zur nächsten Öffnung
+  function updateLiveStatus() {
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sonntag, 6 = Samstag
+    const hour = now.getHours();
+    
+    const headerStatusText = document.getElementById("headerStatusText");
+    const dot = document.getElementById("statusDot");
+    const countdownToOpenEl = document.getElementById("countdownToOpen");
+    
+    const isOpen = (day >= 1 && day <= 5) && (hour >= 9 && hour < 18);
+    
+    if (isOpen) {
+      headerStatusText.innerText = "Wir haben geöffnet";
+      dot.style.backgroundColor = "var(--success)";
+      countdownToOpenEl.innerText = "🟢 Aktuell geöffnet (bis 18:00 Uhr)";
+    } else {
+      headerStatusText.innerText = "Wir öffnen in Kürze";
+      dot.style.backgroundColor = "#f59e0b"; // Orange
+      
+      let nextOpen = new Date(now);
+      if (day === 5 && hour >= 18) {
+        nextOpen.setDate(now.getDate() + 3);
+      } else if (day === 6) {
+        nextOpen.setDate(now.getDate() + 2);
+      } else if (day === 0) {
+        nextOpen.setDate(now.getDate() + 1);
+      } else if (hour >= 18) {
+        nextOpen.setDate(now.getDate() + 1);
+      }
+      nextOpen.setHours(9, 0, 0, 0);
+      
+      const diff = nextOpen - now;
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      countdownToOpenEl.innerText = `⏳ Öffnet in: ${h} Std. ${m} Min. ${s} Sek.`;
+    }
+
+    // Uhrzeit OHNE Sekunden für das Header-Widget, MIT Sekunden für das Popup
+    const timeNoSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + " Uhr";
+    const timeWithSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " Uhr";
+    
+    // Aktuelles Datum im Format TT.MM.JJJJ
+    const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    const dateStr = now.toLocaleDateString('de-DE', optionsDate);
+
+    // Setzen im Header (Uhrzeit oben, Datum ganz klein darunter)
+    document.getElementById("headerDateTimeMini").innerText = timeNoSec + " | " + dateStr;
+
+    // Setzen im Detail-Popup (mit Sekunden)
+    document.getElementById("popupTime").innerText = "⏰ " + timeWithSec;
+    document.getElementById("popupDate").innerText = "📅 " + now.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  setInterval(updateLiveStatus, 1000);
+  updateLiveStatus();
+
+  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('waName').value.trim();
+    const phone = document.getElementById('waPhone').value.trim();
+    const car = document.getElementById('waCar').value.trim() || 'Nicht angegeben';
+    const msg = document.getElementById('waMsg').value.trim() || 'Keine Nachricht angegeben';
+    
+    const whatsappText = `*Neue Termin- / Preisanfrage über Website*\n\n` +
+                         `• _Name:_ _${name}_\n\n` +
+                         `• *Telefon:* *${phone}*\n\n` +
+                         `• _Fahrzeug / Kennzeichen:_ _${car}_\n\n` +
+                         `• *Wunsch / Nachricht:* *${msg}*`;
+    
+    const encodedText = encodeURIComponent(whatsappText);
+    const whatsappUrl = `https://wa.me/4917672625377?text=${encodedText}`;
+    
+    window.open(whatsappUrl, '_blank');
+  }
+
+  // Interaktiver Service-Berater Logik
+  function showAdvisor(type, element) {
+    document.querySelectorAll('.advisor-chip').forEach(chip => chip.classList.remove('active'));
+    document.querySelectorAll('.advisor-result').forEach(res => res.classList.remove('show'));
+    
+    element.classList.add('active');
+    if(type === 'oil') document.getElementById('advisorResultOil').classList.add('show');
+    if(type === 'check') document.getElementById('advisorResultCheck').classList.add('show');
+    if(type === 'brake') document.getElementById('advisorResultBrake').classList.add('show');
+    if(type === 'general') document.getElementById('advisorResultGeneral').classList.add('show');
+  }
+
+  // Logo-Sprechblase umschalten
+  function toggleLogoBubble(event) {
+    event.stopPropagation();
+    const bubble = document.getElementById("logoBubble");
+    bubble.classList.toggle("active");
+  }
+
+  // Popups umschalten (immer nur eines offen halten)
+  function togglePopup(popupId, event) {
+    event.stopPropagation();
+    const popups = document.querySelectorAll('.widget-popup, .logo-speech-bubble');
+    popups.forEach(p => {
+      if (p.id !== popupId) p.classList.remove('active');
+    });
+    const target = document.getElementById(popupId);
+    target.classList.toggle('active');
+  }
+
+  // Klick außerhalb schließt alle Popups & Sprechblasen
+  window.addEventListener("click", function() {
+    document.querySelectorAll('.widget-popup, .logo-speech-bubble').forEach(p => p.classList.remove('active'));
+  });
 </script>
 
 </body>
