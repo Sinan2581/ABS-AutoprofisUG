@@ -40,26 +40,52 @@
   img { max-width: 100%; height: auto; display: block; }
 
   /* Kompakter 2-Zeilen-Top-Banner */
-  .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 10px 14px; line-height: 1.4; }
-  .aufbau-line2 { font-size: 11px; font-weight: 700; color: #000; opacity: 0.85; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
+  .aufbau-line2 { font-size: 11px; font-weight: 800; color: var(--primary); opacity: 0.9; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
   
-  .topbar { background: var(--primary); color: #ffe9a8; font-size: 13px; padding: 10px 14px; text-align: center; line-height: 1.6; }
+  .topbar { background: var(--primary); color: #ffe9a8; font-size: 12px; padding: 8px 12px; text-align: center; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
-  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 16px; max-width: 1200px; margin: 0 auto; }
+  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; max-width: 1200px; margin: 0 auto; }
+
+  /* Header Layout – Desktop & Mobile überlappungsfrei */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid var(--gold); padding: 10px 20px; }
+  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+  /* Brand & Logo mit animierter Qualitäts-Sprechblase */
+  .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; }
+  .brand img { width: 52px; height: 52px; min-width: 52px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
+  .brand:hover img { transform: scale(1.05); }
+  .brand-text strong { display: block; font-size: 18px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.3px; }
+  .brand-text span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
+
+  /* Kompakte Logo-Sprechblase: Jeder Satz exakt auf einer eigenen Zeile */
+  .logo-speech-bubble { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: linear-gradient(135deg, #fffdf7, #f5e6b8); color: var(--primary); padding: 12px 16px; border-radius: 14px; border: 2px solid var(--gold); box-shadow: 0 12px 28px rgba(0,0,0,0.35); z-index: 120; width: max-content; max-width: calc(100vw - 24px); animation: popIn 0.22s ease-out; }
+  .logo-speech-bubble.active { display: block; }
+  .logo-speech-bubble .bubble-title { display: block; font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid rgba(7,26,61,0.15); white-space: nowrap; }
+  .logo-speech-bubble .bubble-line { display: block; font-size: 12px; font-weight: 700; color: #1e293b; line-height: 1.55; white-space: nowrap; }
+
+  @keyframes popIn {
+    0% { opacity: 0; transform: translateY(-6px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  nav { display: flex; gap: 16px; font-size: 14px; font-weight: 650; }
+  nav a:hover { color: var(--gold-light); transition: color 0.2s ease; }
+
+  .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .widgets-bar { display: flex; align-items: center; gap: 8px; }
+  .contact-buttons { display: flex; align-items: center; gap: 6px; }
 
   /* Header Widgets */
-  .header-widget-group { display: flex; align-items: center; position: relative; }
+  .header-widget-group { position: relative; display: flex; align-items: center; }
   
-  .status-pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.2; }
-  .status-pill:hover { background: rgba(255,255,255,0.2); }
-  .status-main { display: flex; align-items: center; gap: 5px; font-weight: 700; }
-  .status-sub { font-size: 9px; color: #cbd5ff; margin-left: 12px; }
-
-  .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.2; }
-  .live-widget:hover { background: rgba(255,255,255,0.2); }
+  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; }
+  .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
+  .status-main { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+  .status-sub { font-size: 9px; color: #cbd5ff; padding-left: 12px; }
   .widget-sub-small { font-size: 9px; color: #cbd5ff; }
 
-  .pulse-dot { width: 6px; height: 6px; background-color: var(--success); border-radius: 50%; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse 1.6s infinite; flex-shrink: 0; }
+  .pulse-dot { width: 7px; height: 7px; background-color: var(--success); border-radius: 50%; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse 1.6s infinite; flex-shrink: 0; }
   @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(37, 211, 102, 0); }
@@ -67,33 +93,11 @@
   }
 
   /* Popups für die Header-Widgets */
-  .widget-popup { display: none; position: absolute; top: 125%; right: 0; background: #fff; color: var(--primary); padding: 14px 18px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); width: 240px; z-index: 100; font-size: 13px; text-align: left; border: 1px solid #eae5d9; }
+  .widget-popup { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; color: var(--primary); padding: 12px 16px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: max-content; min-width: 210px; max-width: calc(100vw - 24px); z-index: 120; font-size: 12px; text-align: left; border: 2px solid var(--gold); animation: popIn 0.2s ease-out; }
   .widget-popup.active { display: block; }
-  .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; }
-  .widget-popup div { margin-top: 4px; font-size: 12px; }
+  .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; white-space: nowrap; }
+  .widget-popup div { margin-top: 4px; font-size: 12px; white-space: nowrap; }
 
-  /* Animierte Logo-Sprechblase beim Anklicken des Logos */
-  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; position: relative; cursor: pointer; }
-  .brand img { width: 54px; height: 54px; min-width: 54px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.3); background: #000; transition: transform 0.2s; }
-  .brand img:hover { transform: scale(1.05); }
-  
-  .logo-speech-bubble { display: none; position: absolute; top: 110%; left: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--primary); padding: 10px 14px; border-radius: 12px; font-size: 12px; font-weight: 800; box-shadow: 0 8px 20px rgba(0,0,0,0.25); width: 240px; z-index: 100; text-align: left; animation: popIn 0.25s ease-out; }
-  .logo-speech-bubble.active { display: block; }
-  @keyframes popIn {
-    0% { opacity: 0; transform: translateY(-6px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  /* Header */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 16px; min-height: 84px; border-bottom: 3px solid var(--gold); }
-  .brand strong { font-size: 18px; line-height: 1.1; white-space: nowrap; }
-  .brand span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px; font-weight: 700; }
-  
-  nav { display: flex; gap: 16px; font-size: 14px; font-weight: 650; }
-  nav a:hover { color: var(--gold-light); transition: color 0.2s ease; }
-
-  .header-actions { display: flex; gap: 6px; align-items: center; flex-shrink: 0; flex-wrap: nowrap; }
-  
   /* Buttons */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
@@ -104,15 +108,15 @@
   .call-btn { background: #fff !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
 
   /* Hero Section */
-  .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 60px 24px 50px; }
+  .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
   .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
-  .badge { display: inline-block; background: var(--gold); color: var(--primary); font-weight: 900; letter-spacing: 1.2px; font-size: 12px; padding: 8px 14px; border-radius: 999px; }
+  .badge { display: inline-block; background: var(--gold); color: var(--primary); font-weight: 900; letter-spacing: 1px; font-size: 11px; padding: 7px 14px; border-radius: 999px; white-space: nowrap; }
   .hero h1 { font-size: clamp(38px, 5vw, 58px); line-height: 0.95; margin: 16px 0 12px; letter-spacing: -1px; }
   .hero h1 span { color: var(--gold-light); }
-  .hero p { color: #dbe4ff; font-size: 17px; max-width: 580px; }
+  .hero p { color: #dbe4ff; font-size: 16px; max-width: 580px; }
   
-  .pills { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
-  .pills div { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); padding: 9px 14px; border-radius: 999px; font-size: 13px; font-weight: 650; }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
+  .pills div { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); padding: 8px 13px; border-radius: 999px; font-size: 13px; font-weight: 650; white-space: nowrap; }
   
   .cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .small { font-size: 13px; color: #aab8dd; margin-top: 16px; line-height: 1.8; }
@@ -122,10 +126,12 @@
   .logo-card img { width: 100%; border-radius: 18px; display: block; }
   .logo-card h3 { margin: 14px 0 4px; font-size: 26px; }
 
-  /* Live Countdown Box im Hero */
-  .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); padding: 14px; border-radius: 16px; text-align: center; max-width: 480px; backdrop-filter: blur(8px); }
-  .cd-val { font-size: 22px; font-weight: 900; color: var(--gold-light); }
-  .cd-lbl { font-size: 10px; text-transform: uppercase; color: #cbd5ff; letter-spacing: 1px; }
+  /* Synchronisierte Live Countdown Box im Hero */
+  .countdown-wrapper { margin-top: 20px; max-width: 480px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); padding: 14px; border-radius: 16px; backdrop-filter: blur(8px); }
+  .countdown-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-light); text-align: center; margin-bottom: 8px; }
+  .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+  .cd-val { font-size: 22px; font-weight: 900; color: #fff; line-height: 1.1; }
+  .cd-lbl { font-size: 10px; text-transform: uppercase; color: #cbd5ff; letter-spacing: 0.8px; margin-top: 2px; }
 
   /* USP Bar */
   .usp-bar { background: #fff; border-bottom: 1px solid #eae5d9; padding: 20px 24px; }
@@ -135,102 +141,102 @@
 
   /* Containers & Sections */
   .wrap { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
-  .section-title { font-size: 34px; font-weight: 900; color: var(--primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.5px; }
-  .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 40px; font-size: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .section-title { font-size: 32px; font-weight: 900; color: var(--primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.5px; }
+  .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 36px; font-size: 15px; max-width: 700px; margin-left: auto; margin-right: auto; }
 
   /* GRID & CARDS */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .card { background: #fff; border-radius: 22px; padding: 32px; border: 1px solid #eae5d9; box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card { background: #fff; border-radius: 22px; padding: 28px; border: 1px solid #eae5d9; box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
-  .card h3 { margin: 14px 0 10px; color: var(--primary); font-size: 21px; font-weight: 800; }
-  .card ul { padding-left: 20px; margin: 12px 0 0; color: #334155; font-size: 14px; line-height: 1.8; }
+  .card h3 { margin: 12px 0 10px; color: var(--primary); font-size: 20px; font-weight: 800; }
+  .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.8; }
 
-  /* NEU: 3 Neuigkeiten (Mit kostenlosem Lichttest an erster Stelle) */
-  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+  /* 3 Neuigkeiten */
+  .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .news-card { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: 17px; font-weight: 800; }
   .news-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
   /* REVIEWS: Sauber untereinander */
-  .reviews-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
-  .review-card { background: #fff; border-radius: 16px; padding: 20px 24px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
-  .stars { color: var(--gold); font-size: 16px; letter-spacing: 2px; margin-bottom: 8px; }
-  .review-text { font-style: italic; color: #334155; font-size: 13px; margin-bottom: 12px; line-height: 1.6; }
+  .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 860px; margin: 0 auto; }
+  .review-card { background: #fff; border-radius: 16px; padding: 18px 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
+  .stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 6px; }
+  .review-text { font-style: italic; color: #334155; font-size: 13px; margin: 0 0 10px; line-height: 1.55; }
   .review-author { font-weight: 800; color: var(--primary); font-size: 12px; }
 
   /* INTERAKTIVER SCHADENS- & SERVICE-BERATER */
-  .advisor-box { background: #fff; border-radius: 24px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 40px; text-align: center; }
-  .advisor-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
-  .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 10px 18px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: all 0.2s; font-size: 14px; }
+  .advisor-box { background: #fff; border-radius: 24px; padding: 32px; border: 1px solid #eae5d9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 40px; text-align: center; }
+  .advisor-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+  .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 9px 16px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: all 0.2s; font-size: 13px; }
   .advisor-chip:hover, .advisor-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-  .advisor-result { margin-top: 25px; padding: 20px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 15px; color: #334155; display: none; }
+  .advisor-result { margin-top: 20px; padding: 18px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 14px; color: #334155; display: none; }
   .advisor-result.show { display: block; animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
   /* VORTEILE-GRID */
-  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-  .benefit-box { background: #fff; border-radius: 18px; padding: 24px; border: 1px solid #eae5d9; display: flex; gap: 16px; align-items: flex-start; }
-  .benefit-icon { font-size: 28px; background: #fdfbf7; padding: 12px; border-radius: 14px; border: 1px solid #eae5d9; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .benefit-box { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; display: flex; gap: 14px; align-items: flex-start; }
+  .benefit-icon { font-size: 26px; background: #fdfbf7; padding: 10px; border-radius: 14px; border: 1px solid #eae5d9; }
   .benefit-box h4 { margin: 0 0 4px; color: var(--primary); font-size: 16px; font-weight: 800; }
   .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
   /* MARKEN-BANNER */
-  .brands-box { background: #fff; border-radius: 20px; padding: 30px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
-  .brands-box h4 { margin: 0 0 10px; color: var(--primary); font-size: 18px; }
-  .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 16px; font-weight: 700; color: #475569; font-size: 14px; }
+  .brands-box { background: #fff; border-radius: 20px; padding: 26px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
+  .brands-box h4 { margin: 0 0 12px; color: var(--primary); font-size: 17px; }
+  .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; font-weight: 700; color: #475569; font-size: 13px; }
   .brands-list span { background: #fdfbf7; padding: 6px 14px; border-radius: 999px; border: 1px solid #e6dfcf; }
 
   /* ACCORDION (21 PUNKTE CHECK) */
-  .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
   .accordion-item { background: #fff; border-radius: 16px; border: 1px solid #eae5d9; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-  .accordion-item summary { padding: 18px 24px; font-weight: 800; font-size: 17px; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: #fff; transition: background 0.2s; }
+  .accordion-item summary { padding: 16px 20px; font-weight: 800; font-size: 16px; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: #fff; transition: background 0.2s; }
   .accordion-item summary::-webkit-details-marker { display: none; }
-  .accordion-item summary::after { content: '+'; font-size: 22px; color: var(--gold); font-weight: 900; transition: transform 0.2s; }
+  .accordion-item summary::after { content: '+'; font-size: 22px; color: var(--gold); font-weight: 900; margin-left: 10px; }
   .accordion-item[open] summary::after { content: '−'; }
   .accordion-item[open] summary { background: #fdfbf7; border-bottom: 1px solid #eae5d9; }
-  .accordion-content { padding: 20px 24px; background: #fdfbf7; }
+  .accordion-content { padding: 18px 20px; background: #fdfbf7; }
   .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; list-style: none; padding: 0; margin: 0; }
   .check-grid li { font-size: 14px; color: #334155; display: flex; align-items: center; gap: 8px; }
   .check-grid li::before { content: '✔'; color: var(--success); font-weight: 900; }
 
   /* PREIS- & KONDITIONEN-BOX */
-  .info-highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 28px; padding: 45px; border: 2px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  .info-highlight-box h3 { font-size: 30px; margin: 15px 0 15px; color: #fff; letter-spacing: -0.5px; }
-  .info-highlight-box p { color: #dbe4ff; font-size: 16px; line-height: 1.7; margin-bottom: 25px; }
-  .price-tag-card { background: #fff; color: var(--text-dark); border-radius: 22px; padding: 35px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid var(--gold); }
-  .price-tag-card h4 { margin: 0 0 5px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
-  .price-tag-val { font-size: 52px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; }
-  .price-tag-val span { font-size: 18px; font-weight: 700; color: #6b7280; }
+  .info-highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 28px; padding: 40px; border: 2px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+  .info-highlight-box h3 { font-size: 28px; margin: 14px 0 12px; color: #fff; letter-spacing: -0.5px; }
+  .info-highlight-box p { color: #dbe4ff; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+  .price-tag-card { background: #fff; color: var(--text-dark); border-radius: 22px; padding: 30px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid var(--gold); }
+  .price-tag-card h4 { margin: 0 0 5px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+  .price-tag-val { font-size: 48px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; }
+  .price-tag-val span { font-size: 16px; font-weight: 700; color: #6b7280; }
   .price-hint { background: #fdfbf7; border: 1.5px dashed var(--gold); padding: 12px; border-radius: 12px; font-size: 13px; color: #78350f; font-weight: 700; margin-bottom: 20px; }
 
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
   /* KONTAKT- & TERMIN-FORMULAR */
-  .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 40px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+  .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 6px; color: var(--primary); }
   .form-control { width: 100%; padding: 13px 16px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
   .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
   
-  .info-block { display: flex; flex-direction: column; gap: 20px; justify-content: center; background: #f7f3e9; padding: 30px; border-radius: 20px; border-left: 5px solid var(--gold); }
+  .info-block { display: flex; flex-direction: column; gap: 20px; justify-content: center; background: #f7f3e9; padding: 28px; border-radius: 20px; border-left: 5px solid var(--gold); }
   .info-item { display: flex; gap: 14px; align-items: flex-start; }
   .info-item span { font-size: 22px; }
   .info-item b { display: block; font-size: 15px; color: var(--primary); }
   .info-item p { margin: 2px 0 0; font-size: 14px; color: var(--text-muted); }
 
-  /* Floating WhatsApp Button for Desktop */
-  .wa-float { display: grid; position: fixed; right: 24px; bottom: 24px; z-index: 100; width: 60px; height: 60px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
-  .wa-float:hover { transform: scale(1.1); }
-  .wa-float svg { width: 34px; height: 34px; }
+  /* Floating WhatsApp Button */
+  .wa-float { display: grid; position: fixed; right: 20px; bottom: 20px; z-index: 100; width: 58px; height: 58px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 32px; height: 32px; }
 
   footer { background: var(--primary); color: #cbd5ff; padding: 40px 24px; text-align: center; }
   footer b { color: #fff; }
   .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 14px 0; }
   .footer-contact .phone { color: #fff; font-size: 20px; font-weight: 900; }
 
-  /* ===== MOBILE & RESPONSIVE OPTIMIERUNGEN ===== */
-  @media(max-width: 1023px) {
+  /* ===== MOBILE & TABLET OPTIMIERUNGEN (GARANTIERT OHNE ÜBERLAPPUNG) ===== */
+  @media(max-width: 1080px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
     .grid-3, .benefits-grid, .news-grid { grid-template-columns: repeat(2, 1fr); }
@@ -239,29 +245,39 @@
   }
 
   @media(max-width: 767px) {
-    header { padding: 6px 10px; min-height: 70px; gap: 6px; }
-    .brand img { width: 38px; height: 38px; min-width: 38px; border-width: 1.5px; }
-    .brand strong { font-size: 13px; }
-    .brand span { font-size: 7px; letter-spacing: 0.8px; }
+    header { padding: 8px 12px; }
+    .header-inner { flex-wrap: wrap; gap: 8px; }
     
-    .header-actions { gap: 4px; flex-wrap: nowrap; }
-    .header-actions .wa-btn, .header-actions .call-btn { width: 34px; height: 34px; padding: 0; justify-content: center; border-radius: 50%; }
-    .header-actions .wa-btn svg { width: 16px; height: 16px; }
-    .header-actions .wa-btn .label, .header-actions .call-btn .label { display: none; }
-    
-    .status-pill, .live-widget { padding: 4px 6px; font-size: 9px; }
-    .status-sub, .widget-sub-small { font-size: 8px; }
+    /* Zeile 1 im mobilen Header: Logo + Name links, Anruf & WhatsApp rechts */
+    .brand { order: 1; flex: 1 1 auto; }
+    .brand img { width: 42px; height: 42px; min-width: 42px; }
+    .brand-text strong { font-size: 16px; }
+    .brand-text span { font-size: 8.5px; letter-spacing: 1px; }
 
-    .hero { padding: 32px 16px 28px; }
+    .header-right { order: 2; width: 100%; display: contents; }
+    .contact-buttons { order: 2; margin-left: auto; gap: 6px; }
+    .contact-buttons .wa-btn, .contact-buttons .call-btn { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+    .contact-buttons .wa-btn .label, .contact-buttons .call-btn .label { display: none; }
+
+    /* Zeile 2 im mobilen Header: Beide Live-Widgets sauber 50/50 nebeneinander ohne Überlappung */
+    .widgets-bar { order: 3; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .header-widget-group { width: 100%; }
+    .status-pill, .live-widget { width: 100%; align-items: center; text-align: center; padding: 5px 8px; font-size: 10.5px; }
+    .status-sub { padding-left: 0; font-size: 9px; }
+    .widget-sub-small { font-size: 9px; }
+
+    /* Popups auf Mobile sauber ausrichten */
+    #statusPopup { left: 0; right: auto; }
+    #weatherPopup { right: 0; left: auto; }
+
+    .hero { padding: 28px 16px 26px; }
     .hero h1 { font-size: 36px; }
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .usp-inner, .benefits-grid, .news-grid, .countdown-box { grid-template-columns: 1fr; }
-    .countdown-box { grid-template-columns: repeat(4, 1fr); }
-    .wrap { padding: 40px 16px; }
-    .info-highlight-box, .contact-grid { padding: 20px; }
-    .wa-float { display: grid; }
+    .grid-3, .usp-inner, .benefits-grid, .news-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 36px 16px; }
+    .info-highlight-box, .contact-grid, .advisor-box { padding: 20px; }
     .check-grid { grid-template-columns: 1fr; }
   }
 
@@ -287,72 +303,81 @@
 </div>
 
 <header>
-  <div class="brand" onclick="toggleLogoBubble(event)">
-    <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
-    <div>
-      <strong>A&BS AUTOPROFIS</strong>
-      <span>Kfz-Service Mariendorf</span>
+  <div class="header-inner">
+    <!-- LOGO & FIRMENNAME (Klick öffnet kompakten Qualitätsspruch) -->
+    <div class="brand" onclick="toggleLogoBubble(event)" title="Klicken für unser Qualitätsversprechen">
+      <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
+      <div class="brand-text">
+        <strong>A&BS AUTOPROFIS</strong>
+        <span>Kfz-Service Mariendorf</span>
+      </div>
+      <!-- Animierte Logo-Sprechblase: Jeder Satz eigene Zeile -->
+      <div class="logo-speech-bubble" id="logoBubble">
+        <span class="bubble-title">✨ Unser Qualitätsversprechen:</span>
+        <span class="bubble-line">✔ Geprüfte Meisterqualität für alle Marken.</span>
+        <span class="bubble-line">✔ Ehrliche Beratung ohne versteckte Kosten.</span>
+        <span class="bubble-line">✔ Präzises Handwerk am Mariendorfer Damm.</span>
+      </div>
     </div>
-    <!-- Animierte Logo-Sprechblase -->
-    <div class="logo-speech-bubble" id="logoBubble">
-      ✨ Meisterqualität am Mariendorfer Damm – Ehrlich, fair und präzise für Ihr Auto!
-    </div>
-  </div>
-  
-  <nav>
-    <a href="#leistungen">Leistungen</a>
-    <a href="#news">News</a>
-    <a href="#check21">21-Punkte-Check</a>
-    <a href="#preise">Preise</a>
-    <a href="#kontakt">Kontakt</a>
-  </nav>
-
-  <div class="header-actions">
     
-    <!-- BUTTON 1: Status & Öffnungszeiten -->
-    <div class="header-widget-group">
-      <div class="status-pill" onclick="togglePopup('statusPopup', event)" title="Klicken für Countdown-Details">
-        <div class="status-main">
-          <div class="pulse-dot" id="statusDot"></div>
-          <span id="headerStatusText">Wir öffnen in Kürze</span>
+    <nav>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#news">Vorteile</a>
+      <a href="#check21">21-Punkte-Check</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="widgets-bar">
+        <!-- BUTTON 1: Status & Öffnungszeiten -->
+        <div class="header-widget-group">
+          <div class="status-pill" onclick="togglePopup('statusPopup', event)" title="Klicken für Countdown-Details">
+            <div class="status-main">
+              <div class="pulse-dot" id="statusDot"></div>
+              <span id="headerStatusText">Wir öffnen in Kürze</span>
+            </div>
+            <div class="status-sub">09:00 - 18:00 Uhr</div>
+          </div>
+          <div class="widget-popup" id="statusPopup">
+            <b>⏳ Öffnungszeiten-Status</b>
+            <div id="countdownToOpen" style="font-weight:800; color:var(--primary);">Berechne...</div>
+            <div style="color:var(--text-muted); border-top:1px solid #f3e8cb; padding-top:4px; margin-top:6px;">Mo–Fr: 09:00 – 18:00 Uhr</div>
+          </div>
         </div>
-        <div class="status-sub">09:00 - 18:00 Uhr</div>
+
+        <!-- BUTTON 2: Wetter, Zeit ohne Sekunden & Datum -->
+        <div class="header-widget-group">
+          <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
+            <span id="headerWeatherMini" style="font-weight:700;">🌤️ Berlin 12°C</span>
+            <div class="widget-sub-small" id="headerDateTimeMini">08:32 Uhr | 17.11.2026</div>
+          </div>
+          <div class="widget-popup" id="weatherPopup">
+            <b>📍 Berlin-Mariendorf</b>
+            <div id="popupWeather" style="font-weight:700;">🌤️ Wetter: 12°C, Heiter</div>
+            <div id="popupTime" style="color:var(--text-muted);">⏰ 08:32:00 Uhr</div>
+            <div id="popupDate" style="color:var(--text-muted);">📅 Di., 17.11.2026</div>
+          </div>
+        </div>
       </div>
-      <div class="widget-popup" id="statusPopup">
-        <b>⏳ Öffnungs-Countdown</b>
-        <div id="countdownToOpen" style="font-size:12px; margin-top:6px; font-weight:700; color:var(--primary);">Berechne...</div>
-        <div style="font-size:11px; color:var(--text-muted); margin-top:6px; border-top:1px solid #f3e8cb; padding-top:4px;">Mo–Fr: 09:00 – 18:00 Uhr</div>
+
+      <div class="contact-buttons">
+        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span class="label">WhatsApp</span>
+        </a>
+        <a class="call-btn" href="tel:017672625377" aria-label="Anrufen">
+          📞 <span class="label">Anrufen</span>
+        </a>
       </div>
     </div>
-
-    <!-- BUTTON 2: Wetter, Zeit ohne Sekunden & Datum darunter -->
-    <div class="header-widget-group">
-      <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
-        <span id="headerWeatherMini">🌤️ Berlin 12°C</span>
-        <div class="widget-sub-small" id="headerDateTimeMini">12:00 | 17.11.2026</div>
-      </div>
-      <div class="widget-popup" id="weatherPopup">
-        <b>📍 Berlin-Mariendorf</b>
-        <div id="popupWeather" style="font-weight:700; margin-bottom:4px;">🌤️ Wetter: 12°C, Heiter</div>
-        <div id="popupTime" style="font-size:11px; color:var(--text-muted);">⏰ 12:00:00 Uhr</div>
-        <div id="popupDate" style="font-size:11px; color:var(--text-muted);">📅 Mo, 17.11.2026</div>
-      </div>
-    </div>
-
-    <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span class="label">WhatsApp</span>
-    </a>
-    <a class="call-btn" href="tel:017672625377" aria-label="Anrufen">
-      📞 <span class="label">Anrufen</span>
-    </a>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <span class="badge">ERÖFFNUNGSANGEBOT • GÜLTIG BIS JAHRESENDE 2026</span>
+      <span class="badge">★ KFZ-MEISTERBETRIEB BERLIN-MARIENDORF</span>
       <h1>ÖLWECHSEL<br><span>ab 69 €</span></h1>
       <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
@@ -362,12 +387,15 @@
         <div>✓ Fehlerspeicher kostenlos</div>
       </div>
 
-      <!-- Live Countdown zur Eröffnung -->
-      <div class="countdown-box" id="countdown">
-        <div><div class="cd-val" id="days">00</div><div class="cd-lbl">Tage</div></div>
-        <div><div class="cd-val" id="hours">00</div><div class="cd-lbl">Std</div></div>
-        <div><div class="cd-val" id="mins">00</div><div class="cd-lbl">Min</div></div>
-        <div><div class="cd-val" id="secs">00</div><div class="cd-lbl">Sek</div></div>
+      <!-- Synchronisierter Live-Status & Countdown -->
+      <div class="countdown-wrapper">
+        <div class="countdown-title" id="heroCountdownTitle">⏳ WIR ÖFFNEN IN KÜRZE – COUNTDOWN:</div>
+        <div class="countdown-box" id="countdown">
+          <div><div class="cd-val" id="days">00</div><div class="cd-lbl">Tage</div></div>
+          <div><div class="cd-val" id="hours">00</div><div class="cd-lbl">Std</div></div>
+          <div><div class="cd-val" id="mins">00</div><div class="cd-lbl">Min</div></div>
+          <div><div class="cd-val" id="secs">00</div><div class="cd-lbl">Sek</div></div>
+        </div>
       </div>
       
       <div class="cta" style="margin-top:20px;">
@@ -451,10 +479,10 @@
     </div>
   </div>
 
-  <!-- NEU: 3 Neuigkeiten (Mit kostenlosem Lichttest & Frostschutz an 1. Stelle) -->
+  <!-- 3 Neuigkeiten (Mit kostenlosem Lichttest & Frostschutz an 1. Stelle) -->
   <div id="news" style="margin-top: 50px;">
     <h2 class="section-title" style="font-size: 28px;">Aktuelles & Werkstatt-Vorteile</h2>
-    <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als neuer Kunde erwartet:</p>
+    <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
     
     <div class="news-grid">
       <div class="news-card">
@@ -464,8 +492,8 @@
       </div>
       <div class="news-card">
         <span style="font-size: 24px;">🤝</span>
-        <h4>2. Transparente Festpreise</h4>
-        <p>Keine bösen Überraschungen. Jede Reparatur wird vorab klar und ehrlich mit Ihnen besprochen.</p>
+        <h4>2. Klare Absprache vorab</h4>
+        <p>Keine bösen Überraschungen. Jede Arbeit am Fahrzeug wird vorab ehrlich und verständlich mit Ihnen besprochen.</p>
       </div>
       <div class="news-card">
         <span style="font-size: 24px;">📋</span>
@@ -491,7 +519,7 @@
       <b>Empfehlung zum Ölwechsel:</b> Unser Aktionsangebot bis Jahresende ab 69 € beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check.
     </div>
     <div id="advisorResultCheck" class="advisor-result">
-      <b>Empfehlung zur Elektronik:</b> Bei brennenden Kontrollleuchten lesen wir Ihren Fehlerspeicher **komplett kostenlos** aus, analysieren das Steuergerät und beraten Sie fair.
+      <b>Empfehlung zur Elektronik:</b> Bei brennenden Kontrollleuchten lesen wir Ihren Fehlerspeicher <b>komplett kostenlos</b> aus, analysieren das Steuergerät und beraten Sie fair.
     </div>
     <div id="advisorResultBrake" class="advisor-result">
       <b>Empfehlung zu den Bremsen:</b> Quietschende Bremsen sollten umgehend geprüft werden. Nutzen Sie unseren Sicherheits-Check direkt vor Ort am Mariendorfer Damm 49.
@@ -541,7 +569,6 @@
   <p class="section-sub">Klicken Sie auf die Bereiche, um zu sehen, welche Prüfungen beim kostenlosen Sicherheits-Check durchgeführt werden:</p>
   
   <div class="accordion-container">
-    <!-- Kategorie 1 -->
     <details class="accordion-item">
       <summary>1. Bremsen & Fahrwerk (Prüfung auf Herz und Nieren)</summary>
       <div class="accordion-content">
@@ -554,7 +581,6 @@
       </div>
     </details>
 
-    <!-- Kategorie 2 -->
     <details class="accordion-item">
       <summary>2. Reifen, Räder & Unterboden</summary>
       <div class="accordion-content">
@@ -567,7 +593,6 @@
       </div>
     </details>
 
-    <!-- Kategorie 3 -->
     <details class="accordion-item">
       <summary>3. Flüssigkeiten & Filter (Wichtige Betriebsstoffe)</summary>
       <div class="accordion-content">
@@ -580,7 +605,6 @@
       </div>
     </details>
 
-    <!-- Kategorie 4 -->
     <details class="accordion-item">
       <summary>4. Elektrik, Sicht & Elektronik (Sicherheit im Alltag)</summary>
       <div class="accordion-content">
@@ -615,49 +639,39 @@
   </div>
 </section>
 
-<!-- KUNDENBEWERTUNGEN -->
+<!-- KUNDENBEWERTUNGEN (Alle 5 kompakt untereinander) -->
 <section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 28px; margin-bottom: 40px;">
   <h2 class="section-title">Das sagen unsere Kunden</h2>
-  <p class="section-sub">Qualität, Schnelligkeit und Fairness sprechen sich auch über den Bezirk hinaus rum.</p>
+  <p class="section-sub">Qualität, Schnelligkeit und Fairness sprechen sich in ganz Berlin herum.</p>
 
   <div class="reviews-grid">
     <div class="review-card">
-      <div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Super Service! Mein Ölwechsel wurde schnell und sauber erledigt. Der kostenlose 21-Punkte-Check hat mir einen drohenden Mangel an den Bremsen gezeigt. Absolute Empfehlung für Mariendorf!“</p>
-      </div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Super Service! Mein Ölwechsel wurde schnell und sauber erledigt. Der kostenlose 21-Punkte-Check hat mir einen drohenden Mangel an den Bremsen gezeigt. Absolute Empfehlung für Mariendorf!“</p>
       <div class="review-author">– Michael K. aus Tempelhof</div>
     </div>
 
     <div class="review-card">
-      <div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Endlich eine Werkstatt, bei der man nicht abgezockt wird. Fehlerspeicher wurde sofort kostenlos ausgelesen und transparent erklärt. Absolut vertrauenswürdig!“</p>
-      </div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Endlich eine Werkstatt, bei der man nicht abgezockt wird. Fehlerspeicher wurde sofort kostenlos ausgelesen und transparent erklärt. Absolut vertrauenswürdig!“</p>
       <div class="review-author">– Sarah L. aus Mariendorf</div>
     </div>
 
     <div class="review-card">
-      <div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Top Angebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
-      </div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Top Angebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
       <div class="review-author">– Deniz B. aus Lankwitz</div>
     </div>
 
     <div class="review-card">
-      <div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Obwohl ich aus Spandau komme, nehme ich den Weg gerne auf mich. Ehrliche Arbeit, super freundlicher Meister und faire Preise. Hier fahre ich ab jetzt immer hin!“</p>
-      </div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Obwohl ich aus Spandau komme, nehme ich den Weg gerne auf mich. Ehrliche Arbeit, super freundlicher Meister und faire Preise. Hier fahre ich ab jetzt immer hin!“</p>
       <div class="review-author">– Thomas W. aus Spandau</div>
     </div>
 
     <div class="review-card">
-      <div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">„Man merkt sofort, dass hier Profis am Werk sind. Die 69-Euro-Aktion für den Ölwechsel ist genial. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
-      </div>
+      <div class="stars">★★★★★</div>
+      <p class="review-text">„Man merkt sofort, dass hier Profis am Werk sind. Die 69-Euro-Aktion für den Ölwechsel ist genial. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
       <div class="review-author">– Katrin M. aus Marzahn</div>
     </div>
   </div>
@@ -762,34 +776,12 @@
     <span>Mariendorfer Damm 49, 12109 Berlin</span>
     <span class="phone">📞 0176 72625 377</span>
   </div>
-  <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr | Eröffnungsangebot gültig bis Jahresende 2026</p>
+  <p style="font-size:12px;color:#8fa3d4;margin-top:15px;">Öffnungszeiten: Montag – Freitag von 09:00 – 18:00 Uhr</p>
   <p style="font-size:12px;color:#8fa3d4;margin-top:10px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
 
 <script>
-  // Live Countdown Script für den Hero-Bereich (Eröffnung 16.11.2026)
-  const countDownDate = new Date("Nov 16, 2026 08:00:00").getTime();
-  const x = setInterval(function() {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-    document.getElementById("mins").innerText = minutes < 10 ? "0" + minutes : minutes;
-    document.getElementById("secs").innerText = seconds < 10 ? "0" + seconds : seconds;
-    
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown").innerHTML = "<div style='grid-column: span 4; font-weight:900; color:#25D366;'>WIR HABEN GEÖFFNET! JETZT VORBEIKOMMEN!</div>";
-    }
-  }, 1000);
-
-  // Live Öffnungszeiten-Logik (Mo-Fr 09:00 - 18:00 Uhr) mit Echtzeit-Countdown bis zur nächsten Öffnung
+  // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00 - 18:00 Uhr) für Header UND Hero-Box
   function updateLiveStatus() {
     const now = new Date();
     const day = now.getDay(); // 0 = Sonntag, 6 = Samstag
@@ -798,13 +790,26 @@
     const headerStatusText = document.getElementById("headerStatusText");
     const dot = document.getElementById("statusDot");
     const countdownToOpenEl = document.getElementById("countdownToOpen");
+    const heroTitle = document.getElementById("heroCountdownTitle");
+    const heroBox = document.getElementById("countdown");
     
     const isOpen = (day >= 1 && day <= 5) && (hour >= 9 && hour < 18);
     
     if (isOpen) {
       headerStatusText.innerText = "Wir haben geöffnet";
       dot.style.backgroundColor = "var(--success)";
-      countdownToOpenEl.innerText = "🟢 Aktuell geöffnet (bis 18:00 Uhr)";
+      
+      // Berechne verbleibende Öffnungszeit bis 18:00 Uhr
+      let closeTime = new Date(now);
+      closeTime.setHours(18, 0, 0, 0);
+      const diffClose = closeTime - now;
+      const hc = Math.floor((diffClose % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mc = Math.floor((diffClose % (1000 * 60 * 60)) / (1000 * 60));
+      const sc = Math.floor((diffClose % (1000 * 60)) / 1000);
+      
+      countdownToOpenEl.innerText = `🟢 Geöffnet (noch ${hc}h ${mc}m ${sc}s)`;
+      heroTitle.innerText = "🟢 WIR HABEN GEÖFFNET (09:00 – 18:00 UHR)";
+      heroBox.innerHTML = `<div style="grid-column: span 4; font-weight:900; font-size:15px; color:#25D366; padding: 4px 0;">JETZT VORBEIKOMMEN ODER ANRUFEN!</div>`;
     } else {
       headerStatusText.innerText = "Wir öffnen in Kürze";
       dot.style.backgroundColor = "#f59e0b"; // Orange
@@ -822,11 +827,19 @@
       nextOpen.setHours(9, 0, 0, 0);
       
       const diff = nextOpen - now;
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
       const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
       
-      countdownToOpenEl.innerText = `⏳ Öffnet in: ${h} Std. ${m} Min. ${s} Sek.`;
+      countdownToOpenEl.innerText = `⏳ Öffnet in: ${d > 0 ? d + ' Tg. ' : ''}${h} Std. ${m} Min. ${s} Sek.`;
+      heroTitle.innerText = "⏳ WIR ÖFFNEN WIEDER IN:";
+      heroBox.innerHTML = `
+        <div><div class="cd-val">${d < 10 ? "0" + d : d}</div><div class="cd-lbl">Tage</div></div>
+        <div><div class="cd-val">${h < 10 ? "0" + h : h}</div><div class="cd-lbl">Std</div></div>
+        <div><div class="cd-val">${m < 10 ? "0" + m : m}</div><div class="cd-lbl">Min</div></div>
+        <div><div class="cd-val">${s < 10 ? "0" + s : s}</div><div class="cd-lbl">Sek</div></div>
+      `;
     }
 
     // Uhrzeit OHNE Sekunden für das Header-Widget, MIT Sekunden für das Popup
@@ -837,12 +850,9 @@
     const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const dateStr = now.toLocaleDateString('de-DE', optionsDate);
 
-    // Setzen im Header (Uhrzeit oben, Datum ganz klein darunter)
     document.getElementById("headerDateTimeMini").innerText = timeNoSec + " | " + dateStr;
-
-    // Setzen im Detail-Popup (mit Sekunden)
     document.getElementById("popupTime").innerText = "⏰ " + timeWithSec;
-    document.getElementById("popupDate").innerText = "📅 " + now.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById("popupDate").innerText = "📅 " + now.toLocaleDateString('de-DE', { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' });
   }
 
   setInterval(updateLiveStatus, 1000);
@@ -884,6 +894,7 @@
   // Logo-Sprechblase umschalten
   function toggleLogoBubble(event) {
     event.stopPropagation();
+    document.querySelectorAll('.widget-popup').forEach(p => p.classList.remove('active'));
     const bubble = document.getElementById("logoBubble");
     bubble.classList.toggle("active");
   }
