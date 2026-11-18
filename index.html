@@ -50,11 +50,26 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
-  /* Umbruchschutz für Zahlen, Preise, Telefonnummern & Klammer-Ausdrücke */
+  /* Umbruchschutz für Zahlen, Preise & Telefonnummern */
   .nw { white-space: nowrap; display: inline-block; }
 
-  /* Klammer-Zusätze sauber auf eigener Zeile */
-  .sub-bracket { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-top: 2px; line-height: 1.35; }
+  /* Klammer-Zusätze: IMMER sauber auf einer eigenen neuen Zeile */
+  .sub-bracket {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.35;
+  }
+  .sub-bracket-light {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #cbd5ff;
+    margin-top: 2px;
+    line-height: 1.35;
+  }
 
   /* Dezenter Scroll-Einblendeffekt */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); will-change: opacity, transform; }
@@ -208,7 +223,42 @@
   .section-title::after { content: ''; display: block; width: 52px; height: 3.5px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 999px; margin: 8px auto 0; }
   .section-sub { text-align: center; color: var(--text-muted); margin: 0 auto 32px; font-size: 15px; max-width: 680px; }
 
-  /* ===== NEU: KOMPLETTER KFZ-REPARATUR-KATALOG MIT LIVE-FILTER & 1-KLICK ANFRAGE-WAHL ===== */
+  /* ===== NEU: 1-KLICK NEUKUNDEN-VORTEILS-PASS (ANREIZ-LEISTE) ===== */
+  .welcome-pass {
+    background: linear-gradient(135deg, #fffdf7, #f5e6b8);
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 16px 20px;
+    margin-bottom: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 18px;
+    box-shadow: 0 8px 22px rgba(212,175,55,0.16);
+  }
+  .welcome-pass-info b { display: block; font-size: 15px; font-weight: 900; color: var(--primary); }
+  .welcome-pass-info span { font-size: 13px; color: #334155; font-weight: 600; }
+  .welcome-pass-btn {
+    background: var(--primary);
+    color: var(--gold-light);
+    border: 2px solid var(--gold);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .welcome-pass-btn.claimed {
+    background: var(--success);
+    color: #fff;
+    border-color: #fff;
+  }
+
+  /* ===== KFZ-REPARATUR-KATALOG MIT LIVE-FILTER ===== */
   .repair-filter-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 760px; margin: 0 auto 28px; background: #ede6d3; padding: 6px; border-radius: 16px; }
   .rep-filter-btn { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: clamp(11px, 2.8vw, 13px); padding: 10px 8px; border-radius: 12px; cursor: pointer; white-space: nowrap; transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
   .rep-filter-btn.active { background: var(--primary); color: var(--gold-light); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
@@ -220,33 +270,44 @@
   .rep-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
   .rep-icon { font-size: 26px; background: #fdfbf7; border: 1px solid #eae5d9; width: 46px; height: 46px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .rep-tag { font-size: 10.5px; font-weight: 800; color: var(--primary); background: #fdfbf7; border: 1px solid var(--gold); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
-  .repair-card h3 { margin: 10px 0 6px; font-size: 17.5px; font-weight: 850; color: var(--primary); white-space: nowrap; }
+  .repair-card h3 { margin: 10px 0 6px; font-size: 17.5px; font-weight: 850; color: var(--primary); line-height: 1.25; }
   .repair-card p { margin: 0 0 8px; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
-  .rep-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: #334155; }
-  .rep-bullets li::before { content: '✓ '; color: var(--success); font-weight: 900; }
+  .rep-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #334155; }
+  .rep-bullets li { display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+  .rep-bullets li::before { content: '✓'; color: var(--success); font-weight: 900; flex-shrink: 0; }
   .rep-select-btn { width: 100%; padding: 9px 12px; border-radius: 12px; border: 1.5px solid var(--primary); background: #fdfbf7; color: var(--primary); font-weight: 800; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.18s ease; -webkit-tap-highlight-color: transparent; }
   .repair-card.selected-repair .rep-select-btn { background: var(--success); color: #fff; border-color: var(--success); }
 
-  /* ===== NEU: INTERAKTIVER 360°-FAHRZEUG-HOTSPOT-SCANNER (BAUTEIL-DIAGNOSE AM AUTO) ===== */
+  /* ===== NEU GESTALTETER 360°-FAHRZEUG-SCANNER MIT KLARER FRONT & HECK-SILHOUETTE ===== */
   .scanner-box { background: linear-gradient(135deg, #061533, #0d2759); color: #fff; border-radius: 26px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; box-shadow: 0 16px 38px rgba(7,26,61,0.22); }
   .scanner-header { text-align: center; margin-bottom: 20px; }
-  .scanner-header h3 { margin: 6px 0; font-size: clamp(18px, 4.5vw, 25px); color: #fff; font-weight: 900; white-space: nowrap; }
-  .scanner-header p { margin: 0 auto; font-size: 13.5px; color: #cbd5ff; max-width: 620px; }
+  .scanner-header h3 { margin: 8px 0 4px; font-size: clamp(18px, 4.5vw, 25px); color: #fff; font-weight: 900; white-space: nowrap; }
+  .scanner-header p { margin: 0 auto; font-size: 13.5px; color: #dbe4ff; max-width: 620px; }
   .scanner-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: center; }
-  .car-blueprint { background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.12), rgba(7,26,61,0.6)); border: 1.5px solid rgba(212,175,55,0.45); border-radius: 20px; padding: 18px 12px 14px; position: relative; text-align: center; }
-  .car-blueprint-svg { width: 100%; max-width: 500px; height: auto; margin: 0 auto; display: block; }
-  .hotspot-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .car-blueprint { background: radial-gradient(circle at 50% 45%, rgba(56,189,248,0.16), rgba(5,18,44,0.85)); border: 1.5px solid rgba(212,175,55,0.5); border-radius: 20px; padding: 14px 12px 14px; position: relative; text-align: center; }
+  .car-direction-row { display: flex; justify-content: space-between; align-items: center; padding: 0 8px 4px; font-size: 11px; font-weight: 900; letter-spacing: 0.6px; }
+  .dir-front { color: #fef08a; background: rgba(250,204,21,0.16); border: 1px solid rgba(250,204,21,0.45); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .dir-rear { color: #fecaca; background: rgba(239,68,68,0.18); border: 1px solid rgba(239,68,68,0.45); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .car-blueprint-svg { width: 100%; max-width: 540px; height: auto; margin: 0 auto; display: block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.45)); }
+
+  /* Pulsierender Ring um den aktiven Hotspot am Fahrzeug */
+  .hs-node { cursor: pointer; transition: transform 0.2s ease; }
+  .hs-node .hs-ring { opacity: 0; stroke: #fff; stroke-width: 2.5; fill: none; }
+  .hs-node.active .hs-ring { opacity: 1; animation: hsPulse 1.4s infinite; }
+  @keyframes hsPulse { 0% { r: 12px; opacity: 0.95; } 100% { r: 21px; opacity: 0; } }
+
+  .hotspot-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
   .hs-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.22); color: #fff; padding: 9px 8px; border-radius: 12px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
   .hs-btn.active { background: var(--gold); color: var(--primary); border-color: #fff; box-shadow: 0 0 16px rgba(212,175,55,0.6); transform: translateY(-1px); }
-  .scanner-detail-card { background: #fff; color: var(--primary); border-radius: 18px; padding: 22px 20px; border-left: 5px solid var(--gold); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; }
+  .scanner-detail-card { background: #fff; color: var(--primary); border-radius: 18px; padding: 22px 20px; border-left: 5px solid var(--gold); min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; transition: opacity 0.2s ease; }
   .scanner-detail-card h4 { margin: 0 0 8px; font-size: 17px; font-weight: 900; color: var(--primary); }
   .scanner-detail-card p { margin: 0 0 12px; font-size: 13.5px; color: #334155; line-height: 1.55; }
-  .scanner-sym-list { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: #1e293b; }
-  .scanner-sym-list li { background: #fdfbf7; padding: 6px 10px; border-radius: 8px; border: 1px solid #eae5d9; }
+  .scanner-sym-list { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #1e293b; }
+  .scanner-sym-list li { background: #fdfbf7; padding: 7px 10px; border-radius: 8px; border: 1px solid #eae5d9; line-height: 1.4; }
 
-  /* ===== NEU: KILOMETERSTAND-WARTUNGS-KOMPASS ===== */
+  /* ===== KILOMETERSTAND-WARTUNGS-KOMPASS ===== */
   .km-compass-box { background: #fff; border-radius: 22px; padding: 26px 22px; border: 1.5px solid #eae5d9; margin-top: 36px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.03); }
-  .km-compass-box h3 { margin: 0 0 6px; font-size: clamp(17px, 4.4vw, 22px); color: var(--primary); font-weight: 900; white-space: nowrap; }
+  .km-compass-box h3 { margin: 0 0 4px; font-size: clamp(17px, 4.4vw, 22px); color: var(--primary); font-weight: 900; white-space: nowrap; }
   .km-compass-box p { margin: 0 auto 16px; font-size: 13.5px; color: var(--text-muted); }
   .km-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 720px; margin: 0 auto; }
   .km-step-btn { background: #fdfbf7; border: 1.5px solid var(--gold); color: var(--primary); padding: 11px 8px; border-radius: 14px; font-weight: 900; font-size: clamp(12px, 3.2vw, 14px); cursor: pointer; white-space: nowrap; transition: all 0.2s; -webkit-tap-highlight-color: transparent; }
@@ -276,8 +337,8 @@
   @keyframes bubbleRise { 0% { transform: translateY(0); opacity: 0.8; } 100% { transform: translateY(-42px); opacity: 0; } }
 
   .oil-sim-info { min-width: 0; }
-  .oil-sim-title { font-size: 14.5px; font-weight: 900; color: var(--gold-light); display: block; margin-bottom: 3px; }
-  .oil-sim-desc { font-size: 12.5px; color: #dbe4ff; display: block; line-height: 1.4; }
+  .oil-sim-title { font-size: 14.5px; font-weight: 900; color: var(--gold-light); display: block; margin-bottom: 2px; }
+  .oil-sim-desc { font-size: 12.5px; color: #dbe4ff; display: block; line-height: 1.4; margin-top: 3px; }
   .oil-meter-track { width: 100%; max-width: 340px; height: 7px; background: rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden; margin-top: 8px; }
   .oil-meter-fill { height: 100%; width: 28%; background: #ef4444; border-radius: 999px; transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease; }
   .oil-sim-box.fresh .oil-meter-fill { width: 100%; background: var(--success); }
@@ -338,9 +399,9 @@
   .dash-btn.active { background: rgba(212,175,55,0.28); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
   .dash-info { margin-top: 18px; background: #fff; color: var(--primary); border-radius: 16px; padding: 18px 20px; text-align: left; display: none; border-left: 5px solid var(--gold); }
   .dash-info.show { display: block; animation: fadeIn 0.25s ease; }
-  .dash-info b { display: block; font-size: 15px; color: var(--primary); margin-bottom: 6px; }
+  .dash-info b.dash-title { display: block; font-size: 15px; color: var(--primary); margin-bottom: 6px; line-height: 1.3; }
   .dash-info-lines { color: #334155; font-size: 13.5px; margin: 0 0 14px; line-height: 1.55; }
-  .dash-info-lines span.line { display: block; margin-bottom: 3px; }
+  .dash-info-lines span.line { display: block; margin-bottom: 4px; }
 
   /* IN 4 SCHRITTEN ZUM FERTIGEN AUTO */
   .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
@@ -539,7 +600,7 @@
     
     .grid-3, .repair-grid, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: 1fr; }
     .oil-sim-box { grid-template-columns: 1fr; text-align: left; gap: 12px; padding: 16px; }
-    .oil-sim-box .btn { width: 100%; }
+    .oil-sim-box .btn, .welcome-pass-btn { width: 100%; text-align: center; justify-content: center; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options, .quick-sym-btns, .repair-filter-bar, .km-steps { grid-template-columns: 1fr 1fr; gap: 8px; }
     .hotspot-bar { grid-template-columns: repeat(2, 1fr); gap: 6px; }
@@ -697,7 +758,7 @@
     <div>
       <div class="badge-row">
         <span class="badge">★ KFZ-MEISTERWERKSTATT FÜR ALLE MARKEN</span>
-        <span class="badge-deadline" id="offerRemainingBadge">🔥 69 € Aktion bis 01.12.</span>
+        <span class="badge-deadline" id="offerRemainingBadge">🔥 69 € Aktion bis 01.12.2026</span>
       </div>
       <h1 id="heroHeadline">KFZ-REPARATUREN &amp;<br>ÖLWECHSEL <span id="heroPriceSpan" class="nw">ab 69 €</span></h1>
       <p>Ihre vollwertige Kfz-Meisterwerkstatt am <span class="nw">Mariendorfer Damm 49</span>: Von Bremsen, Inspektion, Fahrwerk, Kupplung &amp; Zahnriemen bis hin zum Klimaservice und unserem Eröffnungs-Ölwechselpaket.</p>
@@ -744,7 +805,7 @@
       </div>
 
       <div class="logo-face-back">
-        <div class="hero-logo-back-title">🛠️ A&BS AUTOPROFIS – Steckbrief</div>
+        <div class="hero-logo-back-title">🛠️ A&amp;BS AUTOPROFIS – Steckbrief</div>
         <ul class="hero-logo-list">
           <li>
             <b>✔ Komplette Kfz-Meisterwerkstatt</b>
@@ -761,7 +822,7 @@
           <li>
             <b>✔ Standort &amp; Öffnungszeiten</b>
             <span class="nw">Mariendorfer Damm 49, 12109 Berlin</span>
-            <span class="sub-bracket" style="color:var(--primary);"><span class="nw">(Mo–Fr 09–17 Uhr</span> • <span class="nw">Sa 10–14 Uhr)</span></span>
+            <span class="sub-bracket" style="color:var(--primary);"><span class="nw">(Mo–Fr 09–17 Uhr • Sa 10–14 Uhr)</span></span>
           </li>
         </ul>
         <div class="switch-timer-wrap"><div class="switch-timer-bar" id="logoTimerBar"></div></div>
@@ -793,14 +854,23 @@
   </div>
 </div>
 
-<!-- ===== NEU: SEKTION 1 – ALLE KFZ-REPARATUREN & MEISTER-LEISTUNGEN (FILTERBAR & DIREKT WÄHLBAR) ===== -->
+<!-- ===== SEKTION 1 – ALLE KFZ-REPARATUREN & MEISTER-LEISTUNGEN ===== -->
 <section id="reparaturen" class="wrap">
   <h2 class="section-title reveal">Unsere Kfz-Reparaturen &amp; Leistungen</h2>
   <p class="section-sub reveal">Ob Verschleißteil, komplexe Motor-Instandsetzung oder Jahresinspektion – wir reparieren Fahrzeuge aller Marken fachgerecht und zu fairen Konditionen:</p>
 
-  <!-- Kategorien-Filter -->
+  <!-- NEU: 1-KLICK NEUKUNDEN-VORTEILS-PASS -->
+  <div class="welcome-pass reveal">
+    <div class="welcome-pass-info">
+      <b>🎁 3-fach Gratis-Begrüßungspaket für Neukunden sichern!</b>
+      <span>Kostenloser 21-Punkte-Check + Fehlerspeicher auslesen + Licht- &amp; Frostschutz-Test gratis zu Ihrem Besuch.</span>
+    </div>
+    <button type="button" class="welcome-pass-btn" id="welcomePassBtn" onclick="toggleWelcomePass(this)">✨ Gratis-Paket zur Anfrage hinzufügen</button>
+  </div>
+
+  <!-- Kategorien-Filter (ohne Klammer-Umbruch) -->
   <div class="repair-filter-bar reveal">
-    <button type="button" class="rep-filter-btn active" onclick="filterRepairs('all', this)">🔧 Alle Leistungen (9)</button>
+    <button type="button" class="rep-filter-btn active" onclick="filterRepairs('all', this)">🔧 Alle 9 Bereiche</button>
     <button type="button" class="rep-filter-btn" onclick="filterRepairs('verschleiss', this)">🛑 Bremsen &amp; Fahrwerk</button>
     <button type="button" class="rep-filter-btn" onclick="filterRepairs('motor', this)">⚙️ Motor &amp; Antrieb</button>
     <button type="button" class="rep-filter-btn" onclick="filterRepairs('komfort', this)">❄️ Klima, Reifen &amp; TÜV</button>
@@ -808,7 +878,7 @@
 
   <div class="repair-grid" id="repairGrid">
     <!-- 1. Bremsen-Service -->
-    <div class="repair-card reveal" data-cat="verschleiss" data-service="Bremsen-Service (Beläge/Scheiben)">
+    <div class="repair-card reveal" data-cat="verschleiss" data-service="Bremsen-Service komplett">
       <div>
         <div class="rep-top">
           <span class="rep-icon">🛑</span>
@@ -817,12 +887,12 @@
         <h3>Bremsen-Service komplett</h3>
         <p>Maximale Bremskraft und Sicherheit durch Marken-Komponenten in Erstausrüsterqualität.</p>
         <ul class="rep-bullets">
-          <li>Bremsbeläge &amp; Bremsscheiben wechseln</li>
-          <li>Bremsflüssigkeitswechsel &amp; Siedepunkt-Test</li>
-          <li>Bremssättel, Schläuche &amp; Handbremse</li>
+          <li><div>Bremsbeläge &amp; Bremsscheiben wechseln</div></li>
+          <li><div>Bremsflüssigkeitswechsel &amp; Siedepunkt-Test</div></li>
+          <li><div>Bremssättel, Schläuche &amp; Handbremse</div></li>
         </ul>
       </div>
-      <button type="button" class="rep-select-btn" onclick="toggleCardService('Bremsen-Service (Beläge/Scheiben)', this)">➕ Für Anfrage merken</button>
+      <button type="button" class="rep-select-btn" onclick="toggleCardService('Bremsen-Service komplett', this)">➕ Für Anfrage merken</button>
     </div>
 
     <!-- 2. Inspektion nach Herstellervorgabe -->
@@ -835,9 +905,9 @@
         <h3>Inspektion &amp; Jahreswartung</h3>
         <p>Kleine und große Inspektion streng nach Herstellervorgabe – für vollen Werterhalt Ihres Autos.</p>
         <ul class="rep-bullets">
-          <li>Wechsel von Luft-, Pollen- &amp; Kraftstofffilter</li>
-          <li>Zündkerzen, Glühkerzen &amp; Betriebsstoffe</li>
-          <li>Scheckheft-Dokumentation &amp; Intervall-Reset</li>
+          <li><div>Wechsel von Luft-, Pollen- &amp; Kraftstofffilter</div></li>
+          <li><div>Zündkerzen, Glühkerzen &amp; Betriebsstoffe</div></li>
+          <li><div>Scheckheft-Dokumentation &amp; Intervall-Reset</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Inspektion nach Herstellervorgabe', this)">➕ Für Anfrage merken</button>
@@ -853,9 +923,9 @@
         <h3>Zahnriemen &amp; Steuerkette</h3>
         <p>Rechtzeitiger Wechsel schützt vor kapitalem Motorschaden – präzise ausgeführt vom Meisterbetrieb.</p>
         <ul class="rep-bullets">
-          <li>Zahnriemensatz inkl. Wasserpumpe &amp; Spannrollen</li>
-          <li>Steuerketten-Wechsel &amp; Keilrippenriemen</li>
-          <li>Zylinderkopfdichtung, Turbolader &amp; Kühlsystem</li>
+          <li><div>Zahnriemensatz inkl. Wasserpumpe &amp; Spannrollen</div></li>
+          <li><div>Steuerketten-Wechsel &amp; Keilrippenriemen</div></li>
+          <li><div>Zylinderkopfdichtung, Turbolader &amp; Kühlsystem</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Zahnriemen / Steuerkette / Motor', this)">➕ Für Anfrage merken</button>
@@ -871,9 +941,9 @@
         <h3>Fahrwerk &amp; Stoßdämpfer</h3>
         <p>Schluss mit Poltern oder Schwammigkeit – wir bringen Ruhe und Spurtreue zurück ins Fahrwerk.</p>
         <ul class="rep-bullets">
-          <li>Stoßdämpfer, Fahrwerksfedern &amp; Domlager</li>
-          <li>Querlenker, Koppelstangen &amp; Spurstangenköpfe</li>
-          <li>Radlager, Antriebswellen &amp; Achsmanschetten</li>
+          <li><div>Stoßdämpfer, Fahrwerksfedern &amp; Domlager</div></li>
+          <li><div>Querlenker, Koppelstangen &amp; Spurstangenköpfe</div></li>
+          <li><div>Radlager, Antriebswellen &amp; Achsmanschetten</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Fahrwerk, Stoßdämpfer & Achsen', this)">➕ Für Anfrage merken</button>
@@ -889,9 +959,9 @@
         <h3>Kupplung &amp; Getriebe</h3>
         <p>Sauberes Schalten und kraftvoller Durchzug für Schalt- und Automatikfahrzeuge.</p>
         <ul class="rep-bullets">
-          <li>Kupplungssatz &amp; Zweimassenschwungrad tauschen</li>
-          <li>Getriebeölwechsel &amp; Geber-/Nehmerzylinder</li>
-          <li>Prüfung bei rutschender oder harter Kupplung</li>
+          <li><div>Kupplungssatz &amp; Zweimassenschwungrad tauschen</div></li>
+          <li><div>Getriebeölwechsel &amp; Geber-/Nehmerzylinder</div></li>
+          <li><div>Prüfung bei rutschender oder harter Kupplung</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Kupplung & Getriebe-Service', this)">➕ Für Anfrage merken</button>
@@ -907,9 +977,14 @@
         <h3>Auspuff &amp; Abgasanlage</h3>
         <p>Leise Fahrt, optimale Abgaswerte und freie Partikelfilter für die nächste Abgasuntersuchung.</p>
         <ul class="rep-bullets">
-          <li>End- &amp; Mittelschalldämpfer, Flexrohr-Reparatur</li>
-          <li>Lambdasonde, AGR-Ventil &amp; Katalysator</li>
-          <li>Dieselpartikelfilter <span class="nw">(DPF)</span> Diagnose &amp; Service</li>
+          <li><div>End- &amp; Mittelschalldämpfer, Flexrohr-Reparatur</div></li>
+          <li><div>Lambdasonde, AGR-Ventil &amp; Katalysator</div></li>
+          <li>
+            <div>
+              Dieselpartikelfilter-Service
+              <span class="sub-bracket">(DPF-Diagnose, Regeneration &amp; Austausch)</span>
+            </div>
+          </li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Auspuff, DPF & Abgasanlage', this)">➕ Für Anfrage merken</button>
@@ -925,9 +1000,9 @@
         <h3>Klimaanlagen-Service</h3>
         <p>Eiskalte Erfrischung im Sommer und beschlagfreie Scheiben im Winter – inkl. Hygiene-Reinigung.</p>
         <ul class="rep-bullets">
-          <li>Klimawartung, Befüllung &amp; Dichtheitsprüfung</li>
-          <li>Klimakompressor, Kondensator &amp; Leitungen</li>
-          <li>Geruchsneutralisation &amp; Aktivkohle-Innenraumfilter</li>
+          <li><div>Klimawartung, Befüllung &amp; Dichtheitsprüfung</div></li>
+          <li><div>Klimakompressor, Kondensator &amp; Leitungen</div></li>
+          <li><div>Geruchsneutralisation &amp; Aktivkohle-Innenraumfilter</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Klimaanlagen-Service & Desinfektion', this)">➕ Für Anfrage merken</button>
@@ -943,81 +1018,193 @@
         <h3>Reifen- &amp; Räder-Service</h3>
         <p>Sichere Haftung bei jedem Wetter – vom schnellen saisonalen Radwechsel bis zur Neureifen-Montage.</p>
         <ul class="rep-bullets">
-          <li>Radwechsel <span class="nw">(Sommer / Winter / Allwetter)</span></li>
-          <li>Reifenmontage, Auswuchten &amp; RDKS-Sensoren</li>
-          <li>Spur- &amp; Achsgeometrie-Kontrolle</li>
+          <li>
+            <div>
+              Saisonaler Radwechsel
+              <span class="sub-bracket">(Sommer-, Winter- &amp; Allwetterreifen)</span>
+            </div>
+          </li>
+          <li><div>Reifenmontage, Auswuchten &amp; RDKS-Sensoren</div></li>
+          <li><div>Spur- &amp; Achsgeometrie-Kontrolle</div></li>
         </ul>
       </div>
       <button type="button" class="rep-select-btn" onclick="toggleCardService('Reifenwechsel, Montage & Wuchten', this)">➕ Für Anfrage merken</button>
     </div>
 
     <!-- 9. HU / AU (TÜV) & Elektrik -->
-    <div class="repair-card reveal" data-cat="komfort" data-service="HU / AU (TÜV) Service & Elektrik">
+    <div class="repair-card reveal" data-cat="komfort" data-service="HU / AU Service & Elektrik">
       <div>
         <div class="rep-top">
           <span class="rep-icon">🛡️</span>
           <span class="rep-tag">Prüfung &amp; Elektrik</span>
         </div>
-        <h3>HU / AU <span class="nw">(TÜV)</span> &amp; Elektrik</h3>
+        <h3>
+          HU / AU &amp; Kfz-Elektrik
+          <span class="sub-bracket">(TÜV-Vorab-Check &amp; Mängelbehebung)</span>
+        </h3>
         <p>Sorgenfrei zur neuen Plakette sowie schnelle Hilfe bei Starterbatterie, Lichtmaschine und Anlasser.</p>
         <ul class="rep-bullets">
-          <li>Kostenloser Vorab-Check &amp; Mängelbeseitigung</li>
-          <li>Starterbatterie-Wechsel, Anlasser &amp; Lichtmaschine</li>
-          <li>Scheinwerfer-Einstellung &amp; Komfort-Elektronik</li>
+          <li><div>Kostenloser Vorab-Check &amp; Mängelbeseitigung</div></li>
+          <li><div>Starterbatterie-Wechsel, Anlasser &amp; Lichtmaschine</div></li>
+          <li><div>Scheinwerfer-Einstellung &amp; Komfort-Elektronik</div></li>
         </ul>
       </div>
-      <button type="button" class="rep-select-btn" onclick="toggleCardService('HU / AU (TÜV) Service & Elektrik', this)">➕ Für Anfrage merken</button>
+      <button type="button" class="rep-select-btn" onclick="toggleCardService('HU / AU Service & Elektrik', this)">➕ Für Anfrage merken</button>
     </div>
   </div>
 
-  <!-- ===== NEU: INTERAKTIVER 360°-FAHRZEUG-HOTSPOT-SCANNER ===== -->
+  <!-- ===== NEU GESTALTETER 360°-FAHRZEUG-SCANNER MIT KLAR ERKENNBARER FRONT & HECK-GRAFIK ===== -->
   <div id="fahrzeugcheck" class="scanner-box reveal">
     <div class="scanner-header">
       <span class="badge">🔍 INTERAKTIVER BAUTEIL-SCANNER</span>
       <h3>Wo am Fahrzeug liegt Ihr Anliegen?</h3>
-      <p>Tippen Sie auf einen Fahrzeugbereich (erneutes Tippen schließt die Detailansicht):</p>
+      <p>
+        Tippen Sie direkt auf einen Punkt am Fahrzeug oder auf die Tasten darunter
+        <span class="sub-bracket-light">(1x tippen = Bereich zeigen • 2x auf denselben Punkt tippen = ausblenden)</span>
+      </p>
     </div>
 
     <div class="scanner-grid">
       <div class="car-blueprint">
-        <!-- Interaktive SVG-Fahrzeugzeichnung mit leuchtenden Diagnose-Zonen -->
-        <svg class="car-blueprint-svg" viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Rasterlinien im Hintergrund -->
-          <line x1="20" y1="150" x2="480" y2="150" stroke="rgba(212,175,55,0.45)" stroke-width="2"/>
-          <!-- Fahrzeug-Karosserie -->
-          <path d="M40 120 L75 88 L155 48 C175 40, 290 40, 330 50 L410 86 L458 98 C468 102, 472 112, 470 125 L455 134 L45 134 C35 134, 32 126, 40 120 Z" fill="rgba(13,39,89,0.85)" stroke="#d4af37" stroke-width="3"/>
-          <!-- Fensterlinie -->
-          <path d="M162 56 L245 54 L245 86 L112 86 L162 56 Z" fill="rgba(56,189,248,0.18)" stroke="#f5d67a" stroke-width="1.5"/>
-          <path d="M255 54 L325 57 L388 86 L255 86 L255 54 Z" fill="rgba(56,189,248,0.18)" stroke="#f5d67a" stroke-width="1.5"/>
-          <!-- Räder -->
-          <circle cx="115" cy="134" r="24" fill="#05122c" stroke="#d4af37" stroke-width="3.5"/>
-          <circle cx="115" cy="134" r="10" fill="#f5d67a"/>
-          <circle cx="385" cy="134" r="24" fill="#05122c" stroke="#d4af37" stroke-width="3.5"/>
-          <circle cx="385" cy="134" r="10" fill="#f5d67a"/>
-          <!-- Pulsierende Hotspot-Punkte auf dem Fahrzeug -->
-          <g onclick="selectCarZone('motor')" style="cursor:pointer;">
-            <circle cx="82" cy="104" r="11" fill="#d4af37" stroke="#fff" stroke-width="2.5"/>
-            <text x="82" y="108" text-anchor="middle" fill="#071a3d" font-size="11" font-weight="900">1</text>
+        <!-- Eindeutige Orientierungs-Badges über dem Fahrzeug -->
+        <div class="car-direction-row">
+          <span class="dir-front">◀ FRONT / VORNE (Scheinwerfer &amp; Motor)</span>
+          <span class="dir-rear">HECK / HINTEN (Rücklicht &amp; Auspuff) ▶</span>
+        </div>
+
+        <!-- Detailreiche Sport-Limousine (links = Front mit Lichtkegel & Lenkrad, rechts = Heck mit Rückleuchte & Auspuff) -->
+        <svg class="car-blueprint-svg" viewBox="0 0 560 205" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="headlightBeam" x1="58" y1="115" x2="0" y2="105" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fef08a" stop-opacity="0.65"/>
+              <stop offset="100%" stop-color="#fef08a" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="carBodyGrad" x1="50" y1="50" x2="500" y2="155" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1e3a8a"/>
+              <stop offset="55%" stop-color="#0f295e"/>
+              <stop offset="100%" stop-color="#071a3d"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Fahrbahn-Linie -->
+          <line x1="15" y1="172" x2="545" y2="172" stroke="rgba(212,175,55,0.55)" stroke-width="2.5"/>
+
+          <!-- LED-Scheinwerfer-Lichtkegel vorne links (macht die Vorderseite sofort erkennbar) -->
+          <polygon points="56,112 2,86 2,142 52,126" fill="url(#headlightBeam)"/>
+
+          <!-- Abgas-Wölkchen hinten rechts am Doppel-Auspuff -->
+          <circle cx="534" cy="147" r="5" fill="rgba(203,213,225,0.28)"/>
+          <circle cx="546" cy="143" r="8" fill="rgba(203,213,225,0.18)"/>
+
+          <!-- Karosserie-Hauptform (Lange Motorhaube links, Sport-Coupé-Dach, Heckspoiler rechts) -->
+          <path d="M48 134
+                   L54 110
+                   C57 103, 66 98, 82 95
+                   L162 84
+                   L228 48
+                   C242 41, 265 39, 345 41
+                   C385 42, 422 54, 462 78
+                   L498 84
+                   L512 78
+                   L515 86
+                   L512 128
+                   C512 138, 505 144, 494 146
+                   L62 146
+                   C51 146, 46 141, 48 134 Z"
+                fill="url(#carBodyGrad)" stroke="#d4af37" stroke-width="3" stroke-linejoin="round"/>
+
+          <!-- Goldene Dach- & Schulterlinie -->
+          <path d="M58 112 L166 96 L496 96" stroke="rgba(245,214,122,0.5)" stroke-width="1.5"/>
+
+          <!-- Frontgrill & unterer Lufteinlass vorne links -->
+          <path d="M49 124 L66 124 L64 139 L49 139 Z" fill="#05122c" stroke="#94a3b8" stroke-width="1.2"/>
+          <line x1="51" y1="129" x2="64" y2="129" stroke="#d4af37" stroke-width="1.2"/>
+          <line x1="51" y1="134" x2="63" y2="134" stroke="#d4af37" stroke-width="1.2"/>
+
+          <!-- LED-Frontscheinwerfer (vorne links, leuchtend gelb-weiß) -->
+          <path d="M54 109 L78 104 L74 116 L52 118 Z" fill="#fef08a" stroke="#ffffff" stroke-width="1.5"/>
+
+          <!-- Seitenfenster (Vorderfenster mit Lenkrad + Rückfenster) -->
+          <path d="M174 84 L232 53 C244 47, 260 46, 298 46 L298 84 Z" fill="rgba(186,230,253,0.22)" stroke="#f5d67a" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M308 46 C355 47, 392 54, 442 84 L308 84 Z" fill="rgba(186,230,253,0.18)" stroke="#f5d67a" stroke-width="1.8" stroke-linejoin="round"/>
+
+          <!-- Lenkrad & Armaturenbrett im vorderen Seitenfenster (zeigt sofort: hier ist vorne!) -->
+          <line x1="194" y1="83" x2="207" y2="69" stroke="#f5d67a" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="210" cy="67" rx="4" ry="8" transform="rotate(-25 210 67)" stroke="#ffffff" stroke-width="2.2" fill="none"/>
+
+          <!-- Außenspiegel vorne an der A-Säule -->
+          <path d="M178 82 L166 76 C162 76, 160 80, 163 85 L176 87 Z" fill="#d4af37" stroke="#ffffff" stroke-width="1"/>
+
+          <!-- Türgriffe -->
+          <rect x="268" y="99" width="18" height="3.5" rx="1.7" fill="#f5d67a"/>
+          <rect x="366" y="99" width="18" height="3.5" rx="1.7" fill="#f5d67a"/>
+
+          <!-- Rotes LED-Rücklicht hinten rechts -->
+          <path d="M498 92 L512 90 L512 108 L496 105 Z" fill="#ef4444" stroke="#fecaca" stroke-width="1.5"/>
+
+          <!-- Doppel-Auspuffendrohr hinten rechts unten -->
+          <rect x="504" y="140" width="14" height="5" rx="2.5" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+          <rect x="506" y="145" width="14" height="5" rx="2.5" fill="#94a3b8" stroke="#475569" stroke-width="1"/>
+
+          <!-- Vorderrad (links) mit Bremsscheibe & rotem Bremssattel -->
+          <g>
+            <circle cx="132" cy="146" r="26" fill="#05122c" stroke="#d4af37" stroke-width="3.5"/>
+            <circle cx="132" cy="146" r="17" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+            <!-- Roter Bremssattel vorne -->
+            <path d="M143 134 C148 138, 149 146, 146 152 L140 149 C142 145, 141 140, 138 137 Z" fill="#ef4444"/>
+            <circle cx="132" cy="146" r="6" fill="#f5d67a"/>
           </g>
-          <g onclick="selectCarZone('bremse')" style="cursor:pointer;">
-            <circle cx="115" cy="134" r="11" fill="#ef4444" stroke="#fff" stroke-width="2.5"/>
-            <text x="115" y="138" text-anchor="middle" fill="#fff" font-size="11" font-weight="900">2</text>
+
+          <!-- Hinterrad (rechts) mit Bremsscheibe & rotem Bremssattel -->
+          <g>
+            <circle cx="426" cy="146" r="26" fill="#05122c" stroke="#d4af37" stroke-width="3.5"/>
+            <circle cx="426" cy="146" r="17" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+            <!-- Roter Bremssattel hinten -->
+            <path d="M415 134 C410 138, 409 146, 412 152 L418 149 C416 145, 417 140, 420 137 Z" fill="#ef4444"/>
+            <circle cx="426" cy="146" r="6" fill="#f5d67a"/>
           </g>
-          <g onclick="selectCarZone('getriebe')" style="cursor:pointer;">
-            <circle cx="205" cy="118" r="11" fill="#d4af37" stroke="#fff" stroke-width="2.5"/>
-            <text x="205" y="122" text-anchor="middle" fill="#071a3d" font-size="11" font-weight="900">3</text>
+
+          <!-- INTERAKTIVE HOTSPOT-PUNKTE (1 bis 6) -->
+          <!-- 1. Motorraum (vorne unter der Haube) -->
+          <g class="hs-node active" id="hsNode_motor" onclick="selectCarZone('motor')">
+            <circle class="hs-ring" cx="98" cy="108" r="14"/>
+            <circle cx="98" cy="108" r="12" fill="#d4af37" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="98" y="112" text-anchor="middle" fill="#071a3d" font-size="11.5" font-weight="900">1</text>
           </g>
-          <g onclick="selectCarZone('klima')" style="cursor:pointer;">
-            <circle cx="250" cy="74" r="11" fill="#38bdf8" stroke="#fff" stroke-width="2.5"/>
-            <text x="250" y="78" text-anchor="middle" fill="#071a3d" font-size="11" font-weight="900">4</text>
+
+          <!-- 2. Vorderbremse (am Vorderrad) -->
+          <g class="hs-node" id="hsNode_bremse" onclick="selectCarZone('bremse')">
+            <circle class="hs-ring" cx="132" cy="146" r="14"/>
+            <circle cx="132" cy="146" r="12" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="132" y="150" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="900">2</text>
           </g>
-          <g onclick="selectCarZone('fahrwerk')" style="cursor:pointer;">
-            <circle cx="385" cy="134" r="11" fill="#d4af37" stroke="#fff" stroke-width="2.5"/>
-            <text x="385" y="138" text-anchor="middle" fill="#071a3d" font-size="11" font-weight="900">5</text>
+
+          <!-- 3. Kupplung & Getriebe (Übergang Motor/Unterboden) -->
+          <g class="hs-node" id="hsNode_getriebe" onclick="selectCarZone('getriebe')">
+            <circle class="hs-ring" cx="222" cy="128" r="14"/>
+            <circle cx="222" cy="128" r="12" fill="#d4af37" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="222" y="132" text-anchor="middle" fill="#071a3d" font-size="11.5" font-weight="900">3</text>
           </g>
-          <g onclick="selectCarZone('abgas')" style="cursor:pointer;">
-            <circle cx="445" cy="122" r="11" fill="#25D366" stroke="#fff" stroke-width="2.5"/>
-            <text x="445" y="126" text-anchor="middle" fill="#071a3d" font-size="11" font-weight="900">6</text>
+
+          <!-- 4. Klima & Elektrik (Cockpit/Innenraum) -->
+          <g class="hs-node" id="hsNode_klima" onclick="selectCarZone('klima')">
+            <circle class="hs-ring" cx="278" cy="74" r="14"/>
+            <circle cx="278" cy="74" r="12" fill="#38bdf8" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="278" y="78" text-anchor="middle" fill="#071a3d" font-size="11.5" font-weight="900">4</text>
+          </g>
+
+          <!-- 5. Fahrwerk, Achsen & Reifen (Hinterachse) -->
+          <g class="hs-node" id="hsNode_fahrwerk" onclick="selectCarZone('fahrwerk')">
+            <circle class="hs-ring" cx="426" cy="146" r="14"/>
+            <circle cx="426" cy="146" r="12" fill="#d4af37" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="426" y="150" text-anchor="middle" fill="#071a3d" font-size="11.5" font-weight="900">5</text>
+          </g>
+
+          <!-- 6. Auspuff, Abgas & HU/TÜV (Heck rechts) -->
+          <g class="hs-node" id="hsNode_abgas" onclick="selectCarZone('abgas')">
+            <circle class="hs-ring" cx="496" cy="126" r="14"/>
+            <circle cx="496" cy="126" r="12" fill="#25D366" stroke="#ffffff" stroke-width="2.5"/>
+            <text x="496" y="130" text-anchor="middle" fill="#071a3d" font-size="11.5" font-weight="900">6</text>
           </g>
         </svg>
 
@@ -1034,7 +1221,7 @@
       <div class="scanner-detail-card" id="scannerDetailCard">
         <div>
           <h4 id="scannerZoneTitle">1. ⚙️ Motorraum, Zahnriemen &amp; Ölservice</h4>
-          <p id="scannerZoneDesc">Das Herzstück Ihres Fahrzeugs: Wir übernehmen sämtliche Wartungs- und Instandsetzungsarbeiten am Motor.</p>
+          <p id="scannerZoneDesc">Vorne unter der Motorhaube: Wir übernehmen sämtliche Wartungs- und Instandsetzungsarbeiten am Motor.</p>
           <ul class="scanner-sym-list" id="scannerZoneList">
             <li>✔ Ölwechsel inkl. Filter &amp; <span class="nw">21-Punkte-Check</span></li>
             <li>✔ Zahnriemen, Steuerkette &amp; Wasserpumpe</li>
@@ -1046,10 +1233,13 @@
     </div>
   </div>
 
-  <!-- ===== NEU: INTERAKTIVER KILOMETERSTAND-WARTUNGS-KOMPASS ===== -->
+  <!-- ===== KILOMETERSTAND-WARTUNGS-KOMPASS (KLAMMER AUF NEUER ZEILE) ===== -->
   <div class="km-compass-box reveal">
     <h3>🧭 Kilometerstand-Wartungs-Kompass</h3>
-    <p>Wie viele Kilometer hat Ihr Fahrzeug ungefähr auf dem Tacho? <span class="nw">(Tippen zum Prüfen):</span></p>
+    <p>
+      Wie viele Kilometer hat Ihr Fahrzeug ungefähr auf dem Tacho?
+      <span class="sub-bracket">(1x tippen = Empfehlung öffnen • 2x tippen = schließen)</span>
+    </p>
     <div class="km-steps">
       <button type="button" class="km-step-btn" onclick="checkMileage('30k', this)">bis 30.000 km<span>Basis-Wartung</span></button>
       <button type="button" class="km-step-btn" onclick="checkMileage('60k', this)">ca. 60.000 km<span>Erweiterter Service</span></button>
@@ -1086,7 +1276,7 @@
         <li>Beleuchtung &amp; Scheibenwischersystem</li>
         <li>
           Prüfung aller Flüssigkeiten
-          <span class="sub-bracket"><span class="nw">(Frostschutz, Bremsflüssigkeit etc.)</span></span>
+          <span class="sub-bracket">(Frostschutz, Bremsflüssigkeit &amp; Scheibenwasser)</span>
         </li>
       </ul>
     </div>
@@ -1097,7 +1287,7 @@
       <ul>
         <li>
           <b>Fehlerspeicher auslesen</b>
-          <span class="sub-bracket"><span class="nw">(100% gratis im Servicepaket)</span></span>
+          <span class="sub-bracket">(100% gratis im Servicepaket enthalten)</span>
         </li>
         <li>Analyse von Motorkontrollleuchte &amp; Steuergeräten</li>
         <li>Zurücksetzen der Service-Intervalle</li>
@@ -1106,7 +1296,7 @@
     </div>
   </div>
 
-  <!-- ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR -->
+  <!-- ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR (KLAMMERN AUF EIGENER ZEILE) -->
   <div class="oil-sim-box reveal" id="oilSimBox">
     <div class="oil-glass-wrap">
       <div class="oil-glass" title="Motoröl-Schauglas">
@@ -1116,8 +1306,11 @@
         </div>
       </div>
       <div class="oil-sim-info">
-        <span class="oil-sim-title" id="oilSimTitle">🛢️ Schauglas-Simulation: Dunkles Altöl (28 % Schmierkraft)</span>
-        <span class="oil-sim-desc" id="oilSimDesc">Ruß und Abrieb bremsen den Motor – testen Sie rechts den Vorher/Nachher-Effekt:</span>
+        <span class="oil-sim-title" id="oilSimTitle">
+          🛢️ Schauglas-Simulation: Dunkles Altöl
+          <span class="sub-bracket-light">(Nur noch 28 % Schmierkraft – erhöhte Reibung)</span>
+        </span>
+        <span class="oil-sim-desc" id="oilSimDesc">Ruß und Abrieb bremsen den Motor – testen Sie den Vorher/Nachher-Effekt:</span>
         <div class="oil-meter-track"><div class="oil-meter-fill" id="oilMeterFill"></div></div>
       </div>
     </div>
@@ -1167,7 +1360,7 @@
   <!-- 3 Werkstatt-Vorteile -->
   <div id="news" style="margin-top: 50px;">
     <h2 class="section-title reveal">Aktuelles &amp; Werkstatt-Vorteile</h2>
-    <p class="section-sub reveal">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
+    <p class="section-sub reveal">Was Sie bei A&amp;BS AUTOPROFIS als Kunde erwartet:</p>
     
     <div class="news-grid">
       <div class="news-card reveal">
@@ -1229,7 +1422,7 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE -->
+  <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (KLAMMERN AUF EIGENER ZEILE) -->
   <div class="fzs-helper-box reveal">
     <div>
       <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL &amp; ÖL</span>
@@ -1247,14 +1440,26 @@
       </div>
       <div class="fzs-fields">
         <div class="fzs-field-card">
-          <span class="fzs-field-lbl">Feld (2.1) Hersteller-Nr.</span>
+          <span class="fzs-field-lbl">
+            Hersteller-Nr.
+            <span class="sub-bracket">(Feld 2.1 im Schein)</span>
+          </span>
           <span class="fzs-field-val">0603</span>
-          <span class="fzs-field-desc">4 Ziffern <span class="nw">(z.B. VW / BMW)</span></span>
+          <span class="fzs-field-desc">
+            4 Ziffern
+            <span class="sub-bracket">(z.B. VW / Audi / BMW)</span>
+          </span>
         </div>
         <div class="fzs-field-card">
-          <span class="fzs-field-lbl">Feld (2.2) Typ-Schlüssel</span>
+          <span class="fzs-field-lbl">
+            Typ-Schlüssel
+            <span class="sub-bracket">(Feld 2.2 im Schein)</span>
+          </span>
           <span class="fzs-field-val">BQS</span>
-          <span class="fzs-field-desc">Erste 3 Zeichen</span>
+          <span class="fzs-field-desc">
+            Erste 3 Zeichen
+            <span class="sub-bracket">(Buchstaben / Zahlen)</span>
+          </span>
         </div>
       </div>
     </div>
@@ -1263,7 +1468,10 @@
   <!-- 6 COCKPIT-WARNLEUCHTEN (OHNE X-SYMBOL RECHTS, SCHLIESST BEIM 2. KLICK AUF DAS SYMBOL) -->
   <div class="dash-box reveal">
     <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
-    <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
+    <p>
+      Tippen Sie auf ein Symbol für unsere Meister-Einschätzung
+      <span class="sub-bracket-light">(1x tippen = öffnen • 2x tippen = schließen)</span>
+    </p>
     <div class="dash-lights">
       <button type="button" class="dash-btn" onclick="showDashInfo('oil', this)">
         <span class="ico">🛢️</span>
@@ -1291,7 +1499,7 @@
       </button>
     </div>
     <div id="dashInfoBox" class="dash-info">
-      <b id="dashInfoTitle">Hinweis zur Warnleuchte</b>
+      <b id="dashInfoTitle" class="dash-title">Hinweis zur Warnleuchte</b>
       <div id="dashInfoText" class="dash-info-lines">Bitte wählen Sie ein Symbol aus.</div>
       <a id="dashWaLink" class="wa-btn" href="https://wa.me/4917672625377" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1328,7 +1536,7 @@
     </div>
   </div>
 
-  <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF -->
+  <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF (KLAMMER AUF NEUER ZEILE) -->
   <div style="margin-top: 50px;">
     <h2 class="section-title reveal">Ihr Komfort vor Ort in Mariendorf</h2>
     <p class="section-sub reveal">Egal ob Sie kurz warten oder direkt weiter müssen – am <span class="nw">Mariendorfer Damm 49</span> ist beides bequem möglich:</p>
@@ -1341,7 +1549,10 @@
       <div class="comfort-card reveal">
         <span class="comfort-badge">🚇 Perfekte ÖPNV-Anbindung</span>
         <h4>U6 &amp; Bus direkt vor Ort</h4>
-        <p>Auto abgeben und entspannt weiter: Die Buslinien <span class="nw">(M76, X76, 179)</span> sowie die <span class="nw">U6 Alt-Mariendorf</span> sind schnell erreichbar.</p>
+        <p>
+          Auto abgeben und entspannt weiterfahren mit der <span class="nw">U6 Alt-Mariendorf</span> oder den Buslinien direkt vor der Tür.
+          <span class="sub-bracket">(Buslinien M76, X76 &amp; 179 direkt am Mariendorfer Damm)</span>
+        </p>
       </div>
       <div class="comfort-card reveal">
         <span class="comfort-badge">🅿️ Direkte Annahme</span>
@@ -1351,10 +1562,13 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
+  <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER (KLAMMER AUF NEUER ZEILE) -->
   <div id="berater" class="advisor-box reveal" style="margin-top: 50px;">
     <h3>Was fehlt Ihrem Fahrzeug gerade?</h3>
-    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen <span class="nw">(erneuter Klick schließt die Box):</span></p>
+    <p style="margin:0; color:var(--text-muted); font-size:14px;">
+      Klicken Sie auf Ihr Anliegen für unsere Sofort-Empfehlung
+      <span class="sub-bracket">(1x tippen = öffnen • 2x tippen = schließen)</span>
+    </p>
     
     <div class="advisor-options">
       <div class="advisor-chip" onclick="showAdvisor('oil', this)">🛢️ Ölwechsel fällig</div>
@@ -1402,7 +1616,7 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVES MARKEN-BANNER (ANKLICKBAR MIT SOFORT-BESTÄTIGUNG) -->
+  <!-- INTERAKTIVES MARKEN-BANNER -->
   <div class="brands-box reveal">
     <h4>Wir reparieren &amp; warten Fahrzeuge aller Hersteller:</h4>
     <span class="brands-sub">👆 Tippen Sie auf Ihre Automarke für unsere Werkstatt-Info:</span>
@@ -1440,7 +1654,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">1. Bremsen &amp; Fahrwerk <span class="acc-count-pill">5 Prüfpunkte</span></span>
-          <span class="sub-bracket"><span class="nw">(Prüfung auf Herz und Nieren)</span></span>
+          <span class="sub-bracket">(Prüfung auf Herz und Nieren)</span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1458,7 +1672,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">2. Reifen, Räder &amp; Unterboden <span class="acc-count-pill">5 Prüfpunkte</span></span>
-          <span class="sub-bracket"><span class="nw">(Profil, Luftdruck &amp; Dichtigkeit)</span></span>
+          <span class="sub-bracket">(Profil, Luftdruck &amp; Dichtigkeit)</span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1468,7 +1682,7 @@
           <li>
             <div>
               Reifen-Sichtprüfung
-              <span class="sub-bracket"><span class="nw">(auf Beschädigungen, Alter &amp; Risse)</span></span>
+              <span class="sub-bracket">(auf Beschädigungen, Alter &amp; Risse)</span>
             </div>
           </li>
           <li><div>Radlager &amp; Radbefestigung prüfen</div></li>
@@ -1481,7 +1695,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">3. Flüssigkeiten &amp; Filter <span class="acc-count-pill">5 Prüfpunkte</span></span>
-          <span class="sub-bracket"><span class="nw">(Wichtige Betriebsstoffe)</span></span>
+          <span class="sub-bracket">(Wichtige Betriebsstoffe)</span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1499,7 +1713,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">4. Elektrik, Sicht &amp; Elektronik <span class="acc-count-pill">6 Prüfpunkte</span></span>
-          <span class="sub-bracket"><span class="nw">(Sicherheit im Alltag)</span></span>
+          <span class="sub-bracket">(Sicherheit im Alltag)</span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1507,7 +1721,7 @@
           <li>
             <div>
               Frontbeleuchtung
-              <span class="sub-bracket"><span class="nw">(Abblend-, Fern- &amp; Tagfahrlicht)</span></span>
+              <span class="sub-bracket">(Abblend-, Fern- &amp; Tagfahrlicht)</span>
             </div>
           </li>
           <li><div>Rückleuchten, Bremslicht &amp; Blinker</div></li>
@@ -1517,7 +1731,7 @@
           <li>
             <div>
               <b>Fehlerspeicher auslesen</b>
-              <span class="sub-bracket"><span class="nw">(kompletter Steuergeräte-Check)</span></span>
+              <span class="sub-bracket">(kompletter Steuergeräte-Check)</span>
             </div>
           </li>
         </ul>
@@ -1532,7 +1746,10 @@
     <div>
       <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ &amp; KONDITIONEN</span>
       <h3>Faire Preise für alle Reparaturen</h3>
-      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel <span class="nw">(gültig bis 01.12.2026)</span> kalkulieren wir jede Reparatur – ob Bremsen, Kupplung, Zahnriemen oder Inspektion – individuell und fair nach Fahrzeugmodell. <b>Preise bitte einfach kurz per WhatsApp oder Telefon anfragen!</b></p>
+      <p id="priceBoxText">
+        Neben unserem Eröffnungsangebot für den Ölwechsel kalkulieren wir jede Reparatur – ob Bremsen, Kupplung, Zahnriemen oder Inspektion – individuell und fair nach Fahrzeugmodell. <b>Preise bitte einfach kurz per WhatsApp oder Telefon anfragen!</b>
+        <span class="sub-bracket-light">(Eröffnungsaktion 69 € gültig bis 01.12.2026)</span>
+      </p>
       <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Preis%20für%20eine%20Reparatur%20anfragen." target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Jetzt Preis per WhatsApp anfragen
@@ -1588,7 +1805,7 @@
   <!-- WERKSTATT AN FREUNDE WEITEREMPFEHLEN -->
   <div class="share-bar reveal">
     <span>🤝 Zufrieden mit unserem Service? Empfehlen Sie uns gerne weiter:</span>
-    <a class="wa-btn" href="https://wa.me/?text=Mein%20Tipp%20f%C3%BCr%20dein%20Auto%20in%20Berlin%3A%20A%26BS%20AUTOPROFIS%20am%20Mariendorfer%20Damm%2049%20(12109%20Berlin)%20%E2%80%93%20super%20ehrlicher%20Kfz-Meisterbetrieb%20f%C3%BCr%20alle%20Reparaturen%21%20Infos%3A%20https%3A%2F%2Fwww.absprofis.de" target="_blank" rel="noopener">
+    <a class="wa-btn" href="https://wa.me/?text=Mein%20Tipp%20f%C3%BCr%20dein%20Auto%20in%20Berlin%3A%20A%26BS%20AUTOPROFIS%20am%20Mariendorfer%20Damm%2049%20in%2012109%20Berlin%20%E2%80%93%20super%20ehrlicher%20Kfz-Meisterbetrieb%20f%C3%BCr%20alle%20Reparaturen%21%20Infos%3A%20https%3A%2F%2Fwww.absprofis.de" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Per WhatsApp an Freunde teilen
     </a>
@@ -1599,7 +1816,7 @@
 <section id="faq" class="wrap" style="padding-top: 0;">
   <h2 class="section-title reveal">
     Häufig gestellte Fragen
-    <span class="sub-bracket" style="font-size:14px;"><span class="nw">(FAQ – Schnelle Antworten)</span></span>
+    <span class="sub-bracket" style="font-size:14px;">(FAQ – Schnelle Antworten)</span>
   </h2>
   <p class="section-sub reveal" style="margin-top:8px;">Alles, was Sie rund um Reparaturen, Wartung und unser Aktionspaket wissen müssen:</p>
 
@@ -1622,7 +1839,10 @@
         </div>
       </summary>
       <div class="accordion-content">
-        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel <span class="nw">ab 69 €</span> <span class="nw">(inkl. Ölfilter, 21-Punkte-Check &amp; Fehlerspeicher)</span> ist bis einschließlich <b class="nw">01.12.2026</b> gültig. Sichern Sie sich Ihren Wunschtermin einfach kurz per Telefon, E-Mail oder WhatsApp.</p>
+        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">
+          Unser Eröffnungsangebot für den Ölwechsel <span class="nw">ab 69 €</span> ist bis einschließlich <b class="nw">01.12.2026</b> gültig. Sichern Sie sich Ihren Wunschtermin einfach kurz per Telefon, E-Mail oder WhatsApp.
+          <span class="sub-bracket">(Inklusive neuem Ölfilter, 21-Punkte-Check &amp; Fehlerspeicher auslesen)</span>
+        </p>
       </div>
     </details>
 
@@ -1675,14 +1895,14 @@
       <div class="form-group">
         <label>
           Telefonnummer *
-          <span class="sub-bracket"><span class="nw">(für Rückruf &amp; Terminbestätigung)</span></span>
+          <span class="sub-bracket">(für Rückruf &amp; Terminbestätigung)</span>
         </label>
         <input type="tel" id="waPhone" class="form-control" placeholder="0176 / 12345678" required>
       </div>
       <div class="form-group">
         <label>
           Fahrzeugmodell &amp; Kennzeichen
-          <span class="sub-bracket"><span class="nw">(optional)</span></span>
+          <span class="sub-bracket">(optional)</span>
         </label>
         <input type="text" id="waCar" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
       </div>
@@ -1690,31 +1910,31 @@
       <div class="form-group">
         <label>
           Schlüsselnummern aus Fahrzeugschein
-          <span class="sub-bracket"><span class="nw">(optional – Feld 2.1 und 2.2)</span></span>
+          <span class="sub-bracket">(optional – Feld 2.1 und Feld 2.2)</span>
         </label>
         <div class="hsn-grid">
-          <input type="text" id="waHsn" class="form-control" maxlength="4" placeholder="2.1 (z.B. 0603)">
-          <input type="text" id="waTsn" class="form-control" maxlength="8" placeholder="2.2 (z.B. BQS)">
+          <input type="text" id="waHsn" class="form-control" maxlength="4" placeholder="Feld 2.1 – z.B. 0603">
+          <input type="text" id="waTsn" class="form-control" maxlength="8" placeholder="Feld 2.2 – z.B. BQS">
         </div>
       </div>
 
       <div class="form-group">
         <label>
           Bevorzugte Tageszeit
-          <span class="sub-bracket"><span class="nw">(1x tippen = wählen • 2x tippen = abwählen)</span></span>
+          <span class="sub-bracket">(1x tippen = wählen • 2x tippen = abwählen)</span>
         </label>
         <input type="hidden" id="waSlot" value="Flexibel">
         <div class="slot-chips">
-          <div class="slot-chip" onclick="selectSlot('Mo–Fr Vormittag (09–13 Uhr)', this)">Mo–Fr 09–13 Uhr</div>
-          <div class="slot-chip" onclick="selectSlot('Mo–Fr Nachmittag (13–17 Uhr)', this)">Mo–Fr 13–17 Uhr</div>
-          <div class="slot-chip" onclick="selectSlot('Samstag (10–14 Uhr)', this)">Samstag 10–14 Uhr</div>
+          <div class="slot-chip" onclick="selectSlot('Mo–Fr Vormittag / 09–13 Uhr', this)">Mo–Fr 09–13 Uhr</div>
+          <div class="slot-chip" onclick="selectSlot('Mo–Fr Nachmittag / 13–17 Uhr', this)">Mo–Fr 13–17 Uhr</div>
+          <div class="slot-chip" onclick="selectSlot('Samstag / 10–14 Uhr', this)">Samstag 10–14 Uhr</div>
         </div>
       </div>
 
       <div class="form-group">
         <label>
           Wunschleistung / Reparatur schnell antippen
-          <span class="sub-bracket"><span class="nw">(mehrere möglich – erneutes Tippen wählt ab)</span></span>
+          <span class="sub-bracket">(mehrere möglich – erneutes Tippen wählt ab)</span>
         </label>
         <div class="service-quick-chips">
           <div class="srv-chip" data-service="Ölwechsel inkl. Filter" onclick="toggleQuickService(this)">🛢️ Ölwechsel</div>
@@ -1836,7 +2056,10 @@
     <button type="button" class="footer-legal-btn" onclick="toggleLegal('datenschutz')">🔒 Datenschutz</button>
   </div>
   <div id="legalImpressum" class="footer-legal-box">
-    <b style="color:var(--gold-light); display:block; margin-bottom:6px; white-space:nowrap;">Impressum <span class="nw">(Angaben gemäß § 5 DDG)</span></b>
+    <b style="color:var(--gold-light); display:block; margin-bottom:6px;">
+      Impressum
+      <span class="sub-bracket-light">(Angaben gemäß § 5 DDG)</span>
+    </b>
     <span class="legal-row"><b>Betrieb:</b> A&amp;BS AUTOPROFIS – Kfz-Service Mariendorf</span>
     <span class="legal-row"><b>Standort:</b> <span class="nw">Mariendorfer Damm 49</span>, <span class="nw">12109 Berlin</span></span>
     <span class="legal-row"><b>Telefon:</b> <span class="nw">0176 72625 377</span></span>
@@ -1845,7 +2068,8 @@
   </div>
   <div id="legalDatenschutz" class="footer-legal-box">
     <b style="color:var(--gold-light); display:block; margin-bottom:6px;">Datenschutzhinweis</b>
-    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail <span class="nw">(info@absprofis.de)</span> oder WhatsApp <span class="nw">(0176 72625 377)</span> kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail oder WhatsApp kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+    <span class="sub-bracket-light">(Kontakt: info@absprofis.de • Tel. 0176 72625 377)</span>
   </div>
 
   <p style="font-size:12px;color:#8fa3d4;margin-top:12px;">© 2026 A&amp;BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
@@ -1866,7 +2090,7 @@
     if (nowMs < OFFER_END_TIMESTAMP) {
       const remainingDays = Math.ceil((OFFER_END_TIMESTAMP - nowMs) / (1000 * 60 * 60 * 24));
       if (offerBadge) {
-        offerBadge.innerHTML = `🔥 <span class="nw">69 € Aktion</span> bis <span class="nw">01.12.</span> <span class="nw">(noch ${remainingDays} Tg.)</span>`;
+        offerBadge.innerHTML = `🔥 <span class="nw">69 € Aktion</span> bis <span class="nw">01.12.2026</span> • <span class="nw">noch ${remainingDays} Tg.</span>`;
       }
     } else {
       const topBanner = document.getElementById("topBannerOfferLine");
@@ -2000,9 +2224,9 @@
       const mc = Math.floor((diffClose % (1000 * 60 * 60)) / (1000 * 60));
       const sc = Math.floor((diffClose % (1000 * 60)) / 1000);
       
-      const openRangeText = (day === 6) ? "10:00 – 14:00 UHR" : "09:00 – 17:00 UHR";
-      countdownToOpenEl.innerHTML = `🟢 Aktuell geöffnet<span class="sub-bracket" style="color:var(--text-muted);"><span class="nw">(noch ${hc} Std. ${mc} Min. ${sc} Sek.)</span></span>`;
-      heroTitle.innerText = `🟢 WIR HABEN GEÖFFNET (${openRangeText})`;
+      const openRangeText = (day === 6) ? "SA 10:00 – 14:00 UHR" : "MO–FR 09:00 – 17:00 UHR";
+      countdownToOpenEl.innerHTML = `🟢 Aktuell geöffnet<span class="sub-bracket" style="color:var(--text-muted);">(noch ${hc} Std. ${mc} Min. ${sc} Sek.)</span>`;
+      heroTitle.innerText = `🟢 WIR HABEN GEÖFFNET • ${openRangeText}`;
       heroBox.innerHTML = `<div style="grid-column: span 4; font-weight:900; font-size:14px; color:#25D366; padding: 4px 0; white-space:nowrap;">JETZT VORBEIKOMMEN ODER ANRUFEN!</div>`;
     } else {
       headerStatusText.innerText = "Wir öffnen in Kürze";
@@ -2093,7 +2317,19 @@
     }
   }
 
-  // ===== NEU: REPARATUR-KATALOG FILTER (ALLE / BREMSEN & FAHRWERK / MOTOR / KLIMA & REIFEN) =====
+  // ===== NEU: 1-KLICK NEUKUNDEN-VORTEILS-PASS =====
+  function toggleWelcomePass(btnEl) {
+    const isClaimed = btnEl.classList.toggle('claimed');
+    if (isClaimed) {
+      btnEl.innerText = "✔ Gratis-Begrüßungspaket aktiviert";
+    } else {
+      btnEl.innerText = "✨ Gratis-Paket zur Anfrage hinzufügen";
+      btnEl.blur();
+    }
+    updateQuickServiceText();
+  }
+
+  // ===== REPARATUR-KATALOG FILTER =====
   function filterRepairs(cat, btnEl) {
     document.querySelectorAll('.rep-filter-btn').forEach(b => b.classList.remove('active'));
     btnEl.classList.add('active');
@@ -2108,7 +2344,7 @@
     });
   }
 
-  // ===== NEU: REPARATUR-KARTE DIREKT FÜR DIE WHATSAPP-ANFRAGE MERKEN (AN- & ABWÄHLBAR) =====
+  // ===== REPARATUR-KARTE DIREKT FÜR DIE WHATSAPP-ANFRAGE MERKEN =====
   function toggleCardService(serviceName, btnEl) {
     const card = btnEl.closest('.repair-card');
     if (!card) return;
@@ -2116,7 +2352,7 @@
 
     if (isNowSelected) {
       card.classList.add('selected-repair');
-      btnEl.innerText = "✔ Für Anfrage gemerkt (Nochmal tippen = abwählen)";
+      btnEl.innerText = "✔ Gemerkt • Erneut tippen zum Abwählen";
     } else {
       card.classList.remove('selected-repair');
       btnEl.innerText = "➕ Für Anfrage merken";
@@ -2125,11 +2361,27 @@
     updateQuickServiceText();
   }
 
-  // ===== NEU: INTERAKTIVER 360°-FAHRZEUG-HOTSPOT-SCANNER =====
+  // ===== INTERAKTIVER 360°-FAHRZEUG-HOTSPOT-SCANNER (SYNCHRONISIERT HOTSPOT-RINGE & TASTEN) =====
+  let activeScannerZone = 'motor';
   function selectCarZone(zone) {
-    document.querySelectorAll('.hs-btn').forEach(b => b.classList.remove('active'));
+    const detailCard = document.getElementById('scannerDetailCard');
     const activeBtn = document.getElementById('hsBtn_' + zone);
+    const activeNode = document.getElementById('hsNode_' + zone);
+
+    // Beim zweiten Klick auf denselben aktiven Punkt: Detailkarte ein-/ausblenden
+    if (activeScannerZone === zone && activeBtn && activeBtn.classList.contains('active')) {
+      document.querySelectorAll('.hs-btn, .hs-node').forEach(el => el.classList.remove('active'));
+      if (detailCard) detailCard.style.opacity = '0.45';
+      activeScannerZone = '';
+      return;
+    }
+
+    activeScannerZone = zone;
+    if (detailCard) detailCard.style.opacity = '1';
+
+    document.querySelectorAll('.hs-btn, .hs-node').forEach(el => el.classList.remove('active'));
     if (activeBtn) activeBtn.classList.add('active');
+    if (activeNode) activeNode.classList.add('active');
 
     const titleEl = document.getElementById('scannerZoneTitle');
     const descEl = document.getElementById('scannerZoneDesc');
@@ -2139,61 +2391,61 @@
     const zones = {
       motor: {
         title: "1. ⚙️ Motorraum, Zahnriemen & Ölservice",
-        desc: "Das Herzstück Ihres Fahrzeugs: Wir übernehmen sämtliche Wartungs- und Instandsetzungsarbeiten am Motor.",
+        desc: "Vorne unter der Motorhaube: Wir übernehmen sämtliche Wartungs- und Instandsetzungsarbeiten am Motor.",
         items: [
-          "✔ Ölwechsel inkl. Filter & 21-Punkte-Check",
-          "✔ Zahnriemen, Steuerkette & Wasserpumpe",
-          "✔ Zündkerzen, Kühlung, Batterie & Gratis-OBD-Diagnose"
+          `✔ Ölwechsel inkl. Filter &amp; <span class="nw">21-Punkte-Check</span>`,
+          `✔ Zahnriemen, Steuerkette &amp; Wasserpumpe`,
+          `✔ Zündkerzen, Kühlung, Batterie &amp; Gratis-OBD-Diagnose`
         ],
         topic: "Motor / Zahnriemen / Ölwechsel"
       },
       bremse: {
         title: "2. 🛑 Bremsanlage & Bremsflüssigkeit",
-        desc: "Volle Verzögerung in jeder Situation: Wir prüfen und erneuern Ihre Bremsen mit Marken-Ersatzteilen.",
+        desc: "Volle Verzögerung an Vorder- und Hinterachse: Wir erneuern Bremsen mit Marken-Teilen in Erstausrüsterqualität.",
         items: [
-          "✔ Bremsbeläge & Bremsscheiben vorne und hinten",
-          "✔ Bremsflüssigkeitswechsel & Siedepunkt-Prüfung",
-          "✔ Bremssättel, Handbremse & ABS-Sensorik"
+          `✔ Bremsbeläge &amp; Bremsscheiben vorne und hinten`,
+          `✔ Bremsflüssigkeitswechsel &amp; Siedepunkt-Prüfung`,
+          `✔ Bremssättel, Handbremse &amp; ABS-Sensorik`
         ],
-        topic: "Bremsen-Service (Beläge / Scheiben)"
+        topic: "Bremsen-Service komplett"
       },
       getriebe: {
         title: "3. 🚗 Kupplung, Schaltung & Antrieb",
         desc: "Wenn die Kupplung rutscht oder Gänge schwer reingehen, sorgen wir für saubere Kraftübertragung.",
         items: [
-          "✔ Kupplungssatz & Zweimassenschwungrad wechseln",
-          "✔ Getriebeöl-Service & Geber-/Nehmerzylinder",
-          "✔ Antriebswellen, Gelenke & Manschetten"
+          `✔ Kupplungssatz &amp; Zweimassenschwungrad wechseln`,
+          `✔ Getriebeöl-Service &amp; Geber-/Nehmerzylinder`,
+          `✔ Antriebswellen, Gelenke &amp; Achsmanschetten`
         ],
         topic: "Kupplung & Antriebs-Check"
       },
       klima: {
         title: "4. ❄️ Klimaanlage, Heizung & Komfort-Elektrik",
-        desc: "Frische Luft, freie Scheiben und zuverlässige Bordelektronik zu jeder Jahreszeit.",
+        desc: "Frische Luft im Innenraum, freie Scheiben und zuverlässige Bordelektronik zu jeder Jahreszeit.",
         items: [
-          "✔ Klimawartung, Kältemittel & Dichtheitsprüfung",
-          "✔ Innenraumfilter (Aktivkohle) & Desinfektion",
-          "✔ Anlasser, Lichtmaschine, Batterie & Beleuchtung"
+          `✔ Klimawartung, Kältemittel &amp; Dichtheitsprüfung`,
+          `✔ Aktivkohle-Innenraumfilter &amp; Hygiene-Desinfektion`,
+          `✔ Anlasser, Lichtmaschine, Batterie &amp; Beleuchtung`
         ],
         topic: "Klimaservice & Elektrik"
       },
       fahrwerk: {
         title: "5. 🔩 Fahrwerk, Achsen, Lenkung & Reifen",
-        desc: "Sichere Straßenlage ohne Poltern: Wir prüfen Aufhängung, Dämpfer und Bereifung auf unserer Bühne.",
+        desc: "Sichere Straßenlage ohne Poltern: Wir prüfen Aufhängung, Stoßdämpfer und Räder auf unserer Bühne.",
         items: [
-          "✔ Stoßdämpfer, Federn, Domlager & Querlenker",
-          "✔ Koppelstangen, Spurstangen & Radlager",
-          "✔ Reifenwechsel, Montage, Auswuchten & RDKS"
+          `✔ Stoßdämpfer, Federn, Domlager &amp; Querlenker`,
+          `✔ Koppelstangen, Spurstangen &amp; Radlager`,
+          `✔ Reifenwechsel, Montage, Auswuchten &amp; RDKS`
         ],
         topic: "Fahrwerk, Achsen & Reifen"
       },
       abgas: {
         title: "6. 💨 Auspuff, Abgasanlage & HU / TÜV",
-        desc: "Saubere Abgaswerte, leiser Lauf und beste Vorbereitung für Ihre nächste Hauptuntersuchung.",
+        desc: "Am Fahrzeugheck: Saubere Abgaswerte, leiser Lauf und beste Vorbereitung für Ihre Hauptuntersuchung.",
         items: [
-          "✔ Schalldämpfer, Flexrohr, Kat & DPF-Service",
-          "✔ Lambdasonde & AGR-Ventil prüfen/ersetzen",
-          "✔ Kostenloser HU/AU-Vorab-Check vor Ort"
+          `✔ Schalldämpfer, Flexrohr, Kat &amp; DPF-Service`,
+          `✔ Lambdasonde &amp; AGR-Ventil prüfen/ersetzen`,
+          `✔ Kostenloser HU/AU-Vorab-Check vor Ort`
         ],
         topic: "Auspuff / Abgas / HU-Vorab-Check"
       }
@@ -2209,11 +2461,12 @@
   function prefillFromScanner(topic) {
     const msgField = document.getElementById('waMsg');
     if (msgField) {
-      msgField.value = "Anfrage zum Bereich: " + topic;
+      const current = msgField.value.trim();
+      msgField.value = current ? `${current} | Bereich: ${topic}` : `Anfrage zum Bereich: ${topic}`;
     }
   }
 
-  // ===== NEU: KILOMETERSTAND-WARTUNGS-KOMPASS (1. KLICK ÖFFNET, 2. KLICK SCHLIESST) =====
+  // ===== KILOMETERSTAND-WARTUNGS-KOMPASS =====
   function checkMileage(step, btnEl) {
     const box = document.getElementById('kmResultBox');
     const wasActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -2229,14 +2482,14 @@
     const infoMap = {
       '30k': `🟢 <b>Empfehlung um 30.000 km:</b> Jährlicher <b>Ölwechsel inkl. Ölfilter</b>, Innenraum-/Pollenfilter, Bremsflüssigkeits-Check sowie unser kostenloser <span class="nw">21-Punkte-Sicherheitscheck</span>.`,
       '60k': `🟠 <b>Empfehlung um 60.000 km:</b> Große Inspektion mit <b>Motoröl, Luft- &amp; Kraftstofffilter, Zündkerzen, Bremsbelägen</b> sowie Kontrolle von Klimaanlage und Getriebeöl.`,
-      '90k': `🔴 <b>Empfehlung um 90.000 km:</b> Neben Öl- und Bremsen-Service unbedingt <b>Zahnriemen / Wasserpumpe, Keilrippenriemen und Fahrwerksbuchsen</b> prüfen lassen!`,
-      '120k': `🛠️ <b>Empfehlung ab 120.000 km:</b> Intensiv-Check von <b>Zahnriemen/Steuerkette, Kupplung, Stoßdämpfern, Querlenkern, Abgasanlage (DPF/Kat)</b> sowie kompletter Flüssigkeitswechsel.`
+      '90k': `🔴 <b>Empfehlung um 90.000 km:</b> Neben Öl- und Bremsen-Service unbedingt <b>Zahnriemen, Wasserpumpe, Keilrippenriemen und Fahrwerksbuchsen</b> prüfen lassen!`,
+      '120k': `🛠️ <b>Empfehlung ab 120.000 km:</b> Intensiv-Check von <b>Zahnriemen/Steuerkette, Kupplung, Stoßdämpfern, Querlenkern und Abgasanlage</b><span class="sub-bracket">(inkl. DPF-/Kat-Prüfung &amp; komplettem Flüssigkeitswechsel)</span>`
     };
     box.innerHTML = infoMap[step] || '';
     box.classList.add('show');
   }
 
-  // Altöl -> Frischöl Schauglas-Simulator
+  // Altöl -> Frischöl Schauglas-Simulator (Klammern immer sauber auf eigener Zeile)
   function toggleOilSimulation() {
     const box = document.getElementById("oilSimBox");
     const title = document.getElementById("oilSimTitle");
@@ -2245,14 +2498,14 @@
     const isFresh = box.classList.toggle("fresh");
 
     if (isFresh) {
-      title.innerText = "✨ Nach dem Ölwechsel: Goldklares Marken-Frischöl (100 % Motorschutz)";
+      title.innerHTML = `✨ Nach dem Ölwechsel: Goldklares Marken-Frischöl<span class="sub-bracket-light">(100 % Motorschutz &amp; volle Schmierkraft)</span>`;
       desc.innerText = isOfferStillActive()
-        ? "Reibung minimiert, voller Öldruck & neuer Filter – bei uns bis 01.12.2026 schon ab 69 €!"
+        ? "Reibung minimiert, voller Öldruck & neuer Filter – bis 01.12.2026 schon ab 69 €!"
         : "Reibung minimiert, voller Öldruck & neuer Ölfilter – in geprüfter Meisterqualität!";
       btn.innerText = "↺ Vorher-Zustand zeigen";
     } else {
-      title.innerText = "🛢️ Schauglas-Simulation: Dunkles Altöl (28 % Schmierkraft)";
-      desc.innerText = "Ruß und Abrieb bremsen den Motor – testen Sie rechts den Vorher/Nachher-Effekt:";
+      title.innerHTML = `🛢️ Schauglas-Simulation: Dunkles Altöl<span class="sub-bracket-light">(Nur noch 28 % Schmierkraft – erhöhte Reibung)</span>`;
+      desc.innerText = "Ruß und Abrieb bremsen den Motor – testen Sie den Vorher/Nachher-Effekt:";
       btn.innerText = "🔄 Ölwechsel-Animation starten";
     }
   }
@@ -2289,7 +2542,7 @@
     btn.innerText = !allOpen ? "➖ Alle 21 Punkte zuklappen" : "➕ Alle 21 Punkte aufklappen";
   }
 
-  // 1-Zeilen Ölwechsel-Schnelltest
+  // 1-Zeilen Ölwechsel-Schnelltest (Klammern auf neuer Zeile)
   function checkOilInterval(state, btnEl) {
     const ans = document.getElementById('quickOilAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -2303,8 +2556,8 @@
 
     btnEl.classList.add('active');
     const offerNote = isOfferStillActive()
-      ? `unser <b class="nw">69 € Aktionspaket</b> <span class="nw">(inkl. Ölfilter &amp; 21-Pkt.-Check).</span>`
-      : `unser <b>Ölwechsel-Paket zum Top-Preis</b> <span class="nw">(inkl. Ölfilter &amp; 21-Pkt.-Check).</span>`;
+      ? `unser <b class="nw">69 € Aktionspaket</b>.<span class="sub-bracket">(Inklusive neuem Ölfilter &amp; kostenlosem 21-Punkte-Check)</span>`
+      : `unser <b>Ölwechsel-Paket zum Top-Preis</b>.<span class="sub-bracket">(Inklusive neuem Ölfilter &amp; kostenlosem 21-Punkte-Check)</span>`;
 
     if (state === 'ok') {
       ans.innerHTML = `🟢 <b>Alles im grünen Bereich:</b> Unter <span class="nw">15.000 km</span> reicht meist ein kurzer Gratis-Flüssigkeits-Check vor Ort.`;
@@ -2383,7 +2636,7 @@
     }, 350);
   }
 
-  // 6 COCKPIT-WARNLEUCHTEN (OHNE X-BUTTON)
+  // 6 COCKPIT-WARNLEUCHTEN (OHNE X-BUTTON, ALLE KLAMMERN SAUBER AUF NEUER ZEILE)
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -2407,37 +2660,37 @@
 
     const data = {
       oil: {
-        t: "🛢️ Rote/Gelbe Ölkanne (Öldruck oder Ölstand)",
+        t: `🛢️ Rote oder gelbe Ölkanne<span class="sub-bracket">(Warnung für Öldruck oder Motorölstand)</span>`,
         l1: `⚠️ <b>Wichtig:</b> Bei roter Lampe Motor sofort abstellen! Bei gelber Lampe zeitnah den Ölstand prüfen.`,
         l2: oilOfferLine,
         wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Öl-Warnleuchte. Ich brauche bitte Hilfe / einen Termin."
       },
       engine: {
-        t: "⚠️ Motorkontrollleuchte (Steuergerät / Abgas)",
-        l1: `🔍 <b>Ursache:</b> Ein Sensor, die Zündung oder die Abgasanlage meldet einen Fehler im System.`,
+        t: `⚠️ Motorkontrollleuchte<span class="sub-bracket">(Motorsteuerung, Zündung oder Abgassystem)</span>`,
+        l1: `🔍 <b>Ursache:</b> Ein Sensor, die Einspritzung oder die Abgasanlage meldet einen Fehler im Steuergerät.`,
         l2: `✔ <b>Unser Service:</b> Wir lesen Ihren Fehlerspeicher am <span class="nw">Mariendorfer Damm 49</span> komplett kostenlos aus!`,
         wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Motorkontrollleuchte. Können Sie den Fehlerspeicher kostenlos auslesen?"
       },
       brake: {
-        t: "🛑 Bremsen-Warnleuchte (Verschleiß / Bremsflüssigkeit)",
+        t: `🛑 Bremsen-Warnleuchte<span class="sub-bracket">(Bremsbelag-Verschleiß oder Bremsflüssigkeit)</span>`,
         l1: `⚠️ <b>Sicherheit:</b> Entweder sind die Bremsbeläge verschlissen oder der Bremsflüssigkeitsstand ist zu niedrig.`,
         l2: `✔ <b>Unser Service:</b> Kommen Sie direkt zum kostenlosen Bremsen- &amp; Sicherheits-Check vorbei.`,
         wa: "Hallo A&BS AUTOPROFIS, meine Bremsen-Warnleuchte ist an. Ich möchte das kurz prüfen lassen."
       },
       battery: {
-        t: "🔋 Batterie- / Generatorleuchte",
-        l1: `🔍 <b>Ursache:</b> Die Batterie wird während der Fahrt nicht geladen <span class="nw">(oft Lichtmaschine/Riemen)</span> oder ist schwach.`,
-        l2: `✔ <b>Unser Service:</b> Wir messen Batteriespannung und Ladesystem sofort kostenlos für Sie durch.`,
+        t: `🔋 Batterie- &amp; Generatorleuchte<span class="sub-bracket">(Ladesystem, Lichtmaschine oder Keilriemen)</span>`,
+        l1: `🔍 <b>Ursache:</b> Die Batterie wird während der Fahrt nicht mehr richtig geladen oder ist geschwächt.`,
+        l2: `✔ <b>Unser Service:</b> Wir messen Batteriespannung und Lichtmaschine sofort kostenlos für Sie durch.`,
         wa: "Hallo A&BS AUTOPROFIS, meine Batterieleuchte brennt. Haben Sie kurzfristig Zeit zum Durchmessen?"
       },
       coolant: {
-        t: "🌡️ Kühlmittel- / Temperatur-Warnung",
+        t: `🌡️ Kühlmittel- &amp; Temperatur-Warnung<span class="sub-bracket">(Kühlwasserstand, Thermostat oder Lüfter)</span>`,
         l1: `⚠️ <b>Achtung:</b> Überhitzungsgefahr für den Motor! Bitte Kühlwasserstand und Dichtigkeit prüfen lassen.`,
         l2: `✔ <b>Unser Service:</b> Unser Kühlwasser- &amp; Frostschutz-Check vor Ort ist für Sie komplett kostenlos.`,
         wa: "Hallo A&BS AUTOPROFIS, meine Kühlwasser-Lampe leuchtet. Ich möchte gerne zum Gratis-Check vorbeikommen."
       },
       tire: {
-        t: "🛞 Reifendruck- / ESP-Warnleuchte (RDKS)",
+        t: `🛞 Reifendruck- &amp; ESP-Warnleuchte<span class="sub-bracket">(RDKS-Reifendruckkontrolle oder Fahrstabilität)</span>`,
         l1: `🔍 <b>Ursache:</b> Druckverlust in einem Reifen, ein eingefahrener Gegenstand oder ein RDKS-Sensorfehler.`,
         l2: `✔ <b>Unser Service:</b> Wir prüfen Luftdruck, Reifenprofil und Sensoren sofort bei uns vor Ort.`,
         wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Reifendruck-/ESP-Warnleuchte. Können Sie das kurz prüfen?"
@@ -2445,7 +2698,7 @@
     };
 
     const item = data[type];
-    title.innerText = item.t;
+    title.innerHTML = item.t;
     text.innerHTML = `<span class="line">${item.l1}</span><span class="line">${item.l2}</span>`;
     link.href = "https://wa.me/4917672625377?text=" + encodeURIComponent(item.wa);
     box.classList.add('show');
@@ -2485,20 +2738,28 @@
       const btn = card.querySelector('.rep-select-btn');
       if (btn) btn.innerText = "➕ Für Anfrage merken";
     });
+    const passBtn = document.getElementById('welcomePassBtn');
+    if (passBtn) {
+      passBtn.classList.remove('claimed');
+      passBtn.innerText = "✨ Gratis-Paket zur Anfrage hinzufügen";
+    }
     updateQuickServiceText();
   }
 
   function updateQuickServiceText() {
     const activeChips = Array.from(document.querySelectorAll('.srv-chip.active')).map(el => el.getAttribute('data-service'));
     const activeCards = Array.from(document.querySelectorAll('.repair-card.selected-repair')).map(el => el.getAttribute('data-service'));
-    const combined = Array.from(new Set([...activeCards, ...activeChips])).filter(Boolean);
+    const passBtn = document.getElementById('welcomePassBtn');
+    const passClaimed = passBtn && passBtn.classList.contains('claimed') ? ["Gratis 3-fach Begrüßungspaket"] : [];
+
+    const combined = Array.from(new Set([...passClaimed, ...activeCards, ...activeChips])).filter(Boolean);
 
     const msgField = document.getElementById('waMsg');
     const countInfo = document.getElementById('selectedCountInfo');
 
     if (combined.length > 0) {
       msgField.value = "Wunschleistung: " + combined.join(", ");
-      countInfo.innerText = `${combined.length} Leistung(en) ausgewählt`;
+      countInfo.innerText = `${combined.length} Auswahl(en) aktiv`;
     } else {
       msgField.value = "";
       countInfo.innerText = "Keine Schnellauswahl aktiv";
@@ -2563,7 +2824,7 @@
     const slot = document.getElementById('waSlot').value.trim() || 'Flexibel';
     const msg = document.getElementById('waMsg').value.trim() || 'Keine Nachricht angegeben';
 
-    const hsnTsnLine = (hsn || tsn) ? `• _Schlüssel-Nr. (2.1 / 2.2):_ _${hsn || '-'} / ${tsn || '-'}_\n\n` : '';
+    const hsnTsnLine = (hsn || tsn) ? `• _Schlüssel-Nr. 2.1 / 2.2:_ _${hsn || '-'} / ${tsn || '-'}_\n\n` : '';
     
     const whatsappText = `*Neue Termin- / Reparaturanfrage über Website*\n\n` +
                          `• _Name:_ _${name}_\n\n` +
