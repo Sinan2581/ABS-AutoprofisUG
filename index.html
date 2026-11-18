@@ -279,7 +279,6 @@
   /* Brand & Logo mit animierter Qualitäts-Sprechblase */
   .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; }
   .brand img { width: 52px; height: 52px; min-width: 52px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
-  .brand:hover img { transform: scale(1.05); }
   .brand-text strong { display: block; font-size: 18px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.3px; }
   .brand-text span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
 
@@ -305,7 +304,6 @@
   .header-widget-group { position: relative; display: flex; align-items: center; }
   
   .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; }
-  .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
   .status-main { display: flex; align-items: center; gap: 6px; font-weight: 700; white-space: nowrap; }
   .status-sub { font-size: 9px; color: #cbd5ff; padding-left: 12px; white-space: nowrap; }
   .widget-sub-small { font-size: 9px; color: #cbd5ff; white-space: nowrap; }
@@ -325,7 +323,6 @@
 
   /* Buttons */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
   
   .wa-btn { background: var(--success) !important; color: #fff !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
@@ -374,7 +371,6 @@
   /* GRID & CARDS */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .card { background: #fff; border-radius: 22px; padding: 26px; border: 1px solid #eae5d9; box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
   .card h3 { margin: 12px 0 10px; color: var(--primary); font-size: 19px; font-weight: 800; white-space: nowrap; }
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
@@ -385,10 +381,10 @@
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ===== NEUIGKEIT 2: INTERAKTIVER SAISON- & ALLTAGS-CHECK UMSCHALTER ===== */
-  .season-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); }
-  .season-tabs { display: inline-flex; background: #f0ebd9; padding: 5px; border-radius: 999px; gap: 6px; margin: 14px 0 22px; max-width: 100%; }
-  .season-tab { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: 13px; padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  /* ===== KORRIGIERT: SAISON- & ALLTAGS-CHECK UMSCHALTER (Kein Überstehen mehr rechts!) ===== */
+  .season-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); overflow: hidden; }
+  .season-tabs { display: grid; grid-template-columns: 1fr 1fr; background: #f0ebd9; padding: 5px; border-radius: 14px; gap: 6px; margin: 14px auto 22px; width: 100%; max-width: 520px; }
+  .season-tab { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: clamp(11px, 3.1vw, 13.5px); padding: 10px 8px; border-radius: 10px; cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap; width: 100%; min-width: 0; text-align: center; -webkit-tap-highlight-color: transparent; }
   .season-tab.active { background: var(--primary); color: var(--gold-light); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
   .season-panel { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
   .season-panel.active { display: grid; animation: fadeIn 0.25s ease; }
@@ -396,15 +392,31 @@
   .season-item b { display: block; font-size: 15px; color: var(--primary); margin-bottom: 4px; white-space: nowrap; }
   .season-item p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
+  /* ===== NEUIGKEIT 1: INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) ===== */
+  .fzs-helper-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; box-shadow: 0 8px 24px rgba(0,0,0,0.03); display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 26px; align-items: center; }
+  .fzs-visual { background: linear-gradient(135deg, #e8f5e9, #fdfbf7); border: 2px solid #86efac; border-radius: 18px; padding: 18px; position: relative; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #14532d; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7); }
+  .fzs-doc-header { font-size: 11px; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; color: #166534; border-bottom: 1px dashed #86efac; padding-bottom: 6px; margin-bottom: 12px; display: flex; justify-content: space-between; }
+  .fzs-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fzs-field-card { background: #fff; border: 2px solid var(--gold); border-radius: 12px; padding: 10px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .fzs-field-lbl { font-size: 10px; font-weight: 900; color: var(--primary); display: block; }
+  .fzs-field-val { font-size: 18px; font-weight: 900; color: #b45309; letter-spacing: 2px; margin: 2px 0; display: block; }
+  .fzs-field-desc { font-size: 10px; color: var(--text-muted); font-family: Inter, sans-serif; font-weight: 600; display: block; }
+
+  /* ===== NEUIGKEIT 2: VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF ===== */
+  .comfort-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+  .comfort-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 14px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 8px; }
+  .comfort-badge { align-self: flex-start; background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); white-space: nowrap; }
+  .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
   /* COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK-SCHLIESSEN) */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
   .dash-box h3 { margin: 0 0 6px; font-size: clamp(17px, 4.5vw, 23px); color: #fff; font-weight: 900; white-space: nowrap; }
   .dash-box p { margin: 0 auto 20px; font-size: 14px; color: #dbe4ff; max-width: 600px; }
   .dash-lights { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 780px; margin: 0 auto; }
-  .dash-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 8px; color: #fff; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; font: inherit; }
+  .dash-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 8px; color: #fff; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; font: inherit; -webkit-tap-highlight-color: transparent; }
   .dash-btn span.ico { font-size: 24px; line-height: 1; }
   .dash-btn span.lbl { font-size: 12px; font-weight: 800; white-space: nowrap; }
-  .dash-btn:hover { background: rgba(255,255,255,0.15); }
   .dash-btn.active { background: rgba(212,175,55,0.28); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
   .dash-info { margin-top: 18px; background: #fff; color: var(--primary); border-radius: 16px; padding: 18px; text-align: left; display: none; border-left: 5px solid var(--gold); position: relative; }
   .dash-info.show { display: block; animation: fadeIn 0.25s ease; }
@@ -431,8 +443,8 @@
   .advisor-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 40px; text-align: center; }
   .advisor-box h3 { margin: 0 0 6px; color: var(--primary); font-size: clamp(17px, 4.6vw, 22px); font-weight: 900; white-space: nowrap; }
   .advisor-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 18px; }
-  .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 10px 12px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: all 0.2s; font-size: 13px; white-space: nowrap; text-align: center; }
-  .advisor-chip:hover, .advisor-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 10px 12px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: background 0.2s, color 0.2s; font-size: 13px; white-space: nowrap; text-align: center; -webkit-tap-highlight-color: transparent; user-select: none; }
+  .advisor-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
   .advisor-result { margin-top: 20px; padding: 18px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 14px; color: #334155; display: none; }
   .advisor-result.show { display: block; animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -478,17 +490,51 @@
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
-  /* KONTAKT- & TERMIN-FORMULAR + WUNSCHZEIT & LEISTUNGS-CHIPS */
+  /* KONTAKT- & TERMIN-FORMULAR + PERFEKT FUNKTIONIERENDE MEHRFACH-CHIPS */
   .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 15px; }
   .form-group label { display: block; font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--primary); line-height: 1.3; }
   .form-control { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
   .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
 
-  /* Wunschzeit- & Schnellauswahl-Chips im Formular */
+  .hsn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Wunschzeit- & Schnellauswahl-Chips im Formular (Kein Sticky-Hover-Bug mehr auf dem Handy!) */
   .slot-chips, .service-quick-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .slot-chip, .srv-chip { background: #fdfbf7; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 8px 6px; font-size: 11.5px; font-weight: 700; color: var(--primary); text-align: center; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-  .slot-chip:hover, .slot-chip.active, .srv-chip:hover, .srv-chip.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .slot-chip, .srv-chip {
+    background: #fdfbf7;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    padding: 9px 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .slot-chip.active, .srv-chip.active {
+    background: var(--primary) !important;
+    color: var(--gold-light) !important;
+    border-color: var(--gold) !important;
+    box-shadow: 0 3px 10px rgba(7, 26, 61, 0.22);
+  }
+  .chip-reset-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; color: var(--text-muted); }
+  .chip-reset-btn { background: none; border: 0; color: var(--primary); font-weight: 800; font-size: 11px; text-decoration: underline; cursor: pointer; padding: 2px 4px; }
+
+  /* Hover-Effekte NUR auf echten Maus-Geräten, damit Touchscreens beim Abwählen nie hängenbleiben */
+  @media (hover: hover) and (pointer: fine) {
+    .brand:hover img { transform: scale(1.05); }
+    .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
+    .dash-btn:hover { background: rgba(255,255,255,0.15); }
+    .advisor-chip:hover { border-color: var(--primary); }
+    .slot-chip:not(.active):hover, .srv-chip:not(.active):hover { border-color: var(--gold); background: #fff; }
+  }
 
   /* Fahrzeugschein-Tipp-Box */
   .fzs-tip { background: #fdfbf7; border: 1.5px dashed var(--gold); border-radius: 12px; padding: 10px 12px; font-size: 12px; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; line-height: 1.4; }
@@ -502,12 +548,10 @@
 
   .route-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
   .route-btn { background: #fff; border: 1.5px solid var(--primary); color: var(--primary); padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
-  .route-btn:hover { background: var(--primary); color: #fff; }
   .vcard-btn { grid-column: span 2; background: var(--primary); color: var(--gold-light) !important; border-color: var(--gold); }
 
   /* Floating WhatsApp Button */
   .wa-float { display: grid; position: fixed; right: 18px; bottom: 18px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
-  .wa-float:hover { transform: scale(1.08); }
   .wa-float svg { width: 30px; height: 30px; }
 
   footer { background: var(--primary); color: #cbd5ff; padding: 36px 20px 90px; text-align: center; }
@@ -519,9 +563,9 @@
   @media(max-width: 1080px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: repeat(2, 1fr); }
     .usp-inner, .advisor-options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .info-highlight-box, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+    .info-highlight-box, .contact-grid, .fzs-helper-box { grid-template-columns: 1fr; gap: 24px; }
   }
 
   @media(max-width: 767px) {
@@ -554,17 +598,15 @@
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active { grid-template-columns: 1fr; }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: 1fr; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
     .dash-lights { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .slot-chips { grid-template-columns: 1fr; gap: 6px; }
     .service-quick-chips { grid-template-columns: 1fr 1fr; gap: 6px; }
-    .season-tabs { display: flex; width: 100%; }
-    .season-tab { flex: 1; padding: 9px 8px; font-size: 12px; }
     .wrap { padding: 36px 14px; }
-    .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box { padding: 20px 16px; }
+    .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box, .fzs-helper-box { padding: 20px 15px; }
     .info-block { padding: 18px 14px; }
     .check-grid { grid-template-columns: 1fr; }
   }
@@ -681,13 +723,13 @@
         <div class="header-widget-group">
           <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
             <span id="headerWeatherMini" style="font-weight:700;">🌤️ Berlin 12°C</span>
-            <div class="widget-sub-small" id="headerDateTimeMini">09:00 Uhr | 17.11.2026</div>
+            <div class="widget-sub-small" id="headerDateTimeMini">09:00 Uhr | 18.11.2026</div>
           </div>
           <div class="widget-popup" id="weatherPopup">
             <b>📍 Berlin-Mariendorf</b>
             <div id="popupWeather" style="font-weight:700;">🌤️ Wetter: 12°C, Heiter</div>
             <div id="popupTime" style="color:var(--text-muted);">⏰ 09:00:00 Uhr</div>
-            <div id="popupDate" style="color:var(--text-muted);">📅 Di., 17.11.2026</div>
+            <div id="popupDate" style="color:var(--text-muted);">📅 Mi., 18.11.2026</div>
           </div>
         </div>
       </div>
@@ -844,14 +886,14 @@
     </div>
   </div>
 
-  <!-- ===== NEUIGKEIT 2: INTERAKTIVER SAISON- & ALLTAGS-CHECK UMSCHALTER ===== -->
+  <!-- ===== KORRIGIERT: SAISON- & ALLTAGS-CHECK UMSCHALTER (100% IM RAHMEN AUF HANDY & DESKTOP) ===== -->
   <div id="saison" class="season-box">
     <h2 class="section-title" style="font-size:clamp(19px, 4.6vw, 26px);">Saison- & Alltags-Check für Berlin</h2>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">Wählen Sie aus, worauf wir Ihr Fahrzeug schwerpunktmäßig prüfen sollen:</p>
     
     <div class="season-tabs">
       <button type="button" class="season-tab active" onclick="switchSeason('winter', this)">❄️ Winter- & Kälte-Check</button>
-      <button type="button" class="season-tab" onclick="switchSeason('alltag', this)">🚗 Alltags- & Langstrecken-Check</button>
+      <button type="button" class="season-tab" onclick="switchSeason('alltag', this)">🚗 Alltags- & Strecken-Check</button>
     </div>
 
     <div id="seasonWinter" class="season-panel active">
@@ -881,6 +923,36 @@
       <div class="season-item">
         <b>💻 Gratis Steuergeräte-Scan</b>
         <p>Auslesen versteckter Fehlermeldungen im Speicher, bevor teure Folgeschäden entstehen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NEUIGKEIT 1: INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) ===== -->
+  <div class="fzs-helper-box">
+    <div>
+      <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL & ÖL</span>
+      <h3 style="margin:10px 0 8px; color:var(--primary); font-size:clamp(18px, 4.4vw, 24px); white-space:nowrap;">Wo stehen die Schlüsselnummern?</h3>
+      <p style="margin:0 0 14px; font-size:14px; color:var(--text-muted); line-height:1.6;">
+        Damit wir Ihnen am Telefon oder per WhatsApp sofort das exakt passende Marken-Öl oder Ersatzteil nennen können, helfen uns die zwei kurzen Nummern <b>2.1</b> und <b>2.2</b> aus Ihrem Fahrzeugschein:
+      </p>
+      <a class="btn" href="#kontakt" onclick="focusHsnInput()">👇 Unten im Formular direkt eintragen</a>
+    </div>
+    <div class="fzs-visual">
+      <div class="fzs-doc-header">
+        <span>Zulassungsbescheinigung Teil I</span>
+        <span>Muster-Ansicht</span>
+      </div>
+      <div class="fzs-fields">
+        <div class="fzs-field-card">
+          <span class="fzs-field-lbl">Feld (2.1) Hersteller-Nr.</span>
+          <span class="fzs-field-val">0603</span>
+          <span class="fzs-field-desc">4 Ziffern (z.B. VW / Audi / BMW)</span>
+        </div>
+        <div class="fzs-field-card">
+          <span class="fzs-field-lbl">Feld (2.2) Typ-Schlüssel</span>
+          <span class="fzs-field-val">BQS</span>
+          <span class="fzs-field-desc">Erste 3 Buchstaben / Zahlen</span>
+        </div>
       </div>
     </div>
   </div>
@@ -945,6 +1017,29 @@
         <div class="step-num">4</div>
         <h4>Sicher weiterfahren</h4>
         <p>Pünktliche Übergabe in geprüfter Meisterqualität inklusive dokumentiertem Service.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NEUIGKEIT 2: VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF ===== -->
+  <div style="margin-top: 50px;">
+    <h2 class="section-title">Ihr Komfort vor Ort in Mariendorf</h2>
+    <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am Mariendorfer Damm 49 ist beides bequem möglich:</p>
+    <div class="comfort-grid">
+      <div class="comfort-card">
+        <span class="comfort-badge">☕ Express-Warte-Service</span>
+        <h4>Bei Kaffee kurz warten</h4>
+        <p>Beim schnellen Ölwechsel oder Fehlerspeicher-Check können Sie gerne direkt vor Ort bei einer Tasse Kaffee auf Ihr Auto warten.</p>
+      </div>
+      <div class="comfort-card">
+        <span class="comfort-badge">🚇 Perfekte ÖPNV-Anbindung</span>
+        <h4>U6 & Bus direkt vor Ort</h4>
+        <p>Auto abgeben und entspannt weiter: Buslinien (M76, X76, 179) sowie die U6 (Alt-Mariendorf / Westphalweg) sind schnell erreichbar.</p>
+      </div>
+      <div class="comfort-card">
+        <span class="comfort-badge">🅿️ Direkte Annahme</span>
+        <h4>Einfach vorfahren</h4>
+        <p>Kein langes Parkplatzsuchen: Fahren Sie direkt am Mariendorfer Damm 49 vor, wir nehmen Ihr Fahrzeug sofort persönlich entgegen.</p>
       </div>
     </div>
   </div>
@@ -1227,10 +1322,23 @@
         </label>
         <input type="text" id="waCar" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
       </div>
+
+      <!-- NEU: Optionale HSN / TSN Felder für schnelle Teile- & Öl-Zuordnung -->
+      <div class="form-group">
+        <label>
+          Schlüsselnummern aus Fahrzeugschein
+          <span class="sub-bracket">(optional – Feld 2.1 und 2.2 für genaue Teile-Zuordnung)</span>
+        </label>
+        <div class="hsn-grid">
+          <input type="text" id="waHsn" class="form-control" maxlength="4" placeholder="2.1 (z.B. 0603)">
+          <input type="text" id="waTsn" class="form-control" maxlength="8" placeholder="2.2 (z.B. BQS)">
+        </div>
+      </div>
+
       <div class="form-group">
         <label>
           Bevorzugte Tageszeit
-          <span class="sub-bracket">(optional antippen)</span>
+          <span class="sub-bracket">(1x tippen = wählen • 2x tippen = abwählen)</span>
         </label>
         <input type="hidden" id="waSlot" value="Flexibel">
         <div class="slot-chips">
@@ -1240,25 +1348,29 @@
         </div>
       </div>
 
-      <!-- ===== NEUIGKEIT 1: 1-KLICK LEISTUNGSAUSWAHL IM FORMULAR ===== -->
+      <!-- KORRIGIERT: 1-KLICK LEISTUNGSAUSWAHL (Sauberes An- und Abwählen einzelner Buttons) -->
       <div class="form-group">
         <label>
           Wunschleistung schnell antippen
-          <span class="sub-bracket">(mehrere möglich – fügt sich unten ein)</span>
+          <span class="sub-bracket">(mehrere möglich – erneutes Tippen wählt wieder ab)</span>
         </label>
         <div class="service-quick-chips">
-          <div class="srv-chip" onclick="toggleQuickService('Ölwechsel inkl. Filter', this)">🛢️ Ölwechsel</div>
-          <div class="srv-chip" onclick="toggleQuickService('21-Punkte-Check', this)">🔍 21-Pkt-Check</div>
-          <div class="srv-chip" onclick="toggleQuickService('Fehlerspeicher auslesen', this)">💻 Fehlerspeicher</div>
-          <div class="srv-chip" onclick="toggleQuickService('Bremsen-Check', this)">🛑 Bremsen</div>
-          <div class="srv-chip" onclick="toggleQuickService('Gratis Licht- & Frostschutz-Check', this)">❄️ Winter-Check</div>
-          <div class="srv-chip" onclick="toggleQuickService('Allgemeine Preisanfrage', this)">💬 Preisanfrage</div>
+          <div class="srv-chip" data-service="Ölwechsel inkl. Filter" onclick="toggleQuickService(this)">🛢️ Ölwechsel</div>
+          <div class="srv-chip" data-service="21-Punkte-Check" onclick="toggleQuickService(this)">🔍 21-Pkt-Check</div>
+          <div class="srv-chip" data-service="Fehlerspeicher auslesen" onclick="toggleQuickService(this)">💻 Fehlerspeicher</div>
+          <div class="srv-chip" data-service="Bremsen-Check" onclick="toggleQuickService(this)">🛑 Bremsen</div>
+          <div class="srv-chip" data-service="Gratis Licht- & Frostschutz-Check" onclick="toggleQuickService(this)">❄️ Winter-Check</div>
+          <div class="srv-chip" data-service="Allgemeine Preisanfrage" onclick="toggleQuickService(this)">💬 Preisanfrage</div>
+        </div>
+        <div class="chip-reset-row">
+          <span id="selectedCountInfo">Keine Schnellauswahl aktiv</span>
+          <button type="button" class="chip-reset-btn" onclick="resetQuickServices()">↺ Alle abwählen</button>
         </div>
       </div>
 
       <div class="form-group">
         <label>Ihre Nachricht / Wunschleistung</label>
-        <textarea id="waMsg" class="form-control" rows="3" placeholder="Bitte Wunschleistung antippen oder Nachricht eingeben..."></textarea>
+        <textarea id="waMsg" class="form-control" rows="3" placeholder="Bitte oben Wunschleistung antippen oder eigene Nachricht schreiben..."></textarea>
       </div>
 
       <!-- Hinweis für Fahrzeugschein-Foto -->
@@ -1276,7 +1388,6 @@
         <div style="width:100%;">
           <b>Werkstatt-Adresse</b>
           <p>Mariendorfer Damm 49<br>12109 Berlin-Mariendorf</p>
-          <!-- NEUIGKEIT 3: Direkt-Navigation, Kopieren & Digitale Visitenkarte (vCard) -->
           <div class="route-actions">
             <a class="route-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route starten</a>
             <button type="button" class="route-btn" id="copyAddrBtn" onclick="copyWorkshopAddress()">📋 Adresse kopieren</button>
@@ -1330,7 +1441,6 @@
 
 <script>
   // ===== AUTOMATISCHER ANGEBOTS-SCHALTER AB 01.12.2026 =====
-  // Sobald der 01.12.2026 (00:00 Uhr) erreicht ist, wird das 69-€-Angebot überall automatisch durch "Tolle Preise" ersetzt.
   const OFFER_END_TIMESTAMP = new Date("2026-12-01T00:00:00").getTime();
 
   function isOfferStillActive() {
@@ -1342,13 +1452,11 @@
     const offerBadge = document.getElementById("offerRemainingBadge");
 
     if (nowMs < OFFER_END_TIMESTAMP) {
-      // Vor dem 01.12.2026: Zeige Resttage bis zum 01.12.2026
       const remainingDays = Math.ceil((OFFER_END_TIMESTAMP - nowMs) / (1000 * 60 * 60 * 24));
       if (offerBadge) {
         offerBadge.innerText = `🔥 69 € Aktion bis 01.12. (noch ${remainingDays} Tg.)`;
       }
     } else {
-      // Ab dem 01.12.2026: Automatischer Wechsel auf "Tolle Preise" (ohne 69 €)
       const topBanner = document.getElementById("topBannerOfferLine");
       if (topBanner) topBanner.innerText = "Tolle Preise & ehrlicher Meister-Service für alle Marken";
       if (offerBadge) offerBadge.innerText = "🔥 Tolle Preise & Top-Konditionen";
@@ -1491,7 +1599,7 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
-  // Neuigkeit 2: Saison-Check Umschalter
+  // Saison-Check Umschalter
   function switchSeason(mode, btnEl) {
     document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.season-panel').forEach(p => p.classList.remove('active'));
@@ -1503,6 +1611,14 @@
     }
   }
 
+  // Sprung zum HSN-Feld im Formular
+  function focusHsnInput() {
+    setTimeout(() => {
+      const el = document.getElementById('waHsn');
+      if (el) el.focus();
+    }, 350);
+  }
+
   // Cockpit-Warnleuchten-Lexikon (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
@@ -1512,6 +1628,7 @@
 
     if (isAlreadyActive) {
       box.classList.remove('show');
+      btnEl.blur();
       return;
     }
 
@@ -1564,32 +1681,56 @@
     document.getElementById('dashInfoBox').classList.remove('show');
   }
 
-  // Wunschzeit-Chip im Kontaktformular auswählen (mit Zweitklick zum Abwählen)
+  // Wunschzeit-Chip im Kontaktformular auswählen (mit sauberem Zweitklick zum Abwählen)
   function selectSlot(slotName, chipEl) {
     const input = document.getElementById('waSlot');
     const wasActive = chipEl.classList.contains('active');
     document.querySelectorAll('.slot-chip').forEach(c => c.classList.remove('active'));
     if (wasActive) {
       input.value = 'Flexibel';
+      chipEl.blur();
     } else {
       chipEl.classList.add('active');
       input.value = slotName;
     }
   }
 
-  // Neuigkeit 1: 1-Klick Leistungsauswahl-Chips im Formular
-  function toggleQuickService(serviceName, chipEl) {
-    chipEl.classList.toggle('active');
-    const selected = Array.from(document.querySelectorAll('.srv-chip.active')).map(el => el.innerText.replace(/^[^\s]+\s/, ''));
+  // KORRIGIERT: 1-Klick Leistungsauswahl-Chips (Einzeln an- und abwählbar ohne Hängenbleiben)
+  function toggleQuickService(chipEl) {
+    const isNowActive = !chipEl.classList.contains('active');
+    if (isNowActive) {
+      chipEl.classList.add('active');
+    } else {
+      chipEl.classList.remove('active');
+      chipEl.blur();
+    }
+    updateQuickServiceText();
+  }
+
+  function resetQuickServices() {
+    document.querySelectorAll('.srv-chip').forEach(c => {
+      c.classList.remove('active');
+      c.blur();
+    });
+    updateQuickServiceText();
+  }
+
+  function updateQuickServiceText() {
+    const activeChips = Array.from(document.querySelectorAll('.srv-chip.active'));
+    const selectedNames = activeChips.map(el => el.getAttribute('data-service'));
     const msgField = document.getElementById('waMsg');
-    if (selected.length > 0) {
-      msgField.value = "Wunschleistung: " + selected.join(", ");
+    const countInfo = document.getElementById('selectedCountInfo');
+
+    if (selectedNames.length > 0) {
+      msgField.value = "Wunschleistung: " + selectedNames.join(", ");
+      countInfo.innerText = `${selectedNames.length} Leistung(en) ausgewählt`;
     } else {
       msgField.value = "";
+      countInfo.innerText = "Keine Schnellauswahl aktiv";
     }
   }
 
-  // Neuigkeit 3: Digitale Visitenkarte (.vcf) herunterladen
+  // Digitale Visitenkarte (.vcf) herunterladen
   function downloadVCard() {
     const vcard = [
       "BEGIN:VCARD",
@@ -1626,20 +1767,25 @@
     setTimeout(() => { btn.innerText = "📋 Adresse kopieren"; }, 2000);
   }
 
-  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung
+  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung (inkl. HSN/TSN falls eingetragen)
   function sendToWhatsApp(event) {
     event.preventDefault();
     
     const name = document.getElementById('waName').value.trim();
     const phone = document.getElementById('waPhone').value.trim();
     const car = document.getElementById('waCar').value.trim() || 'Nicht angegeben';
+    const hsn = document.getElementById('waHsn').value.trim();
+    const tsn = document.getElementById('waTsn').value.trim();
     const slot = document.getElementById('waSlot').value.trim() || 'Flexibel';
     const msg = document.getElementById('waMsg').value.trim() || 'Keine Nachricht angegeben';
+
+    const hsnTsnLine = (hsn || tsn) ? `• _Schlüssel-Nr. (2.1 / 2.2):_ _${hsn || '-'} / ${tsn || '-'}_\n\n` : '';
     
     const whatsappText = `*Neue Termin- / Preisanfrage über Website*\n\n` +
                          `• _Name:_ _${name}_\n\n` +
                          `• *Telefon:* *${phone}*\n\n` +
                          `• _Fahrzeug / Kennzeichen:_ _${car}_\n\n` +
+                         hsnTsnLine +
                          `• *Wunschzeit:* *${slot}*\n\n` +
                          `• *Wunsch / Nachricht:* *${msg}*`;
     
@@ -1655,7 +1801,10 @@
     document.querySelectorAll('.advisor-chip').forEach(chip => chip.classList.remove('active'));
     document.querySelectorAll('.advisor-result').forEach(res => res.classList.remove('show'));
     
-    if (wasActive) return;
+    if (wasActive) {
+      element.blur();
+      return;
+    }
 
     element.classList.add('active');
     if(type === 'oil') document.getElementById('advisorResultOil').classList.add('show');
