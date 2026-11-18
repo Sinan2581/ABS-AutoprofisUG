@@ -21,6 +21,17 @@
 <link rel="apple-touch-icon" href="https://www.absprofis.de/logo.png">
 <meta name="theme-color" content="#071a3d">
 
+<script>
+  // Sofortiger Scroll-Reset noch vor dem ersten Rendern: Seite startet IMMER ganz oben
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (window.location.hash) {
+    history.replaceState(null, document.title, window.location.pathname + window.location.search);
+  }
+  window.scrollTo(0, 0);
+</script>
+
 <style>
   :root {
     --primary: #071a3d;
@@ -44,6 +55,21 @@
 
   /* Klammer-Zusätze sauber auf eigener Zeile */
   .sub-bracket { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-top: 2px; line-height: 1.35; }
+
+  /* ===== DEZENTER SCROLL-EINBLENDEFFEKT (SMOOTH REVEAL) ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
 
   /* ===== EINGANGSANIMATION MIT AUTOMATISCHER ABSCHALTUNG ===== */
   .intro-splash { position: fixed; inset: 0; z-index: 9999; background: radial-gradient(circle at 50% 45%, #0f295e 0%, #05122c 80%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: #fff; pointer-events: all; animation: splashAutoHide 2.05s ease forwards; }
@@ -77,21 +103,22 @@
   @keyframes captionMorph { 0% { opacity: 0; transform: translateY(5px); } 20%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; } }
 
   /* Kompakter 2-Zeilen-Top-Banner */
-  .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
+  .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); background-size: 200% 100%; animation: subtleGoldFlow 8s ease infinite; color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
+  @keyframes subtleGoldFlow { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
   .aufbau-line2 { font-size: 11px; font-weight: 900; color: var(--primary); opacity: 0.95; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
   
   .topbar { background: var(--primary); color: #ffe9a8; font-size: 12px; padding: 8px 12px; text-align: center; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
   .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; max-width: 1240px; margin: 0 auto; }
 
-  /* ===== HEADER MIT INTEGRIERTER GOLDENER SCROLL-FORTSCHRITTSLEISTE ===== */
+  /* ===== HEADER MIT GOLDENER SCROLL-FORTSCHRITTSLEISTE & AKTIV-MARKIERUNG ===== */
   header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid rgba(212, 175, 55, 0.35); padding: 10px 18px; }
   .scroll-progress-track { position: absolute; left: 0; bottom: -3px; width: 100%; height: 3px; background: transparent; pointer-events: none; overflow: hidden; }
   .scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #fff3b0, var(--gold)); box-shadow: 0 0 10px var(--gold); transition: width 0.08s linear; }
   .header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
   .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
-  .brand img { width: 48px; height: 48px; min-width: 48px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
+  .brand img { width: 48px; height: 48px; min-width: 48px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.25s ease, box-shadow 0.25s ease; }
   .brand-text strong { display: block; font-size: 17px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.2px; }
   .brand-text span { display: block; font-size: 8.5px; color: var(--gold-light); letter-spacing: 1.1px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
 
@@ -103,15 +130,15 @@
   @keyframes popIn { 0% { opacity: 0; transform: translateY(-6px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
   nav { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-  nav a { white-space: nowrap; font-size: 13px; font-weight: 750; padding: 6px 10px; border-radius: 999px; transition: background 0.2s ease, color 0.2s ease; }
-  nav a:hover { color: var(--gold-light); background: rgba(255,255,255,0.08); }
+  nav a { white-space: nowrap; font-size: 13px; font-weight: 750; padding: 6px 11px; border-radius: 999px; border: 1px solid transparent; transition: all 0.22s ease; }
+  nav a:hover, nav a.active-nav { color: var(--gold-light); background: rgba(212, 175, 55, 0.14); border-color: rgba(212, 175, 55, 0.4); }
 
   .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .widgets-bar { display: flex; align-items: center; gap: 6px; }
   .contact-buttons { display: flex; align-items: center; gap: 6px; }
 
   .header-widget-group { position: relative; display: flex; align-items: center; }
-  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 9px; border-radius: 12px; font-size: 10.5px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; -webkit-tap-highlight-color: transparent; }
+  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 9px; border-radius: 12px; font-size: 10.5px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s, border-color 0.2s; white-space: nowrap; line-height: 1.25; -webkit-tap-highlight-color: transparent; }
   .status-main { display: flex; align-items: center; gap: 5px; font-weight: 700; white-space: nowrap; }
   .status-sub { font-size: 8.5px; color: #cbd5ff; padding-left: 11px; white-space: nowrap; }
   .widget-sub-small { font-size: 8.5px; color: #cbd5ff; white-space: nowrap; }
@@ -124,34 +151,34 @@
   .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; white-space: nowrap; }
   .widget-popup div { margin-top: 4px; font-size: 12px; white-space: nowrap; }
 
-  /* Buttons + NEU: Edler Gold-Glanz-Effekt (Shimmer) */
-  .btn { position: relative; overflow: hidden; background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+  /* Buttons mit dezentem Gold-Glanz */
+  .btn { position: relative; overflow: hidden; background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.15s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
   .btn::after, .badge-deadline::after { content: ''; position: absolute; top: 0; left: -120%; width: 65%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); transform: skewX(-22deg); animation: goldShimmer 4.5s infinite; pointer-events: none; }
   @keyframes goldShimmer { 0%, 70% { left: -120%; } 100% { left: 160%; } }
   .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 8px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 8px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); transition: transform 0.15s ease, box-shadow 0.2s ease; }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
   .call-btn { background: #fff !important; color: var(--primary) !important; padding: 8px 13px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 12.5px; }
   .mail-btn { background: linear-gradient(135deg, #f9e08a, var(--gold)) !important; color: var(--primary) !important; padding: 8px 12px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 12.5px; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
   .mail-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-  /* Hero Section */
-  .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
-  .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
+  /* Hero Section mit sanft pulsierendem Ambient-Glow */
+  .hero { position: relative; overflow: hidden; background: radial-gradient(950px 420px at 85% 10%, rgba(212,175,55,.36), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
+  .hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
   .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .badge { display: inline-block; background: var(--gold); color: var(--primary); font-weight: 900; letter-spacing: 0.6px; font-size: 11px; padding: 6px 13px; border-radius: 999px; white-space: nowrap; }
   .badge-deadline { position: relative; overflow: hidden; background: rgba(255,255,255,0.14); color: var(--gold-light); border: 1px solid var(--gold); font-weight: 800; font-size: 11px; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
   .hero h1 { font-size: clamp(38px, 5vw, 58px); line-height: 0.95; margin: 16px 0 12px; letter-spacing: -1px; }
-  .hero h1 span { color: var(--gold-light); }
+  .hero h1 span { background: linear-gradient(90deg, var(--gold-light), #fff6cc, var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .hero p { color: #dbe4ff; font-size: 16px; max-width: 580px; }
   .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
-  .pills div { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); padding: 8px 13px; border-radius: 999px; font-size: 13px; font-weight: 650; white-space: nowrap; }
+  .pills div { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); padding: 8px 13px; border-radius: 999px; font-size: 13px; font-weight: 650; white-space: nowrap; transition: border-color 0.2s, background 0.2s; }
   .cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .small { font-size: 13px; color: #aab8dd; margin-top: 16px; line-height: 1.8; }
   .small .phone { color: #fff; font-weight: 700; }
 
   /* GROSSE LOGO-KARTE MIT SANFTEM IN-PLACE SWITCH & 5-SEKUNDEN AUTO-ZURÜCK */
-  .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: var(--primary); box-shadow: 0 28px 70px rgba(0,0,0,.4); border: 3px solid var(--gold); cursor: pointer; position: relative; overflow: hidden; display: grid; grid-template-areas: "stack"; align-items: center; -webkit-tap-highlight-color: transparent; }
+  .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: var(--primary); box-shadow: 0 28px 70px rgba(0,0,0,.4), 0 0 25px rgba(212,175,55,0.22); border: 3px solid var(--gold); cursor: pointer; position: relative; overflow: hidden; display: grid; grid-template-areas: "stack"; align-items: center; transition: transform 0.25s ease, box-shadow 0.25s ease; -webkit-tap-highlight-color: transparent; }
   .logo-face-front, .logo-face-back { grid-area: stack; width: 100%; transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1); }
   .logo-face-front { opacity: 1; transform: scale(1) rotateY(0deg); pointer-events: auto; }
   .logo-face-back { opacity: 0; transform: scale(0.92) rotateY(12deg); pointer-events: none; display: flex; flex-direction: column; justify-content: center; text-align: left; }
@@ -183,71 +210,26 @@
   .usp-item b { display: block; color: var(--primary); font-size: 15px; margin-bottom: 2px; white-space: nowrap; }
   .usp-item span { font-size: 12.5px; color: var(--text-muted); white-space: nowrap; }
 
-  /* Containers & Sections */
+  /* Containers & Sections mit dezenter Gold-Akzentlinie unter den Hauptüberschriften */
   .wrap { max-width: 1200px; margin: 0 auto; padding: 56px 24px; }
   .section-title { font-size: clamp(20px, 5vw, 32px); font-weight: 900; color: var(--primary); margin: 0 0 8px; text-align: center; letter-spacing: -0.5px; line-height: 1.2; }
+  .section-title::after { content: ''; display: block; width: 52px; height: 3.5px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 999px; margin: 8px auto 0; }
   .section-sub { text-align: center; color: var(--text-muted); margin: 0 auto 34px; font-size: 15px; max-width: 680px; }
 
-  /* GRID & CARDS */
+  /* GRID & CARDS mit edler Gold-Kante beim Berühren */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .card { background: #fff; border-radius: 22px; padding: 26px; border: 1px solid #eae5d9; box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card { background: #fff; border-radius: 22px; padding: 26px; border: 1px solid #eae5d9; border-top: 4px solid var(--gold); box-shadow: 0 6px 20px rgba(0,0,0,0.03); transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease; }
   .card h3 { margin: 12px 0 10px; color: var(--primary); font-size: 19px; font-weight: 800; white-space: nowrap; }
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
-  /* ===== NEUIGKEIT 1: INTERAKTIVER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR ===== */
-  .oil-sim-box {
-    background: linear-gradient(135deg, #071a3d, #0d2759);
-    color: #fff;
-    border: 2px solid var(--gold);
-    border-radius: 20px;
-    padding: 18px 22px;
-    margin-top: 22px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 18px;
-    box-shadow: 0 10px 26px rgba(7,26,61,0.16);
-  }
-  .oil-glass-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .oil-glass {
-    width: 52px;
-    height: 66px;
-    border-radius: 12px;
-    border: 2.5px solid #cbd5e1;
-    background: rgba(255,255,255,0.08);
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    flex-shrink: 0;
-  }
-  .oil-liquid {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 78%;
-    background: linear-gradient(180deg, #27272a, #09090b);
-    transition: background 0.65s ease, height 0.45s ease;
-  }
-  .oil-sim-box.fresh .oil-liquid {
-    background: linear-gradient(180deg, #fde047, #ca8a04);
-    height: 88%;
-    box-shadow: 0 0 16px rgba(250, 204, 21, 0.7);
-  }
-  .oil-bubble {
-    position: absolute;
-    bottom: 6px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.65);
-    opacity: 0;
-  }
+  /* ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR */
+  .oil-sim-box { background: linear-gradient(135deg, #071a3d, #0d2759); color: #fff; border: 2px solid var(--gold); border-radius: 20px; padding: 18px 22px; margin-top: 22px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; box-shadow: 0 10px 26px rgba(7,26,61,0.16); }
+  .oil-glass-wrap { display: flex; align-items: center; gap: 12px; }
+  .oil-glass { width: 52px; height: 66px; border-radius: 12px; border: 2.5px solid #cbd5e1; background: rgba(255,255,255,0.08); position: relative; overflow: hidden; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); flex-shrink: 0; }
+  .oil-liquid { position: absolute; bottom: 0; left: 0; width: 100%; height: 78%; background: linear-gradient(180deg, #27272a, #09090b); transition: background 0.65s ease, height 0.45s ease; }
+  .oil-sim-box.fresh .oil-liquid { background: linear-gradient(180deg, #fde047, #ca8a04); height: 88%; box-shadow: 0 0 16px rgba(250, 204, 21, 0.7); }
+  .oil-bubble { position: absolute; bottom: 6px; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.65); opacity: 0; }
   .oil-sim-box.fresh .oil-bubble { animation: bubbleRise 1.2s ease infinite; }
   .oil-sim-box.fresh .oil-bubble.b2 { left: 60%; animation-delay: 0.35s; }
   .oil-sim-box.fresh .oil-bubble.b1 { left: 30%; }
@@ -266,14 +248,14 @@
   .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
   .quick-oil-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 480px; }
   .quick-sym-btns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; max-width: 560px; }
-  .q-oil-btn, .q-hu-btn, .q-sym-btn { background: #fdfbf7; border: 1.5px solid #d1d5db; color: var(--primary); font-size: clamp(10.5px, 2.8vw, 12px); font-weight: 800; padding: 8px 6px; border-radius: 10px; cursor: pointer; white-space: nowrap; text-align: center; -webkit-tap-highlight-color: transparent; }
+  .q-oil-btn, .q-hu-btn, .q-sym-btn { background: #fdfbf7; border: 1.5px solid #d1d5db; color: var(--primary); font-size: clamp(10.5px, 2.8vw, 12px); font-weight: 800; padding: 8px 6px; border-radius: 10px; cursor: pointer; white-space: nowrap; text-align: center; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; -webkit-tap-highlight-color: transparent; }
   .q-oil-btn.active, .q-hu-btn.active, .q-sym-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
   .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; line-height: 1.55; }
   .quick-oil-answer.show { display: block; animation: fadeIn 0.2s ease; }
 
   /* 3 Werkstatt-Vorteile */
   .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
-  .news-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
+  .news-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.55; }
 
@@ -300,7 +282,7 @@
 
   /* VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF */
   .comfort-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
-  .comfort-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 14px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 8px; }
+  .comfort-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 14px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 8px; transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .comfort-badge { align-self: flex-start; background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
   .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); white-space: nowrap; }
   .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
@@ -322,14 +304,14 @@
 
   /* IN 4 SCHRITTEN ZUM FERTIGEN AUTO */
   .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
-  .step-card { background: #fff; border-radius: 18px; padding: 20px 18px; border: 1px solid #eae5d9; position: relative; text-align: left; box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
+  .step-card { background: #fff; border-radius: 18px; padding: 20px 18px; border: 1px solid #eae5d9; position: relative; text-align: left; box-shadow: 0 4px 14px rgba(0,0,0,0.02); transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--gold-light); font-weight: 900; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 2px solid var(--gold); }
   .step-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--primary); white-space: nowrap; }
   .step-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
   /* REVIEWS + WEITEREMPFEHLUNGS-LEISTE */
   .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 860px; margin: 0 auto; }
-  .review-card { background: #fff; border-radius: 16px; padding: 18px 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
+  .review-card { background: #fff; border-radius: 16px; padding: 18px 22px; border: 1px solid #eae5d9; border-left: 4px solid var(--gold); box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
   .stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 6px; }
   .review-text { font-style: italic; color: #334155; font-size: 13px; margin: 0 0 10px; line-height: 1.55; }
   .review-author { font-weight: 800; color: var(--primary); font-size: 12px; }
@@ -348,58 +330,37 @@
 
   /* VORTEILE-GRID */
   .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
-  .benefit-box { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; display: flex; gap: 14px; align-items: flex-start; }
+  .benefit-box { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; display: flex; gap: 14px; align-items: flex-start; transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .benefit-icon { font-size: 26px; background: #fdfbf7; padding: 10px; border-radius: 14px; border: 1px solid #eae5d9; flex-shrink: 0; }
   .benefit-box h4 { margin: 0 0 4px; color: var(--primary); font-size: 16px; font-weight: 800; white-space: nowrap; }
   .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-  /* ===== NEUIGKEIT 2: INTERAKTIVES MARKEN-BANNER MIT KLICK-BESTÄTIGUNG ===== */
+  /* INTERAKTIVES MARKEN-BANNER MIT KLICK-BESTÄTIGUNG */
   .brands-box { background: #fff; border-radius: 20px; padding: 26px 20px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
   .brands-box h4 { margin: 0 0 4px; color: var(--primary); font-size: clamp(14.5px, 4vw, 18px); white-space: nowrap; }
   .brands-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; display: block; }
   .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; font-weight: 700; color: #475569; font-size: 13px; }
-  .brand-pill {
-    background: #fdfbf7;
-    padding: 7px 14px;
-    border-radius: 999px;
-    border: 1.5px solid #e6dfcf;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .brand-pill.active {
-    background: var(--primary) !important;
-    color: var(--gold-light) !important;
-    border-color: var(--gold) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(7,26,61,0.2);
-  }
-  .brand-confirm-msg {
-    display: none;
-    margin-top: 14px;
-    background: #fdfbf7;
-    border: 1.5px solid var(--gold);
-    border-radius: 12px;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--primary);
-    font-weight: 700;
-  }
+  .brand-pill { background: #fdfbf7; padding: 7px 14px; border-radius: 999px; border: 1.5px solid #e6dfcf; white-space: nowrap; cursor: pointer; transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .brand-pill.active { background: var(--primary) !important; color: var(--gold-light) !important; border-color: var(--gold) !important; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
+  .brand-confirm-msg { display: none; margin-top: 14px; background: #fdfbf7; border: 1.5px solid var(--gold); border-radius: 12px; padding: 10px 14px; font-size: 13px; color: var(--primary); font-weight: 700; }
   .brand-confirm-msg.show { display: block; animation: fadeIn 0.2s ease; }
 
-  /* ACCORDION (21 PUNKTE CHECK) */
+  /* ===== ACCORDION (21 PUNKTE CHECK) MIT 1-KLICK "ALLE AUFKLAPPEN" & PRÜFPUNKT-BADGES ===== */
+  .check21-toolbar { max-width: 900px; margin: 0 auto 14px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; background: #fff; border: 1px solid #eae5d9; border-radius: 14px; padding: 10px 16px; }
+  .check21-summary-badge { font-size: 12.5px; font-weight: 800; color: var(--primary); display: inline-flex; align-items: center; gap: 6px; }
+  .check21-toggle-btn { background: var(--primary); color: var(--gold-light); border: 1.5px solid var(--gold); border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform 0.15s ease; -webkit-tap-highlight-color: transparent; }
   .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-  .accordion-item { background: #fff; border-radius: 16px; border: 1px solid #eae5d9; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+  .accordion-item { background: #fff; border-radius: 16px; border: 1px solid #eae5d9; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: border-color 0.2s ease; }
+  .accordion-item[open] { border-color: var(--gold); }
   .accordion-item summary { padding: 15px 18px; font-weight: 800; font-size: 15.5px; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #fff; transition: background 0.2s; }
   .accordion-item summary::-webkit-details-marker { display: none; }
   .accordion-item summary .acc-title { display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.3; }
-  .accordion-item summary .acc-main { font-weight: 800; font-size: clamp(14.5px, 4vw, 16.5px); color: var(--primary); }
+  .accordion-item summary .acc-main { font-weight: 800; font-size: clamp(14.5px, 4vw, 16.5px); color: var(--primary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .acc-count-pill { background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
   .accordion-item summary::after { content: '+'; font-size: 22px; color: var(--gold); font-weight: 900; flex-shrink: 0; }
   .accordion-item[open] summary::after { content: '−'; }
   .accordion-item[open] summary { background: #fdfbf7; border-bottom: 1px solid #eae5d9; }
-  .accordion-content { padding: 18px 20px; background: #fdfbf7; }
+  .accordion-content { padding: 18px 20px; background: #fdfbf7; animation: fadeIn 0.22s ease; }
   .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
   .check-grid li { font-size: 13.5px; color: #334155; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
   .check-grid li::before { content: '✔'; color: var(--success); font-weight: 900; flex-shrink: 0; margin-top: 1px; }
@@ -426,8 +387,8 @@
   .contact-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); align-items: stretch; }
   .form-group { margin-bottom: 14px; }
   .form-group label { display: block; font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--primary); line-height: 1.3; }
-  .form-control { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
-  .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
+  .form-control { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s, box-shadow 0.2s; }
+  .form-control:focus { outline: none; border-color: var(--gold); background: #fff; box-shadow: 0 0 0 3px rgba(212,175,55,0.18); }
   .hsn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
   .slot-chips, .service-quick-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -437,11 +398,11 @@
   .chip-reset-btn { background: none; border: 0; color: var(--primary); font-weight: 800; font-size: 11px; text-decoration: underline; cursor: pointer; padding: 2px 4px; }
 
   @media (hover: hover) and (pointer: fine) {
-    .brand:hover img { transform: scale(1.05); }
-    .logo-card:hover { transform: translateY(-2px); }
-    .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
+    .brand:hover img { transform: scale(1.06); box-shadow: 0 0 0 4px rgba(212,175,55,.4); }
+    .logo-card:hover { transform: translateY(-3px); }
+    .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); border-color: var(--gold); }
+    .btn:hover, .wa-btn:hover { transform: translateY(-1px); }
+    .card:hover, .news-card:hover, .comfort-card:hover, .step-card:hover, .benefit-box:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(7,26,61,0.08); }
     .dash-btn:hover { background: rgba(255,255,255,0.15); }
     .advisor-chip:hover, .brand-pill:not(.active):hover { border-color: var(--gold); }
     .slot-chip:not(.active):hover, .srv-chip:not(.active):hover { border-color: var(--gold); background: #fff; }
@@ -472,33 +433,11 @@
   .route-btn { background: #fff; border: 1.5px solid var(--primary); color: var(--primary); padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
   .vcard-btn { grid-column: span 2; background: var(--primary); color: var(--gold-light) !important; border-color: var(--gold); }
 
-  /* Floating WhatsApp Button + NEUIGKEIT 3: Sanfter Nach-Oben-Button */
+  /* Floating WhatsApp Button + Sanfter Nach-Oben-Button */
   .wa-float { display: grid; position: fixed; right: 18px; bottom: 18px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
   .wa-float svg { width: 30px; height: 30px; }
 
-  .top-float {
-    position: fixed;
-    left: 18px;
-    bottom: 18px;
-    z-index: 95;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: var(--gold-light);
-    border: 2px solid var(--gold);
-    display: grid;
-    place-items: center;
-    font-size: 18px;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(7,26,61,0.35);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .top-float { position: fixed; left: 18px; bottom: 18px; z-index: 95; width: 44px; height: 44px; border-radius: 50%; background: var(--primary); color: var(--gold-light); border: 2px solid var(--gold); display: grid; place-items: center; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px rgba(7,26,61,0.35); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; -webkit-tap-highlight-color: transparent; }
   .top-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
   footer { background: var(--primary); color: #cbd5ff; padding: 36px 20px 90px; text-align: center; }
@@ -622,7 +561,7 @@
 </div>
 
 <!-- TOP BANNER (Wechselt ab 01.12.2026 vollautomatisch) -->
-<div class="aufbau">
+<div class="aufbau" id="topStart">
   <span>🚧 Unsere Website ist im Aufbau</span>
   <span class="aufbau-line2" id="topBannerOfferLine">Eröffnungsangebot <span class="nw">69 €</span> gültig bis <span class="nw">01.12.2026</span></span>
 </div>
@@ -652,13 +591,13 @@
       </div>
     </div>
     
-    <!-- DESKTOP-MENÜ: GARANTIERT EINZEILIG -->
-    <nav>
-      <a href="#leistungen">Leistungen</a>
-      <a href="#news">Vorteile</a>
-      <a href="#saison">Saison-Check</a>
-      <a href="#check21">21-Punkte-Check</a>
-      <a href="#kontakt">Kontakt</a>
+    <!-- DESKTOP-MENÜ: GARANTIERT EINZEILIG MIT AKTIV-HERVORHEBUNG -->
+    <nav id="desktopNav">
+      <a href="#leistungen" data-target="leistungen">Leistungen</a>
+      <a href="#news" data-target="news">Vorteile</a>
+      <a href="#saison" data-target="saison">Saison-Check</a>
+      <a href="#check21" data-target="check21">21-Punkte-Check</a>
+      <a href="#kontakt" data-target="kontakt">Kontakt</a>
     </nav>
 
     <div class="header-right">
@@ -709,7 +648,7 @@
       </div>
     </div>
   </div>
-  <!-- NEU: Goldener Scroll-Fortschrittsbalken unten am Header -->
+  <!-- Goldener Scroll-Fortschrittsbalken unten am Header -->
   <div class="scroll-progress-track"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 </header>
 
@@ -816,11 +755,11 @@
 
 <!-- LEISTUNGEN & WAS GEMACHT WIRD -->
 <section id="leistungen" class="wrap">
-  <h2 class="section-title">Unser Service im Detail</h2>
-  <p class="section-sub" id="serviceSectionSub">Solides Handwerk trifft auf faire Festpreise. Das beinhaltet unser Servicepaket:</p>
+  <h2 class="section-title reveal">Unser Service im Detail</h2>
+  <p class="section-sub reveal" id="serviceSectionSub">Solides Handwerk trifft auf faire Festpreise. Das beinhaltet unser Servicepaket:</p>
   
   <div class="grid-3">
-    <div class="card">
+    <div class="card reveal">
       <span style="font-size:32px;">🛢️</span>
       <h3 id="serviceOilTitle">Ölwechsel <span class="nw">ab 69 €</span></h3>
       <ul>
@@ -831,7 +770,7 @@
       </ul>
     </div>
     
-    <div class="card">
+    <div class="card reveal">
       <span style="font-size:32px;">🔍</span>
       <h3>21-Punkte-Sicherheits-Check</h3>
       <ul>
@@ -845,7 +784,7 @@
       </ul>
     </div>
 
-    <div class="card">
+    <div class="card reveal">
       <span style="font-size:32px;">💻</span>
       <h3>Elektronik-Diagnose</h3>
       <ul>
@@ -860,8 +799,8 @@
     </div>
   </div>
 
-  <!-- ===== NEUIGKEIT 1: ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR ===== -->
-  <div class="oil-sim-box" id="oilSimBox">
+  <!-- ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR -->
+  <div class="oil-sim-box reveal" id="oilSimBox">
     <div class="oil-glass-wrap">
       <div class="oil-glass" title="Motoröl-Schauglas">
         <div class="oil-liquid">
@@ -879,7 +818,7 @@
   </div>
 
   <!-- 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK -->
-  <div class="quick-oil-bar">
+  <div class="quick-oil-bar reveal">
     <div class="quick-oil-top">
       <div class="quick-oil-label">⏱️ Wann war Ihr letzter Ölwechsel?</div>
       <div class="quick-oil-btns">
@@ -892,7 +831,7 @@
   </div>
 
   <!-- KOMPAKTER 1-ZEILEN HU / TÜV VORAB-SCHNELLCHECK -->
-  <div class="quick-oil-bar" style="margin-top: 12px;">
+  <div class="quick-oil-bar reveal" style="margin-top: 12px;">
     <div class="quick-oil-top">
       <div class="quick-oil-label">🛡️ Wann ist Ihre nächste HU / TÜV fällig?</div>
       <div class="quick-oil-btns">
@@ -905,7 +844,7 @@
   </div>
 
   <!-- KOMPAKTER GERÄUSCHE- & SYMPTOM-SCHNELLCHECK -->
-  <div class="quick-oil-bar" style="margin-top: 12px;">
+  <div class="quick-oil-bar reveal" style="margin-top: 12px;">
     <div class="quick-oil-top">
       <div class="quick-oil-label">🔊 Macht Ihr Auto ungewöhnliche Geräusche?</div>
       <div class="quick-sym-btns">
@@ -920,21 +859,21 @@
 
   <!-- 3 Werkstatt-Vorteile -->
   <div id="news" style="margin-top: 50px;">
-    <h2 class="section-title">Aktuelles & Werkstatt-Vorteile</h2>
-    <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
+    <h2 class="section-title reveal">Aktuelles & Werkstatt-Vorteile</h2>
+    <p class="section-sub reveal">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
     
     <div class="news-grid">
-      <div class="news-card">
+      <div class="news-card reveal">
         <span style="font-size: 24px;">💡</span>
         <h4>1. Gratis Lichttest & Frostschutz-Check</h4>
         <p>Wir prüfen Beleuchtung und Frostschutz für die kalte Jahreszeit komplett gratis als Begrüßungsgeschenk.</p>
       </div>
-      <div class="news-card">
+      <div class="news-card reveal">
         <span style="font-size: 24px;">🤝</span>
         <h4>2. Klare Absprache vorab</h4>
         <p>Keine bösen Überraschungen: Jede Arbeit am Fahrzeug wird vorab ehrlich und verständlich mit Ihnen besprochen.</p>
       </div>
-      <div class="news-card">
+      <div class="news-card reveal">
         <span style="font-size: 24px;">📋</span>
         <h4>3. Digitale Service-Historie</h4>
         <p>Alle Wartungen und Checks werden sauber dokumentiert, damit Ihr Scheckheft und Fahrzeugwert optimal erhalten bleiben.</p>
@@ -943,7 +882,7 @@
   </div>
 
   <!-- SAISON- & ALLTAGS-CHECK UMSCHALTER -->
-  <div id="saison" class="season-box">
+  <div id="saison" class="season-box reveal">
     <h2 class="section-title" style="font-size:clamp(19px, 4.6vw, 26px);">Saison- & Alltags-Check für Berlin</h2>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">Wählen Sie aus, worauf wir Ihr Fahrzeug schwerpunktmäßig prüfen sollen:</p>
     
@@ -984,7 +923,7 @@
   </div>
 
   <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE -->
-  <div class="fzs-helper-box">
+  <div class="fzs-helper-box reveal">
     <div>
       <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL & ÖL</span>
       <h3 style="margin:10px 0 8px; color:var(--primary); font-size:clamp(18px, 4.4vw, 24px); white-space:nowrap;">Wo stehen die Schlüsselnummern?</h3>
@@ -1015,7 +954,7 @@
   </div>
 
   <!-- 6 COCKPIT-WARNLEUCHTEN (OHNE X-SYMBOL RECHTS, SCHLIESST BEIM 2. KLICK AUF DAS SYMBOL) -->
-  <div class="dash-box">
+  <div class="dash-box reveal">
     <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
     <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
     <div class="dash-lights">
@@ -1056,25 +995,25 @@
 
   <!-- IN 4 SCHRITTEN ZUM FERTIGEN AUTO -->
   <div id="ablauf" style="margin-top: 50px;">
-    <h2 class="section-title">In 4 Schritten zum sicheren Auto</h2>
-    <p class="section-sub">So einfach und transparent läuft Ihr Besuch bei uns ab – auch samstags:</p>
+    <h2 class="section-title reveal">In 4 Schritten zum sicheren Auto</h2>
+    <p class="section-sub reveal">So einfach und transparent läuft Ihr Besuch bei uns ab – auch samstags:</p>
     <div class="steps-grid">
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">1</div>
         <h4>Kurz melden</h4>
         <p>Einfach per WhatsApp, E-Mail oder Anruf melden – wir finden schnell Ihren Wunschtermin.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">2</div>
         <h4>Gratis Vorab-Check</h4>
         <p>Wir lesen den Fehlerspeicher kostenlos aus und prüfen Ihr Auto auf unserer Bühne.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">3</div>
         <h4>Klare Absprache</h4>
         <p>Sie erfahren vorab genau, was gemacht werden muss – ohne versteckte Zusatzkosten.</p>
       </div>
-      <div class="step-card">
+      <div class="step-card reveal">
         <div class="step-num">4</div>
         <h4>Sicher weiterfahren</h4>
         <p>Pünktliche Übergabe in geprüfter Meisterqualität inklusive dokumentiertem Service.</p>
@@ -1084,20 +1023,20 @@
 
   <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF -->
   <div style="margin-top: 50px;">
-    <h2 class="section-title">Ihr Komfort vor Ort in Mariendorf</h2>
-    <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am <span class="nw">Mariendorfer Damm 49</span> ist beides bequem möglich:</p>
+    <h2 class="section-title reveal">Ihr Komfort vor Ort in Mariendorf</h2>
+    <p class="section-sub reveal">Egal ob Sie kurz warten oder direkt weiter müssen – am <span class="nw">Mariendorfer Damm 49</span> ist beides bequem möglich:</p>
     <div class="comfort-grid">
-      <div class="comfort-card">
+      <div class="comfort-card reveal">
         <span class="comfort-badge">☕ Express-Warte-Service</span>
         <h4>Bei Kaffee kurz warten</h4>
         <p>Beim schnellen Ölwechsel oder Fehlerspeicher-Check können Sie gerne direkt vor Ort bei einer Tasse Kaffee warten.</p>
       </div>
-      <div class="comfort-card">
+      <div class="comfort-card reveal">
         <span class="comfort-badge">🚇 Perfekte ÖPNV-Anbindung</span>
         <h4>U6 & Bus direkt vor Ort</h4>
         <p>Auto abgeben und entspannt weiter: Die Buslinien <span class="nw">(M76, X76, 179)</span> sowie die <span class="nw">U6 Alt-Mariendorf</span> sind schnell erreichbar.</p>
       </div>
-      <div class="comfort-card">
+      <div class="comfort-card reveal">
         <span class="comfort-badge">🅿️ Direkte Annahme</span>
         <h4>Einfach vorfahren</h4>
         <p>Kein langes Parkplatzsuchen: Fahren Sie direkt am <span class="nw">Mariendorfer Damm 49</span> vor, wir nehmen Ihr Auto sofort entgegen.</p>
@@ -1106,7 +1045,7 @@
   </div>
 
   <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
-  <div id="berater" class="advisor-box" style="margin-top: 50px;">
+  <div id="berater" class="advisor-box reveal" style="margin-top: 50px;">
     <h3>Was fehlt Ihrem Fahrzeug gerade?</h3>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen <span class="nw">(erneuter Klick schließt die Box):</span></p>
     
@@ -1133,21 +1072,21 @@
 
   <!-- VORTEILE-GRID -->
   <div class="benefits-grid">
-    <div class="benefit-box">
+    <div class="benefit-box reveal">
       <div class="benefit-icon">🛡️</div>
       <div>
         <h4>Herstellerkonform</h4>
         <p>Wir arbeiten exakt nach Herstellervorgaben, damit Ihr Fahrzeug in Top-Zustand bleibt.</p>
       </div>
     </div>
-    <div class="benefit-box">
+    <div class="benefit-box reveal">
       <div class="benefit-icon">⚡</div>
       <div>
         <h4>Schnelle Abwicklung</h4>
         <p>Kurze Wartezeiten und präzise Terminabsprachen – unter der Woche und am Samstag.</p>
       </div>
     </div>
-    <div class="benefit-box">
+    <div class="benefit-box reveal">
       <div class="benefit-icon">🤝</div>
       <div>
         <h4>Ehrlich & Fair</h4>
@@ -1156,8 +1095,8 @@
     </div>
   </div>
 
-  <!-- ===== NEUIGKEIT 2: INTERAKTIVES MARKEN-BANNER (ANKLICKBAR MIT SOFORT-BESTÄTIGUNG) ===== -->
-  <div class="brands-box">
+  <!-- INTERAKTIVES MARKEN-BANNER (ANKLICKBAR MIT SOFORT-BESTÄTIGUNG) -->
+  <div class="brands-box reveal">
     <h4>Wir warten Fahrzeuge aller Hersteller:</h4>
     <span class="brands-sub">👆 Tippen Sie auf Ihre Automarke für unsere Freigabe-Info:</span>
     <div class="brands-list">
@@ -1179,33 +1118,39 @@
   </div>
 </section>
 
-<!-- INTERAKTIVER 21-PUNKTE CHECK -->
+<!-- INTERAKTIVER 21-PUNKTE CHECK MIT 1-KLICK "ALLE AUFKLAPPEN" -->
 <section id="check21" class="wrap" style="padding-top: 0;">
-  <h2 class="section-title">Der 21-Punkte-Check im Detail</h2>
-  <p class="section-sub">Klicken Sie auf die Bereiche, um zu sehen, welche Prüfungen beim kostenlosen Sicherheits-Check durchgeführt werden:</p>
+  <h2 class="section-title reveal">Der 21-Punkte-Check im Detail</h2>
+  <p class="section-sub reveal">Klicken Sie auf die Bereiche, um zu sehen, welche Prüfungen beim kostenlosen Sicherheits-Check durchgeführt werden:</p>
   
-  <div class="accordion-container">
-    <details class="accordion-item">
+  <div class="check21-toolbar reveal">
+    <span class="check21-summary-badge">🔍 4 Prüfbereiche • Alle 21 Sicherheits-Punkte inklusive</span>
+    <button type="button" class="check21-toggle-btn" id="toggleAllCheck21Btn" onclick="toggleAllCheck21()">➕ Alle 21 Punkte aufklappen</button>
+  </div>
+
+  <div class="accordion-container" id="check21Container">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">1. Bremsen & Fahrwerk</span>
+          <span class="acc-main">1. Bremsen & Fahrwerk <span class="acc-count-pill">5 Prüfpunkte</span></span>
           <span class="sub-bracket"><span class="nw">(Prüfung auf Herz und Nieren)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
         <ul class="check-grid">
-          <li><div>Bremsscheiben & Bremsbeläge Sichtprüfung</div></li>
+          <li><div>Bremsscheiben & Bremsbeläge vorne</div></li>
+          <li><div>Bremsscheiben & Bremsbeläge hinten</div></li>
           <li><div>Bremsleitungen & Bremsschläuche</div></li>
-          <li><div>Stoßdämpfer & Federung</div></li>
-          <li><div>Achskonstruktion & Querlenker</div></li>
+          <li><div>Stoßdämpfer & Fahrwerksfedern</div></li>
+          <li><div>Achskonstruktion, Traggelenke & Querlenker</div></li>
         </ul>
       </div>
     </details>
 
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">2. Reifen, Räder & Unterboden</span>
+          <span class="acc-main">2. Reifen, Räder & Unterboden <span class="acc-count-pill">5 Prüfpunkte</span></span>
           <span class="sub-bracket"><span class="nw">(Profil, Luftdruck & Dichtigkeit)</span></span>
         </div>
       </summary>
@@ -1216,35 +1161,37 @@
           <li>
             <div>
               Reifen-Sichtprüfung
-              <span class="sub-bracket"><span class="nw">(auf Beschädigungen & Risse)</span></span>
+              <span class="sub-bracket"><span class="nw">(auf Beschädigungen, Alter & Risse)</span></span>
             </div>
           </li>
-          <li><div>Unterboden-Sichtprüfung auf Dichtigkeit</div></li>
+          <li><div>Radlager & Radbefestigung prüfen</div></li>
+          <li><div>Unterboden- & Abgasanlagen-Sichtprüfung</div></li>
         </ul>
       </div>
     </details>
 
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">3. Flüssigkeiten & Filter</span>
+          <span class="acc-main">3. Flüssigkeiten & Filter <span class="acc-count-pill">5 Prüfpunkte</span></span>
           <span class="sub-bracket"><span class="nw">(Wichtige Betriebsstoffe)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
         <ul class="check-grid">
-          <li><div>Motorölstand Kontrolle</div></li>
-          <li><div>Bremsflüssigkeit Siedepunkt & Stand</div></li>
-          <li><div>Kühlwasser & Frostschutzgehalt prüfen</div></li>
-          <li><div>Scheibenwaschanlage Flüssigkeitsstand</div></li>
+          <li><div>Motorölstand & Dichtheitskontrolle</div></li>
+          <li><div>Bremsflüssigkeit Siedepunkt & Füllstand</div></li>
+          <li><div>Kühlwasserstand & Frostschutzgehalt</div></li>
+          <li><div>Scheibenwaschanlage & Frostschutzmittel</div></li>
+          <li><div>Sichtprüfung Luft- & Innenraumfilter</div></li>
         </ul>
       </div>
     </details>
 
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">4. Elektrik, Sicht & Elektronik</span>
+          <span class="acc-main">4. Elektrik, Sicht & Elektronik <span class="acc-count-pill">6 Prüfpunkte</span></span>
           <span class="sub-bracket"><span class="nw">(Sicherheit im Alltag)</span></span>
         </div>
       </summary>
@@ -1252,13 +1199,14 @@
         <ul class="check-grid">
           <li>
             <div>
-              Beleuchtung außen
-              <span class="sub-bracket"><span class="nw">(Scheinwerfer, Rücklichter & Blinker)</span></span>
+              Frontbeleuchtung
+              <span class="sub-bracket"><span class="nw">(Abblend-, Fern- & Tagfahrlicht)</span></span>
             </div>
           </li>
-          <li><div>Innenbeleuchtung & Warnleuchten</div></li>
+          <li><div>Rückleuchten, Bremslicht & Blinker</div></li>
+          <li><div>Innenbeleuchtung, Hupe & Warnleuchten</div></li>
           <li><div>Scheibenwischerblätter vorne & hinten</div></li>
-          <li><div>Batteriezustand & Startverhalten</div></li>
+          <li><div>Starterbatterie-Zustand & Ladespannung</div></li>
           <li>
             <div>
               <b>Fehlerspeicher auslesen</b>
@@ -1273,7 +1221,7 @@
 
 <!-- PREIS- & KONDITIONEN-BOX -->
 <section id="preise" class="wrap" style="padding-top: 0;">
-  <div class="info-highlight-box">
+  <div class="info-highlight-box reveal">
     <div>
       <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ & KONDITIONEN</span>
       <h3>Faire Preise ohne versteckte Kosten</h3>
@@ -1295,35 +1243,35 @@
 
 <!-- KUNDENBEWERTUNGEN + 1-KLICK WEITEREMPFEHLUNG -->
 <section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 28px; margin-bottom: 40px;">
-  <h2 class="section-title">Das sagen unsere Kunden</h2>
-  <p class="section-sub">Qualität, Schnelligkeit und Fairness sprechen sich in ganz Berlin herum.</p>
+  <h2 class="section-title reveal">Das sagen unsere Kunden</h2>
+  <p class="section-sub reveal">Qualität, Schnelligkeit und Fairness sprechen sich in ganz Berlin herum.</p>
 
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="stars">★★★★★</div>
       <p class="review-text">„Super Service! Mein Ölwechsel wurde schnell und sauber erledigt. Der kostenlose <span class="nw">21-Punkte-Check</span> hat mir einen drohenden Mangel an den Bremsen gezeigt. Absolute Empfehlung für Mariendorf!“</p>
       <div class="review-author">– Michael K. aus Tempelhof</div>
     </div>
 
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="stars">★★★★★</div>
       <p class="review-text">„Endlich eine Werkstatt, bei der man nicht abgezockt wird. Fehlerspeicher wurde sofort kostenlos ausgelesen und transparent erklärt. Absolut vertrauenswürdig!“</p>
       <div class="review-author">– Sarah L. aus Mariendorf</div>
     </div>
 
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="stars">★★★★★</div>
       <p class="review-text" id="reviewText3">„Top Service inklusive Ölfilter und Sicherheits-Check – unschlagbar fair in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
       <div class="review-author">– Deniz B. aus Lankwitz</div>
     </div>
 
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="stars">★★★★★</div>
       <p class="review-text">„Obwohl ich aus Spandau komme, nehme ich den Weg gerne auf mich. Ehrliche Arbeit, super freundlicher Meister und faire Preise. Hier fahre ich ab jetzt immer hin!“</p>
       <div class="review-author">– Thomas W. aus Spandau</div>
     </div>
 
-    <div class="review-card">
+    <div class="review-card reveal">
       <div class="stars">★★★★★</div>
       <p class="review-text" id="reviewText5">„Man merkt sofort, dass hier Profis am Werk sind. Tolle Preise für den Ölwechsel und eine super ehrliche Beratung. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
       <div class="review-author">– Katrin M. aus Marzahn</div>
@@ -1331,7 +1279,7 @@
   </div>
 
   <!-- WERKSTATT AN FREUNDE WEITEREMPFEHLEN -->
-  <div class="share-bar">
+  <div class="share-bar reveal">
     <span>🤝 Zufrieden mit unserem Service? Empfehlen Sie uns gerne weiter:</span>
     <a class="wa-btn" href="https://wa.me/?text=Mein%20Tipp%20f%C3%BCr%20dein%20Auto%20in%20Berlin%3A%20A%26BS%20AUTOPROFIS%20am%20Mariendorfer%20Damm%2049%20(12109%20Berlin)%20%E2%80%93%20super%20ehrlicher%20Kfz-Meisterbetrieb%21%20Infos%3A%20https%3A%2F%2Fwww.absprofis.de" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1342,14 +1290,14 @@
 
 <!-- FAQ SECTION -->
 <section id="faq" class="wrap" style="padding-top: 0;">
-  <h2 class="section-title">
+  <h2 class="section-title reveal">
     Häufig gestellte Fragen
     <span class="sub-bracket" style="font-size:14px;"><span class="nw">(FAQ – Schnelle Antworten)</span></span>
   </h2>
-  <p class="section-sub" style="margin-top:8px;">Alles, was Sie rund um unseren Service wissen müssen:</p>
+  <p class="section-sub reveal" style="margin-top:8px;">Alles, was Sie rund um unseren Service wissen müssen:</p>
 
   <div class="faq-container">
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
           <span class="acc-main" id="faq1Question">Wie lange gilt das <span class="nw">69 €</span> Eröffnungsangebot?</span>
@@ -1360,7 +1308,7 @@
       </div>
     </details>
 
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
           <span class="acc-main" id="faq2Question">Sind Öl und Ölfilter beim Ölwechsel enthalten?</span>
@@ -1371,7 +1319,7 @@
       </div>
     </details>
 
-    <details class="accordion-item">
+    <details class="accordion-item reveal">
       <summary>
         <div class="acc-title">
           <span class="acc-main">Welche Öffnungszeiten hat A&BS AUTOPROFIS?</span>
@@ -1386,10 +1334,10 @@
 
 <!-- TERMINANFRAGE & STANDORT -->
 <section id="kontakt" class="wrap" style="padding-top: 0;">
-  <h2 class="section-title">Kontakt & Termin sichern</h2>
-  <p class="section-sub">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
+  <h2 class="section-title reveal">Kontakt & Termin sichern</h2>
+  <p class="section-sub reveal">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
 
-  <div class="photo-strip">
+  <div class="photo-strip reveal">
     <div class="photo-strip-text">
       <b>📸 Schnell-Check per Foto gewünscht?</b>
       Senden Sie uns einfach ein Foto vom Fahrzeugschein, einer Warnleuchte oder einem Schaden per WhatsApp!
@@ -1400,7 +1348,7 @@
     </a>
   </div>
 
-  <div class="contact-grid">
+  <div class="contact-grid reveal">
     <form id="whatsappForm" onsubmit="sendToWhatsApp(event);">
       <div class="form-group">
         <label>Ihr Name *</label>
@@ -1544,7 +1492,7 @@
   </div>
 </section>
 
-<!-- NEUIGKEIT 3: Sanfter Nach-Oben-Button (links unten) -->
+<!-- Sanfter Nach-Oben-Button (links unten) -->
 <button type="button" class="top-float" id="backToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
 
 <!-- Floating WhatsApp Button (rechts unten) -->
@@ -1636,17 +1584,38 @@
     }
   }
 
-  // Eingangsanimation nach 1,95 Sekunden automatisch ausblenden
+  // Eingangsanimation nach 1,95 Sekunden automatisch ausblenden + Smooth-Reveal initialisieren
   function hideIntroSplash() {
     const splash = document.getElementById("introSplash");
     if (splash) splash.classList.add("hide");
   }
+
+  function initScrollReveal() {
+    const revealEls = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add("in-view"));
+    }
+  }
+
   window.addEventListener("DOMContentLoaded", function() {
+    window.scrollTo(0, 0);
     applyAutomaticOfferSwitch();
+    initScrollReveal();
     setTimeout(hideIntroSplash, 1950);
   });
 
-  // Scroll-Fortschrittsbalken & Nach-oben-Button aktualisieren
+  // Scroll-Fortschrittsbalken, Nach-oben-Button & Aktive Desktop-Menü-Markierung
   window.addEventListener("scroll", function() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1662,6 +1631,23 @@
         topBtn.classList.remove("show");
       }
     }
+
+    // Aktiven Menüpunkt im Desktop-Header hervorheben
+    const sections = ["leistungen", "news", "saison", "check21", "kontakt"];
+    let currentSection = "";
+    sections.forEach(secId => {
+      const el = document.getElementById(secId);
+      if (el && scrollTop >= el.offsetTop - 180) {
+        currentSection = secId;
+      }
+    });
+    document.querySelectorAll("#desktopNav a[data-target]").forEach(link => {
+      if (link.getAttribute("data-target") === currentSection) {
+        link.classList.add("active-nav");
+      } else {
+        link.classList.remove("active-nav");
+      }
+    });
   }, { passive: true });
 
   // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00-17:00 Uhr, Sa 10:00-14:00 Uhr)
@@ -1787,7 +1773,7 @@
     }
   }
 
-  // NEUIGKEIT 1: Altöl -> Frischöl Schauglas-Simulator
+  // Altöl -> Frischöl Schauglas-Simulator
   function toggleOilSimulation() {
     const box = document.getElementById("oilSimBox");
     const title = document.getElementById("oilSimTitle");
@@ -1808,7 +1794,7 @@
     }
   }
 
-  // NEUIGKEIT 2: Interaktive Automarken-Auswahl mit Sofort-Bestätigung
+  // Interaktive Automarken-Auswahl mit Sofort-Bestätigung
   function selectCarBrand(brandName, pillEl) {
     const msgBox = document.getElementById("brandConfirmMsg");
     const wasActive = pillEl.classList.contains("active") && msgBox.classList.contains("show");
@@ -1826,6 +1812,18 @@
       : `Wartung &amp; Ölservice zu tollen Preisen verfügbar!`;
     msgBox.innerHTML = `✔ <b>${brandName}:</b> Passendes Marken-Öl nach Herstellerfreigabe, Ölfilter &amp; OBD-Diagnose vor Ort bereit – ${offerHint}`;
     msgBox.classList.add("show");
+  }
+
+  // Alle 21 Prüfpunkte mit 1 Klick auf- und zuklappen
+  function toggleAllCheck21() {
+    const container = document.getElementById("check21Container");
+    const btn = document.getElementById("toggleAllCheck21Btn");
+    if (!container || !btn) return;
+    const detailsList = Array.from(container.querySelectorAll("details"));
+    const allOpen = detailsList.every(d => d.open);
+
+    detailsList.forEach(d => { d.open = !allOpen; });
+    btn.innerText = !allOpen ? "➖ Alle 21 Punkte zuklappen" : "➕ Alle 21 Punkte aufklappen";
   }
 
   // 1-Zeilen Ölwechsel-Schnelltest
