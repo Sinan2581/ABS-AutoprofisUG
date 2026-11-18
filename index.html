@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>A&BS AUTOPROFIS | Kfz-Service Meisterbetrieb Mariendorf – Berlin</title>
-<meta name="description" content="A&BS AUTOPROFIS – Ihr professioneller Kfz-Service am Mariendorfer Damm 49, 12109 Berlin. Eröffnungsangebot bis 01.12.2026: Ölwechsel ab 69€ inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
+<meta name="description" content="A&BS AUTOPROFIS – Ihr professioneller Kfz-Service am Mariendorfer Damm 49, 12109 Berlin. Faire Meister-Preise, Ölwechsel, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos.">
 <link rel="canonical" href="https://www.absprofis.de/">
 
 <!-- Open Graph / Social Media -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.absprofis.de/">
 <meta property="og:site_name" content="A&BS AUTOPROFIS">
-<meta property="og:title" content="A&BS AUTOPROFIS | Ölwechsel ab 69 € – Kfz-Service Mariendorf">
-<meta property="og:description" content="Eröffnungsangebot bis 01.12.2026: Ölwechsel ab 69 € inkl. Ölfilter, 21-Punkte-Check + Fehlerspeicher auslesen kostenlos. Mariendorfer Damm 49, 12109 Berlin.">
+<meta property="og:title" content="A&BS AUTOPROFIS | Kfz-Service Meisterbetrieb Mariendorf">
+<meta property="og:description" content="Ihr Kfz-Meisterbetrieb am Mariendorfer Damm 49, 12109 Berlin. Ölwechsel, 21-Punkte-Check & Fehlerspeicher auslesen kostenlos.">
 <meta property="og:image" content="https://www.absprofis.de/og-image.jpg">
 <meta property="og:locale" content="de_DE">
 
@@ -69,7 +69,6 @@
     justify-content: center;
   }
 
-  /* Drei verschieden gestaltete Warnlampen (Rot, Gelb, Blau) */
   .intro-alerts {
     position: absolute;
     top: 4px;
@@ -265,7 +264,7 @@
     line-height: 1.35;
   }
 
-  /* Kompakter 2-Zeilen-Top-Banner mit neuem Datum 01.12.2026 */
+  /* Kompakter 2-Zeilen-Top-Banner */
   .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
   .aufbau-line2 { font-size: 11px; font-weight: 900; color: var(--primary); opacity: 0.95; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
   
@@ -380,11 +379,22 @@
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
-  /* 3 Neuigkeiten – Überschriften garantiert einzeilig */
+  /* 3 Werkstatt-Vorteile – Überschriften garantiert einzeilig */
   .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .news-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ===== NEUIGKEIT 2: INTERAKTIVER SAISON- & ALLTAGS-CHECK UMSCHALTER ===== */
+  .season-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); }
+  .season-tabs { display: inline-flex; background: #f0ebd9; padding: 5px; border-radius: 999px; gap: 6px; margin: 14px 0 22px; max-width: 100%; }
+  .season-tab { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: 13px; padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .season-tab.active { background: var(--primary); color: var(--gold-light); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
+  .season-panel { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
+  .season-panel.active { display: grid; animation: fadeIn 0.25s ease; }
+  .season-item { background: #fdfbf7; border: 1px solid #eae5d9; border-radius: 16px; padding: 18px; border-left: 4px solid var(--gold); }
+  .season-item b { display: block; font-size: 15px; color: var(--primary); margin-bottom: 4px; white-space: nowrap; }
+  .season-item p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
   /* COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK-SCHLIESSEN) */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
@@ -461,24 +471,27 @@
   .info-highlight-box p { color: #dbe4ff; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
   .price-tag-card { background: #fff; color: var(--text-dark); border-radius: 22px; padding: 28px 22px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid var(--gold); }
   .price-tag-card h4 { margin: 0 0 5px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--primary); font-weight: 800; }
-  .price-tag-val { font-size: 48px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; white-space: nowrap; }
+  .price-tag-val { font-size: 46px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; white-space: nowrap; line-height: 1.1; }
   .price-tag-val span { font-size: 16px; font-weight: 700; color: #6b7280; }
   .price-hint { background: #fdfbf7; border: 1.5px dashed var(--gold); padding: 12px; border-radius: 12px; font-size: 13px; color: #78350f; font-weight: 700; margin-bottom: 20px; }
 
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
-  /* KONTAKT- & TERMIN-FORMULAR + WUNSCHZEIT-AUSWAHL */
+  /* KONTAKT- & TERMIN-FORMULAR + WUNSCHZEIT & LEISTUNGS-CHIPS */
   .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 15px; }
   .form-group label { display: block; font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--primary); line-height: 1.3; }
   .form-control { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
   .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
 
-  /* Wunschzeit-Chips im Formular */
-  .slot-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .slot-chip { background: #fdfbf7; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 8px 6px; font-size: 11.5px; font-weight: 700; color: var(--primary); text-align: center; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-  .slot-chip:hover, .slot-chip.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  /* Wunschzeit- & Schnellauswahl-Chips im Formular */
+  .slot-chips, .service-quick-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .slot-chip, .srv-chip { background: #fdfbf7; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 8px 6px; font-size: 11.5px; font-weight: 700; color: var(--primary); text-align: center; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .slot-chip:hover, .slot-chip.active, .srv-chip:hover, .srv-chip.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+
+  /* Fahrzeugschein-Tipp-Box */
+  .fzs-tip { background: #fdfbf7; border: 1.5px dashed var(--gold); border-radius: 12px; padding: 10px 12px; font-size: 12px; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; line-height: 1.4; }
   
   .info-block { display: flex; flex-direction: column; gap: 18px; justify-content: center; background: #f7f3e9; padding: 26px 22px; border-radius: 20px; border-left: 5px solid var(--gold); }
   .info-item { display: flex; gap: 12px; align-items: flex-start; }
@@ -490,6 +503,7 @@
   .route-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
   .route-btn { background: #fff; border: 1.5px solid var(--primary); color: var(--primary); padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
   .route-btn:hover { background: var(--primary); color: #fff; }
+  .vcard-btn { grid-column: span 2; background: var(--primary); color: var(--gold-light) !important; border-color: var(--gold); }
 
   /* Floating WhatsApp Button */
   .wa-float { display: grid; position: fixed; right: 18px; bottom: 18px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
@@ -505,7 +519,7 @@
   @media(max-width: 1080px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
-    .grid-3, .benefits-grid, .news-grid, .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active { grid-template-columns: repeat(2, 1fr); }
     .usp-inner, .advisor-options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .info-highlight-box, .contact-grid { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -540,14 +554,17 @@
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
-    .grid-3, .benefits-grid, .news-grid, .steps-grid { grid-template-columns: 1fr; }
+    .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active { grid-template-columns: 1fr; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
     .dash-lights { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .slot-chips { grid-template-columns: 1fr; gap: 6px; }
+    .service-quick-chips { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .season-tabs { display: flex; width: 100%; }
+    .season-tab { flex: 1; padding: 9px 8px; font-size: 12px; }
     .wrap { padding: 36px 14px; }
-    .info-highlight-box, .contact-grid, .advisor-box, .dash-box { padding: 20px 16px; }
+    .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box { padding: 20px 16px; }
     .info-block { padding: 18px 14px; }
     .check-grid { grid-template-columns: 1fr; }
   }
@@ -601,9 +618,10 @@
   <div class="intro-caption">A&BS AUTOPROFIS • MEISTERQUALITÄT IN MARIENDORF</div>
 </div>
 
+<!-- TOP BANNER (Wechselt ab 01.12.2026 vollautomatisch den Text) -->
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
-  <span class="aufbau-line2">Eröffnungsangebot 69 € gültig bis 01.12.2026</span>
+  <span class="aufbau-line2" id="topBannerOfferLine">Eröffnungsangebot 69 € gültig bis 01.12.2026</span>
 </div>
 
 <div class="topbar">
@@ -635,14 +653,14 @@
     <nav>
       <a href="#leistungen">Leistungen</a>
       <a href="#news">Vorteile</a>
-      <a href="#ablauf">Ablauf</a>
+      <a href="#saison">Saison-Check</a>
       <a href="#check21">21-Punkte-Check</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
 
     <div class="header-right">
       <div class="widgets-bar">
-        <!-- BUTTON 1: Status & neue Öffnungszeiten (Mo-Fr 9-17, Sa 10-14) -->
+        <!-- BUTTON 1: Status & Öffnungszeiten (Mo-Fr 9-17, Sa 10-14) -->
         <div class="header-widget-group">
           <div class="status-pill" onclick="togglePopup('statusPopup', event)" title="Klicken für Countdown-Details">
             <div class="status-main">
@@ -694,7 +712,7 @@
         <span class="badge">★ KFZ-MEISTERBETRIEB MARIENDORF</span>
         <span class="badge-deadline" id="offerRemainingBadge">🔥 Aktion bis 01.12.2026</span>
       </div>
-      <h1>ÖLWECHSEL<br><span>ab 69 €</span></h1>
+      <h1 id="heroHeadline">ÖLWECHSEL<br><span id="heroPriceSpan">ab 69 €</span></h1>
       <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
       <div class="pills">
@@ -715,7 +733,7 @@
       </div>
       
       <div class="cta" style="margin-top:20px;">
-        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20das%2069%E2%82%AC%20Angebot%20(bis%2001.12.2026)%20nutzen%20und%20einen%20Termin%20anfragen!" target="_blank" rel="noopener">Per WhatsApp schreiben</a>
+        <a class="wa-btn" id="heroWaBtn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Termin%20anfragen!" target="_blank" rel="noopener">Per WhatsApp schreiben</a>
         <a class="btn" href="tel:017672625377" style="background:#fff;color:var(--primary)!important">📞 Jetzt anrufen</a>
       </div>
       
@@ -759,12 +777,12 @@
 <!-- LEISTUNGEN & WAS GEMACHT WIRD -->
 <section id="leistungen" class="wrap">
   <h2 class="section-title">Unser Service im Detail</h2>
-  <p class="section-sub">Solides Handwerk trifft auf faire Festpreise. Das beinhaltet unser Aktionspaket bis zum 01.12.2026:</p>
+  <p class="section-sub" id="serviceSectionSub">Solides Handwerk trifft auf faire Festpreise. Das beinhaltet unser Servicepaket:</p>
   
   <div class="grid-3">
     <div class="card">
       <span style="font-size:32px;">🛢️</span>
-      <h3>Ölwechsel ab 69 €</h3>
+      <h3 id="serviceOilTitle">Ölwechsel ab 69 €</h3>
       <ul>
         <li>Fachgerechter Altöl-Ablass & Spülung</li>
         <li>Neues Marken-Öl nach Herstellernorm</li>
@@ -793,7 +811,7 @@
       <ul>
         <li>
           <b>Fehlerspeicher auslesen</b>
-          <span class="sub-bracket">(100% gratis im Aktionspaket)</span>
+          <span class="sub-bracket">(100% gratis im Servicepaket)</span>
         </li>
         <li>Analyse von Motorkontrollleuchte & Steuergeräten</li>
         <li>Zurücksetzen der Service-Intervalle</li>
@@ -822,6 +840,47 @@
         <span style="font-size: 24px;">📋</span>
         <h4>3. Digitale Service-Historie</h4>
         <p>Alle Wartungen und Checks werden lückenlos dokumentiert, damit Ihr Scheckheft und Fahrzeugwert optimal gepflegt bleiben.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NEUIGKEIT 2: INTERAKTIVER SAISON- & ALLTAGS-CHECK UMSCHALTER ===== -->
+  <div id="saison" class="season-box">
+    <h2 class="section-title" style="font-size:clamp(19px, 4.6vw, 26px);">Saison- & Alltags-Check für Berlin</h2>
+    <p style="margin:0; color:var(--text-muted); font-size:14px;">Wählen Sie aus, worauf wir Ihr Fahrzeug schwerpunktmäßig prüfen sollen:</p>
+    
+    <div class="season-tabs">
+      <button type="button" class="season-tab active" onclick="switchSeason('winter', this)">❄️ Winter- & Kälte-Check</button>
+      <button type="button" class="season-tab" onclick="switchSeason('alltag', this)">🚗 Alltags- & Langstrecken-Check</button>
+    </div>
+
+    <div id="seasonWinter" class="season-panel active">
+      <div class="season-item">
+        <b>🔋 Batterie-Kaltstart-Test</b>
+        <p>Wir messen die Ladekapazität, damit Ihr Auto auch bei Minusgraden morgens zuverlässig startet.</p>
+      </div>
+      <div class="season-item">
+        <b>❄️ Kühler- & Scheibenfrostschutz</b>
+        <p>Präzise Messung des Gefrierschutzes bis -25 °C für freie Sicht und optimalen Motorschutz.</p>
+      </div>
+      <div class="season-item">
+        <b>🛞 Winterreifen & Licht-Check</b>
+        <p>Kontrolle von Profiltiefe, Reifendruck und Scheinwerfereinstellung für sichere Fahrten bei Dunkelheit.</p>
+      </div>
+    </div>
+
+    <div id="seasonAlltag" class="season-panel">
+      <div class="season-item">
+        <b>🛑 Berliner Stadtverkehr-Check</b>
+        <p>Intensivprüfung von Bremsbelägen, Kupplung und Lenkung bei häufigem Stop-and-Go-Verkehr.</p>
+      </div>
+      <div class="season-item">
+        <b>🛢️ Motoröl- & Filter-Frische</b>
+        <p>Frisches Markenöl nach Herstellernorm schützt vor Verschleiß auf Kurz- und Langstrecken.</p>
+      </div>
+      <div class="season-item">
+        <b>💻 Gratis Steuergeräte-Scan</b>
+        <p>Auslesen versteckter Fehlermeldungen im Speicher, bevor teure Folgeschäden entstehen.</p>
       </div>
     </div>
   </div>
@@ -903,7 +962,7 @@
     </div>
 
     <div id="advisorResultOil" class="advisor-result">
-      <b>Empfehlung zum Ölwechsel:</b> Unser Aktionsangebot bis zum 01.12.2026 ab 69 € beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check.
+      <b>Empfehlung zum Ölwechsel:</b> <span id="advisorOilDynamicText">Unser Aktionsangebot bis zum 01.12.2026 ab 69 € beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check.</span>
     </div>
     <div id="advisorResultCheck" class="advisor-result">
       <b>Empfehlung zur Elektronik:</b> Bei brennenden Kontrollleuchten lesen wir Ihren Fehlerspeicher <b>komplett kostenlos</b> aus, analysieren das Steuergerät und beraten Sie fair.
@@ -1042,19 +1101,19 @@
   </div>
 </section>
 
-<!-- PREIS- & KONDITIONEN-BOX -->
+<!-- PREIS- & KONDITIONEN-BOX (Schaltet ab 01.12.2026 automatisch auf "Tolle Preise" um) -->
 <section id="preise" class="wrap" style="padding-top: 0;">
   <div class="info-highlight-box">
     <div>
       <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ & KONDITIONEN</span>
       <h3>Faire Preise ohne versteckte Kosten</h3>
-      <p>Außer unserem unschlagbaren Angebot für den Ölwechsel (gültig bis 01.12.2026) geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
+      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel (gültig bis 01.12.2026) geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
       <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Preis%20anfragen." target="_blank" rel="noopener">Jetzt Preis per WhatsApp anfragen</a>
     </div>
     
     <div class="price-tag-card">
-      <h4>Aktions-Sparpreis bis 01.12.2026</h4>
-      <div class="price-tag-val">69 € <span>inkl. MwSt.</span></div>
+      <h4 id="priceCardSub">Aktions-Sparpreis bis 01.12.2026</h4>
+      <div class="price-tag-val" id="priceCardVal">69 € <span>inkl. MwSt.</span></div>
       <div class="price-hint">⚡ Inklusive Ölfilter & 21-Punkte-Check + Fehlerspeicher gratis!</div>
       <a class="btn" style="width: 100%;" href="tel:017672625377">Jetzt anrufen & Termin sichern</a>
     </div>
@@ -1081,7 +1140,7 @@
 
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">„Top Angebot für 69 Euro inklusive Ölfilter – unschlagbar in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
+      <p class="review-text" id="reviewText3">„Top Service inklusive Ölfilter und Sicherheits-Check – unschlagbar fair in Berlin. Sehr netter Empfang und professionelle Arbeit. Weiter so!“</p>
       <div class="review-author">– Deniz B. aus Lankwitz</div>
     </div>
 
@@ -1093,7 +1152,7 @@
 
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">„Man merkt sofort, dass hier Profis am Werk sind. Die 69-Euro-Aktion für den Ölwechsel ist genial. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
+      <p class="review-text" id="reviewText5">„Man merkt sofort, dass hier Profis am Werk sind. Tolle Preise für den Ölwechsel und eine super ehrliche Beratung. Selbst aus Marzahn lohnt sich der Weg absolut!“</p>
       <div class="review-author">– Katrin M. aus Marzahn</div>
     </div>
   </div>
@@ -1111,22 +1170,22 @@
     <details class="accordion-item">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">Wie lange gilt das 69 € Eröffnungsangebot?</span>
+          <span class="acc-main" id="faq1Question">Wie lange gilt das 69 € Eröffnungsangebot?</span>
         </div>
       </summary>
       <div class="accordion-content">
-        <p style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel ab 69 € (inkl. Ölfilter, 21-Punkte-Check & Fehlerspeicher auslesen) ist bis einschließlich <b>01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon oder WhatsApp.</p>
+        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel ab 69 € (inkl. Ölfilter, 21-Punkte-Check & Fehlerspeicher auslesen) ist bis einschließlich <b>01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon oder WhatsApp.</p>
       </div>
     </details>
 
     <details class="accordion-item">
       <summary>
         <div class="acc-title">
-          <span class="acc-main">Sind Öl und Ölfilter in den 69 € enthalten?</span>
+          <span class="acc-main" id="faq2Question">Sind Öl und Ölfilter beim Ölwechsel enthalten?</span>
         </div>
       </summary>
       <div class="accordion-content">
-        <p style="margin:0; font-size:14px; color:#334155;">Ja! Der Festpreis ab 69 € beinhaltet den fachgerechten Ölwechsel, das passende Marken-Öl nach Herstellervorgabe, einen neuen Ölfilter sowie den kostenlosen 21-Punkte-Check.</p>
+        <p id="faq2Answer" style="margin:0; font-size:14px; color:#334155;">Ja! Unser Ölwechsel-Paket beinhaltet immer den fachgerechten Ölwechsel, das passende Marken-Öl nach Herstellervorgabe, einen neuen Ölfilter sowie den kostenlosen 21-Punkte-Check und das Auslesen des Fehlerspeichers.</p>
       </div>
     </details>
 
@@ -1180,10 +1239,34 @@
           <div class="slot-chip" onclick="selectSlot('Samstag (10–14 Uhr)', this)">Samstag 10–14 Uhr</div>
         </div>
       </div>
+
+      <!-- ===== NEUIGKEIT 1: 1-KLICK LEISTUNGSAUSWAHL IM FORMULAR ===== -->
+      <div class="form-group">
+        <label>
+          Wunschleistung schnell antippen
+          <span class="sub-bracket">(mehrere möglich – fügt sich unten ein)</span>
+        </label>
+        <div class="service-quick-chips">
+          <div class="srv-chip" onclick="toggleQuickService('Ölwechsel inkl. Filter', this)">🛢️ Ölwechsel</div>
+          <div class="srv-chip" onclick="toggleQuickService('21-Punkte-Check', this)">🔍 21-Pkt-Check</div>
+          <div class="srv-chip" onclick="toggleQuickService('Fehlerspeicher auslesen', this)">💻 Fehlerspeicher</div>
+          <div class="srv-chip" onclick="toggleQuickService('Bremsen-Check', this)">🛑 Bremsen</div>
+          <div class="srv-chip" onclick="toggleQuickService('Gratis Licht- & Frostschutz-Check', this)">❄️ Winter-Check</div>
+          <div class="srv-chip" onclick="toggleQuickService('Allgemeine Preisanfrage', this)">💬 Preisanfrage</div>
+        </div>
+      </div>
+
       <div class="form-group">
         <label>Ihre Nachricht / Wunschleistung</label>
-        <textarea id="waMsg" class="form-control" rows="3" placeholder="Ölwechsel-Angebot ab 69 € (bis 01.12.2026) / Preisanfrage..."></textarea>
+        <textarea id="waMsg" class="form-control" rows="3" placeholder="Bitte Wunschleistung antippen oder Nachricht eingeben..."></textarea>
       </div>
+
+      <!-- Hinweis für Fahrzeugschein-Foto -->
+      <div class="fzs-tip">
+        <span style="font-size:20px;">📸</span>
+        <div><b>Meister-Tipp:</b> Im nächsten Schritt können Sie uns in WhatsApp auch direkt ein Foto Ihres Fahrzeugscheins mitschicken!</div>
+      </div>
+
       <button type="submit" class="btn" style="width: 100%; padding: 14px;">Per WhatsApp anfragen</button>
     </form>
 
@@ -1193,9 +1276,11 @@
         <div style="width:100%;">
           <b>Werkstatt-Adresse</b>
           <p>Mariendorfer Damm 49<br>12109 Berlin-Mariendorf</p>
+          <!-- NEUIGKEIT 3: Direkt-Navigation, Kopieren & Digitale Visitenkarte (vCard) -->
           <div class="route-actions">
             <a class="route-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route starten</a>
             <button type="button" class="route-btn" id="copyAddrBtn" onclick="copyWorkshopAddress()">📋 Adresse kopieren</button>
+            <button type="button" class="route-btn vcard-btn" onclick="downloadVCard()">📲 Werkstatt-Kontakt im Handy speichern</button>
           </div>
         </div>
       </div>
@@ -1239,22 +1324,81 @@
     <span class="phone">📞 0176 72625 377</span>
   </div>
   <p style="font-size:12px;color:#8fa3d4;margin-top:14px;white-space:nowrap;">Mo – Fr: 09:00 – 17:00 Uhr • Sa: 10:00 – 14:00 Uhr</p>
-  <p style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot ab 69 € gültig bis 01.12.2026</p>
+  <p id="footerOfferNote" style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot ab 69 € gültig bis 01.12.2026</p>
   <p style="font-size:12px;color:#8fa3d4;margin-top:8px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
 
 <script>
+  // ===== AUTOMATISCHER ANGEBOTS-SCHALTER AB 01.12.2026 =====
+  // Sobald der 01.12.2026 (00:00 Uhr) erreicht ist, wird das 69-€-Angebot überall automatisch durch "Tolle Preise" ersetzt.
+  const OFFER_END_TIMESTAMP = new Date("2026-12-01T00:00:00").getTime();
+
+  function isOfferStillActive() {
+    return new Date().getTime() < OFFER_END_TIMESTAMP;
+  }
+
+  function applyAutomaticOfferSwitch() {
+    const nowMs = new Date().getTime();
+    const offerBadge = document.getElementById("offerRemainingBadge");
+
+    if (nowMs < OFFER_END_TIMESTAMP) {
+      // Vor dem 01.12.2026: Zeige Resttage bis zum 01.12.2026
+      const remainingDays = Math.ceil((OFFER_END_TIMESTAMP - nowMs) / (1000 * 60 * 60 * 24));
+      if (offerBadge) {
+        offerBadge.innerText = `🔥 69 € Aktion bis 01.12. (noch ${remainingDays} Tg.)`;
+      }
+    } else {
+      // Ab dem 01.12.2026: Automatischer Wechsel auf "Tolle Preise" (ohne 69 €)
+      const topBanner = document.getElementById("topBannerOfferLine");
+      if (topBanner) topBanner.innerText = "Tolle Preise & ehrlicher Meister-Service für alle Marken";
+      if (offerBadge) offerBadge.innerText = "🔥 Tolle Preise & Top-Konditionen";
+
+      const heroPrice = document.getElementById("heroPriceSpan");
+      if (heroPrice) heroPrice.innerText = "zu tollen Preisen";
+
+      const srvOilTitle = document.getElementById("serviceOilTitle");
+      if (srvOilTitle) srvOilTitle.innerText = "Ölwechsel zum Top-Preis";
+
+      const srvSub = document.getElementById("serviceSectionSub");
+      if (srvSub) srvSub.innerText = "Solides Handwerk trifft auf tolle Preise. Das beinhaltet unser Servicepaket:";
+
+      const advisorOilTxt = document.getElementById("advisorOilDynamicText");
+      if (advisorOilTxt) advisorOilTxt.innerText = "Bei uns erhalten Sie den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check zu tollen Preisen.";
+
+      const priceBoxTxt = document.getElementById("priceBoxText");
+      if (priceBoxTxt) priceBoxTxt.innerHTML = "Bei A&BS AUTOPROFIS erwarten Sie <b>tolle Preise und faire Meister-Konditionen</b> ohne versteckte Kosten. Für Ihren Ölwechsel, Reparaturen und Inspektionen gilt: <b>Preise bitte kurz per WhatsApp oder Telefon anfragen!</b>";
+
+      const priceCardSub = document.getElementById("priceCardSub");
+      if (priceCardSub) priceCardSub.innerText = "Meister-Service Paket";
+
+      const priceCardVal = document.getElementById("priceCardVal");
+      if (priceCardVal) priceCardVal.innerHTML = "Tolle Preise <span style='display:block;font-size:14px;margin-top:4px;'>fair & transparent</span>";
+
+      const faq1Q = document.getElementById("faq1Question");
+      if (faq1Q) faq1Q.innerText = "Wie erhalte ich schnell den besten Preis für mein Auto?";
+
+      const faq1A = document.getElementById("faq1Answer");
+      if (faq1A) faq1A.innerHTML = "Schreiben Sie uns einfach kurz per WhatsApp oder rufen Sie uns an. Wir kalkulieren Ihnen sofort einen <b>tollen, fairen Festpreis</b> passend für Ihr Fahrzeugmodell.";
+
+      const footerNote = document.getElementById("footerOfferNote");
+      if (footerNote) footerNote.innerText = "Tolle Preise • Faire Beratung • Meisterbetrieb für alle Marken";
+    }
+  }
+
   // Eingangsanimation nach 1,95 Sekunden automatisch sanft ausblenden
   function hideIntroSplash() {
     const splash = document.getElementById("introSplash");
     if (splash) splash.classList.add("hide");
   }
   window.addEventListener("DOMContentLoaded", function() {
+    applyAutomaticOfferSwitch();
     setTimeout(hideIntroSplash, 1950);
   });
 
   // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00-17:00 Uhr, Sa 10:00-14:00 Uhr)
   function updateLiveStatus() {
+    applyAutomaticOfferSwitch();
+
     const now = new Date();
     const day = now.getDay(); // 0 = So, 1-5 = Mo-Fr, 6 = Sa
     const hour = now.getHours();
@@ -1291,7 +1435,6 @@
       
       let nextOpen = new Date(now);
       if (day >= 1 && day <= 4) {
-        // Mo-Do
         if (hour < 9) {
           nextOpen.setHours(9, 0, 0, 0);
         } else {
@@ -1299,7 +1442,6 @@
           nextOpen.setHours(9, 0, 0, 0);
         }
       } else if (day === 5) {
-        // Freitag: Vor 9 Uhr -> heute 09:00 | Ab 17 Uhr -> Samstag 10:00
         if (hour < 9) {
           nextOpen.setHours(9, 0, 0, 0);
         } else {
@@ -1307,7 +1449,6 @@
           nextOpen.setHours(10, 0, 0, 0);
         }
       } else if (day === 6) {
-        // Samstag: Vor 10 Uhr -> heute 10:00 | Ab 14 Uhr -> Montag 09:00
         if (hour < 10) {
           nextOpen.setHours(10, 0, 0, 0);
         } else {
@@ -1315,7 +1456,6 @@
           nextOpen.setHours(9, 0, 0, 0);
         }
       } else if (day === 0) {
-        // Sonntag -> Montag 09:00
         nextOpen.setDate(now.getDate() + 1);
         nextOpen.setHours(9, 0, 0, 0);
       }
@@ -1336,24 +1476,10 @@
       `;
     }
 
-    // Aktions-Restlaufzeit bis 01.12.2026 (23:59:59) berechnen
-    const offerEnd = new Date("2026-12-01T23:59:59").getTime();
-    const offerDiff = offerEnd - now.getTime();
-    const offerBadge = document.getElementById("offerRemainingBadge");
-    if (offerBadge) {
-      if (offerDiff > 0) {
-        const offerDays = Math.ceil(offerDiff / (1000 * 60 * 60 * 24));
-        offerBadge.innerText = `🔥 Aktion bis 01.12.2026 (noch ${offerDays} Tg.)`;
-      } else {
-        offerBadge.innerText = `🔥 Eröffnungsangebot ab 69 €`;
-      }
-    }
-
     // Uhrzeit OHNE Sekunden für das Header-Widget, MIT Sekunden für das Popup
     const timeNoSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + " Uhr";
     const timeWithSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " Uhr";
     
-    // Aktuelles Datum im Format TT.MM.JJJJ
     const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const dateStr = now.toLocaleDateString('de-DE', optionsDate);
 
@@ -1364,6 +1490,18 @@
 
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
+
+  // Neuigkeit 2: Saison-Check Umschalter
+  function switchSeason(mode, btnEl) {
+    document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.season-panel').forEach(p => p.classList.remove('active'));
+    btnEl.classList.add('active');
+    if (mode === 'winter') {
+      document.getElementById('seasonWinter').classList.add('active');
+    } else {
+      document.getElementById('seasonAlltag').classList.add('active');
+    }
+  }
 
   // Cockpit-Warnleuchten-Lexikon (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
   function showDashInfo(type, btnEl) {
@@ -1382,10 +1520,14 @@
     const text = document.getElementById('dashInfoText');
     const link = document.getElementById('dashWaLink');
 
+    const oilOfferHint = isOfferStillActive()
+      ? "Bei uns erhalten Sie bis 01.12.2026 den kompletten Ölwechsel inkl. Ölfilter & Check schon ab 69 €."
+      : "Bei uns erhalten Sie den kompletten Ölwechsel inkl. Ölfilter & Check zu tollen Preisen.";
+
     const data = {
       oil: {
         t: "🛢️ Rote/Gelbe Ölkanne (Öldruck oder Ölstand)",
-        d: "Achtung: Bei roter Lampe Motor sofort abstellen! Bei gelber Lampe zeitnah Ölstand prüfen. Bei uns erhalten Sie bis 01.12.2026 den kompletten Ölwechsel inkl. Ölfilter & Check schon ab 69 €.",
+        d: "Achtung: Bei roter Lampe Motor sofort abstellen! Bei gelber Lampe zeitnah Ölstand prüfen. " + oilOfferHint,
         wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Öl-Warnleuchte. Ich brauche bitte Hilfe / einen Termin."
       },
       engine: {
@@ -1433,6 +1575,44 @@
       chipEl.classList.add('active');
       input.value = slotName;
     }
+  }
+
+  // Neuigkeit 1: 1-Klick Leistungsauswahl-Chips im Formular
+  function toggleQuickService(serviceName, chipEl) {
+    chipEl.classList.toggle('active');
+    const selected = Array.from(document.querySelectorAll('.srv-chip.active')).map(el => el.innerText.replace(/^[^\s]+\s/, ''));
+    const msgField = document.getElementById('waMsg');
+    if (selected.length > 0) {
+      msgField.value = "Wunschleistung: " + selected.join(", ");
+    } else {
+      msgField.value = "";
+    }
+  }
+
+  // Neuigkeit 3: Digitale Visitenkarte (.vcf) herunterladen
+  function downloadVCard() {
+    const vcard = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      "FN:A&BS AUTOPROFIS Kfz-Service Mariendorf",
+      "ORG:A&BS AUTOPROFIS",
+      "TEL;TYPE=CELL,VOICE:+4917672625377",
+      "EMAIL:info@absprofis.de",
+      "URL:https://www.absprofis.de",
+      "ADR;TYPE=WORK:;;Mariendorfer Damm 49;Berlin;;12109;Deutschland",
+      "NOTE:Öffnungszeiten Mo-Fr 09:00-17:00 Uhr, Sa 10:00-14:00 Uhr",
+      "END:VCARD"
+    ].join("\n");
+
+    const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ABS-AUTOPROFIS-Berlin.vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   // Adresse in Zwischenablage kopieren
