@@ -84,8 +84,10 @@
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
   .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; max-width: 1240px; margin: 0 auto; }
 
-  /* ===== HEADER: DESKTOP GARANTIERT EINZEILIGE MENÜPUNKTE ===== */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid var(--gold); padding: 10px 18px; }
+  /* ===== HEADER MIT INTEGRIERTER GOLDENER SCROLL-FORTSCHRITTSLEISTE ===== */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid rgba(212, 175, 55, 0.35); padding: 10px 18px; }
+  .scroll-progress-track { position: absolute; left: 0; bottom: -3px; width: 100%; height: 3px; background: transparent; pointer-events: none; overflow: hidden; }
+  .scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #fff3b0, var(--gold)); box-shadow: 0 0 10px var(--gold); transition: width 0.08s linear; }
   .header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
   .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
@@ -122,8 +124,10 @@
   .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; white-space: nowrap; }
   .widget-popup div { margin-top: 4px; font-size: 12px; white-space: nowrap; }
 
-  /* Buttons */
-  .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+  /* Buttons + NEU: Edler Gold-Glanz-Effekt (Shimmer) */
+  .btn { position: relative; overflow: hidden; background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+  .btn::after, .badge-deadline::after { content: ''; position: absolute; top: 0; left: -120%; width: 65%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); transform: skewX(-22deg); animation: goldShimmer 4.5s infinite; pointer-events: none; }
+  @keyframes goldShimmer { 0%, 70% { left: -120%; } 100% { left: 160%; } }
   .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
   .wa-btn { background: var(--success) !important; color: #fff !important; padding: 8px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
@@ -136,7 +140,7 @@
   .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
   .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .badge { display: inline-block; background: var(--gold); color: var(--primary); font-weight: 900; letter-spacing: 0.6px; font-size: 11px; padding: 6px 13px; border-radius: 999px; white-space: nowrap; }
-  .badge-deadline { background: rgba(255,255,255,0.14); color: var(--gold-light); border: 1px solid var(--gold); font-weight: 800; font-size: 11px; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
+  .badge-deadline { position: relative; overflow: hidden; background: rgba(255,255,255,0.14); color: var(--gold-light); border: 1px solid var(--gold); font-weight: 800; font-size: 11px; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
   .hero h1 { font-size: clamp(38px, 5vw, 58px); line-height: 0.95; margin: 16px 0 12px; letter-spacing: -1px; }
   .hero h1 span { color: var(--gold-light); }
   .hero p { color: #dbe4ff; font-size: 16px; max-width: 580px; }
@@ -191,8 +195,73 @@
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
+  /* ===== NEUIGKEIT 1: INTERAKTIVER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR ===== */
+  .oil-sim-box {
+    background: linear-gradient(135deg, #071a3d, #0d2759);
+    color: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+    padding: 18px 22px;
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 10px 26px rgba(7,26,61,0.16);
+  }
+  .oil-glass-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .oil-glass {
+    width: 52px;
+    height: 66px;
+    border-radius: 12px;
+    border: 2.5px solid #cbd5e1;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+  .oil-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 78%;
+    background: linear-gradient(180deg, #27272a, #09090b);
+    transition: background 0.65s ease, height 0.45s ease;
+  }
+  .oil-sim-box.fresh .oil-liquid {
+    background: linear-gradient(180deg, #fde047, #ca8a04);
+    height: 88%;
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.7);
+  }
+  .oil-bubble {
+    position: absolute;
+    bottom: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.65);
+    opacity: 0;
+  }
+  .oil-sim-box.fresh .oil-bubble { animation: bubbleRise 1.2s ease infinite; }
+  .oil-sim-box.fresh .oil-bubble.b2 { left: 60%; animation-delay: 0.35s; }
+  .oil-sim-box.fresh .oil-bubble.b1 { left: 30%; }
+  @keyframes bubbleRise { 0% { transform: translateY(0); opacity: 0.8; } 100% { transform: translateY(-42px); opacity: 0; } }
+
+  .oil-sim-info { min-width: 0; }
+  .oil-sim-title { font-size: 14.5px; font-weight: 900; color: var(--gold-light); display: block; margin-bottom: 3px; }
+  .oil-sim-desc { font-size: 12.5px; color: #dbe4ff; display: block; line-height: 1.4; }
+  .oil-meter-track { width: 100%; max-width: 340px; height: 7px; background: rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+  .oil-meter-fill { height: 100%; width: 28%; background: #ef4444; border-radius: 999px; transition: width 0.65s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease; }
+  .oil-sim-box.fresh .oil-meter-fill { width: 100%; background: var(--success); }
+
   /* SCHNELLCHECKS (ÖL, HU & GERÄUSCHE) */
-  .quick-oil-bar { background: #fff; border: 1.5px solid var(--gold); border-radius: 16px; padding: 14px 16px; margin-top: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
+  .quick-oil-bar { background: #fff; border: 1.5px solid var(--gold); border-radius: 16px; padding: 14px 16px; margin-top: 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
   .quick-oil-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
   .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
   .quick-oil-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 480px; }
@@ -284,11 +353,41 @@
   .benefit-box h4 { margin: 0 0 4px; color: var(--primary); font-size: 16px; font-weight: 800; white-space: nowrap; }
   .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-  /* MARKEN-BANNER */
+  /* ===== NEUIGKEIT 2: INTERAKTIVES MARKEN-BANNER MIT KLICK-BESTÄTIGUNG ===== */
   .brands-box { background: #fff; border-radius: 20px; padding: 26px 20px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
-  .brands-box h4 { margin: 0 0 14px; color: var(--primary); font-size: clamp(14.5px, 4vw, 18px); white-space: nowrap; }
+  .brands-box h4 { margin: 0 0 4px; color: var(--primary); font-size: clamp(14.5px, 4vw, 18px); white-space: nowrap; }
+  .brands-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; display: block; }
   .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; font-weight: 700; color: #475569; font-size: 13px; }
-  .brands-list span { background: #fdfbf7; padding: 6px 14px; border-radius: 999px; border: 1px solid #e6dfcf; white-space: nowrap; }
+  .brand-pill {
+    background: #fdfbf7;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1.5px solid #e6dfcf;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .brand-pill.active {
+    background: var(--primary) !important;
+    color: var(--gold-light) !important;
+    border-color: var(--gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(7,26,61,0.2);
+  }
+  .brand-confirm-msg {
+    display: none;
+    margin-top: 14px;
+    background: #fdfbf7;
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .brand-confirm-msg.show { display: block; animation: fadeIn 0.2s ease; }
 
   /* ACCORDION (21 PUNKTE CHECK) */
   .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
@@ -344,7 +443,7 @@
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
     .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
     .dash-btn:hover { background: rgba(255,255,255,0.15); }
-    .advisor-chip:hover { border-color: var(--primary); }
+    .advisor-chip:hover, .brand-pill:not(.active):hover { border-color: var(--gold); }
     .slot-chip:not(.active):hover, .srv-chip:not(.active):hover { border-color: var(--gold); background: #fff; }
   }
 
@@ -354,58 +453,13 @@
   .fzs-tip-text b { font-size: 12.5px; color: var(--primary); }
   .fzs-tip-text span { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
-  /* ===== KORRIGIERT: RECHTE ADRESS- & KARTENSPALTE (KARTE DEHNT SICH NACH UNTEN AUS, KEINE LEERE BEIGE FLÄCHE MEHR!) ===== */
-  .info-block {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    background: #f7f3e9;
-    padding: 22px;
-    border-radius: 20px;
-    border-left: 5px solid var(--gold);
-    height: 100%;
-  }
-
-  .map-card {
-    background: #fff;
-    border-radius: 16px;
-    border: 2px solid var(--gold);
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(7,26,61,0.08);
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 320px;
-  }
-  .map-card-header {
-    background: var(--primary);
-    color: #fff;
-    padding: 9px 14px;
-    font-size: 12px;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    border-bottom: 2px solid var(--gold);
-    flex-shrink: 0;
-  }
+  /* RECHTE ADRESS- & KARTENSPALTE (KARTE DEHNT SICH NACH UNTEN BÜNDIG AUS) */
+  .info-block { display: flex; flex-direction: column; gap: 18px; background: #f7f3e9; padding: 22px; border-radius: 20px; border-left: 5px solid var(--gold); height: 100%; }
+  .map-card { background: #fff; border-radius: 16px; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 6px 18px rgba(7,26,61,0.08); flex: 1 1 auto; display: flex; flex-direction: column; min-height: 320px; }
+  .map-card-header { background: var(--primary); color: #fff; padding: 9px 14px; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 2px solid var(--gold); flex-shrink: 0; }
   .map-card-header span.pin { color: var(--gold-light); font-weight: 900; white-space: nowrap; }
-  .map-frame-wrap {
-    position: relative;
-    width: 100%;
-    flex: 1 1 auto;
-    min-height: 280px;
-    background: #e5e7eb;
-  }
-  .map-frame-wrap iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-  }
+  .map-frame-wrap { position: relative; width: 100%; flex: 1 1 auto; min-height: 280px; background: #e5e7eb; }
+  .map-frame-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 
   .info-list { display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
   .info-item { display: flex; gap: 12px; align-items: flex-start; }
@@ -418,9 +472,34 @@
   .route-btn { background: #fff; border: 1.5px solid var(--primary); color: var(--primary); padding: 9px 10px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; transition: all 0.2s; }
   .vcard-btn { grid-column: span 2; background: var(--primary); color: var(--gold-light) !important; border-color: var(--gold); }
 
-  /* Floating WhatsApp Button */
+  /* Floating WhatsApp Button + NEUIGKEIT 3: Sanfter Nach-Oben-Button */
   .wa-float { display: grid; position: fixed; right: 18px; bottom: 18px; z-index: 100; width: 56px; height: 56px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; transition: transform 0.2s ease; }
   .wa-float svg { width: 30px; height: 30px; }
+
+  .top-float {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 95;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--gold-light);
+    border: 2px solid var(--gold);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(7,26,61,0.35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .top-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
   footer { background: var(--primary); color: #cbd5ff; padding: 36px 20px 90px; text-align: center; }
   footer b { color: #fff; font-size: clamp(13px, 3.8vw, 16px); white-space: nowrap; }
@@ -480,6 +559,8 @@
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
     
     .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: 1fr; }
+    .oil-sim-box { grid-template-columns: 1fr; text-align: left; gap: 12px; padding: 16px; }
+    .oil-sim-box .btn { width: 100%; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options, .quick-sym-btns { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
@@ -628,6 +709,8 @@
       </div>
     </div>
   </div>
+  <!-- NEU: Goldener Scroll-Fortschrittsbalken unten am Header -->
+  <div class="scroll-progress-track"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 </header>
 
 <section class="hero">
@@ -775,6 +858,24 @@
         <li>Transparente Beratung vor jeder Reparatur</li>
       </ul>
     </div>
+  </div>
+
+  <!-- ===== NEUIGKEIT 1: ANIMIERTER ALTÖL -> FRISCHÖL SCHAUGLAS-SIMULATOR ===== -->
+  <div class="oil-sim-box" id="oilSimBox">
+    <div class="oil-glass-wrap">
+      <div class="oil-glass" title="Motoröl-Schauglas">
+        <div class="oil-liquid">
+          <span class="oil-bubble b1"></span>
+          <span class="oil-bubble b2"></span>
+        </div>
+      </div>
+      <div class="oil-sim-info">
+        <span class="oil-sim-title" id="oilSimTitle">🛢️ Schauglas-Simulation: Dunkles Altöl (28 % Schmierkraft)</span>
+        <span class="oil-sim-desc" id="oilSimDesc">Ruß und Abrieb bremsen den Motor – testen Sie rechts den Vorher/Nachher-Effekt:</span>
+        <div class="oil-meter-track"><div class="oil-meter-fill" id="oilMeterFill"></div></div>
+      </div>
+    </div>
+    <button type="button" class="btn" id="oilSimBtn" onclick="toggleOilSimulation()">🔄 Ölwechsel-Animation starten</button>
   </div>
 
   <!-- 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK -->
@@ -1055,12 +1156,26 @@
     </div>
   </div>
 
-  <!-- MARKEN-BANNER -->
+  <!-- ===== NEUIGKEIT 2: INTERAKTIVES MARKEN-BANNER (ANKLICKBAR MIT SOFORT-BESTÄTIGUNG) ===== -->
   <div class="brands-box">
     <h4>Wir warten Fahrzeuge aller Hersteller:</h4>
+    <span class="brands-sub">👆 Tippen Sie auf Ihre Automarke für unsere Freigabe-Info:</span>
     <div class="brands-list">
-      <span>Volkswagen</span> <span>Audi</span> <span>BMW</span> <span>Mercedes-Benz</span> <span>Skoda</span> <span>Seat</span> <span>Ford</span> <span>Opel</span> <span>Toyota</span> <span>Hyundai</span> <span>Fiat</span> <span>Renault</span> <span>und viele mehr...</span>
+      <span class="brand-pill" onclick="selectCarBrand('Volkswagen', this)">Volkswagen</span>
+      <span class="brand-pill" onclick="selectCarBrand('Audi', this)">Audi</span>
+      <span class="brand-pill" onclick="selectCarBrand('BMW', this)">BMW</span>
+      <span class="brand-pill" onclick="selectCarBrand('Mercedes-Benz', this)">Mercedes-Benz</span>
+      <span class="brand-pill" onclick="selectCarBrand('Skoda', this)">Skoda</span>
+      <span class="brand-pill" onclick="selectCarBrand('Seat', this)">Seat</span>
+      <span class="brand-pill" onclick="selectCarBrand('Ford', this)">Ford</span>
+      <span class="brand-pill" onclick="selectCarBrand('Opel', this)">Opel</span>
+      <span class="brand-pill" onclick="selectCarBrand('Toyota', this)">Toyota</span>
+      <span class="brand-pill" onclick="selectCarBrand('Hyundai', this)">Hyundai</span>
+      <span class="brand-pill" onclick="selectCarBrand('Fiat', this)">Fiat</span>
+      <span class="brand-pill" onclick="selectCarBrand('Renault', this)">Renault</span>
+      <span class="brand-pill" onclick="selectCarBrand('Ihrer Automarke', this)">und viele mehr...</span>
     </div>
+    <div id="brandConfirmMsg" class="brand-confirm-msg"></div>
   </div>
 </section>
 
@@ -1269,7 +1384,7 @@
   </div>
 </section>
 
-<!-- TERMINANFRAGE & STANDORT (INKL. NACH UNTEN VERGRÖSSERTER STANDORT-KARTE RECHTS) -->
+<!-- TERMINANFRAGE & STANDORT -->
 <section id="kontakt" class="wrap" style="padding-top: 0;">
   <h2 class="section-title">Kontakt & Termin sichern</h2>
   <p class="section-sub">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
@@ -1371,7 +1486,7 @@
     </form>
 
     <div class="info-block">
-      <!-- NACH UNTEN VERGRÖSSERTE LIVE-KARTE (FÜLLT DEN PLATZ BÜNDIG AUS) -->
+      <!-- NACH UNTEN VERGRÖSSERTE LIVE-KARTE -->
       <div class="map-card">
         <div class="map-card-header">
           <span class="pin">📍 A&BS AUTOPROFIS</span>
@@ -1429,7 +1544,10 @@
   </div>
 </section>
 
-<!-- Floating WhatsApp Button -->
+<!-- NEUIGKEIT 3: Sanfter Nach-Oben-Button (links unten) -->
+<button type="button" class="top-float" id="backToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
+
+<!-- Floating WhatsApp Button (rechts unten) -->
 <a class="wa-float" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS" target="_blank" rel="noopener" aria-label="WhatsApp Chat öffnen">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -1527,6 +1645,24 @@
     applyAutomaticOfferSwitch();
     setTimeout(hideIntroSplash, 1950);
   });
+
+  // Scroll-Fortschrittsbalken & Nach-oben-Button aktualisieren
+  window.addEventListener("scroll", function() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+    const bar = document.getElementById("scrollProgressBar");
+    if (bar) bar.style.width = pct + "%";
+
+    const topBtn = document.getElementById("backToTopBtn");
+    if (topBtn) {
+      if (scrollTop > 420) {
+        topBtn.classList.add("show");
+      } else {
+        topBtn.classList.remove("show");
+      }
+    }
+  }, { passive: true });
 
   // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00-17:00 Uhr, Sa 10:00-14:00 Uhr)
   function updateLiveStatus() {
@@ -1651,6 +1787,47 @@
     }
   }
 
+  // NEUIGKEIT 1: Altöl -> Frischöl Schauglas-Simulator
+  function toggleOilSimulation() {
+    const box = document.getElementById("oilSimBox");
+    const title = document.getElementById("oilSimTitle");
+    const desc = document.getElementById("oilSimDesc");
+    const btn = document.getElementById("oilSimBtn");
+    const isFresh = box.classList.toggle("fresh");
+
+    if (isFresh) {
+      title.innerText = "✨ Nach dem Ölwechsel: Goldklares Marken-Frischöl (100 % Motorschutz)";
+      desc.innerText = isOfferStillActive()
+        ? "Reibung minimiert, voller Öldruck & neuer Filter – bei uns bis 01.12.2026 schon ab 69 €!"
+        : "Reibung minimiert, voller Öldruck & neuer Ölfilter – in geprüfter Meisterqualität!";
+      btn.innerText = "↺ Vorher-Zustand zeigen";
+    } else {
+      title.innerText = "🛢️ Schauglas-Simulation: Dunkles Altöl (28 % Schmierkraft)";
+      desc.innerText = "Ruß und Abrieb bremsen den Motor – testen Sie rechts den Vorher/Nachher-Effekt:";
+      btn.innerText = "🔄 Ölwechsel-Animation starten";
+    }
+  }
+
+  // NEUIGKEIT 2: Interaktive Automarken-Auswahl mit Sofort-Bestätigung
+  function selectCarBrand(brandName, pillEl) {
+    const msgBox = document.getElementById("brandConfirmMsg");
+    const wasActive = pillEl.classList.contains("active") && msgBox.classList.contains("show");
+    document.querySelectorAll(".brand-pill").forEach(p => p.classList.remove("active"));
+
+    if (wasActive) {
+      msgBox.classList.remove("show");
+      pillEl.blur();
+      return;
+    }
+
+    pillEl.classList.add("active");
+    const offerHint = isOfferStillActive()
+      ? `Ölwechsel-Aktionspaket <span class="nw">ab 69 €</span> verfügbar!`
+      : `Wartung &amp; Ölservice zu tollen Preisen verfügbar!`;
+    msgBox.innerHTML = `✔ <b>${brandName}:</b> Passendes Marken-Öl nach Herstellerfreigabe, Ölfilter &amp; OBD-Diagnose vor Ort bereit – ${offerHint}`;
+    msgBox.classList.add("show");
+  }
+
   // 1-Zeilen Ölwechsel-Schnelltest
   function checkOilInterval(state, btnEl) {
     const ans = document.getElementById('quickOilAnswer');
@@ -1745,7 +1922,7 @@
     }, 350);
   }
 
-  // 6 COCKPIT-WARNLEUCHTEN (SAUBERE TEMPLATE-STRINGS OHNE SYNTAXFEHLER & OHNE X-BUTTON)
+  // 6 COCKPIT-WARNLEUCHTEN (OHNE X-BUTTON)
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
