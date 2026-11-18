@@ -39,10 +39,10 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
-  /* Schutzklasse gegen unschöne Zeilenumbrüche bei Zahlen, Preisen, Telefonnummern & Einheiten */
+  /* Umbruchschutz für Zahlen, Preise, Telefonnummern & komplette Klammer-Ausdrücke */
   .nw { white-space: nowrap; display: inline-block; }
 
-  /* Hilfsklasse für Klammer-Zusätze: Immer sauber auf eigener Zeile */
+  /* Klammer-Zusätze sauber auf eigener Zeile */
   .sub-bracket {
     display: block;
     font-size: 12px;
@@ -52,7 +52,7 @@
     line-height: 1.35;
   }
 
-  /* ===== EINGANGSANIMATION MIT AUTOMATISCHER CSS-ABSCHALTUNG (KANN NIE MEHR HÄNGENBLEIBEN!) ===== */
+  /* ===== EINGANGSANIMATION MIT AUTOMATISCHER CSS-ABSCHALTUNG ===== */
   .intro-splash {
     position: fixed;
     inset: 0;
@@ -75,151 +75,24 @@
   }
   @keyframes splashAutoHide {
     0%, 82% { opacity: 1; visibility: visible; pointer-events: all; }
-    99% { opacity: 0; visibility: hidden; pointer-events: none; }
-    100% { opacity: 0; visibility: hidden; pointer-events: none; }
+    99%, 100% { opacity: 0; visibility: hidden; pointer-events: none; }
   }
 
-  .intro-stage {
-    position: relative;
-    width: 280px;
-    height: 210px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .intro-alerts {
-    position: absolute;
-    top: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    z-index: 5;
-  }
-  .warn-lamp {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 10px;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.4px;
-    opacity: 0;
-    transform: translateY(10px) scale(0.8);
-  }
-  .warn-oil {
-    background: rgba(220, 38, 38, 0.25);
-    border: 2px solid #ef4444;
-    color: #fecaca;
-    border-radius: 8px;
-    box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
-    animation: warnPop1 1.95s ease forwards;
-  }
-  .warn-engine {
-    background: rgba(245, 158, 11, 0.22);
-    border: 2px dashed #fbbf24;
-    color: #fde68a;
-    border-radius: 999px;
-    box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
-    animation: warnPop2 1.95s ease forwards;
-  }
-  .warn-service {
-    background: rgba(56, 189, 248, 0.2);
-    border: 2px solid #38bdf8;
-    color: #bae6fd;
-    border-radius: 4px 12px 4px 12px;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
-    animation: warnPop3 1.95s ease forwards;
-  }
-
-  .intro-car-scene {
-    position: relative;
-    width: 210px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: logoCarDrive 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .logo-style-car {
-    width: 185px;
-    height: auto;
-    filter: drop-shadow(0 6px 16px rgba(212, 175, 55, 0.35));
-  }
-
-  .intro-tools-layer {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 6;
-  }
-  .tool-drop {
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    top: 22px;
-    right: 48px;
-    opacity: 0;
-    filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8));
-    animation: dropJoinLogo 1.95s ease forwards;
-  }
-  .tool-wrench {
-    position: absolute;
-    width: 46px;
-    height: 46px;
-    bottom: 18px;
-    left: 44px;
-    opacity: 0;
-    filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8));
-    animation: wrenchJoinLogo 1.95s ease forwards;
-  }
-
-  .intro-final-logo {
-    position: absolute;
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    border: 3px solid var(--gold);
-    background: #000;
-    box-shadow: 0 0 0 5px rgba(212,175,55,0.28), 0 15px 35px rgba(0,0,0,0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    opacity: 0;
-    transform: scale(0.55);
-    z-index: 8;
-    animation: finalLogoMorph 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .intro-final-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .intro-road {
-    width: 210px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin-top: -6px;
-    animation: roadShrinkToCircle 1.95s ease forwards;
-  }
-  .intro-caption {
-    margin-top: 10px;
-    font-size: 12.5px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: var(--gold-light);
-    text-transform: uppercase;
-    white-space: nowrap;
-    text-align: center;
-    animation: captionMorph 1.95s ease forwards;
-  }
+  .intro-stage { position: relative; width: 280px; height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .intro-alerts { position: absolute; top: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; z-index: 5; }
+  .warn-lamp { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; font-size: 11px; font-weight: 900; letter-spacing: 0.4px; opacity: 0; transform: translateY(10px) scale(0.8); }
+  .warn-oil { background: rgba(220, 38, 38, 0.25); border: 2px solid #ef4444; color: #fecaca; border-radius: 8px; box-shadow: 0 0 16px rgba(239, 68, 68, 0.6); animation: warnPop1 1.95s ease forwards; }
+  .warn-engine { background: rgba(245, 158, 11, 0.22); border: 2px dashed #fbbf24; color: #fde68a; border-radius: 999px; box-shadow: 0 0 16px rgba(245, 158, 11, 0.5); animation: warnPop2 1.95s ease forwards; }
+  .warn-service { background: rgba(56, 189, 248, 0.2); border: 2px solid #38bdf8; color: #bae6fd; border-radius: 4px 12px 4px 12px; box-shadow: 0 0 14px rgba(56, 189, 248, 0.45); animation: warnPop3 1.95s ease forwards; }
+  .intro-car-scene { position: relative; width: 210px; height: 120px; display: flex; align-items: center; justify-content: center; animation: logoCarDrive 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .logo-style-car { width: 185px; height: auto; filter: drop-shadow(0 6px 16px rgba(212, 175, 55, 0.35)); }
+  .intro-tools-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 6; }
+  .tool-drop { position: absolute; width: 34px; height: 34px; top: 22px; right: 48px; opacity: 0; filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8)); animation: dropJoinLogo 1.95s ease forwards; }
+  .tool-wrench { position: absolute; width: 46px; height: 46px; bottom: 18px; left: 44px; opacity: 0; filter: drop-shadow(0 0 12px rgba(245, 214, 122, 0.8)); animation: wrenchJoinLogo 1.95s ease forwards; }
+  .intro-final-logo { position: absolute; width: 128px; height: 128px; border-radius: 50%; border: 3px solid var(--gold); background: #000; box-shadow: 0 0 0 5px rgba(212,175,55,0.28), 0 15px 35px rgba(0,0,0,0.65); display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0; transform: scale(0.55); z-index: 8; animation: finalLogoMorph 1.95s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .intro-final-logo img { width: 100%; height: 100%; object-fit: cover; }
+  .intro-road { width: 210px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin-top: -6px; animation: roadShrinkToCircle 1.95s ease forwards; }
+  .intro-caption { margin-top: 10px; font-size: 12.5px; font-weight: 900; letter-spacing: 1px; color: var(--gold-light); text-transform: uppercase; white-space: nowrap; text-align: center; animation: captionMorph 1.95s ease forwards; }
 
   @keyframes logoCarDrive {
     0% { transform: translateX(130px) scale(0.85); opacity: 0; }
@@ -228,51 +101,16 @@
     40% { transform: translateX(5px) rotate(1.5deg); }
     48% { transform: translateX(-3px) rotate(-0.8deg); }
     56% { transform: translateX(0) rotate(0deg) scale(0.95); opacity: 1; }
-    72% { transform: translateX(0) scale(0.68); opacity: 0; }
-    100% { transform: translateX(0) scale(0.5); opacity: 0; }
+    72%, 100% { transform: translateX(0) scale(0.55); opacity: 0; }
   }
-  @keyframes warnPop1 {
-    0%, 18% { opacity: 0; transform: translateY(10px) scale(0.7); }
-    26%, 54% { opacity: 1; transform: translateY(0) scale(1); }
-    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
-  }
-  @keyframes warnPop2 {
-    0%, 22% { opacity: 0; transform: translateY(10px) scale(0.7); }
-    30%, 54% { opacity: 1; transform: translateY(0) scale(1.05); }
-    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
-  }
-  @keyframes warnPop3 {
-    0%, 26% { opacity: 0; transform: translateY(10px) scale(0.7); }
-    34%, 54% { opacity: 1; transform: translateY(0) scale(1); }
-    66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); }
-  }
-  @keyframes dropJoinLogo {
-    0%, 40% { opacity: 0; transform: translate(22px, -28px) scale(0.5); }
-    52% { opacity: 1; transform: translate(0, 0) scale(1.1); }
-    68% { opacity: 1; transform: translate(-38px, 34px) scale(0.75); }
-    76%, 100% { opacity: 0; transform: translate(-45px, 40px) scale(0.3); }
-  }
-  @keyframes wrenchJoinLogo {
-    0%, 40% { opacity: 0; transform: translate(-28px, 24px) rotate(-45deg) scale(0.5); }
-    54% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1.1); }
-    68% { opacity: 1; transform: translate(38px, -28px) rotate(25deg) scale(0.8); }
-    76%, 100% { opacity: 0; transform: translate(45px, -32px) rotate(35deg) scale(0.3); }
-  }
-  @keyframes finalLogoMorph {
-    0%, 58% { opacity: 0; transform: scale(0.45) rotate(-8deg); }
-    72% { opacity: 1; transform: scale(1.06) rotate(0deg); }
-    86% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.12); }
-  }
-  @keyframes roadShrinkToCircle {
-    0%, 55% { width: 210px; opacity: 0.85; }
-    72%, 100% { width: 80px; opacity: 0; }
-  }
-  @keyframes captionMorph {
-    0% { opacity: 0; transform: translateY(5px); }
-    20%, 88% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; }
-  }
+  @keyframes warnPop1 { 0%, 18% { opacity: 0; transform: translateY(10px) scale(0.7); } 26%, 54% { opacity: 1; transform: translateY(0) scale(1); } 66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); } }
+  @keyframes warnPop2 { 0%, 22% { opacity: 0; transform: translateY(10px) scale(0.7); } 30%, 54% { opacity: 1; transform: translateY(0) scale(1.05); } 66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); } }
+  @keyframes warnPop3 { 0%, 26% { opacity: 0; transform: translateY(10px) scale(0.7); } 34%, 54% { opacity: 1; transform: translateY(0) scale(1); } 66%, 100% { opacity: 0; transform: translateY(-6px) scale(0.7); } }
+  @keyframes dropJoinLogo { 0%, 40% { opacity: 0; transform: translate(22px, -28px) scale(0.5); } 52% { opacity: 1; transform: translate(0, 0) scale(1.1); } 68% { opacity: 1; transform: translate(-38px, 34px) scale(0.75); } 76%, 100% { opacity: 0; transform: translate(-45px, 40px) scale(0.3); } }
+  @keyframes wrenchJoinLogo { 0%, 40% { opacity: 0; transform: translate(-28px, 24px) rotate(-45deg) scale(0.5); } 54% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1.1); } 68% { opacity: 1; transform: translate(38px, -28px) rotate(25deg) scale(0.8); } 76%, 100% { opacity: 0; transform: translate(45px, -32px) rotate(35deg) scale(0.3); } }
+  @keyframes finalLogoMorph { 0%, 58% { opacity: 0; transform: scale(0.45) rotate(-8deg); } 72% { opacity: 1; transform: scale(1.06) rotate(0deg); } 86% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.12); } }
+  @keyframes roadShrinkToCircle { 0%, 55% { width: 210px; opacity: 0.85; } 72%, 100% { width: 80px; opacity: 0; } }
+  @keyframes captionMorph { 0% { opacity: 0; transform: translateY(5px); } 20%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; } }
 
   /* Kompakter 2-Zeilen-Top-Banner */
   .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
@@ -280,19 +118,18 @@
   
   .topbar { background: var(--primary); color: #ffe9a8; font-size: 12px; padding: 8px 12px; text-align: center; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .topbar b, .topbar a { color: #fff; font-weight: 700; }
-  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; max-width: 1200px; margin: 0 auto; }
+  .topbar-inner { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; max-width: 1240px; margin: 0 auto; }
 
-  /* Header Layout – Desktop & Mobile überlappungsfrei */
-  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid var(--gold); padding: 10px 20px; }
-  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  /* ===== HEADER: DESKTOP GARANTIERT EINZEILIGE MENÜPUNKTE OHNE UMBRUCH ===== */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(7, 26, 61, 0.98); backdrop-filter: blur(12px); color: #fff; border-bottom: 3px solid var(--gold); padding: 10px 18px; }
+  .header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
   /* Brand & Logo mit animierter Qualitäts-Sprechblase */
   .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
-  .brand img { width: 52px; height: 52px; min-width: 52px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
-  .brand-text strong { display: block; font-size: 18px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.3px; }
-  .brand-text span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
+  .brand img { width: 48px; height: 48px; min-width: 48px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
+  .brand-text strong { display: block; font-size: 17px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.2px; }
+  .brand-text span { display: block; font-size: 8.5px; color: var(--gold-light); letter-spacing: 1.1px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
 
-  /* Kompakte Logo-Sprechblase: Jeder Satz exakt auf einer eigenen Zeile */
   .logo-speech-bubble { display: none; position: absolute; top: calc(100% + 10px); left: 0; background: linear-gradient(135deg, #fffdf7, #f5e6b8); color: var(--primary); padding: 12px 16px; border-radius: 14px; border: 2px solid var(--gold); box-shadow: 0 12px 28px rgba(0,0,0,0.35); z-index: 120; width: max-content; max-width: calc(100vw - 24px); animation: popIn 0.22s ease-out; }
   .logo-speech-bubble.active { display: block; }
   .logo-speech-bubble .bubble-title { display: block; font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid rgba(7,26,61,0.15); white-space: nowrap; }
@@ -303,44 +140,48 @@
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  nav { display: flex; gap: 16px; font-size: 14px; font-weight: 650; }
-  nav a:hover { color: var(--gold-light); transition: color 0.2s ease; }
+  /* Desktop Navigation: Jeder Punkt garantiert einzeilig (white-space: nowrap) */
+  nav { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  nav a {
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 750;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  nav a:hover { color: var(--gold-light); background: rgba(255,255,255,0.08); }
 
   .header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-  .widgets-bar { display: flex; align-items: center; gap: 8px; }
+  .widgets-bar { display: flex; align-items: center; gap: 6px; }
   .contact-buttons { display: flex; align-items: center; gap: 6px; }
 
   /* Header Widgets */
   .header-widget-group { position: relative; display: flex; align-items: center; }
-  
-  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; -webkit-tap-highlight-color: transparent; }
-  .status-main { display: flex; align-items: center; gap: 6px; font-weight: 700; white-space: nowrap; }
-  .status-sub { font-size: 9px; color: #cbd5ff; padding-left: 12px; white-space: nowrap; }
-  .widget-sub-small { font-size: 9px; color: #cbd5ff; white-space: nowrap; }
+  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 9px; border-radius: 12px; font-size: 10.5px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; -webkit-tap-highlight-color: transparent; }
+  .status-main { display: flex; align-items: center; gap: 5px; font-weight: 700; white-space: nowrap; }
+  .status-sub { font-size: 8.5px; color: #cbd5ff; padding-left: 11px; white-space: nowrap; }
+  .widget-sub-small { font-size: 8.5px; color: #cbd5ff; white-space: nowrap; }
 
-  .pulse-dot { width: 7px; height: 7px; background-color: var(--success); border-radius: 50%; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse 1.6s infinite; flex-shrink: 0; }
+  .pulse-dot { width: 6px; height: 6px; background-color: var(--success); border-radius: 50%; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); animation: pulse 1.6s infinite; flex-shrink: 0; }
   @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(37, 211, 102, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
   }
 
-  /* Popups für die Header-Widgets */
   .widget-popup { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; color: var(--primary); padding: 12px 16px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: max-content; min-width: 215px; max-width: calc(100vw - 24px); z-index: 120; font-size: 12px; text-align: left; border: 2px solid var(--gold); animation: popIn 0.2s ease-out; }
   .widget-popup.active { display: block; }
   .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; white-space: nowrap; }
   .widget-popup div { margin-top: 4px; font-size: 12px; white-space: nowrap; }
 
-  /* Buttons (WhatsApp, Telefon & E-Mail-Umschlag-Button) */
+  /* Buttons (WhatsApp, Telefon & E-Mail) */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
-  
-  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
-  .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-  
-  .call-btn { background: #fff !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
-
-  .mail-btn { background: linear-gradient(135deg, #f9e08a, var(--gold)) !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
-  .mail-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .wa-btn { background: var(--success) !important; color: #fff !important; padding: 8px 13px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 12.5px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+  .wa-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .call-btn { background: #fff !important; color: var(--primary) !important; padding: 8px 13px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 12.5px; }
+  .mail-btn { background: linear-gradient(135deg, #f9e08a, var(--gold)) !important; color: var(--primary) !important; padding: 8px 12px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 12.5px; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+  .mail-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
   /* Hero Section */
   .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
@@ -351,15 +192,13 @@
   .hero h1 { font-size: clamp(38px, 5vw, 58px); line-height: 0.95; margin: 16px 0 12px; letter-spacing: -1px; }
   .hero h1 span { color: var(--gold-light); }
   .hero p { color: #dbe4ff; font-size: 16px; max-width: 580px; }
-  
   .pills { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0; }
   .pills div { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); padding: 8px 13px; border-radius: 999px; font-size: 13px; font-weight: 650; white-space: nowrap; }
-  
   .cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .small { font-size: 13px; color: #aab8dd; margin-top: 16px; line-height: 1.8; }
   .small .phone { color: #fff; font-weight: 700; }
 
-  /* INTERAKTIVE GROSSE LOGO-KARTE MIT WERKSTATT-STECKBRIEF BEIM ANKLICKEN */
+  /* ===== NEU: GROSSE LOGO-KARTE MIT SANFTEM IN-PLACE SWITCH & 5-SEKUNDEN AUTO-ZURÜCK ===== */
   .logo-card {
     background: #fff;
     border-radius: 28px;
@@ -370,14 +209,47 @@
     border: 3px solid var(--gold);
     cursor: pointer;
     position: relative;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: "stack";
+    align-items: center;
     -webkit-tap-highlight-color: transparent;
   }
-  .logo-card img { width: 100%; border-radius: 18px; display: block; }
-  .logo-card h3 { margin: 14px 0 4px; font-size: 24px; white-space: nowrap; }
+  .logo-face-front, .logo-face-back {
+    grid-area: stack;
+    width: 100%;
+    transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .logo-face-front {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    pointer-events: auto;
+  }
+  .logo-face-back {
+    opacity: 0;
+    transform: scale(0.92) rotateY(12deg);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  .logo-card.switched .logo-face-front {
+    opacity: 0;
+    transform: scale(0.92) rotateY(-12deg);
+    pointer-events: none;
+  }
+  .logo-card.switched .logo-face-back {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    pointer-events: auto;
+  }
+  .logo-face-front img { width: 100%; border-radius: 18px; display: block; }
+  .logo-face-front h3 { margin: 14px 0 4px; font-size: 24px; white-space: nowrap; }
   .logo-card-hint {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     margin-top: 10px;
     background: linear-gradient(90deg, #fdfbf7, #f5e6b8);
@@ -389,23 +261,15 @@
     border-radius: 999px;
     white-space: nowrap;
   }
-  .hero-logo-details {
-    display: none;
-    margin-top: 14px;
-    padding-top: 14px;
-    border-top: 2px dashed #e6dfcf;
-    text-align: left;
-    font-size: 13px;
-    color: #1e293b;
-    animation: fadeIn 0.25s ease;
-  }
-  .hero-logo-details.show { display: block; }
-  .hero-logo-details b.title {
-    display: block;
-    font-size: 14px;
+  .hero-logo-back-title {
+    font-size: 16px;
+    font-weight: 900;
     color: var(--primary);
-    margin-bottom: 8px;
     text-align: center;
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+    white-space: nowrap;
   }
   .hero-logo-list {
     list-style: none;
@@ -413,16 +277,47 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
   .hero-logo-list li {
     background: #fdfbf7;
     border: 1px solid #eae5d9;
-    border-left: 3.5px solid var(--gold);
-    padding: 7px 10px;
-    border-radius: 10px;
+    border-left: 4px solid var(--gold);
+    padding: 9px 12px;
+    border-radius: 12px;
     font-size: 12.5px;
-    line-height: 1.4;
+    line-height: 1.45;
+    color: #1e293b;
+  }
+  .hero-logo-list li b { color: var(--primary); display: block; font-size: 13px; margin-bottom: 1px; }
+  /* 5-Sekunden Fortschrittsbalken beim Switch */
+  .switch-timer-wrap {
+    margin-top: 12px;
+    background: #eae5d9;
+    height: 5px;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .switch-timer-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--gold));
+    transform-origin: left;
+  }
+  .logo-card.switched .switch-timer-bar {
+    animation: countdownBar 5s linear forwards;
+  }
+  @keyframes countdownBar {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+  .switch-back-note {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-top: 6px;
+    white-space: nowrap;
   }
 
   /* Synchronisierte Live Countdown Box im Hero */
@@ -438,10 +333,10 @@
   .usp-item b { display: block; color: var(--primary); font-size: 15px; margin-bottom: 2px; white-space: nowrap; }
   .usp-item span { font-size: 12.5px; color: var(--text-muted); white-space: nowrap; }
 
-  /* Containers & Sections – Einzeilige Überschriften ohne einzelne Umbruch-Wörter */
+  /* Containers & Sections */
   .wrap { max-width: 1200px; margin: 0 auto; padding: 56px 24px; }
   .section-title { font-size: clamp(20px, 5vw, 32px); font-weight: 900; color: var(--primary); margin: 0 0 8px; text-align: center; letter-spacing: -0.5px; line-height: 1.2; text-wrap: balance; }
-  .section-sub { text-align: center; color: var(--text-muted); margin: 0 auto 34px; font-size: 15px; max-width: 680px; }
+  .section-sub { text-align: center; color: var(--text-muted); margin: 0 auto 34px; font-size: 15px; max-width: 680px; text-wrap: pretty; }
 
   /* GRID & CARDS */
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -450,38 +345,27 @@
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
-  /* 1-ZEILEN ÖLWECHSEL- & HU-SCHNELLCHECKS */
+  /* SCHNELLCHECKS (ÖL, HU & NEUIGKEIT 1: GERÄUSCHE- & SYMPTOM-CHECK) */
   .quick-oil-bar {
     background: #fff;
     border: 1.5px solid var(--gold);
     border-radius: 16px;
     padding: 14px 16px;
-    margin-top: 18px;
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.02);
   }
-  .quick-oil-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
+  .quick-oil-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
   .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-  .quick-oil-btns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    width: 100%;
-    max-width: 480px;
-  }
-  .q-oil-btn, .q-hu-btn {
+  .quick-oil-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; max-width: 480px; }
+  .quick-sym-btns { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; max-width: 560px; }
+  .q-oil-btn, .q-hu-btn, .q-sym-btn {
     background: #fdfbf7;
     border: 1.5px solid #d1d5db;
     color: var(--primary);
-    font-size: clamp(10.5px, 2.9vw, 12px);
+    font-size: clamp(10.5px, 2.8vw, 12px);
     font-weight: 800;
     padding: 8px 6px;
     border-radius: 10px;
@@ -490,55 +374,28 @@
     text-align: center;
     -webkit-tap-highlight-color: transparent;
   }
-  .q-oil-btn.active, .q-hu-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
-  .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; line-height: 1.5; }
+  .q-oil-btn.active, .q-hu-btn.active, .q-sym-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; line-height: 1.55; text-wrap: pretty; }
   .quick-oil-answer.show { display: block; animation: fadeIn 0.2s ease; }
 
-  /* 3 Werkstatt-Vorteile – Überschriften garantiert einzeilig */
+  /* 3 Werkstatt-Vorteile */
   .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .news-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
-  .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+  .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; text-wrap: pretty; }
 
   /* SAISON- & ALLTAGS-CHECK UMSCHALTER */
   .season-box { background: #fff; border-radius: 24px; padding: 28px 22px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); width: 100%; overflow: hidden; }
-  .season-tabs {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    background: #f0ebd9;
-    padding: 4px;
-    border-radius: 12px;
-    gap: 4px;
-    margin: 14px auto 20px;
-    width: 100%;
-    max-width: 460px;
-  }
-  .season-tab {
-    border: 0;
-    background: transparent;
-    color: var(--primary);
-    font-weight: 800;
-    font-size: clamp(11px, 3vw, 13.5px);
-    padding: 9px 6px;
-    border-radius: 9px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    width: 100%;
-    min-width: 0;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .season-tabs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: #f0ebd9; padding: 4px; border-radius: 12px; gap: 4px; margin: 14px auto 20px; width: 100%; max-width: 460px; }
+  .season-tab { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: clamp(11px, 3vw, 13.5px); padding: 9px 6px; border-radius: 9px; cursor: pointer; transition: background 0.2s, color 0.2s; width: 100%; min-width: 0; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -webkit-tap-highlight-color: transparent; }
   .season-tab.active { background: var(--primary); color: var(--gold-light); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
   .season-panel { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
   .season-panel.active { display: grid; animation: fadeIn 0.25s ease; }
   .season-item { background: #fdfbf7; border: 1px solid #eae5d9; border-radius: 16px; padding: 18px; border-left: 4px solid var(--gold); }
   .season-item b { display: block; font-size: 15px; color: var(--primary); margin-bottom: 4px; white-space: nowrap; }
-  .season-item p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .season-item p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; text-wrap: pretty; }
 
-  /* INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) */
+  /* INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE */
   .fzs-helper-box { background: #fff; border-radius: 24px; padding: 26px 24px; border: 1px solid #eae5d9; margin-top: 40px; box-shadow: 0 8px 24px rgba(0,0,0,0.03); display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: center; }
   .fzs-visual { background: linear-gradient(135deg, #e8f5e9, #fdfbf7); border: 2px solid #86efac; border-radius: 18px; padding: 16px; position: relative; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #14532d; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7); }
   .fzs-doc-header { font-size: 11px; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; color: #166534; border-bottom: 1px dashed #86efac; padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
@@ -546,14 +403,14 @@
   .fzs-field-card { background: #fff; border: 2px solid var(--gold); border-radius: 12px; padding: 9px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
   .fzs-field-lbl { font-size: 10px; font-weight: 900; color: var(--primary); display: block; white-space: nowrap; }
   .fzs-field-val { font-size: 17px; font-weight: 900; color: #b45309; letter-spacing: 2px; margin: 2px 0; display: block; }
-  .fzs-field-desc { font-size: 10px; color: var(--text-muted); font-family: Inter, sans-serif; font-weight: 600; display: block; }
+  .fzs-field-desc { font-size: 10px; color: var(--text-muted); font-family: Inter, sans-serif; font-weight: 600; display: block; white-space: nowrap; }
 
   /* VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF */
   .comfort-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .comfort-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 14px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 8px; }
   .comfort-badge { align-self: flex-start; background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
   .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); white-space: nowrap; }
-  .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+  .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; text-wrap: pretty; }
 
   /* 6 COCKPIT-WARNLEUCHTEN (DESKTOP: 6 NEBENEINANDER | HANDY: 3 OBEN, 3 UNTEN) */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
@@ -569,21 +426,23 @@
   .dash-info-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 4px; }
   .dash-info b { display: block; font-size: 15px; color: var(--primary); }
   .dash-close-btn { background: #f1f5f9; border: 0; color: var(--primary); width: 26px; height: 26px; border-radius: 50%; font-weight: 900; cursor: pointer; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; }
-  .dash-info p { color: #334155; font-size: 13.5px; margin: 0 0 12px; max-width: none; }
+  .dash-info p { color: #334155; font-size: 13.5px; margin: 0 0 12px; max-width: none; text-wrap: pretty; }
 
   /* IN 4 SCHRITTEN ZUM FERTIGEN AUTO */
   .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
   .step-card { background: #fff; border-radius: 18px; padding: 20px 18px; border: 1px solid #eae5d9; position: relative; text-align: left; box-shadow: 0 4px 14px rgba(0,0,0,0.02); }
   .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--gold-light); font-weight: 900; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 2px solid var(--gold); }
   .step-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--primary); white-space: nowrap; }
-  .step-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+  .step-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; text-wrap: pretty; }
 
-  /* REVIEWS: Sauber untereinander */
+  /* REVIEWS + NEUIGKEIT 2: WEITEREMPFEHLUNGS-LEISTE */
   .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 860px; margin: 0 auto; }
   .review-card { background: #fff; border-radius: 16px; padding: 18px 22px; border: 1px solid #eae5d9; box-shadow: 0 4px 12px rgba(0,0,0,0.02); display: flex; flex-direction: column; justify-content: space-between; }
   .stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; margin-bottom: 6px; }
-  .review-text { font-style: italic; color: #334155; font-size: 13px; margin: 0 0 10px; line-height: 1.55; }
+  .review-text { font-style: italic; color: #334155; font-size: 13px; margin: 0 0 10px; line-height: 1.55; text-wrap: pretty; }
   .review-author { font-weight: 800; color: var(--primary); font-size: 12px; }
+  .share-bar { max-width: 860px; margin: 18px auto 0; background: #fff; border: 1.5px solid var(--gold); border-radius: 16px; padding: 12px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+  .share-bar span { font-size: 13px; font-weight: 800; color: var(--primary); }
 
   /* INTERAKTIVER SCHADENS- & SERVICE-BERATER */
   .advisor-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 40px; text-align: center; }
@@ -591,7 +450,7 @@
   .advisor-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 18px; }
   .advisor-chip { background: #fdfbf7; border: 1.5px solid #d4af37; padding: 10px 12px; border-radius: 999px; font-weight: 700; color: var(--primary); cursor: pointer; transition: background 0.2s, color 0.2s; font-size: 13px; white-space: nowrap; text-align: center; -webkit-tap-highlight-color: transparent; user-select: none; }
   .advisor-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-  .advisor-result { margin-top: 20px; padding: 18px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 14px; color: #334155; display: none; }
+  .advisor-result { margin-top: 20px; padding: 18px; background: #fdfbf7; border-radius: 16px; border-left: 4px solid var(--gold); text-align: left; font-size: 14px; color: #334155; display: none; text-wrap: pretty; }
   .advisor-result.show { display: block; animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -600,7 +459,7 @@
   .benefit-box { background: #fff; border-radius: 18px; padding: 22px; border: 1px solid #eae5d9; display: flex; gap: 14px; align-items: flex-start; }
   .benefit-icon { font-size: 26px; background: #fdfbf7; padding: 10px; border-radius: 14px; border: 1px solid #eae5d9; flex-shrink: 0; }
   .benefit-box h4 { margin: 0 0 4px; color: var(--primary); font-size: 16px; font-weight: 800; white-space: nowrap; }
-  .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .benefit-box p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; text-wrap: pretty; }
 
   /* MARKEN-BANNER */
   .brands-box { background: #fff; border-radius: 20px; padding: 26px 20px; border: 1px solid #eae5d9; text-align: center; margin-top: 30px; }
@@ -608,7 +467,7 @@
   .brands-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; font-weight: 700; color: #475569; font-size: 13px; }
   .brands-list span { background: #fdfbf7; padding: 6px 14px; border-radius: 999px; border: 1px solid #e6dfcf; white-space: nowrap; }
 
-  /* ACCORDION (21 PUNKTE CHECK) – Klammern immer sauber auf neuer Zeile */
+  /* ACCORDION (21 PUNKTE CHECK) */
   .accordion-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
   .accordion-item { background: #fff; border-radius: 16px; border: 1px solid #eae5d9; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
   .accordion-item summary { padding: 15px 18px; font-weight: 800; font-size: 15.5px; color: var(--primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #fff; transition: background 0.2s; }
@@ -626,7 +485,7 @@
   /* PREIS- & KONDITIONEN-BOX */
   .info-highlight-box { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; border-radius: 28px; padding: 40px; border: 2px solid var(--gold); display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
   .info-highlight-box h3 { font-size: clamp(18px, 4.8vw, 28px); margin: 14px 0 12px; color: #fff; letter-spacing: -0.4px; white-space: nowrap; }
-  .info-highlight-box p { color: #dbe4ff; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+  .info-highlight-box p { color: #dbe4ff; font-size: 15px; line-height: 1.7; margin-bottom: 24px; text-wrap: pretty; }
   .price-tag-card { background: #fff; color: var(--text-dark); border-radius: 22px; padding: 28px 22px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 2px solid var(--gold); }
   .price-tag-card h4 { margin: 0 0 5px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--primary); font-weight: 800; }
   .price-tag-val { font-size: 46px; font-weight: 900; color: var(--primary); margin: 5px 0 15px; white-space: nowrap; line-height: 1.1; }
@@ -653,16 +512,14 @@
   .photo-strip-text { font-size: 13.5px; line-height: 1.4; }
   .photo-strip-text b { color: var(--gold-light); display: block; font-size: 14.5px; }
 
-  /* KONTAKT- & TERMIN-FORMULAR + MEHRFACH-CHIPS */
+  /* KONTAKT- & TERMIN-FORMULAR */
   .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 15px; }
   .form-group label { display: block; font-weight: 800; font-size: 13.5px; margin-bottom: 6px; color: var(--primary); line-height: 1.3; }
   .form-control { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1.5px solid #d1d5db; font: inherit; background: #fdfbf7; transition: border-color 0.2s; }
   .form-control:focus { outline: none; border-color: var(--gold); background: #fff; }
-
   .hsn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  /* Wunschzeit- & Schnellauswahl-Chips im Formular */
   .slot-chips, .service-quick-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .slot-chip, .srv-chip {
     background: #fdfbf7;
@@ -688,10 +545,9 @@
   .chip-reset-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; color: var(--text-muted); }
   .chip-reset-btn { background: none; border: 0; color: var(--primary); font-weight: 800; font-size: 11px; text-decoration: underline; cursor: pointer; padding: 2px 4px; }
 
-  /* Hover-Effekte NUR auf echten Maus-Geräten */
   @media (hover: hover) and (pointer: fine) {
     .brand:hover img { transform: scale(1.05); }
-    .logo-card:hover { transform: translateY(-3px); }
+    .logo-card:hover { transform: translateY(-2px); }
     .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
     .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
@@ -700,7 +556,6 @@
     .slot-chip:not(.active):hover, .srv-chip:not(.active):hover { border-color: var(--gold); background: #fff; }
   }
 
-  /* Fahrzeugschein-Tipp-Box */
   .fzs-tip { background: #fdfbf7; border: 1.5px dashed var(--gold); border-radius: 12px; padding: 10px 12px; font-size: 12px; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; line-height: 1.4; }
   
   .info-block { display: flex; flex-direction: column; gap: 18px; justify-content: center; background: #f7f3e9; padding: 26px 22px; border-radius: 20px; border-left: 5px solid var(--gold); }
@@ -723,15 +578,21 @@
   .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0; }
   .footer-contact .phone { color: #fff; font-size: 19px; font-weight: 900; white-space: nowrap; }
 
-  /* IMPRESSUM & DATENSCHUTZ IM FOOTER */
   .footer-legal-links { display: flex; justify-content: center; gap: 12px; margin-top: 12px; font-size: 12px; }
   .footer-legal-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .footer-legal-box { max-width: 520px; margin: 12px auto 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 14px 16px; text-align: left; font-size: 12.5px; color: #dbe4ff; line-height: 1.65; display: none; }
   .footer-legal-box.show { display: block; animation: fadeIn 0.2s ease; }
   .legal-row { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+  /* Zwischenbreite Desktop (1024px - 1220px): Buttons oben etwas kompakter, damit das Menü garantiert 100% einzeilig bleibt */
+  @media(min-width: 1024px) and (max-width: 1220px) {
+    nav a { font-size: 12px; padding: 5px 7px; }
+    .contact-buttons .label { display: none; }
+    .contact-buttons .wa-btn, .contact-buttons .call-btn, .contact-buttons .mail-btn { width: 36px; height: 36px; padding: 0; border-radius: 50%; justify-content: center; }
+  }
+
   /* ===== MOBILE & TABLET OPTIMIERUNGEN ===== */
-  @media(max-width: 1080px) {
+  @media(max-width: 1023px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
     .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: repeat(2, 1fr); }
@@ -767,7 +628,6 @@
     .status-pill, .live-widget { width: 100%; align-items: center; text-align: center; padding: 5px 6px; font-size: 10.5px; }
     .status-sub, .widget-sub-small { padding-left: 0; font-size: 8.5px; white-space: nowrap; }
 
-    /* Popups auf Mobile sauber ausrichten */
     #statusPopup { left: 0; right: auto; }
     #weatherPopup { right: 0; left: auto; }
 
@@ -778,13 +638,12 @@
     
     .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: 1fr; }
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .advisor-options { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .advisor-options, .quick-sym-btns { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
-    /* 6 Warnleuchten im 3x2 Raster (3 oben, 3 unten) auf dem Smartphone */
     .dash-lights { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .slot-chips { grid-template-columns: 1fr; gap: 6px; }
     .service-quick-chips { grid-template-columns: 1fr 1fr; gap: 6px; }
-    .photo-strip .wa-btn { width: 100%; justify-content: center; }
+    .photo-strip .wa-btn, .share-bar .wa-btn { width: 100%; justify-content: center; }
     .wrap { padding: 36px 14px; }
     .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box, .fzs-helper-box { padding: 20px 15px; }
     .info-block { padding: 18px 14px; }
@@ -799,7 +658,7 @@
 </head>
 <body>
 
-<!-- ===== EINGANGSANIMATION (SCHALTET SICH NACH 1,95 SEKUNDEN PER JS + CSS AUTOMATISCH KOMPLETT AB) ===== -->
+<!-- ===== EINGANGSANIMATION ===== -->
 <div class="intro-splash" id="introSplash" onclick="hideIntroSplash()">
   <div class="intro-stage">
     <div class="intro-alerts">
@@ -807,7 +666,6 @@
       <span class="warn-lamp warn-engine">⚠️ MOTOR</span>
       <span class="warn-lamp warn-service">🔧 SERVICE</span>
     </div>
-
     <div class="intro-car-scene">
       <svg class="logo-style-car" viewBox="0 0 240 90" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 54 C42 36, 75 18, 128 18 C168 18, 196 32, 222 46" stroke="#d4af37" stroke-width="4" stroke-linecap="round"/>
@@ -820,7 +678,6 @@
         <circle cx="176" cy="64" r="5" fill="#ffffff"/>
       </svg>
     </div>
-
     <div class="intro-tools-layer">
       <svg class="tool-drop" viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 3 C18 3, 32 19, 32 28 C32 35.7, 25.7 40, 18 40 C10.3 40, 4 35.7, 4 28 C4 19, 18 3, 18 3 Z" fill="#d4af37" stroke="#fff" stroke-width="2"/>
@@ -830,17 +687,15 @@
         <path d="M36 6 C31 6, 27 9, 26 14 L10 30 C7 33, 7 38, 10 41 C13 44, 18 44, 21 41 L37 25 C42 24, 45 20, 45 15 C45 13, 44 12, 43 12 L38 17 L34 13 L39 8 C39 7, 37 6, 36 6 Z" fill="#f5d67a" stroke="#d4af37" stroke-width="2.2" stroke-linejoin="round"/>
       </svg>
     </div>
-
     <div class="intro-final-logo">
       <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
     </div>
-
     <div class="intro-road"></div>
   </div>
   <div class="intro-caption">A&BS AUTOPROFIS • MEISTERQUALITÄT IN MARIENDORF</div>
 </div>
 
-<!-- TOP BANNER (Wechselt ab 01.12.2026 vollautomatisch den Text) -->
+<!-- TOP BANNER -->
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
   <span class="aufbau-line2" id="topBannerOfferLine">Eröffnungsangebot <span class="nw">69 €</span> gültig bis <span class="nw">01.12.2026</span></span>
@@ -856,14 +711,13 @@
 
 <header>
   <div class="header-inner">
-    <!-- KLEINES LOGO & FIRMENNAME (Klick öffnet kompakten Qualitätsspruch) -->
+    <!-- KLEINES LOGO & FIRMENNAME -->
     <div class="brand" onclick="toggleLogoBubble(event)" title="Klicken für unser Qualitätsversprechen">
       <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
       <div class="brand-text">
         <strong>A&BS AUTOPROFIS</strong>
         <span>Kfz-Service Mariendorf</span>
       </div>
-      <!-- Animierte Logo-Sprechblase: Jeder Satz exakt auf einer eigenen Zeile -->
       <div class="logo-speech-bubble" id="logoBubble">
         <span class="bubble-title">✨ Unser Qualitätsversprechen:</span>
         <span class="bubble-line">✔ Geprüfte Meisterqualität für alle Marken.</span>
@@ -872,6 +726,7 @@
       </div>
     </div>
     
+    <!-- DESKTOP-MENÜ: GARANTIERT EINZEILIG -->
     <nav>
       <a href="#leistungen">Leistungen</a>
       <a href="#news">Vorteile</a>
@@ -882,7 +737,6 @@
 
     <div class="header-right">
       <div class="widgets-bar">
-        <!-- BUTTON 1: Status & Öffnungszeiten (Mo-Fr 9-17, Sa 10-14) -->
         <div class="header-widget-group">
           <div class="status-pill" onclick="togglePopup('statusPopup', event)" title="Klicken für Countdown-Details">
             <div class="status-main">
@@ -899,22 +753,21 @@
           </div>
         </div>
 
-        <!-- BUTTON 2: Wetter, Zeit ohne Sekunden & Datum -->
         <div class="header-widget-group">
           <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
             <span id="headerWeatherMini" style="font-weight:700;">🌤️ Berlin 12°C</span>
-            <div class="widget-sub-small" id="headerDateTimeMini">07:22 Uhr | 18.11.2026</div>
+            <div class="widget-sub-small" id="headerDateTimeMini">07:45 Uhr | 18.11.2026</div>
           </div>
           <div class="widget-popup" id="weatherPopup">
             <b>📍 Berlin-Mariendorf</b>
             <div id="popupWeather" style="font-weight:700;">🌤️ Wetter: 12°C, Heiter</div>
-            <div id="popupTime" style="color:var(--text-muted);">⏰ 07:22:00 Uhr</div>
+            <div id="popupTime" style="color:var(--text-muted);">⏰ 07:45:00 Uhr</div>
             <div id="popupDate" style="color:var(--text-muted);">📅 Mi., 18.11.2026</div>
           </div>
         </div>
       </div>
 
-      <!-- KONTAKT-BUTTONS IM HEADER: WHATSAPP + TELEFON + E-MAIL-UMSCHLAG -->
+      <!-- KONTAKT-BUTTONS IM HEADER: WHATSAPP + TELEFON + E-MAIL -->
       <div class="contact-buttons">
         <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp schreiben">
           <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -971,21 +824,40 @@
       </div>
     </div>
     
-    <!-- INTERAKTIVES GROSSES FIRMENLOGO MIT WERKSTATT-STECKBRIEF BEIM ANKLICKEN -->
-    <div class="logo-card" onclick="toggleHeroLogoInfo(event)" title="Tippen für Werkstatt-Infos">
-      <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Werkstatt">
-      <h3>Kfz-Service Mariendorf</h3>
-      <p style="font-size:14px;color:#555;margin:0;">Meisterbetrieb für alle Fahrzeugmarken</p>
-      <div class="logo-card-hint" id="logoCardHint">👆 Auf das Logo tippen für Betriebs-Infos</div>
+    <!-- ===== NEU: GROSSES FIRMENLOGO SWITCHT IN-PLACE ZUM STECKBRIEF & NACH 5 SEK. AUTOMATISCH ZURÜCK ===== -->
+    <div class="logo-card" id="heroLogoCard" onclick="toggleHeroLogoSwitch(event)" title="Tippen zum Umschalten">
+      <!-- Vorderseite: Großes Logo -->
+      <div class="logo-face-front">
+        <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Werkstatt">
+        <h3>Kfz-Service Mariendorf</h3>
+        <p style="font-size:14px;color:#555;margin:0;">Meisterbetrieb für alle Fahrzeugmarken</p>
+        <div class="logo-card-hint">🔄 Auf das Logo tippen für Kurz-Infos</div>
+      </div>
 
-      <div class="hero-logo-details" id="heroLogoDetails">
-        <b class="title">🛠️ A&BS AUTOPROFIS – Steckbrief</b>
+      <!-- Rückseite: Kompakte Meister-Infos (exakt an derselben Stelle ohne Aufklappen nach unten) -->
+      <div class="logo-face-back">
+        <div class="hero-logo-back-title">🛠️ A&BS AUTOPROFIS – Steckbrief</div>
         <ul class="hero-logo-list">
-          <li><b>Meisterbetrieb:</b> Fachgerechte Wartung & Reparatur nach Herstellervorgaben für alle Marken.</li>
-          <li><b>Kernleistungen:</b> Ölservice, Bremsen, Fahrwerk, Reifen, Inspektion & kostenlose OBD-Diagnose.</li>
-          <li><b>Fairness-Garantie:</b> Klare Absprache vorab – keine Reparatur ohne Ihre Zustimmung.</li>
-          <li><b>Standort & Zeiten:</b> <span class="nw">Mariendorfer Damm 49</span> (<span class="nw">Mo–Fr 09–17 Uhr</span>, <span class="nw">Sa 10–14 Uhr</span>).</li>
+          <li>
+            <b>✔ Geprüfte Meisterqualität</b>
+            Wartung &amp; Reparatur exakt nach Herstellervorgaben für alle Automarken.
+          </li>
+          <li>
+            <b>✔ Unsere Schwerpunkte</b>
+            Ölservice, Bremsen, Fahrwerk, Reifen, Inspektion &amp; gratis OBD-Diagnose.
+          </li>
+          <li>
+            <b>✔ 100% Fairness-Garantie</b>
+            Klare Absprache vorab – keine Arbeit ohne Ihre Zustimmung.
+          </li>
+          <li>
+            <b>✔ Standort &amp; Öffnungszeiten</b>
+            <span class="nw">Mariendorfer Damm 49, 12109 Berlin</span>
+            <span class="sub-bracket" style="color:var(--primary);"><span class="nw">(Mo–Fr 09–17 Uhr</span> • <span class="nw">Sa 10–14 Uhr)</span></span>
+          </li>
         </ul>
+        <div class="switch-timer-wrap"><div class="switch-timer-bar" id="logoTimerBar"></div></div>
+        <div class="switch-back-note">👆 Erneut tippen oder automatischer Wechsel in <span class="nw">5 Sek.</span></div>
       </div>
     </div>
   </div>
@@ -1039,7 +911,7 @@
         <li>Beleuchtung & Scheibenwischersystem</li>
         <li>
           Prüfung aller Flüssigkeiten
-          <span class="sub-bracket">(Frostschutz, Bremsflüssigkeit etc.)</span>
+          <span class="sub-bracket"><span class="nw">(Frostschutz, Bremsflüssigkeit etc.)</span></span>
         </li>
       </ul>
     </div>
@@ -1050,7 +922,7 @@
       <ul>
         <li>
           <b>Fehlerspeicher auslesen</b>
-          <span class="sub-bracket">(<span class="nw">100% gratis</span> im Servicepaket)</span>
+          <span class="sub-bracket"><span class="nw">(100% gratis im Servicepaket)</span></span>
         </li>
         <li>Analyse von Motorkontrollleuchte & Steuergeräten</li>
         <li>Zurücksetzen der Service-Intervalle</li>
@@ -1077,15 +949,29 @@
     <div class="quick-oil-top">
       <div class="quick-oil-label">🛡️ Wann ist Ihre nächste HU / TÜV fällig?</div>
       <div class="quick-oil-btns">
-        <button type="button" class="q-hu-btn" onclick="checkHuStatus('soon', this)">In 1–2 Monaten</button>
-        <button type="button" class="q-hu-btn" onclick="checkHuStatus('overdue', this)">Schon abgelaufen</button>
-        <button type="button" class="q-hu-btn" onclick="checkHuStatus('later', this)">Noch &gt; 6 Monate</button>
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('soon', this)">In 1–2 Mon.</button>
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('overdue', this)">Abgelaufen</button>
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('later', this)">&gt; 6 Monate</button>
       </div>
     </div>
     <div id="quickHuAnswer" class="quick-oil-answer"></div>
   </div>
 
-  <!-- 3 Werkstatt-Vorteile (Garantiert einzeilige Überschriften) -->
+  <!-- ===== NEUIGKEIT 1: KOMPAKTER GERÄUSCHE- & SYMPTOM-SCHNELLCHECK ===== -->
+  <div class="quick-oil-bar" style="margin-top: 12px;">
+    <div class="quick-oil-top">
+      <div class="quick-oil-label">🔊 Macht Ihr Auto ungewöhnliche Geräusche?</div>
+      <div class="quick-sym-btns">
+        <button type="button" class="q-sym-btn" onclick="checkSymptom('squeak', this)">Quietschen</button>
+        <button type="button" class="q-sym-btn" onclick="checkSymptom('knock', this)">Poltern / Klopfen</button>
+        <button type="button" class="q-sym-btn" onclick="checkSymptom('jerk', this)">Ruckeln</button>
+        <button type="button" class="q-sym-btn" onclick="checkSymptom('pull', this)">Zieht zur Seite</button>
+      </div>
+    </div>
+    <div id="quickSymAnswer" class="quick-oil-answer"></div>
+  </div>
+
+  <!-- 3 Werkstatt-Vorteile -->
   <div id="news" style="margin-top: 50px;">
     <h2 class="section-title">Aktuelles & Werkstatt-Vorteile</h2>
     <p class="section-sub">Was Sie bei A&BS AUTOPROFIS als Kunde erwartet:</p>
@@ -1150,7 +1036,7 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) -->
+  <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE -->
   <div class="fzs-helper-box">
     <div>
       <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL & ÖL</span>
@@ -1169,18 +1055,18 @@
         <div class="fzs-field-card">
           <span class="fzs-field-lbl">Feld (2.1) Hersteller-Nr.</span>
           <span class="fzs-field-val">0603</span>
-          <span class="fzs-field-desc">4 Ziffern (z.B. VW / Audi / BMW)</span>
+          <span class="fzs-field-desc">4 Ziffern <span class="nw">(z.B. VW / BMW)</span></span>
         </div>
         <div class="fzs-field-card">
           <span class="fzs-field-lbl">Feld (2.2) Typ-Schlüssel</span>
           <span class="fzs-field-val">BQS</span>
-          <span class="fzs-field-desc">Erste 3 Buchstaben / Zahlen</span>
+          <span class="fzs-field-desc">Erste 3 Zeichen</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 6 COCKPIT-WARNLEUCHTEN (HANDY: 3x2 | DESKTOP: 6x1 | MIT ZWEITKLICK ZUM SCHLIESSEN) -->
+  <!-- 6 COCKPIT-WARNLEUCHTEN (HANDY: 3x2 | DESKTOP: 6x1) -->
   <div class="dash-box">
     <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
     <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
@@ -1248,7 +1134,7 @@
     </div>
   </div>
 
-  <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF -->
+  <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF (OHNE ABGETRENNTE KLAMMERN!) -->
   <div style="margin-top: 50px;">
     <h2 class="section-title">Ihr Komfort vor Ort in Mariendorf</h2>
     <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am <span class="nw">Mariendorfer Damm 49</span> ist beides bequem möglich:</p>
@@ -1261,7 +1147,7 @@
       <div class="comfort-card">
         <span class="comfort-badge">🚇 Perfekte ÖPNV-Anbindung</span>
         <h4>U6 & Bus direkt vor Ort</h4>
-        <p>Auto abgeben und entspannt weiter: Buslinien (<span class="nw">M76, X76, 179</span>) sowie die <span class="nw">U6 Alt-Mariendorf</span> sind schnell erreichbar.</p>
+        <p>Auto abgeben und entspannt weiter: Die Buslinien <span class="nw">(M76, X76, 179)</span> sowie die <span class="nw">U6 Alt-Mariendorf</span> sind schnell erreichbar.</p>
       </div>
       <div class="comfort-card">
         <span class="comfort-badge">🅿️ Direkte Annahme</span>
@@ -1274,7 +1160,7 @@
   <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
   <div id="berater" class="advisor-box" style="margin-top: 50px;">
     <h3>Was fehlt Ihrem Fahrzeug gerade?</h3>
-    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen (erneuter Klick schließt die Box):</p>
+    <p style="margin:0; color:var(--text-muted); font-size:14px;">Klicken Sie auf Ihr Anliegen <span class="nw">(erneuter Klick schließt die Box):</span></p>
     
     <div class="advisor-options">
       <div class="advisor-chip" onclick="showAdvisor('oil', this)">🛢️ Ölwechsel fällig</div>
@@ -1331,7 +1217,7 @@
   </div>
 </section>
 
-<!-- INTERAKTIVER 21-PUNKTE CHECK (AUFKLAPPBAR – Klammern sauber auf neuer Zeile) -->
+<!-- INTERAKTIVER 21-PUNKTE CHECK (KLAMMERN IMMER KOMPLETT AUF EIGENER ZEILE) -->
 <section id="check21" class="wrap" style="padding-top: 0;">
   <h2 class="section-title">Der 21-Punkte-Check im Detail</h2>
   <p class="section-sub">Klicken Sie auf die Bereiche, um zu sehen, welche Prüfungen beim kostenlosen Sicherheits-Check durchgeführt werden:</p>
@@ -1341,7 +1227,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">1. Bremsen & Fahrwerk</span>
-          <span class="sub-bracket">(Prüfung auf Herz und Nieren)</span>
+          <span class="sub-bracket"><span class="nw">(Prüfung auf Herz und Nieren)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1358,7 +1244,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">2. Reifen, Räder & Unterboden</span>
-          <span class="sub-bracket">(Profil, Luftdruck & Dichtigkeit)</span>
+          <span class="sub-bracket"><span class="nw">(Profil, Luftdruck & Dichtigkeit)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1368,7 +1254,7 @@
           <li>
             <div>
               Reifen-Sichtprüfung
-              <span class="sub-bracket">(auf Beschädigungen & Risse)</span>
+              <span class="sub-bracket"><span class="nw">(auf Beschädigungen & Risse)</span></span>
             </div>
           </li>
           <li><div>Unterboden-Sichtprüfung auf Dichtigkeit</div></li>
@@ -1380,7 +1266,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">3. Flüssigkeiten & Filter</span>
-          <span class="sub-bracket">(Wichtige Betriebsstoffe)</span>
+          <span class="sub-bracket"><span class="nw">(Wichtige Betriebsstoffe)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1397,7 +1283,7 @@
       <summary>
         <div class="acc-title">
           <span class="acc-main">4. Elektrik, Sicht & Elektronik</span>
-          <span class="sub-bracket">(Sicherheit im Alltag)</span>
+          <span class="sub-bracket"><span class="nw">(Sicherheit im Alltag)</span></span>
         </div>
       </summary>
       <div class="accordion-content">
@@ -1405,7 +1291,7 @@
           <li>
             <div>
               Beleuchtung außen
-              <span class="sub-bracket">(Scheinwerfer, Rücklichter & Blinker)</span>
+              <span class="sub-bracket"><span class="nw">(Scheinwerfer, Rücklichter & Blinker)</span></span>
             </div>
           </li>
           <li><div>Innenbeleuchtung & Warnleuchten</div></li>
@@ -1414,7 +1300,7 @@
           <li>
             <div>
               <b>Fehlerspeicher auslesen</b>
-              <span class="sub-bracket">(kompletter Steuergeräte-Check)</span>
+              <span class="sub-bracket"><span class="nw">(kompletter Steuergeräte-Check)</span></span>
             </div>
           </li>
         </ul>
@@ -1423,13 +1309,13 @@
   </div>
 </section>
 
-<!-- PREIS- & KONDITIONEN-BOX (Schaltet ab 01.12.2026 automatisch auf "Tolle Preise" um) -->
+<!-- PREIS- & KONDITIONEN-BOX -->
 <section id="preise" class="wrap" style="padding-top: 0;">
   <div class="info-highlight-box">
     <div>
       <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ & KONDITIONEN</span>
       <h3>Faire Preise ohne versteckte Kosten</h3>
-      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel (gültig bis <span class="nw">01.12.2026</span>) geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
+      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel <span class="nw">(gültig bis 01.12.2026)</span> geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
       <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Preis%20anfragen." target="_blank" rel="noopener">Jetzt Preis per WhatsApp anfragen</a>
     </div>
     
@@ -1442,7 +1328,7 @@
   </div>
 </section>
 
-<!-- KUNDENBEWERTUNGEN (Alle 5 kompakt untereinander) -->
+<!-- KUNDENBEWERTUNGEN + NEUIGKEIT 2: 1-KLICK WEITEREMPFEHLUNG -->
 <section id="bewertungen" class="wrap" style="background:#f0ebd9; border-radius: 28px; margin-bottom: 40px;">
   <h2 class="section-title">Das sagen unsere Kunden</h2>
   <p class="section-sub">Qualität, Schnelligkeit und Fairness sprechen sich in ganz Berlin herum.</p>
@@ -1478,13 +1364,19 @@
       <div class="review-author">– Katrin M. aus Marzahn</div>
     </div>
   </div>
+
+  <!-- NEUIGKEIT 2: WERKSTATT AN FREUNDE WEITEREMPFEHLEN -->
+  <div class="share-bar">
+    <span>🤝 Zufrieden mit unserem Service? Empfehlen Sie uns gerne weiter:</span>
+    <a class="wa-btn" href="https://wa.me/?text=Mein%20Tipp%20f%C3%BCr%20dein%20Auto%20in%20Berlin%3A%20A%26BS%20AUTOPROFIS%20am%20Mariendorfer%20Damm%2049%20(12109%20Berlin)%20%E2%80%93%20super%20ehrlicher%20Kfz-Meisterbetrieb%21%20Infos%3A%20https%3A%2F%2Fwww.absprofis.de" target="_blank" rel="noopener">📲 Per WhatsApp an Freunde teilen</a>
+  </div>
 </section>
 
 <!-- FAQ SECTION -->
 <section id="faq" class="wrap" style="padding-top: 0;">
   <h2 class="section-title">
     Häufig gestellte Fragen
-    <span class="sub-bracket" style="font-size:14px;">(FAQ – Schnelle Antworten)</span>
+    <span class="sub-bracket" style="font-size:14px;"><span class="nw">(FAQ – Schnelle Antworten)</span></span>
   </h2>
   <p class="section-sub" style="margin-top:8px;">Alles, was Sie rund um unseren Service wissen müssen:</p>
 
@@ -1496,7 +1388,7 @@
         </div>
       </summary>
       <div class="accordion-content">
-        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel <span class="nw">ab 69 €</span> (inkl. Ölfilter, <span class="nw">21-Punkte-Check</span> & Fehlerspeicher auslesen) ist bis einschließlich <b class="nw">01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon, E-Mail oder WhatsApp.</p>
+        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel <span class="nw">ab 69 €</span> <span class="nw">(inkl. Ölfilter, 21-Punkte-Check &amp; Fehlerspeicher)</span> ist bis einschließlich <b class="nw">01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon, E-Mail oder WhatsApp.</p>
       </div>
     </details>
 
@@ -1529,7 +1421,6 @@
   <h2 class="section-title">Kontakt & Termin sichern</h2>
   <p class="section-sub">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
 
-  <!-- SCHLANKE FOTO-SCHNELLDIAGNOSE-LEISTE -->
   <div class="photo-strip">
     <div class="photo-strip-text">
       <b>📸 Schnell-Check per Foto gewünscht?</b>
@@ -1547,14 +1438,14 @@
       <div class="form-group">
         <label>
           Telefonnummer *
-          <span class="sub-bracket">(für Rückruf & Terminbestätigung)</span>
+          <span class="sub-bracket"><span class="nw">(für Rückruf &amp; Terminbestätigung)</span></span>
         </label>
         <input type="tel" id="waPhone" class="form-control" placeholder="0176 / 12345678" required>
       </div>
       <div class="form-group">
         <label>
           Fahrzeugmodell & Kennzeichen
-          <span class="sub-bracket">(optional)</span>
+          <span class="sub-bracket"><span class="nw">(optional)</span></span>
         </label>
         <input type="text" id="waCar" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
       </div>
@@ -1562,7 +1453,7 @@
       <div class="form-group">
         <label>
           Schlüsselnummern aus Fahrzeugschein
-          <span class="sub-bracket">(optional – Feld 2.1 und 2.2 für genaue Teile-Zuordnung)</span>
+          <span class="sub-bracket"><span class="nw">(optional – Feld 2.1 und 2.2)</span></span>
         </label>
         <div class="hsn-grid">
           <input type="text" id="waHsn" class="form-control" maxlength="4" placeholder="2.1 (z.B. 0603)">
@@ -1573,7 +1464,7 @@
       <div class="form-group">
         <label>
           Bevorzugte Tageszeit
-          <span class="sub-bracket">(1x tippen = wählen • 2x tippen = abwählen)</span>
+          <span class="sub-bracket"><span class="nw">(1x tippen = wählen • 2x tippen = abwählen)</span></span>
         </label>
         <input type="hidden" id="waSlot" value="Flexibel">
         <div class="slot-chips">
@@ -1583,11 +1474,10 @@
         </div>
       </div>
 
-      <!-- 1-KLICK LEISTUNGSAUSWAHL (Sauberes An- und Abwählen einzelner Buttons) -->
       <div class="form-group">
         <label>
           Wunschleistung schnell antippen
-          <span class="sub-bracket">(mehrere möglich – erneutes Tippen wählt wieder ab)</span>
+          <span class="sub-bracket"><span class="nw">(mehrere möglich – erneutes Tippen wählt ab)</span></span>
         </label>
         <div class="service-quick-chips">
           <div class="srv-chip" data-service="Ölwechsel inkl. Filter" onclick="toggleQuickService(this)">🛢️ Ölwechsel</div>
@@ -1672,7 +1562,6 @@
   <p style="font-size:12px;color:#8fa3d4;margin-top:14px;white-space:nowrap;">Mo – Fr: 09:00 – 17:00 Uhr • Sa: 10:00 – 14:00 Uhr</p>
   <p id="footerOfferNote" style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot <span class="nw">ab 69 €</span> gültig bis <span class="nw">01.12.2026</span></p>
 
-  <!-- IMPRESSUM & DATENSCHUTZ (JEDE ZEILE SAUBER STRUKTURIERT, KEINE ZERRISSENE TELEFONNUMMER) -->
   <div class="footer-legal-links">
     <button type="button" class="footer-legal-btn" onclick="toggleLegal('impressum')">📄 Impressum</button>
     <button type="button" class="footer-legal-btn" onclick="toggleLegal('datenschutz')">🔒 Datenschutz</button>
@@ -1687,7 +1576,7 @@
   </div>
   <div id="legalDatenschutz" class="footer-legal-box">
     <b style="color:var(--gold-light); display:block; margin-bottom:6px;">Datenschutzhinweis</b>
-    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail (<span class="nw">info@absprofis.de</span>) oder WhatsApp (<span class="nw">0176 72625 377</span>) kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
+    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail <span class="nw">(info@absprofis.de)</span> oder WhatsApp <span class="nw">(0176 72625 377)</span> kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
   </div>
 
   <p style="font-size:12px;color:#8fa3d4;margin-top:12px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
@@ -1788,7 +1677,7 @@
       const sc = Math.floor((diffClose % (1000 * 60)) / 1000);
       
       const openRangeText = (day === 6) ? "10:00 – 14:00 UHR" : "09:00 – 17:00 UHR";
-      countdownToOpenEl.innerHTML = `🟢 Aktuell geöffnet<span class="sub-bracket" style="color:var(--text-muted);">(noch ${hc} Std. ${mc} Min. ${sc} Sek.)</span>`;
+      countdownToOpenEl.innerHTML = `🟢 Aktuell geöffnet<span class="sub-bracket" style="color:var(--text-muted);"><span class="nw">(noch ${hc} Std. ${mc} Min. ${sc} Sek.)</span></span>`;
       heroTitle.innerText = `🟢 WIR HABEN GEÖFFNET (${openRangeText})`;
       heroBox.innerHTML = `<div style="grid-column: span 4; font-weight:900; font-size:14px; color:#25D366; padding: 4px 0; white-space:nowrap;">JETZT VORBEIKOMMEN ODER ANRUFEN!</div>`;
     } else {
@@ -1838,10 +1727,8 @@
       `;
     }
 
-    // Uhrzeit OHNE Sekunden für das Header-Widget, MIT Sekunden für das Popup
     const timeNoSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + " Uhr";
     const timeWithSec = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " Uhr";
-    
     const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const dateStr = now.toLocaleDateString('de-DE', optionsDate);
 
@@ -1853,17 +1740,37 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
-  // Großes Firmenlogo im Hero-Bereich anklicken -> Werkstatt-Steckbrief öffnen/schließen
-  function toggleHeroLogoInfo(event) {
+  // ===== NEU: GROSSES FIRMENLOGO SWITCHT IN-PLACE & NACH 5 SEKUNDEN AUTOMATISCH ZURÜCK =====
+  let heroLogoTimer = null;
+  function toggleHeroLogoSwitch(event) {
     event.stopPropagation();
-    const box = document.getElementById("heroLogoDetails");
-    const hint = document.getElementById("logoCardHint");
-    const isNowOpen = !box.classList.contains("show");
-    box.classList.toggle("show");
-    hint.innerText = isNowOpen ? "🔼 Tippen zum Ausblenden" : "👆 Auf das Logo tippen für Betriebs-Infos";
+    const card = document.getElementById("heroLogoCard");
+    const timerBar = document.getElementById("logoTimerBar");
+    const isSwitched = card.classList.contains("switched");
+
+    if (heroLogoTimer) {
+      clearTimeout(heroLogoTimer);
+      heroLogoTimer = null;
+    }
+
+    if (isSwitched) {
+      card.classList.remove("switched");
+    } else {
+      // Timer-Balken neu starten
+      if (timerBar) {
+        timerBar.style.animation = 'none';
+        void timerBar.offsetWidth;
+        timerBar.style.animation = '';
+      }
+      card.classList.add("switched");
+      heroLogoTimer = setTimeout(() => {
+        card.classList.remove("switched");
+        heroLogoTimer = null;
+      }, 5000);
+    }
   }
 
-  // 1-Zeilen Ölwechsel-Schnelltest (Kein getrenntes "69- / €-Aktionspaket" mehr)
+  // 1-Zeilen Ölwechsel-Schnelltest
   function checkOilInterval(state, btnEl) {
     const ans = document.getElementById('quickOilAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -1877,8 +1784,8 @@
 
     btnEl.classList.add('active');
     const offerNote = isOfferStillActive()
-      ? `unser <b class="nw">69 € Aktionspaket</b><span class="sub-bracket" style="color:var(--primary);">(inkl. Ölfilter &amp; 21-Punkte-Check)</span>`
-      : `unser <b>Ölwechsel-Paket zum Top-Preis</b><span class="sub-bracket" style="color:var(--primary);">(inkl. Ölfilter &amp; 21-Punkte-Check)</span>`;
+      ? `unser <b class="nw">69 € Aktionspaket</b><span class="sub-bracket" style="color:var(--primary);"><span class="nw">(inkl. Ölfilter &amp; 21-Punkte-Check)</span></span>`
+      : `unser <b>Ölwechsel-Paket zum Top-Preis</b><span class="sub-bracket" style="color:var(--primary);"><span class="nw">(inkl. Ölfilter &amp; 21-Punkte-Check)</span></span>`;
 
     if (state === 'ok') {
       ans.innerHTML = `🟢 <b>Alles im grünen Bereich:</b> Unter <span class="nw">15.000 km</span> reicht meist ein kurzer Gratis-Flüssigkeits-Check vor Ort.`;
@@ -1913,6 +1820,31 @@
     ans.classList.add('show');
   }
 
+  // NEUIGKEIT 1: Geräusche- & Symptom-Schnellcheck
+  function checkSymptom(type, btnEl) {
+    const ans = document.getElementById('quickSymAnswer');
+    const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
+    document.querySelectorAll('.q-sym-btn').forEach(b => b.classList.remove('active'));
+
+    if (wasActive) {
+      ans.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+
+    btnEl.classList.add('active');
+    if (type === 'squeak') {
+      ans.innerHTML = `🛑 <b>Meister-Diagnose Quietschen:</b> Häufig sind Bremsbeläge oder Keilriemen die Ursache. Wir prüfen Ihre Bremsanlage vor Ort kostenlos auf Sicht!`;
+    } else if (type === 'knock') {
+      ans.innerHTML = `🔧 <b>Meister-Diagnose Poltern:</b> Deutet meist auf Koppelstangen, Querlenker oder Stoßdämpfer hin. Auf unserer Hebebühne sehen wir das in <span class="nw">5 Minuten</span>.`;
+    } else if (type === 'jerk') {
+      ans.innerHTML = `💻 <b>Meister-Diagnose Ruckeln:</b> Oft Zündkerzen, Zündspule oder Luftmassenmesser – wir lesen dazu Ihren Fehlerspeicher <b class="nw">100% gratis</b> aus.`;
+    } else {
+      ans.innerHTML = `🛞 <b>Meister-Diagnose Spur / Reifen:</b> Wir kontrollieren sofort Ihren Reifendruck, das Reifenprofil sowie die Achsgeometrie.`;
+    }
+    ans.classList.add('show');
+  }
+
   // Saison-Check Umschalter
   function switchSeason(mode, btnEl) {
     document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
@@ -1925,7 +1857,6 @@
     }
   }
 
-  // Sprung zum HSN-Feld im Formular
   function focusHsnInput() {
     setTimeout(() => {
       const el = document.getElementById('waHsn');
@@ -1933,7 +1864,7 @@
     }, 350);
   }
 
-  // 6 Cockpit-Warnleuchten (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
+  // 6 Cockpit-Warnleuchten
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -2000,7 +1931,6 @@
     document.getElementById('dashInfoBox').classList.remove('show');
   }
 
-  // Wunschzeit-Chip im Kontaktformular auswählen (mit sauberem Zweitklick zum Abwählen)
   function selectSlot(slotName, chipEl) {
     const input = document.getElementById('waSlot');
     const wasActive = chipEl.classList.contains('active');
@@ -2014,7 +1944,6 @@
     }
   }
 
-  // 1-Klick Leistungsauswahl-Chips (Einzeln an- und abwählbar ohne Hängenbleiben)
   function toggleQuickService(chipEl) {
     const isNowActive = !chipEl.classList.contains('active');
     if (isNowActive) {
@@ -2049,7 +1978,6 @@
     }
   }
 
-  // Impressum / Datenschutz im Footer ein- und ausblenden
   function toggleLegal(type) {
     const imp = document.getElementById('legalImpressum');
     const dat = document.getElementById('legalDatenschutz');
@@ -2062,7 +1990,6 @@
     }
   }
 
-  // Digitale Visitenkarte (.vcf) herunterladen
   function downloadVCard() {
     const vcard = [
       "BEGIN:VCARD",
@@ -2088,7 +2015,6 @@
     URL.revokeObjectURL(url);
   }
 
-  // Adresse in Zwischenablage kopieren
   function copyWorkshopAddress() {
     const addr = "Mariendorfer Damm 49, 12109 Berlin";
     const btn = document.getElementById("copyAddrBtn");
@@ -2099,7 +2025,6 @@
     setTimeout(() => { btn.innerText = "📋 Adresse kopieren"; }, 2000);
   }
 
-  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung
   function sendToWhatsApp(event) {
     event.preventDefault();
     
@@ -2127,7 +2052,6 @@
     window.open(whatsappUrl, '_blank');
   }
 
-  // Interaktiver Service-Berater Logik (1. Klick öffnet, 2. Klick auf denselben Button schließt wieder)
   function showAdvisor(type, element) {
     const wasActive = element.classList.contains('active');
     document.querySelectorAll('.advisor-chip').forEach(chip => chip.classList.remove('active'));
@@ -2145,7 +2069,6 @@
     if(type === 'general') document.getElementById('advisorResultGeneral').classList.add('show');
   }
 
-  // Logo-Sprechblase umschalten
   function toggleLogoBubble(event) {
     event.stopPropagation();
     document.querySelectorAll('.widget-popup').forEach(p => p.classList.remove('active'));
@@ -2153,7 +2076,6 @@
     bubble.classList.toggle("active");
   }
 
-  // Popups umschalten (immer nur eines offen halten)
   function togglePopup(popupId, event) {
     event.stopPropagation();
     const popups = document.querySelectorAll('.widget-popup, .logo-speech-bubble');
@@ -2164,7 +2086,6 @@
     target.classList.toggle('active');
   }
 
-  // Klick außerhalb schließt alle Popups & Sprechblasen
   window.addEventListener("click", function() {
     document.querySelectorAll('.widget-popup, .logo-speech-bubble').forEach(p => p.classList.remove('active'));
   });
