@@ -375,16 +375,75 @@
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
+  /* ===== PLATZSPARENDE NEUIGKEIT 1: 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK ===== */
+  .quick-oil-bar {
+    background: #fff;
+    border: 1.5px solid var(--gold);
+    border-radius: 16px;
+    padding: 12px 18px;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+  }
+  .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+  .quick-oil-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+  .q-oil-btn {
+    background: #fdfbf7;
+    border: 1px solid #d1d5db;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .q-oil-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 10px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; }
+  .quick-oil-answer.show { display: block; animation: fadeIn 0.2s ease; }
+
   /* 3 Werkstatt-Vorteile – Überschriften garantiert einzeilig */
   .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .news-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 16px rgba(0,0,0,0.03); border-top: 4px solid var(--gold); }
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ===== KORRIGIERT: SAISON- & ALLTAGS-CHECK UMSCHALTER (Kein Überstehen mehr rechts!) ===== */
-  .season-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); overflow: hidden; }
-  .season-tabs { display: grid; grid-template-columns: 1fr 1fr; background: #f0ebd9; padding: 5px; border-radius: 14px; gap: 6px; margin: 14px auto 22px; width: 100%; max-width: 520px; }
-  .season-tab { border: 0; background: transparent; color: var(--primary); font-weight: 800; font-size: clamp(11px, 3.1vw, 13.5px); padding: 10px 8px; border-radius: 10px; cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap; width: 100%; min-width: 0; text-align: center; -webkit-tap-highlight-color: transparent; }
+  /* ===== GARANTIERT IM RAHMEN: SAISON- & ALLTAGS-CHECK UMSCHALTER ===== */
+  .season-box { background: #fff; border-radius: 24px; padding: 28px 22px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); width: 100%; overflow: hidden; }
+  .season-tabs {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    background: #f0ebd9;
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+    margin: 14px auto 20px;
+    width: 100%;
+    max-width: 460px;
+  }
+  .season-tab {
+    border: 0;
+    background: transparent;
+    color: var(--primary);
+    font-weight: 800;
+    font-size: clamp(11px, 3vw, 13.5px);
+    padding: 9px 6px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-tap-highlight-color: transparent;
+  }
   .season-tab.active { background: var(--primary); color: var(--gold-light); box-shadow: 0 4px 12px rgba(7,26,61,0.2); }
   .season-panel { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left; }
   .season-panel.active { display: grid; animation: fadeIn 0.25s ease; }
@@ -392,31 +451,31 @@
   .season-item b { display: block; font-size: 15px; color: var(--primary); margin-bottom: 4px; white-space: nowrap; }
   .season-item p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-  /* ===== NEUIGKEIT 1: INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) ===== */
-  .fzs-helper-box { background: #fff; border-radius: 24px; padding: 30px 24px; border: 1px solid #eae5d9; margin-top: 44px; box-shadow: 0 8px 24px rgba(0,0,0,0.03); display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 26px; align-items: center; }
-  .fzs-visual { background: linear-gradient(135deg, #e8f5e9, #fdfbf7); border: 2px solid #86efac; border-radius: 18px; padding: 18px; position: relative; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #14532d; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7); }
-  .fzs-doc-header { font-size: 11px; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; color: #166534; border-bottom: 1px dashed #86efac; padding-bottom: 6px; margin-bottom: 12px; display: flex; justify-content: space-between; }
-  .fzs-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .fzs-field-card { background: #fff; border: 2px solid var(--gold); border-radius: 12px; padding: 10px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  /* INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) */
+  .fzs-helper-box { background: #fff; border-radius: 24px; padding: 26px 24px; border: 1px solid #eae5d9; margin-top: 40px; box-shadow: 0 8px 24px rgba(0,0,0,0.03); display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: center; }
+  .fzs-visual { background: linear-gradient(135deg, #e8f5e9, #fdfbf7); border: 2px solid #86efac; border-radius: 18px; padding: 16px; position: relative; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #14532d; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7); }
+  .fzs-doc-header { font-size: 11px; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; color: #166534; border-bottom: 1px dashed #86efac; padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
+  .fzs-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fzs-field-card { background: #fff; border: 2px solid var(--gold); border-radius: 12px; padding: 9px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
   .fzs-field-lbl { font-size: 10px; font-weight: 900; color: var(--primary); display: block; }
-  .fzs-field-val { font-size: 18px; font-weight: 900; color: #b45309; letter-spacing: 2px; margin: 2px 0; display: block; }
+  .fzs-field-val { font-size: 17px; font-weight: 900; color: #b45309; letter-spacing: 2px; margin: 2px 0; display: block; }
   .fzs-field-desc { font-size: 10px; color: var(--text-muted); font-family: Inter, sans-serif; font-weight: 600; display: block; }
 
-  /* ===== NEUIGKEIT 2: VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF ===== */
+  /* VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF */
   .comfort-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
   .comfort-card { background: #fff; border-radius: 18px; padding: 22px 20px; border: 1px solid #eae5d9; box-shadow: 0 4px 14px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 8px; }
   .comfort-badge { align-self: flex-start; background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
   .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); white-space: nowrap; }
   .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
-  /* COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK-SCHLIESSEN) */
+  /* ===== 6 COCKPIT-WARNLEUCHTEN (DESKTOP: 6 NEBENEINANDER | HANDY: 3 OBEN, 3 UNTEN) ===== */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
   .dash-box h3 { margin: 0 0 6px; font-size: clamp(17px, 4.5vw, 23px); color: #fff; font-weight: 900; white-space: nowrap; }
   .dash-box p { margin: 0 auto 20px; font-size: 14px; color: #dbe4ff; max-width: 600px; }
-  .dash-lights { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 780px; margin: 0 auto; }
-  .dash-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 8px; color: #fff; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; font: inherit; -webkit-tap-highlight-color: transparent; }
+  .dash-lights { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-width: 900px; margin: 0 auto; }
+  .dash-btn { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 12px 6px; color: #fff; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; font: inherit; min-width: 0; -webkit-tap-highlight-color: transparent; }
   .dash-btn span.ico { font-size: 24px; line-height: 1; }
-  .dash-btn span.lbl { font-size: 12px; font-weight: 800; white-space: nowrap; }
+  .dash-btn span.lbl { font-size: 11.5px; font-weight: 800; white-space: nowrap; }
   .dash-btn.active { background: rgba(212,175,55,0.28); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
   .dash-info { margin-top: 18px; background: #fff; color: var(--primary); border-radius: 16px; padding: 18px; text-align: left; display: none; border-left: 5px solid var(--gold); position: relative; }
   .dash-info.show { display: block; animation: fadeIn 0.25s ease; }
@@ -490,6 +549,23 @@
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
+  /* ===== PLATZSPARENDE NEUIGKEIT 2: SCHLANKE FOTO-DIAGNOSE-LEISTE ===== */
+  .photo-strip {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    color: #fff;
+    border: 1.5px solid var(--gold);
+    border-radius: 18px;
+    padding: 14px 20px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 16px;
+  }
+  .photo-strip-text { font-size: 13.5px; line-height: 1.4; }
+  .photo-strip-text b { color: var(--gold-light); display: block; font-size: 14.5px; }
+
   /* KONTAKT- & TERMIN-FORMULAR + PERFEKT FUNKTIONIERENDE MEHRFACH-CHIPS */
   .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 30px; background: #fff; border-radius: 28px; padding: 36px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
   .form-group { margin-bottom: 15px; }
@@ -499,7 +575,7 @@
 
   .hsn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  /* Wunschzeit- & Schnellauswahl-Chips im Formular (Kein Sticky-Hover-Bug mehr auf dem Handy!) */
+  /* Wunschzeit- & Schnellauswahl-Chips im Formular */
   .slot-chips, .service-quick-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .slot-chip, .srv-chip {
     background: #fdfbf7;
@@ -525,7 +601,7 @@
   .chip-reset-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; color: var(--text-muted); }
   .chip-reset-btn { background: none; border: 0; color: var(--primary); font-weight: 800; font-size: 11px; text-decoration: underline; cursor: pointer; padding: 2px 4px; }
 
-  /* Hover-Effekte NUR auf echten Maus-Geräten, damit Touchscreens beim Abwählen nie hängenbleiben */
+  /* Hover-Effekte NUR auf echten Maus-Geräten */
   @media (hover: hover) and (pointer: fine) {
     .brand:hover img { transform: scale(1.05); }
     .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
@@ -559,11 +635,18 @@
   .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0; }
   .footer-contact .phone { color: #fff; font-size: 19px; font-weight: 900; white-space: nowrap; }
 
+  /* ===== PLATZSPARENDE NEUIGKEIT 3: KOMPAKTES IMPRESSUM & DATENSCHUTZ IM FOOTER ===== */
+  .footer-legal-links { display: flex; justify-content: center; gap: 16px; margin-top: 12px; font-size: 12px; }
+  .footer-legal-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+  .footer-legal-box { max-width: 680px; margin: 12px auto 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.4); border-radius: 14px; padding: 14px 18px; text-align: left; font-size: 12px; color: #dbe4ff; line-height: 1.55; display: none; }
+  .footer-legal-box.show { display: block; animation: fadeIn 0.2s ease; }
+
   /* ===== MOBILE & TABLET OPTIMIERUNGEN ===== */
   @media(max-width: 1080px) {
     nav { display: none; }
     .hero-inner { grid-template-columns: 1fr; gap: 30px; }
     .grid-3, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: repeat(2, 1fr); }
+    .dash-lights { grid-template-columns: repeat(3, 1fr); }
     .usp-inner, .advisor-options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .info-highlight-box, .contact-grid, .fzs-helper-box { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -602,9 +685,11 @@
     .usp-inner { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .advisor-options { grid-template-columns: 1fr 1fr; gap: 8px; }
     .advisor-chip { font-size: 12px; padding: 9px 8px; }
-    .dash-lights { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    /* 6 Warnleuchten im 3x2 Raster (3 oben, 3 unten) auf dem Smartphone */
+    .dash-lights { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
     .slot-chips { grid-template-columns: 1fr; gap: 6px; }
     .service-quick-chips { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .photo-strip .wa-btn { width: 100%; justify-content: center; }
     .wrap { padding: 36px 14px; }
     .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box, .fzs-helper-box { padding: 20px 15px; }
     .info-block { padding: 18px 14px; }
@@ -862,6 +947,17 @@
     </div>
   </div>
 
+  <!-- ===== PLATZSPARENDE NEUIGKEIT 1: 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK ===== -->
+  <div class="quick-oil-bar">
+    <div class="quick-oil-label">⏱️ Wann war Ihr letzter Ölwechsel?</div>
+    <div class="quick-oil-btns">
+      <button type="button" class="q-oil-btn" onclick="checkOilInterval('ok', this)">Vor unter 1 Jahr</button>
+      <button type="button" class="q-oil-btn" onclick="checkOilInterval('km', this)">Über 15.000 km her</button>
+      <button type="button" class="q-oil-btn" onclick="checkOilInterval('old', this)">Über 1 Jahr / Unbekannt</button>
+    </div>
+    <div id="quickOilAnswer" class="quick-oil-answer"></div>
+  </div>
+
   <!-- 3 Werkstatt-Vorteile (Garantiert einzeilige Überschriften) -->
   <div id="news" style="margin-top: 50px;">
     <h2 class="section-title">Aktuelles & Werkstatt-Vorteile</h2>
@@ -886,14 +982,14 @@
     </div>
   </div>
 
-  <!-- ===== KORRIGIERT: SAISON- & ALLTAGS-CHECK UMSCHALTER (100% IM RAHMEN AUF HANDY & DESKTOP) ===== -->
+  <!-- ===== GARANTIERT IM RAHMEN: SAISON- & ALLTAGS-CHECK UMSCHALTER ===== -->
   <div id="saison" class="season-box">
     <h2 class="section-title" style="font-size:clamp(19px, 4.6vw, 26px);">Saison- & Alltags-Check für Berlin</h2>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">Wählen Sie aus, worauf wir Ihr Fahrzeug schwerpunktmäßig prüfen sollen:</p>
     
     <div class="season-tabs">
-      <button type="button" class="season-tab active" onclick="switchSeason('winter', this)">❄️ Winter- & Kälte-Check</button>
-      <button type="button" class="season-tab" onclick="switchSeason('alltag', this)">🚗 Alltags- & Strecken-Check</button>
+      <button type="button" class="season-tab active" onclick="switchSeason('winter', this)">❄️ Winter & Kälte</button>
+      <button type="button" class="season-tab" onclick="switchSeason('alltag', this)">🚗 Alltag & Strecke</button>
     </div>
 
     <div id="seasonWinter" class="season-panel active">
@@ -927,7 +1023,7 @@
     </div>
   </div>
 
-  <!-- ===== NEUIGKEIT 1: INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) ===== -->
+  <!-- INTERAKTIVE FAHRZEUGSCHEIN-SCHNELLHILFE (HSN / TSN FINDER) -->
   <div class="fzs-helper-box">
     <div>
       <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL & ÖL</span>
@@ -957,7 +1053,7 @@
     </div>
   </div>
 
-  <!-- INTERAKTIVES COCKPIT-WARNLEUCHTEN-LEXIKON (MIT ZWEITKLICK ZUM SCHLIESSEN) -->
+  <!-- ===== 6 COCKPIT-WARNLEUCHTEN (HANDY: 3x2 | DESKTOP: 6x1 | MIT ZWEITKLICK ZUM SCHLIESSEN) ===== -->
   <div class="dash-box">
     <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
     <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
@@ -981,6 +1077,10 @@
       <button type="button" class="dash-btn" onclick="showDashInfo('coolant', this)">
         <span class="ico">🌡️</span>
         <span class="lbl">Kühlwasser</span>
+      </button>
+      <button type="button" class="dash-btn" onclick="showDashInfo('tire', this)">
+        <span class="ico">🛞</span>
+        <span class="lbl">Reifendruck</span>
       </button>
     </div>
     <div id="dashInfoBox" class="dash-info">
@@ -1021,7 +1121,7 @@
     </div>
   </div>
 
-  <!-- ===== NEUIGKEIT 2: VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF ===== -->
+  <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF -->
   <div style="margin-top: 50px;">
     <h2 class="section-title">Ihr Komfort vor Ort in Mariendorf</h2>
     <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am Mariendorfer Damm 49 ist beides bequem möglich:</p>
@@ -1302,6 +1402,15 @@
   <h2 class="section-title">Kontakt & Termin sichern</h2>
   <p class="section-sub">Schreiben Sie uns direkt per WhatsApp oder rufen Sie uns an.</p>
 
+  <!-- ===== PLATZSPARENDE NEUIGKEIT 2: SCHLANKE FOTO-SCHNELLDIAGNOSE-LEISTE ===== -->
+  <div class="photo-strip">
+    <div class="photo-strip-text">
+      <b>📸 Schnell-Check per Foto gewünscht?</b>
+      Schicken Sie uns einfach ein Foto vom Fahrzeugschein, einer Warnleuchte oder einem Schaden direkt per WhatsApp!
+    </div>
+    <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20schicke%20Ihnen%20hier%20kurz%20ein%20Foto%20von%20meinem%20Fahrzeugschein%20%2F%20Anliegen:" target="_blank" rel="noopener">📷 Foto per WhatsApp senden</a>
+  </div>
+
   <div class="contact-grid">
     <form id="whatsappForm" onsubmit="sendToWhatsApp(event);">
       <div class="form-group">
@@ -1323,7 +1432,6 @@
         <input type="text" id="waCar" class="form-control" placeholder="z.B. VW Golf 7, B-AP 1234">
       </div>
 
-      <!-- NEU: Optionale HSN / TSN Felder für schnelle Teile- & Öl-Zuordnung -->
       <div class="form-group">
         <label>
           Schlüsselnummern aus Fahrzeugschein
@@ -1348,7 +1456,7 @@
         </div>
       </div>
 
-      <!-- KORRIGIERT: 1-KLICK LEISTUNGSAUSWAHL (Sauberes An- und Abwählen einzelner Buttons) -->
+      <!-- 1-KLICK LEISTUNGSAUSWAHL (Sauberes An- und Abwählen einzelner Buttons) -->
       <div class="form-group">
         <label>
           Wunschleistung schnell antippen
@@ -1373,7 +1481,6 @@
         <textarea id="waMsg" class="form-control" rows="3" placeholder="Bitte oben Wunschleistung antippen oder eigene Nachricht schreiben..."></textarea>
       </div>
 
-      <!-- Hinweis für Fahrzeugschein-Foto -->
       <div class="fzs-tip">
         <span style="font-size:20px;">📸</span>
         <div><b>Meister-Tipp:</b> Im nächsten Schritt können Sie uns in WhatsApp auch direkt ein Foto Ihres Fahrzeugscheins mitschicken!</div>
@@ -1436,7 +1543,22 @@
   </div>
   <p style="font-size:12px;color:#8fa3d4;margin-top:14px;white-space:nowrap;">Mo – Fr: 09:00 – 17:00 Uhr • Sa: 10:00 – 14:00 Uhr</p>
   <p id="footerOfferNote" style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot ab 69 € gültig bis 01.12.2026</p>
-  <p style="font-size:12px;color:#8fa3d4;margin-top:8px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
+
+  <!-- ===== PLATZSPARENDE NEUIGKEIT 3: KOMPAKT AUFKLAPPBARES IMPRESSUM & DATENSCHUTZ ===== -->
+  <div class="footer-legal-links">
+    <button type="button" class="footer-legal-btn" onclick="toggleLegal('impressum')">📄 Impressum</button>
+    <button type="button" class="footer-legal-btn" onclick="toggleLegal('datenschutz')">🔒 Datenschutz</button>
+  </div>
+  <div id="legalImpressum" class="footer-legal-box">
+    <b style="color:var(--gold-light); display:block; margin-bottom:4px;">Impressum (Angaben gemäß § 5 DDG)</b>
+    A&BS AUTOPROFIS – Kfz-Service Mariendorf • Standort: Mariendorfer Damm 49, 12109 Berlin • Telefon: 0176 72625 377 • E-Mail: info@absprofis.de • Web: www.absprofis.de
+  </div>
+  <div id="legalDatenschutz" class="footer-legal-box">
+    <b style="color:var(--gold-light); display:block; margin-bottom:4px;">Datenschutzhinweis</b>
+    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail oder WhatsApp kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Termin- oder Preisanfrage verwendet.
+  </div>
+
+  <p style="font-size:12px;color:#8fa3d4;margin-top:12px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
 </footer>
 
 <script>
@@ -1599,6 +1721,31 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
+  // Platzsparende Neuigkeit 1: 1-Zeilen Ölwechsel-Schnelltest (mit Zweitklick-Schließen)
+  function checkOilInterval(state, btnEl) {
+    const ans = document.getElementById('quickOilAnswer');
+    const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
+    document.querySelectorAll('.q-oil-btn').forEach(b => b.classList.remove('active'));
+
+    if (wasActive) {
+      ans.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+
+    btnEl.classList.add('active');
+    const offerNote = isOfferStillActive() ? "unser 69-€-Aktionspaket (inkl. Filter & 21-Pkt.-Check)" : "unser Ölwechsel-Paket inkl. Filter & 21-Pkt.-Check";
+
+    if (state === 'ok') {
+      ans.innerHTML = `🟢 <b>Alles im grünen Bereich:</b> Wenn Sie unter 15.000 km gefahren sind, reicht meist ein kurzer Gratis-Flüssigkeits-Check vor Ort.`;
+    } else if (state === 'km') {
+      ans.innerHTML = `🟠 <b>Wechsel empfohlen:</b> Ab 15.000 km verliert das Motoröl spürbar an Schmierkraft – ideal für ${offerNote}.`;
+    } else {
+      ans.innerHTML = `🔴 <b>Jetzt Termin sichern:</b> Nach über 12 Monaten bilden sich Ablagerungen im Öl. Nutzen Sie direkt ${offerNote}!`;
+    }
+    ans.classList.add('show');
+  }
+
   // Saison-Check Umschalter
   function switchSeason(mode, btnEl) {
     document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
@@ -1619,7 +1766,7 @@
     }, 350);
   }
 
-  // Cockpit-Warnleuchten-Lexikon (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
+  // 6 Cockpit-Warnleuchten (1. Klick öffnet, 2. Klick auf dasselbe Symbol schließt wieder)
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -1666,6 +1813,11 @@
         t: "🌡️ Kühlmittel- / Temperatur-Warnung",
         d: "Überhitzungsgefahr! Bitte Kühlwasserstand und Frostschutz prüfen lassen. Unser Frostschutz-Check ist für Sie komplett kostenlos.",
         wa: "Hallo A&BS AUTOPROFIS, meine Kühlwasser-Lampe leuchtet. Ich möchte gerne zum Gratis-Check vorbeikommen."
+      },
+      tire: {
+        t: "🛞 Reifendruck- / ESP-Warnleuchte (RDKS)",
+        d: "Druckverlust im Reifen oder ein Sensorfehler! Bitte Geschwindigkeit reduzieren und Luftdruck sowie Reifen bei uns vor Ort kurz kontrollieren lassen.",
+        wa: "Hallo A&BS AUTOPROFIS, bei mir leuchtet die Reifendruck-/ESP-Warnleuchte. Können Sie das kurz prüfen?"
       }
     };
 
@@ -1695,7 +1847,7 @@
     }
   }
 
-  // KORRIGIERT: 1-Klick Leistungsauswahl-Chips (Einzeln an- und abwählbar ohne Hängenbleiben)
+  // 1-Klick Leistungsauswahl-Chips (Einzeln an- und abwählbar ohne Hängenbleiben)
   function toggleQuickService(chipEl) {
     const isNowActive = !chipEl.classList.contains('active');
     if (isNowActive) {
@@ -1727,6 +1879,19 @@
     } else {
       msgField.value = "";
       countInfo.innerText = "Keine Schnellauswahl aktiv";
+    }
+  }
+
+  // Platzsparende Neuigkeit 3: Impressum / Datenschutz im Footer ein- und ausblenden
+  function toggleLegal(type) {
+    const imp = document.getElementById('legalImpressum');
+    const dat = document.getElementById('legalDatenschutz');
+    if (type === 'impressum') {
+      dat.classList.remove('show');
+      imp.classList.toggle('show');
+    } else {
+      imp.classList.remove('show');
+      dat.classList.toggle('show');
     }
   }
 
@@ -1767,7 +1932,7 @@
     setTimeout(() => { btn.innerText = "📋 Adresse kopieren"; }, 2000);
   }
 
-  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung (inkl. HSN/TSN falls eingetragen)
+  // Formular-Weiterleitung zu WhatsApp mit sauberer Textformatierung
   function sendToWhatsApp(event) {
     event.preventDefault();
     
