@@ -39,6 +39,19 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; height: auto; display: block; }
 
+  /* Schutzklasse gegen unschöne Zeilenumbrüche bei Zahlen, Preisen, Telefonnummern & Einheiten */
+  .nw { white-space: nowrap; display: inline-block; }
+
+  /* Hilfsklasse für Klammer-Zusätze: Immer sauber auf eigener Zeile */
+  .sub-bracket {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.35;
+  }
+
   /* ===== EINGANGSANIMATION (LOGO-AUTO FÄHRT -> WARNUNGEN -> TROPFEN & SCHLÜSSEL -> WIRD ZUM LOGO) ===== */
   .intro-splash {
     position: fixed;
@@ -254,16 +267,6 @@
     100% { opacity: 0; }
   }
 
-  /* Hilfsklasse für Klammer-Zusätze: Immer auf eigener Zeile */
-  .sub-bracket {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-top: 2px;
-    line-height: 1.35;
-  }
-
   /* Kompakter 2-Zeilen-Top-Banner */
   .aufbau { display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--primary); text-align: center; font-size: 13px; font-weight: 800; padding: 8px 12px; line-height: 1.35; }
   .aufbau-line2 { font-size: 11px; font-weight: 900; color: var(--primary); opacity: 0.95; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; }
@@ -277,7 +280,7 @@
   .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 
   /* Brand & Logo mit animierter Qualitäts-Sprechblase */
-  .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; }
+  .brand { display: flex; align-items: center; gap: 10px; position: relative; cursor: pointer; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
   .brand img { width: 52px; height: 52px; min-width: 52px; object-fit: cover; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,.25); background: #000; transition: transform 0.2s; }
   .brand-text strong { display: block; font-size: 18px; line-height: 1.1; white-space: nowrap; letter-spacing: 0.3px; }
   .brand-text span { display: block; font-size: 9px; color: var(--gold-light); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 3px; font-weight: 700; white-space: nowrap; }
@@ -303,7 +306,7 @@
   /* Header Widgets */
   .header-widget-group { position: relative; display: flex; align-items: center; }
   
-  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; }
+  .status-pill, .live-widget { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.22); padding: 5px 10px; border-radius: 12px; font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; cursor: pointer; transition: background 0.2s; white-space: nowrap; line-height: 1.25; -webkit-tap-highlight-color: transparent; }
   .status-main { display: flex; align-items: center; gap: 6px; font-weight: 700; white-space: nowrap; }
   .status-sub { font-size: 9px; color: #cbd5ff; padding-left: 12px; white-space: nowrap; }
   .widget-sub-small { font-size: 9px; color: #cbd5ff; white-space: nowrap; }
@@ -321,13 +324,16 @@
   .widget-popup b { display: block; margin-bottom: 6px; color: var(--primary); border-bottom: 1px solid #f3e8cb; padding-bottom: 4px; font-size: 13px; white-space: nowrap; }
   .widget-popup div { margin-top: 4px; font-size: 12px; white-space: nowrap; }
 
-  /* Buttons */
+  /* Buttons (WhatsApp, Telefon & NEU: E-Mail-Umschlag-Button) */
   .btn { background: linear-gradient(135deg, #f9e08a, var(--gold) 55%, #b8912a); color: var(--primary) !important; padding: 11px 20px; border-radius: 999px; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; white-space: nowrap; font-size: 14px; transition: transform 0.1s ease, box-shadow 0.2s ease; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
   
   .wa-btn { background: var(--success) !important; color: #fff !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
   .wa-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
   
   .call-btn { background: #fff !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; }
+
+  .mail-btn { background: linear-gradient(135deg, #f9e08a, var(--gold)) !important; color: var(--primary) !important; padding: 9px 14px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; font-size: 13px; box-shadow: 0 4px 12px rgba(212,175,55,0.3); }
+  .mail-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
   /* Hero Section */
   .hero { background: radial-gradient(1000px 420px at 85% 5%, rgba(212,175,55,.38), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
@@ -346,9 +352,71 @@
   .small { font-size: 13px; color: #aab8dd; margin-top: 16px; line-height: 1.8; }
   .small .phone { color: #fff; font-weight: 700; }
 
-  .logo-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; color: var(--primary); box-shadow: 0 28px 70px rgba(0,0,0,.4); border: 3px solid var(--gold); }
+  /* ===== NEU: INTERAKTIVE GROSSE LOGO-KARTE MIT WERKSTATT-STECKBRIEF BEIM ANKLICKEN ===== */
+  .logo-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 20px;
+    text-align: center;
+    color: var(--primary);
+    box-shadow: 0 28px 70px rgba(0,0,0,.4);
+    border: 3px solid var(--gold);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
   .logo-card img { width: 100%; border-radius: 18px; display: block; }
   .logo-card h3 { margin: 14px 0 4px; font-size: 24px; white-space: nowrap; }
+  .logo-card-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #fdfbf7, #f5e6b8);
+    border: 1.5px solid var(--gold);
+    color: var(--primary);
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .hero-logo-details {
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px dashed #e6dfcf;
+    text-align: left;
+    font-size: 13px;
+    color: #1e293b;
+    animation: fadeIn 0.25s ease;
+  }
+  .hero-logo-details.show { display: block; }
+  .hero-logo-details b.title {
+    display: block;
+    font-size: 14px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .hero-logo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .hero-logo-list li {
+    background: #fdfbf7;
+    border: 1px solid #eae5d9;
+    border-left: 3.5px solid var(--gold);
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
 
   /* Synchronisierte Live Countdown Box im Hero */
   .countdown-wrapper { margin-top: 20px; max-width: 480px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); padding: 14px; border-radius: 16px; backdrop-filter: blur(8px); }
@@ -375,36 +443,48 @@
   .card ul { padding-left: 20px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
-  /* ===== PLATZSPARENDE NEUIGKEIT 1: 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK ===== */
+  /* ===== KORRIGIERT: 1-ZEILEN ÖLWECHSEL- & HU-SCHNELLCHECKS (ALLE 3 BUTTONS IN EINER ZEILE & KEIN GETRENNTES 69-€ MEHR!) ===== */
   .quick-oil-bar {
     background: #fff;
     border: 1.5px solid var(--gold);
     border-radius: 16px;
-    padding: 12px 18px;
-    margin-top: 20px;
+    padding: 14px 16px;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+  }
+  .quick-oil-top {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 10px 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+    gap: 10px;
   }
-  .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
-  .quick-oil-btns { display: flex; flex-wrap: wrap; gap: 6px; }
-  .q-oil-btn {
+  .quick-oil-label { font-size: 13.5px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .quick-oil-btns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+    max-width: 480px;
+  }
+  .q-oil-btn, .q-hu-btn {
     background: #fdfbf7;
-    border: 1px solid #d1d5db;
+    border: 1.5px solid #d1d5db;
     color: var(--primary);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 999px;
+    font-size: clamp(10.5px, 2.9vw, 12px);
+    font-weight: 800;
+    padding: 8px 6px;
+    border-radius: 10px;
     cursor: pointer;
     white-space: nowrap;
+    text-align: center;
     -webkit-tap-highlight-color: transparent;
   }
-  .q-oil-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
-  .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 10px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; }
+  .q-oil-btn.active, .q-hu-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .quick-oil-answer { width: 100%; font-size: 13px; color: #334155; background: #fdfbf7; padding: 12px 14px; border-radius: 10px; border-left: 4px solid var(--gold); display: none; line-height: 1.5; }
   .quick-oil-answer.show { display: block; animation: fadeIn 0.2s ease; }
 
   /* 3 Werkstatt-Vorteile – Überschriften garantiert einzeilig */
@@ -413,7 +493,7 @@
   .news-card h4 { margin: 10px 0 6px; color: var(--primary); font-size: clamp(14px, 3.8vw, 17px); font-weight: 800; white-space: nowrap; letter-spacing: -0.2px; }
   .news-card p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ===== GARANTIERT IM RAHMEN: SAISON- & ALLTAGS-CHECK UMSCHALTER ===== */
+  /* SAISON- & ALLTAGS-CHECK UMSCHALTER */
   .season-box { background: #fff; border-radius: 24px; padding: 28px 22px; border: 1px solid #eae5d9; margin-top: 44px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.03); width: 100%; overflow: hidden; }
   .season-tabs {
     display: grid;
@@ -457,7 +537,7 @@
   .fzs-doc-header { font-size: 11px; font-weight: 900; letter-spacing: 0.6px; text-transform: uppercase; color: #166534; border-bottom: 1px dashed #86efac; padding-bottom: 6px; margin-bottom: 10px; display: flex; justify-content: space-between; }
   .fzs-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .fzs-field-card { background: #fff; border: 2px solid var(--gold); border-radius: 12px; padding: 9px 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
-  .fzs-field-lbl { font-size: 10px; font-weight: 900; color: var(--primary); display: block; }
+  .fzs-field-lbl { font-size: 10px; font-weight: 900; color: var(--primary); display: block; white-space: nowrap; }
   .fzs-field-val { font-size: 17px; font-weight: 900; color: #b45309; letter-spacing: 2px; margin: 2px 0; display: block; }
   .fzs-field-desc { font-size: 10px; color: var(--text-muted); font-family: Inter, sans-serif; font-weight: 600; display: block; }
 
@@ -468,7 +548,7 @@
   .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); white-space: nowrap; }
   .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
 
-  /* ===== 6 COCKPIT-WARNLEUCHTEN (DESKTOP: 6 NEBENEINANDER | HANDY: 3 OBEN, 3 UNTEN) ===== */
+  /* 6 COCKPIT-WARNLEUCHTEN (DESKTOP: 6 NEBENEINANDER | HANDY: 3 OBEN, 3 UNTEN) */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 30px 24px; border: 2px solid var(--gold); margin-top: 44px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); }
   .dash-box h3 { margin: 0 0 6px; font-size: clamp(17px, 4.5vw, 23px); color: #fff; font-weight: 900; white-space: nowrap; }
   .dash-box p { margin: 0 auto 20px; font-size: 14px; color: #dbe4ff; max-width: 600px; }
@@ -549,7 +629,7 @@
   /* FAQ SECTION */
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
-  /* ===== PLATZSPARENDE NEUIGKEIT 2: SCHLANKE FOTO-DIAGNOSE-LEISTE ===== */
+  /* SCHLANKE FOTO-DIAGNOSE-LEISTE */
   .photo-strip {
     background: linear-gradient(90deg, var(--primary), var(--primary-light));
     color: #fff;
@@ -604,6 +684,7 @@
   /* Hover-Effekte NUR auf echten Maus-Geräten */
   @media (hover: hover) and (pointer: fine) {
     .brand:hover img { transform: scale(1.05); }
+    .logo-card:hover { transform: translateY(-3px); }
     .status-pill:hover, .live-widget:hover { background: rgba(255,255,255,0.2); }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(212,175,55,0.5); }
     .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.07); }
@@ -635,11 +716,12 @@
   .footer-contact { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 10px 0; }
   .footer-contact .phone { color: #fff; font-size: 19px; font-weight: 900; white-space: nowrap; }
 
-  /* ===== PLATZSPARENDE NEUIGKEIT 3: KOMPAKTES IMPRESSUM & DATENSCHUTZ IM FOOTER ===== */
-  .footer-legal-links { display: flex; justify-content: center; gap: 16px; margin-top: 12px; font-size: 12px; }
-  .footer-legal-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
-  .footer-legal-box { max-width: 680px; margin: 12px auto 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.4); border-radius: 14px; padding: 14px 18px; text-align: left; font-size: 12px; color: #dbe4ff; line-height: 1.55; display: none; }
+  /* ===== KORRIGIERTES IMPRESSUM & DATENSCHUTZ IM FOOTER (ZAHLEN & TELEFONNUMMERN NIE MEHR GETRENNT!) ===== */
+  .footer-legal-links { display: flex; justify-content: center; gap: 12px; margin-top: 12px; font-size: 12px; }
+  .footer-legal-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 11.5px; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .footer-legal-box { max-width: 520px; margin: 12px auto 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 14px 16px; text-align: left; font-size: 12.5px; color: #dbe4ff; line-height: 1.65; display: none; }
   .footer-legal-box.show { display: block; animation: fadeIn 0.2s ease; }
+  .legal-row { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* ===== MOBILE & TABLET OPTIMIERUNGEN ===== */
   @media(max-width: 1080px) {
@@ -655,16 +737,22 @@
     header { padding: 8px 12px; }
     .header-inner { flex-wrap: wrap; gap: 8px; }
     
-    /* Zeile 1 im mobilen Header: Logo + Name links, Anruf & WhatsApp rechts */
+    /* Zeile 1 im mobilen Header: Logo + Name links | WhatsApp + Telefon + E-Mail rechts */
     .brand { order: 1; flex: 1 1 auto; }
-    .brand img { width: 42px; height: 42px; min-width: 42px; }
-    .brand-text strong { font-size: 16px; }
-    .brand-text span { font-size: 8.5px; letter-spacing: 1px; }
+    .brand img { width: 40px; height: 40px; min-width: 40px; }
+    .brand-text strong { font-size: 15.5px; }
+    .brand-text span { font-size: 8.5px; letter-spacing: 0.9px; }
 
     .header-right { order: 2; width: 100%; display: contents; }
-    .contact-buttons { order: 2; margin-left: auto; gap: 6px; }
-    .contact-buttons .wa-btn, .contact-buttons .call-btn { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
-    .contact-buttons .wa-btn .label, .contact-buttons .call-btn .label { display: none; }
+    .contact-buttons { order: 2; margin-left: auto; gap: 5px; }
+    .contact-buttons .wa-btn, .contact-buttons .call-btn, .contact-buttons .mail-btn {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .contact-buttons .wa-btn .label, .contact-buttons .call-btn .label, .contact-buttons .mail-btn .label { display: none; }
 
     /* Zeile 2 im mobilen Header: Beide Live-Widgets sauber 50/50 nebeneinander */
     .widgets-bar { order: 3; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.12); }
@@ -748,20 +836,20 @@
 <!-- TOP BANNER (Wechselt ab 01.12.2026 vollautomatisch den Text) -->
 <div class="aufbau">
   <span>🚧 Unsere Website ist im Aufbau</span>
-  <span class="aufbau-line2" id="topBannerOfferLine">Eröffnungsangebot 69 € gültig bis 01.12.2026</span>
+  <span class="aufbau-line2" id="topBannerOfferLine">Eröffnungsangebot <span class="nw">69 €</span> gültig bis <span class="nw">01.12.2026</span></span>
 </div>
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span>• www.absprofis.de</span>
-    <span>• ✉️ <a href="mailto:info@absprofis.de">info@absprofis.de</a></span>
-    <span>• Mariendorfer Damm 49, 12109 Berlin</span>
+    <span class="nw">• www.absprofis.de</span>
+    <span class="nw">• ✉️ <a href="mailto:info@absprofis.de?subject=Anfrage%20A%26BS%20AUTOPROFIS">info@absprofis.de</a></span>
+    <span class="nw">• Mariendorfer Damm 49, 12109 Berlin</span>
   </div>
 </div>
 
 <header>
   <div class="header-inner">
-    <!-- LOGO & FIRMENNAME (Klick öffnet kompakten Qualitätsspruch) -->
+    <!-- KLEINES LOGO & FIRMENNAME (Klick öffnet kompakten Qualitätsspruch) -->
     <div class="brand" onclick="toggleLogoBubble(event)" title="Klicken für unser Qualitätsversprechen">
       <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Logo">
       <div class="brand-text">
@@ -808,24 +896,29 @@
         <div class="header-widget-group">
           <div class="live-widget" onclick="togglePopup('weatherPopup', event)" title="Klicken für genaue Zeit & Wetterdetails">
             <span id="headerWeatherMini" style="font-weight:700;">🌤️ Berlin 12°C</span>
-            <div class="widget-sub-small" id="headerDateTimeMini">09:00 Uhr | 18.11.2026</div>
+            <div class="widget-sub-small" id="headerDateTimeMini">07:10 Uhr | 18.11.2026</div>
           </div>
           <div class="widget-popup" id="weatherPopup">
             <b>📍 Berlin-Mariendorf</b>
             <div id="popupWeather" style="font-weight:700;">🌤️ Wetter: 12°C, Heiter</div>
-            <div id="popupTime" style="color:var(--text-muted);">⏰ 09:00:00 Uhr</div>
+            <div id="popupTime" style="color:var(--text-muted);">⏰ 07:10:00 Uhr</div>
             <div id="popupDate" style="color:var(--text-muted);">📅 Mi., 18.11.2026</div>
           </div>
         </div>
       </div>
 
+      <!-- KONTAKT-BUTTONS IM HEADER: WHATSAPP + TELEFON + NEU: E-MAIL-UMSCHLAG -->
       <div class="contact-buttons">
-        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20habe%20eine%20Frage!" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp schreiben">
           <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           <span class="label">WhatsApp</span>
         </a>
-        <a class="call-btn" href="tel:017672625377" aria-label="Anrufen">
+        <a class="call-btn" href="tel:017672625377" aria-label="Anrufen" title="Jetzt anrufen">
           📞 <span class="label">Anrufen</span>
+        </a>
+        <a class="mail-btn" href="mailto:info@absprofis.de?subject=Termin-%20oder%20Preisanfrage%20A%26BS%20AUTOPROFIS&body=Hallo%20A%26BS%20AUTOPROFIS%20Team%2C%0A%0Aich%20habe%20folgende%20Anfrage%3A%0A%0A-%20Name%3A%20%0A-%20Telefonnummer%3A%20%0A-%20Fahrzeug%20%2F%20Kennzeichen%3A%20%0A-%20Anliegen%3A%20" aria-label="E-Mail senden" title="E-Mail an info@absprofis.de senden">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="label">E-Mail</span>
         </a>
       </div>
     </div>
@@ -837,9 +930,9 @@
     <div>
       <div class="badge-row">
         <span class="badge">★ KFZ-MEISTERBETRIEB MARIENDORF</span>
-        <span class="badge-deadline" id="offerRemainingBadge">🔥 Aktion bis 01.12.2026</span>
+        <span class="badge-deadline" id="offerRemainingBadge">🔥 69 € Aktion bis 01.12.</span>
       </div>
-      <h1 id="heroHeadline">ÖLWECHSEL<br><span id="heroPriceSpan">ab 69 €</span></h1>
+      <h1 id="heroHeadline">ÖLWECHSEL<br><span id="heroPriceSpan" class="nw">ab 69 €</span></h1>
       <p>Ihr Kfz-Meisterbetrieb in Berlin-Mariendorf. Höchste Präzision, transparentes Handwerk und ehrlicher Service für alle Automarken.</p>
       
       <div class="pills">
@@ -865,16 +958,28 @@
       </div>
       
       <div class="small">
-        📍 Mariendorfer Damm 49, 12109 Berlin<br>
-        🕒 Mo–Fr: 09:00 – 17:00 Uhr • Sa: 10:00 – 14:00 Uhr<br>
-        📞 Direktkontakt: <span class="phone">0176 72625 377</span>
+        📍 <span class="nw">Mariendorfer Damm 49</span>, <span class="nw">12109 Berlin</span><br>
+        🕒 <span class="nw">Mo–Fr: 09:00 – 17:00 Uhr</span> • <span class="nw">Sa: 10:00 – 14:00 Uhr</span><br>
+        📞 Direktkontakt: <span class="phone nw">0176 72625 377</span> • ✉️ <a href="mailto:info@absprofis.de" class="phone nw">info@absprofis.de</a>
       </div>
     </div>
     
-    <div class="logo-card">
+    <!-- ===== NEU: INTERAKTIVES GROSSES FIRMENLOGO MIT WERKSTATT-STECKBRIEF BEIM ANKLICKEN ===== -->
+    <div class="logo-card" onclick="toggleHeroLogoInfo(event)" title="Tippen für Werkstatt-Infos">
       <img src="https://www.absprofis.de/logo.png" alt="A&BS AUTOPROFIS Werkstatt">
       <h3>Kfz-Service Mariendorf</h3>
       <p style="font-size:14px;color:#555;margin:0;">Meisterbetrieb für alle Fahrzeugmarken</p>
+      <div class="logo-card-hint" id="logoCardHint">👆 Auf das Logo tippen für Betriebs-Infos</div>
+
+      <div class="hero-logo-details" id="heroLogoDetails">
+        <b class="title">🛠️ A&BS AUTOPROFIS – Steckbrief</b>
+        <ul class="hero-logo-list">
+          <li><b>Meisterbetrieb:</b> Fachgerechte Wartung & Reparatur nach Herstellervorgaben für alle Marken.</li>
+          <li><b>Kernleistungen:</b> Ölservice, Bremsen, Fahrwerk, Reifen, Inspektion & kostenlose OBD-Diagnose.</li>
+          <li><b>Fairness-Garantie:</b> Klare Absprache vorab – keine Reparatur ohne Ihre Zustimmung.</li>
+          <li><b>Standort & Zeiten:</b> <span class="nw">Mariendorfer Damm 49</span> (<span class="nw">Mo–Fr 09–17 Uhr</span>, <span class="nw">Sa 10–14 Uhr</span>).</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -909,7 +1014,7 @@
   <div class="grid-3">
     <div class="card">
       <span style="font-size:32px;">🛢️</span>
-      <h3 id="serviceOilTitle">Ölwechsel ab 69 €</h3>
+      <h3 id="serviceOilTitle">Ölwechsel <span class="nw">ab 69 €</span></h3>
       <ul>
         <li>Fachgerechter Altöl-Ablass & Spülung</li>
         <li>Neues Marken-Öl nach Herstellernorm</li>
@@ -938,7 +1043,7 @@
       <ul>
         <li>
           <b>Fehlerspeicher auslesen</b>
-          <span class="sub-bracket">(100% gratis im Servicepaket)</span>
+          <span class="sub-bracket">(<span class="nw">100% gratis</span> im Servicepaket)</span>
         </li>
         <li>Analyse von Motorkontrollleuchte & Steuergeräten</li>
         <li>Zurücksetzen der Service-Intervalle</li>
@@ -947,15 +1052,30 @@
     </div>
   </div>
 
-  <!-- ===== PLATZSPARENDE NEUIGKEIT 1: 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK ===== -->
+  <!-- ===== KORRIGIERT: 1-ZEILEN ÖL-INTERVALL-SCHNELLCHECK (3 BUTTONS NEBENEINANDER & KEIN ZERRISSENER PREIS) ===== -->
   <div class="quick-oil-bar">
-    <div class="quick-oil-label">⏱️ Wann war Ihr letzter Ölwechsel?</div>
-    <div class="quick-oil-btns">
-      <button type="button" class="q-oil-btn" onclick="checkOilInterval('ok', this)">Vor unter 1 Jahr</button>
-      <button type="button" class="q-oil-btn" onclick="checkOilInterval('km', this)">Über 15.000 km her</button>
-      <button type="button" class="q-oil-btn" onclick="checkOilInterval('old', this)">Über 1 Jahr / Unbekannt</button>
+    <div class="quick-oil-top">
+      <div class="quick-oil-label">⏱️ Wann war Ihr letzter Ölwechsel?</div>
+      <div class="quick-oil-btns">
+        <button type="button" class="q-oil-btn" onclick="checkOilInterval('ok', this)">&lt; 1 Jahr</button>
+        <button type="button" class="q-oil-btn" onclick="checkOilInterval('km', this)">&gt; 15.000 km</button>
+        <button type="button" class="q-oil-btn" onclick="checkOilInterval('old', this)">&gt; 1 Jahr / ?</button>
+      </div>
     </div>
     <div id="quickOilAnswer" class="quick-oil-answer"></div>
+  </div>
+
+  <!-- ===== NEUIGKEIT: KOMPAKTER 1-ZEILEN HU / TÜV VORAB-SCHNELLCHECK ===== -->
+  <div class="quick-oil-bar" style="margin-top: 12px;">
+    <div class="quick-oil-top">
+      <div class="quick-oil-label">🛡️ Wann ist Ihre nächste HU / TÜV fällig?</div>
+      <div class="quick-oil-btns">
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('soon', this)">In 1–2 Monaten</button>
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('overdue', this)">Schon abgelaufen</button>
+        <button type="button" class="q-hu-btn" onclick="checkHuStatus('later', this)">Noch &gt; 6 Monate</button>
+      </div>
+    </div>
+    <div id="quickHuAnswer" class="quick-oil-answer"></div>
   </div>
 
   <!-- 3 Werkstatt-Vorteile (Garantiert einzeilige Überschriften) -->
@@ -982,7 +1102,7 @@
     </div>
   </div>
 
-  <!-- ===== GARANTIERT IM RAHMEN: SAISON- & ALLTAGS-CHECK UMSCHALTER ===== -->
+  <!-- SAISON- & ALLTAGS-CHECK UMSCHALTER -->
   <div id="saison" class="season-box">
     <h2 class="section-title" style="font-size:clamp(19px, 4.6vw, 26px);">Saison- & Alltags-Check für Berlin</h2>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">Wählen Sie aus, worauf wir Ihr Fahrzeug schwerpunktmäßig prüfen sollen:</p>
@@ -999,7 +1119,7 @@
       </div>
       <div class="season-item">
         <b>❄️ Kühler- & Scheibenfrostschutz</b>
-        <p>Präzise Messung des Gefrierschutzes bis -25 °C für freie Sicht und optimalen Motorschutz.</p>
+        <p>Präzise Messung des Gefrierschutzes bis <span class="nw">-25 °C</span> für freie Sicht und optimalen Motorschutz.</p>
       </div>
       <div class="season-item">
         <b>🛞 Winterreifen & Licht-Check</b>
@@ -1029,7 +1149,7 @@
       <span class="badge">💡 BLITZSCHNELL ZUM PASSENDEN TEIL & ÖL</span>
       <h3 style="margin:10px 0 8px; color:var(--primary); font-size:clamp(18px, 4.4vw, 24px); white-space:nowrap;">Wo stehen die Schlüsselnummern?</h3>
       <p style="margin:0 0 14px; font-size:14px; color:var(--text-muted); line-height:1.6;">
-        Damit wir Ihnen am Telefon oder per WhatsApp sofort das exakt passende Marken-Öl oder Ersatzteil nennen können, helfen uns die zwei kurzen Nummern <b>2.1</b> und <b>2.2</b> aus Ihrem Fahrzeugschein:
+        Damit wir Ihnen am Telefon oder per WhatsApp sofort das exakt passende Marken-Öl oder Ersatzteil nennen können, helfen uns die zwei kurzen Nummern <b class="nw">Feld 2.1</b> und <b class="nw">Feld 2.2</b> aus Ihrem Fahrzeugschein:
       </p>
       <a class="btn" href="#kontakt" onclick="focusHsnInput()">👇 Unten im Formular direkt eintragen</a>
     </div>
@@ -1053,7 +1173,7 @@
     </div>
   </div>
 
-  <!-- ===== 6 COCKPIT-WARNLEUCHTEN (HANDY: 3x2 | DESKTOP: 6x1 | MIT ZWEITKLICK ZUM SCHLIESSEN) ===== -->
+  <!-- 6 COCKPIT-WARNLEUCHTEN (HANDY: 3x2 | DESKTOP: 6x1 | MIT ZWEITKLICK ZUM SCHLIESSEN) -->
   <div class="dash-box">
     <h3>🚨 Welche Warnleuchte blinkt im Cockpit?</h3>
     <p>Tippen Sie auf ein Symbol zum Öffnen – und ein zweites Mal zum Schließen:</p>
@@ -1101,7 +1221,7 @@
       <div class="step-card">
         <div class="step-num">1</div>
         <h4>Kurz melden</h4>
-        <p>Einfach per WhatsApp schreiben oder kurz durchrufen – wir finden schnell Ihren Wunschtermin.</p>
+        <p>Einfach per WhatsApp, E-Mail oder Anruf melden – wir finden schnell Ihren Wunschtermin.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -1124,7 +1244,7 @@
   <!-- VOR-ORT-KOMFORT & ANBINDUNG IN MARIENDORF -->
   <div style="margin-top: 50px;">
     <h2 class="section-title">Ihr Komfort vor Ort in Mariendorf</h2>
-    <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am Mariendorfer Damm 49 ist beides bequem möglich:</p>
+    <p class="section-sub">Egal ob Sie kurz warten oder direkt weiter müssen – am <span class="nw">Mariendorfer Damm 49</span> ist beides bequem möglich:</p>
     <div class="comfort-grid">
       <div class="comfort-card">
         <span class="comfort-badge">☕ Express-Warte-Service</span>
@@ -1134,12 +1254,12 @@
       <div class="comfort-card">
         <span class="comfort-badge">🚇 Perfekte ÖPNV-Anbindung</span>
         <h4>U6 & Bus direkt vor Ort</h4>
-        <p>Auto abgeben und entspannt weiter: Buslinien (M76, X76, 179) sowie die U6 (Alt-Mariendorf / Westphalweg) sind schnell erreichbar.</p>
+        <p>Auto abgeben und entspannt weiter: Buslinien (<span class="nw">M76, X76, 179</span>) sowie die <span class="nw">U6 Alt-Mariendorf</span> sind schnell erreichbar.</p>
       </div>
       <div class="comfort-card">
         <span class="comfort-badge">🅿️ Direkte Annahme</span>
         <h4>Einfach vorfahren</h4>
-        <p>Kein langes Parkplatzsuchen: Fahren Sie direkt am Mariendorfer Damm 49 vor, wir nehmen Ihr Fahrzeug sofort persönlich entgegen.</p>
+        <p>Kein langes Parkplatzsuchen: Fahren Sie direkt am <span class="nw">Mariendorfer Damm 49</span> vor, wir nehmen Ihr Fahrzeug sofort persönlich entgegen.</p>
       </div>
     </div>
   </div>
@@ -1157,16 +1277,16 @@
     </div>
 
     <div id="advisorResultOil" class="advisor-result">
-      <b>Empfehlung zum Ölwechsel:</b> <span id="advisorOilDynamicText">Unser Aktionsangebot bis zum 01.12.2026 ab 69 € beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check.</span>
+      <b>Empfehlung zum Ölwechsel:</b> <span id="advisorOilDynamicText">Unser Aktionsangebot bis zum <span class="nw">01.12.2026</span> für <span class="nw">ab 69 €</span> beinhaltet den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem <span class="nw">21-Punkte-Check</span>.</span>
     </div>
     <div id="advisorResultCheck" class="advisor-result">
       <b>Empfehlung zur Elektronik:</b> Bei brennenden Kontrollleuchten lesen wir Ihren Fehlerspeicher <b>komplett kostenlos</b> aus, analysieren das Steuergerät und beraten Sie fair.
     </div>
     <div id="advisorResultBrake" class="advisor-result">
-      <b>Empfehlung zu den Bremsen:</b> Quietschende Bremsen sollten umgehend geprüft werden. Nutzen Sie unseren Sicherheits-Check direkt vor Ort am Mariendorfer Damm 49.
+      <b>Empfehlung zu den Bremsen:</b> Quietschende Bremsen sollten umgehend geprüft werden. Nutzen Sie unseren Sicherheits-Check direkt vor Ort am <span class="nw">Mariendorfer Damm 49</span>.
     </div>
     <div id="advisorResultGeneral" class="advisor-result">
-      <b>Empfehlung zur Inspektion:</b> Wir arbeiten exakt nach Herstellervorgaben für alle Automarken. Fragen Sie Ihr individuelles Anliegen einfach per WhatsApp oder Telefon an!
+      <b>Empfehlung zur Inspektion:</b> Wir arbeiten exakt nach Herstellervorgaben für alle Automarken. Fragen Sie Ihr individuelles Anliegen einfach per WhatsApp, E-Mail oder Telefon an!
     </div>
   </div>
 
@@ -1302,14 +1422,14 @@
     <div>
       <span class="badge" style="background:#fff; color:var(--primary);">TRANSPARENZ & KONDITIONEN</span>
       <h3>Faire Preise ohne versteckte Kosten</h3>
-      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel (gültig bis 01.12.2026) geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
+      <p id="priceBoxText">Außer unserem unschlagbaren Angebot für den Ölwechsel (gültig bis <span class="nw">01.12.2026</span>) geben wir online keine Festpreise vor. In Kürze finden Sie hier unseren vollständigen Online-Katalog. Für alle weiteren Reparaturen und Inspektionen gilt: <b>Preise bitte unkompliziert nachfragen!</b> Wir erstellen Ihnen stets ein faires und transparentes Angebot.</p>
       <a class="wa-btn" href="https://wa.me/4917672625377?text=Hallo%20A%26BS%20AUTOPROFIS%2C%20ich%20möchte%20einen%20Preis%20anfragen." target="_blank" rel="noopener">Jetzt Preis per WhatsApp anfragen</a>
     </div>
     
     <div class="price-tag-card">
-      <h4 id="priceCardSub">Aktions-Sparpreis bis 01.12.2026</h4>
-      <div class="price-tag-val" id="priceCardVal">69 € <span>inkl. MwSt.</span></div>
-      <div class="price-hint">⚡ Inklusive Ölfilter & 21-Punkte-Check + Fehlerspeicher gratis!</div>
+      <h4 id="priceCardSub">Aktions-Sparpreis bis <span class="nw">01.12.2026</span></h4>
+      <div class="price-tag-val" id="priceCardVal"><span class="nw">69 €</span> <span>inkl. MwSt.</span></div>
+      <div class="price-hint">⚡ Inklusive Ölfilter & <span class="nw">21-Punkte-Check</span> + Fehlerspeicher gratis!</div>
       <a class="btn" style="width: 100%;" href="tel:017672625377">Jetzt anrufen & Termin sichern</a>
     </div>
   </div>
@@ -1323,7 +1443,7 @@
   <div class="reviews-grid">
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">„Super Service! Mein Ölwechsel wurde schnell und sauber erledigt. Der kostenlose 21-Punkte-Check hat mir einen drohenden Mangel an den Bremsen gezeigt. Absolute Empfehlung für Mariendorf!“</p>
+      <p class="review-text">„Super Service! Mein Ölwechsel wurde schnell und sauber erledigt. Der kostenlose <span class="nw">21-Punkte-Check</span> hat mir einen drohenden Mangel an den Bremsen gezeigt. Absolute Empfehlung für Mariendorf!“</p>
       <div class="review-author">– Michael K. aus Tempelhof</div>
     </div>
 
@@ -1365,11 +1485,11 @@
     <details class="accordion-item">
       <summary>
         <div class="acc-title">
-          <span class="acc-main" id="faq1Question">Wie lange gilt das 69 € Eröffnungsangebot?</span>
+          <span class="acc-main" id="faq1Question">Wie lange gilt das <span class="nw">69 €</span> Eröffnungsangebot?</span>
         </div>
       </summary>
       <div class="accordion-content">
-        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel ab 69 € (inkl. Ölfilter, 21-Punkte-Check & Fehlerspeicher auslesen) ist bis einschließlich <b>01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon oder WhatsApp.</p>
+        <p id="faq1Answer" style="margin:0; font-size:14px; color:#334155;">Unser Eröffnungsangebot für den Ölwechsel <span class="nw">ab 69 €</span> (inkl. Ölfilter, <span class="nw">21-Punkte-Check</span> & Fehlerspeicher auslesen) ist bis einschließlich <b class="nw">01.12.2026</b> gültig. Sichern Sie sich am besten kurzfristig Ihren Wunschtermin per Telefon, E-Mail oder WhatsApp.</p>
       </div>
     </details>
 
@@ -1380,7 +1500,7 @@
         </div>
       </summary>
       <div class="accordion-content">
-        <p id="faq2Answer" style="margin:0; font-size:14px; color:#334155;">Ja! Unser Ölwechsel-Paket beinhaltet immer den fachgerechten Ölwechsel, das passende Marken-Öl nach Herstellervorgabe, einen neuen Ölfilter sowie den kostenlosen 21-Punkte-Check und das Auslesen des Fehlerspeichers.</p>
+        <p id="faq2Answer" style="margin:0; font-size:14px; color:#334155;">Ja! Unser Ölwechsel-Paket beinhaltet immer den fachgerechten Ölwechsel, das passende Marken-Öl nach Herstellervorgabe, einen neuen Ölfilter sowie den kostenlosen <span class="nw">21-Punkte-Check</span> und das Auslesen des Fehlerspeichers.</p>
       </div>
     </details>
 
@@ -1391,7 +1511,7 @@
         </div>
       </summary>
       <div class="accordion-content">
-        <p style="margin:0; font-size:14px; color:#334155;">Wir sind von <b>Montag bis Freitag von 09:00 bis 17:00 Uhr</b> sowie am <b>Samstag von 10:00 bis 14:00 Uhr</b> persönlich für Sie vor Ort am Mariendorfer Damm 49 in Berlin.</p>
+        <p style="margin:0; font-size:14px; color:#334155;">Wir sind von <b>Montag bis Freitag von <span class="nw">09:00 bis 17:00 Uhr</span></b> sowie am <b>Samstag von <span class="nw">10:00 bis 14:00 Uhr</span></b> persönlich für Sie vor Ort am <span class="nw">Mariendorfer Damm 49</span> in Berlin.</p>
       </div>
     </details>
   </div>
@@ -1400,9 +1520,9 @@
 <!-- TERMINANFRAGE & STANDORT -->
 <section id="kontakt" class="wrap" style="padding-top: 0;">
   <h2 class="section-title">Kontakt & Termin sichern</h2>
-  <p class="section-sub">Schreiben Sie uns direkt per WhatsApp oder rufen Sie uns an.</p>
+  <p class="section-sub">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
 
-  <!-- ===== PLATZSPARENDE NEUIGKEIT 2: SCHLANKE FOTO-SCHNELLDIAGNOSE-LEISTE ===== -->
+  <!-- SCHLANKE FOTO-SCHNELLDIAGNOSE-LEISTE -->
   <div class="photo-strip">
     <div class="photo-strip-text">
       <b>📸 Schnell-Check per Foto gewünscht?</b>
@@ -1494,7 +1614,7 @@
         <span>📍</span>
         <div style="width:100%;">
           <b>Werkstatt-Adresse</b>
-          <p>Mariendorfer Damm 49<br>12109 Berlin-Mariendorf</p>
+          <p><span class="nw">Mariendorfer Damm 49</span><br><span class="nw">12109 Berlin-Mariendorf</span></p>
           <div class="route-actions">
             <a class="route-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route starten</a>
             <button type="button" class="route-btn" id="copyAddrBtn" onclick="copyWorkshopAddress()">📋 Adresse kopieren</button>
@@ -1506,14 +1626,14 @@
         <span>📞</span>
         <div>
           <b>Telefon & WhatsApp</b>
-          <p><a href="tel:017672625377" style="color:var(--primary); font-weight:800;">0176 72625 377</a></p>
+          <p><a href="tel:017672625377" class="nw" style="color:var(--primary); font-weight:800;">0176 72625 377</a></p>
         </div>
       </div>
       <div class="info-item">
         <span>✉️</span>
         <div>
           <b>E-Mail-Adresse</b>
-          <p><a href="mailto:info@absprofis.de" style="color:var(--primary); font-weight:800;">info@absprofis.de</a></p>
+          <p><a href="mailto:info@absprofis.de?subject=Anfrage%20A%26BS%20AUTOPROFIS" class="nw" style="color:var(--primary); font-weight:800;">info@absprofis.de</a></p>
         </div>
       </div>
       <div class="info-item">
@@ -1538,24 +1658,29 @@
 <footer>
   <div class="footer-contact">
     <b>A&BS AUTOPROFIS • Kfz-Service Mariendorf</b>
-    <span>Mariendorfer Damm 49, 12109 Berlin</span>
-    <span class="phone">📞 0176 72625 377</span>
+    <span class="nw">Mariendorfer Damm 49, 12109 Berlin</span>
+    <a href="tel:017672625377" class="phone nw">📞 0176 72625 377</a>
+    <a href="mailto:info@absprofis.de" class="nw" style="color:#ffe9a8;font-size:13.5px;font-weight:700;">✉️ info@absprofis.de</a>
   </div>
   <p style="font-size:12px;color:#8fa3d4;margin-top:14px;white-space:nowrap;">Mo – Fr: 09:00 – 17:00 Uhr • Sa: 10:00 – 14:00 Uhr</p>
-  <p id="footerOfferNote" style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot ab 69 € gültig bis 01.12.2026</p>
+  <p id="footerOfferNote" style="font-size:11.5px;color:#ffe9a8;margin-top:4px;white-space:nowrap;">Eröffnungsangebot <span class="nw">ab 69 €</span> gültig bis <span class="nw">01.12.2026</span></p>
 
-  <!-- ===== PLATZSPARENDE NEUIGKEIT 3: KOMPAKT AUFKLAPPBARES IMPRESSUM & DATENSCHUTZ ===== -->
+  <!-- ===== KORRIGIERTES IMPRESSUM & DATENSCHUTZ (JEDE ZEILE SAUBER STRUKTURIERT, KEINE ZERRISSENE TELEFONNUMMER MEHR!) ===== -->
   <div class="footer-legal-links">
     <button type="button" class="footer-legal-btn" onclick="toggleLegal('impressum')">📄 Impressum</button>
     <button type="button" class="footer-legal-btn" onclick="toggleLegal('datenschutz')">🔒 Datenschutz</button>
   </div>
   <div id="legalImpressum" class="footer-legal-box">
-    <b style="color:var(--gold-light); display:block; margin-bottom:4px;">Impressum (Angaben gemäß § 5 DDG)</b>
-    A&BS AUTOPROFIS – Kfz-Service Mariendorf • Standort: Mariendorfer Damm 49, 12109 Berlin • Telefon: 0176 72625 377 • E-Mail: info@absprofis.de • Web: www.absprofis.de
+    <b style="color:var(--gold-light); display:block; margin-bottom:6px; white-space:nowrap;">Impressum <span class="nw">(Angaben gemäß § 5 DDG)</span></b>
+    <span class="legal-row"><b>Betrieb:</b> A&BS AUTOPROFIS – Kfz-Service Mariendorf</span>
+    <span class="legal-row"><b>Standort:</b> <span class="nw">Mariendorfer Damm 49</span>, <span class="nw">12109 Berlin</span></span>
+    <span class="legal-row"><b>Telefon:</b> <span class="nw">0176 72625 377</span></span>
+    <span class="legal-row"><b>E-Mail:</b> <span class="nw">info@absprofis.de</span></span>
+    <span class="legal-row"><b>Website:</b> <span class="nw">www.absprofis.de</span></span>
   </div>
   <div id="legalDatenschutz" class="footer-legal-box">
-    <b style="color:var(--gold-light); display:block; margin-bottom:4px;">Datenschutzhinweis</b>
-    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail oder WhatsApp kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Termin- oder Preisanfrage verwendet.
+    <b style="color:var(--gold-light); display:block; margin-bottom:6px;">Datenschutzhinweis</b>
+    Beim Besuch dieser Website werden keine Tracking-Cookies gesetzt. Wenn Sie uns per Telefon, E-Mail (<span class="nw">info@absprofis.de</span>) oder WhatsApp (<span class="nw">0176 72625 377</span>) kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.
   </div>
 
   <p style="font-size:12px;color:#8fa3d4;margin-top:12px;">© 2026 A&BS AUTOPROFIS. Alle Rechte vorbehalten.</p>
@@ -1576,7 +1701,7 @@
     if (nowMs < OFFER_END_TIMESTAMP) {
       const remainingDays = Math.ceil((OFFER_END_TIMESTAMP - nowMs) / (1000 * 60 * 60 * 24));
       if (offerBadge) {
-        offerBadge.innerText = `🔥 69 € Aktion bis 01.12. (noch ${remainingDays} Tg.)`;
+        offerBadge.innerHTML = `🔥 <span class="nw">69 € Aktion</span> bis <span class="nw">01.12.</span> <span class="nw">(noch ${remainingDays} Tg.)</span>`;
       }
     } else {
       const topBanner = document.getElementById("topBannerOfferLine");
@@ -1593,10 +1718,10 @@
       if (srvSub) srvSub.innerText = "Solides Handwerk trifft auf tolle Preise. Das beinhaltet unser Servicepaket:";
 
       const advisorOilTxt = document.getElementById("advisorOilDynamicText");
-      if (advisorOilTxt) advisorOilTxt.innerText = "Bei uns erhalten Sie den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem 21-Punkte-Check zu tollen Preisen.";
+      if (advisorOilTxt) advisorOilTxt.innerHTML = "Bei uns erhalten Sie den fachgerechten Ölwechsel inkl. neuem Ölfilter und kostenlosem <span class="nw">21-Punkte-Check</span> zu tollen Preisen.";
 
       const priceBoxTxt = document.getElementById("priceBoxText");
-      if (priceBoxTxt) priceBoxTxt.innerHTML = "Bei A&BS AUTOPROFIS erwarten Sie <b>tolle Preise und faire Meister-Konditionen</b> ohne versteckte Kosten. Für Ihren Ölwechsel, Reparaturen und Inspektionen gilt: <b>Preise bitte kurz per WhatsApp oder Telefon anfragen!</b>";
+      if (priceBoxTxt) priceBoxTxt.innerHTML = "Bei A&BS AUTOPROFIS erwarten Sie <b>tolle Preise und faire Meister-Konditionen</b> ohne versteckte Kosten. Für Ihren Ölwechsel, Reparaturen und Inspektionen gilt: <b>Preise bitte kurz per WhatsApp, E-Mail oder Telefon anfragen!</b>";
 
       const priceCardSub = document.getElementById("priceCardSub");
       if (priceCardSub) priceCardSub.innerText = "Meister-Service Paket";
@@ -1608,7 +1733,7 @@
       if (faq1Q) faq1Q.innerText = "Wie erhalte ich schnell den besten Preis für mein Auto?";
 
       const faq1A = document.getElementById("faq1Answer");
-      if (faq1A) faq1A.innerHTML = "Schreiben Sie uns einfach kurz per WhatsApp oder rufen Sie uns an. Wir kalkulieren Ihnen sofort einen <b>tollen, fairen Festpreis</b> passend für Ihr Fahrzeugmodell.";
+      if (faq1A) faq1A.innerHTML = "Schreiben Sie uns einfach kurz per WhatsApp, E-Mail oder rufen Sie uns an. Wir kalkulieren Ihnen sofort einen <b>tollen, fairen Festpreis</b> passend für Ihr Fahrzeugmodell.";
 
       const footerNote = document.getElementById("footerOfferNote");
       if (footerNote) footerNote.innerText = "Tolle Preise • Faire Beratung • Meisterbetrieb für alle Marken";
@@ -1721,7 +1846,17 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
-  // Platzsparende Neuigkeit 1: 1-Zeilen Ölwechsel-Schnelltest (mit Zweitklick-Schließen)
+  // NEU: Großes Firmenlogo im Hero-Bereich anklicken -> Werkstatt-Steckbrief öffnen/schließen
+  function toggleHeroLogoInfo(event) {
+    event.stopPropagation();
+    const box = document.getElementById("heroLogoDetails");
+    const hint = document.getElementById("logoCardHint");
+    const isNowOpen = !box.classList.contains("show");
+    box.classList.toggle("show");
+    hint.innerText = isNowOpen ? "🔼 Tippen zum Ausblenden" : "👆 Auf das Logo tippen für Betriebs-Infos";
+  }
+
+  // KORRIGIERT: 1-Zeilen Ölwechsel-Schnelltest (Kein getrenntes "69- / €-Aktionspaket" mehr!)
   function checkOilInterval(state, btnEl) {
     const ans = document.getElementById('quickOilAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -1734,14 +1869,39 @@
     }
 
     btnEl.classList.add('active');
-    const offerNote = isOfferStillActive() ? "unser 69-€-Aktionspaket (inkl. Filter & 21-Pkt.-Check)" : "unser Ölwechsel-Paket inkl. Filter & 21-Pkt.-Check";
+    const offerNote = isOfferStillActive()
+      ? `unser <b class="nw">69 € Aktionspaket</b><span class="sub-bracket" style="color:var(--primary);">(inkl. Ölfilter &amp; 21-Punkte-Check)</span>`
+      : `unser <b>Ölwechsel-Paket zum Top-Preis</b><span class="sub-bracket" style="color:var(--primary);">(inkl. Ölfilter &amp; 21-Punkte-Check)</span>`;
 
     if (state === 'ok') {
-      ans.innerHTML = `🟢 <b>Alles im grünen Bereich:</b> Wenn Sie unter 15.000 km gefahren sind, reicht meist ein kurzer Gratis-Flüssigkeits-Check vor Ort.`;
+      ans.innerHTML = `🟢 <b>Alles im grünen Bereich:</b> Unter <span class="nw">15.000 km</span> reicht meist ein kurzer Gratis-Flüssigkeits-Check vor Ort.`;
     } else if (state === 'km') {
-      ans.innerHTML = `🟠 <b>Wechsel empfohlen:</b> Ab 15.000 km verliert das Motoröl spürbar an Schmierkraft – ideal für ${offerNote}.`;
+      ans.innerHTML = `🟠 <b>Wechsel empfohlen:</b> Ab <span class="nw">15.000 km</span> verliert das Motoröl spürbar an Schmierkraft – ideal für ${offerNote}`;
     } else {
-      ans.innerHTML = `🔴 <b>Jetzt Termin sichern:</b> Nach über 12 Monaten bilden sich Ablagerungen im Öl. Nutzen Sie direkt ${offerNote}!`;
+      ans.innerHTML = `🔴 <b>Jetzt Termin sichern:</b> Nach über <span class="nw">12 Monaten</span> bilden sich Ablagerungen im Öl. Nutzen Sie direkt ${offerNote}`;
+    }
+    ans.classList.add('show');
+  }
+
+  // NEU: 1-Zeilen HU / TÜV Vorab-Schnellcheck
+  function checkHuStatus(state, btnEl) {
+    const ans = document.getElementById('quickHuAnswer');
+    const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
+    document.querySelectorAll('.q-hu-btn').forEach(b => b.classList.remove('active'));
+
+    if (wasActive) {
+      ans.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+
+    btnEl.classList.add('active');
+    if (state === 'soon') {
+      ans.innerHTML = `🔍 <b>Perfekter Zeitpunkt:</b> Kommen Sie kurz zu unserem kostenlosen <span class="nw">21-Punkte-Vorab-Check</span> vorbei – so bestehen Sie die Prüfung ohne Nachgebühren!`;
+    } else if (state === 'overdue') {
+      ans.innerHTML = `🚨 <b>Keine Zeit verlieren:</b> Wir prüfen Bremsen, Licht, Reifen &amp; Fehlerspeicher sofort durch und machen Ihr Fahrzeug direkt prüfungsfertig.`;
+    } else {
+      ans.innerHTML = `✔ <b>Entspannt weiterfahren:</b> Sie haben noch Ruhe – nutzen Sie bis dahin gerne unseren kostenlosen Licht- &amp; Frostschutz-Check.`;
     }
     ans.classList.add('show');
   }
@@ -1882,7 +2042,7 @@
     }
   }
 
-  // Platzsparende Neuigkeit 3: Impressum / Datenschutz im Footer ein- und ausblenden
+  // Impressum / Datenschutz im Footer ein- und ausblenden
   function toggleLegal(type) {
     const imp = document.getElementById('legalImpressum');
     const dat = document.getElementById('legalDatenschutz');
