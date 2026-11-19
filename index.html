@@ -231,6 +231,26 @@
   .cd-lbl { font-size: 10px; text-transform: uppercase; color: #cbd5ff; letter-spacing: 0.6px; margin-top: 2px; }
 
   .usp-bar { background: #fff; border-bottom: 1px solid #eae5d9; padding: 20px 16px; width: 100%; }
+
+  .kpi-strip {
+    background: linear-gradient(135deg, #05132e, #0b224f);
+    border-bottom: 2px solid var(--gold); padding: 20px 16px; width: 100%;
+  }
+  .kpi-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;
+  }
+  .kpi-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.32);
+    border-radius: 14px; padding: 14px 10px; text-align: center;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .kpi-num {
+    display: block; font-size: clamp(22px, 3.6vw, 30px); font-weight: 900;
+    color: var(--gold-light); line-height: 1.1; font-variant-numeric: tabular-nums;
+  }
+  .kpi-lbl { display: block; font-size: 11.5px; color: #dbe4ff; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+  @media(max-width: 767px) { .kpi-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
   .usp-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; text-align: center; }
   .usp-item b { display: block; color: var(--primary); font-size: 14.5px; margin-bottom: 2px; }
   .usp-item span { font-size: 12px; color: var(--text-muted); display: block; }
@@ -319,7 +339,28 @@
   .dir-front, .dir-rear { font-size: clamp(10px, 2.7vw, 11.5px); font-weight: 800; padding: 5px 8px; border-radius: 8px; text-align: center; min-width: 0; line-height: 1.25; letter-spacing: 0.3px; }
   .dir-front { color: var(--gold-light); background: rgba(212,175,55,0.14); border: 1px solid rgba(212,175,55,0.45); }
   .dir-rear { color: #cbd5ff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); }
-  .car-blueprint-svg { width: 100%; max-width: 540px; height: auto; margin: 4px auto; display: block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.55)); }
+  .car-blueprint-svg { width: 100%; max-width: 540px; height: auto; margin: 4px auto; display: block; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.55)); position: relative; z-index: 2; }
+  .cad-scan-stage { position: relative; overflow: hidden; border-radius: 12px; }
+  .cad-scan-beam {
+    position: absolute; top: 0; bottom: 0; left: -18%; width: 18%; z-index: 1; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.22), rgba(56, 189, 248, 0.28), transparent);
+    border-right: 1.5px solid rgba(245, 214, 122, 0.55);
+    animation: cadScanSweep 4.8s ease-in-out infinite;
+  }
+  @keyframes cadScanSweep {
+    0% { left: -18%; opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { left: 102%; opacity: 0; }
+  }
+  .cad-telemetry-bar {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;
+    margin-top: 6px; padding: 5px 9px; border-radius: 8px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14);
+    font-size: 10px; font-weight: 750; color: #cbd5ff; letter-spacing: 0.4px; text-transform: uppercase;
+  }
+  .cad-telemetry-bar span.live-ok { color: #4ade80; font-weight: 800; }
+  @media (prefers-reduced-motion: reduce) { .cad-scan-beam { display: none; } }
   .hs-node { cursor: pointer; }
   .hs-node .hs-ring { opacity: 0; stroke: var(--gold-light); stroke-width: 2; fill: none; }
   .hs-node.active .hs-ring { opacity: 1; animation: hsPulse 1.6s ease-out infinite; }
@@ -493,6 +534,26 @@
   .dash-info-lines span.line { display: block; margin-bottom: 4px; }
 
   /* 4 Schritte */
+  .sos-box {
+    background: #fff; border: 1.5px solid #e6dfcf; border-left: 5px solid #dc2626;
+    border-radius: 22px; padding: 22px 20px; margin-top: 34px;
+    box-shadow: 0 8px 24px rgba(7, 26, 61, 0.04); width: 100%;
+  }
+  .sos-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+  .sos-tab {
+    background: #fdfbf7; border: 1.5px solid #d1d5db; color: var(--primary);
+    border-radius: 12px; padding: 9px 6px; font-size: 12px; font-weight: 800;
+    cursor: pointer; transition: all 0.18s ease; text-align: center;
+  }
+  .sos-tab.active { background: #071a3d; color: var(--gold-light); border-color: #071a3d; }
+  .sos-panel {
+    display: none; margin-top: 14px; background: #fdfbf7; border: 1px solid #eae5d9;
+    border-radius: 14px; padding: 14px 16px; font-size: 13.5px; color: #334155; line-height: 1.55;
+  }
+  .sos-panel.show { display: block; animation: fadeIn 0.22s ease; }
+  .sos-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  @media(max-width: 767px) { .sos-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sos-box { padding: 18px 13px; } }
+
   .steps-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 24px; width: 100%; }
   .step-card { background: #fff; border-radius: 18px; padding: 20px 16px; border: 1px solid #eae5d9; text-align: left; box-shadow: 0 4px 14px rgba(0,0,0,0.02); min-width: 0; }
   .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: var(--gold-light); font-weight: 900; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 2px solid var(--gold); }
@@ -647,6 +708,14 @@
   .wa-preview-bubble { background: #dcf8c6; color: #111827; border-radius: 0 12px 12px 12px; padding: 10px 12px; font-size: 12px; line-height: 1.5; box-shadow: 0 2px 5px rgba(0,0,0,0.08); white-space: pre-line; }
 
   .form-submit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: stretch; width: 100%; }
+
+  .callback-strip {
+    margin-top: 22px; background: linear-gradient(135deg, #ffffff, #fdfbf7);
+    border: 1.5px solid var(--gold); border-radius: 22px; padding: 20px 22px;
+    box-shadow: 0 8px 24px rgba(7, 26, 61, 0.05); width: 100%;
+  }
+  .callback-grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; margin-top: 12px; align-items: end; }
+  @media(max-width: 767px) { .callback-grid { grid-template-columns: 1fr; } .callback-strip { padding: 18px 13px; } }
   .email-quote-btn {
     background: #fdfbf7; border: 2px solid var(--primary); color: var(--primary);
     border-radius: 999px; padding: 12px 16px; font-weight: 800; font-size: 13px;
@@ -675,6 +744,28 @@
 
   .wa-float { display: grid; position: fixed; right: 16px; bottom: 16px; z-index: 100; width: 54px; height: 54px; border-radius: 50%; background: var(--success); place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.5); border: 2px solid #fff; cursor: pointer; transition: transform 0.2s ease; }
   .wa-float svg { width: 29px; height: 29px; }
+
+  .mobile-action-dock { display: none; }
+  @media(max-width: 767px) {
+    .mobile-action-dock {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 110;
+      background: rgba(7, 26, 61, 0.96); backdrop-filter: blur(12px);
+      border-top: 2px solid var(--gold);
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      box-shadow: 0 -8px 24px rgba(4, 16, 38, 0.35);
+    }
+    .dock-btn {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 10px 6px; border-radius: 12px; font-size: 12px; font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.18); color: #fff; background: rgba(255,255,255,0.08);
+      cursor: pointer; text-align: center; white-space: nowrap;
+    }
+    .dock-btn.dock-call { background: linear-gradient(135deg, #f9e08a, var(--gold)); color: var(--primary); border-color: var(--gold-light); }
+    .dock-btn.dock-wa { background: var(--success); color: #fff; border-color: #86efac; }
+    .wa-float, .top-float { bottom: 74px !important; }
+    footer { padding-bottom: 130px !important; }
+  }
   .top-float { position: fixed; left: 16px; bottom: 16px; z-index: 95; width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: var(--gold-light); border: 2px solid var(--gold); display: grid; place-items: center; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px rgba(7,26,61,0.35); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; -webkit-tap-highlight-color: transparent; }
   .top-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
@@ -985,6 +1076,28 @@
   </div>
 </div>
 
+<!-- PRÄZISIONS-KENNZAHLEN-LEISTE -->
+<div class="kpi-strip" id="kpiStrip">
+  <div class="kpi-inner">
+    <div class="kpi-card">
+      <span class="kpi-num" data-count="21" data-suffix="">0</span>
+      <span class="kpi-lbl">Sicherheits-Prüfpunkte<span class="sub-bracket-light">(im Ölwechsel-Paket)</span></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-num" data-count="0" data-suffix=" €">0 €</span>
+      <span class="kpi-lbl">OBD-Fehlerspeicher<span class="sub-bracket-light">(Auslesen kostenlos)</span></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-num" data-count="100" data-suffix=" %">0 %</span>
+      <span class="kpi-lbl">Markenoffener Service<span class="sub-bracket-light">(Erstausrüsterqualität)</span></span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-num" data-count="6" data-suffix=" Tage">0 Tage</span>
+      <span class="kpi-lbl">Wöchentlich für Sie da<span class="sub-bracket-light">(Mo–Fr &amp; Samstag)</span></span>
+    </div>
+  </div>
+</div>
+
 <!-- ===== SEKTION 1 – ALLE KFZ-REPARATUREN & GRATIS FEHLERSPEICHER-CHECK ===== -->
 <section id="reparaturen" class="wrap">
   <h2 class="section-title reveal">Unsere Kfz-Reparaturen &amp; Leistungen</h2>
@@ -1208,7 +1321,9 @@
           <div class="dir-rear">HECK &amp; ABGASANLAGE ▶</div>
         </div>
 
-        <svg class="car-blueprint-svg" viewBox="0 0 540 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="cad-scan-stage">
+          <div class="cad-scan-beam" aria-hidden="true"></div>
+          <svg class="car-blueprint-svg" viewBox="0 0 540 190" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="chassisGrad" x1="40" y1="45" x2="500" y2="150" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#17387a"/>
@@ -1300,6 +1415,11 @@
             <text x="486" y="126" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="900">6</text>
           </g>
         </svg>
+        </div>
+        <div class="cad-telemetry-bar">
+          <span>OBD- &amp; Baugruppen-Ansicht</span>
+          <span class="live-ok">● 6 Bereiche interaktiv prüfbar</span>
+        </div>
 
         <div class="hotspot-bar">
           <button type="button" class="hs-btn active" id="hsBtn_motor" onclick="selectCarZone('motor')">1. ⚙️ Motor &amp; Riemen</button>
@@ -1682,6 +1802,21 @@
         Jetzt kostenlos auslesen lassen
       </button>
     </div>
+  </div>
+
+  <!-- PANNEN- & SOFORTHILFE-LEITFADEN -->
+  <div class="sos-box reveal">
+    <h3 style="margin:0 0 4px; font-size:clamp(17px, 4.4vw, 21px); color:var(--primary); font-weight:900;">
+      🚨 Pannen- &amp; Soforthilfe-Leitfaden
+      <span class="sub-bracket">(Schnelle Orientierung bei Startproblemen, Warnlampen oder Panne in Berlin)</span>
+    </h3>
+    <div class="sos-tabs">
+      <button type="button" class="sos-tab" onclick="showSosGuide('battery', this)">🔋 Auto startet nicht</button>
+      <button type="button" class="sos-tab" onclick="showSosGuide('redlamp', this)">🛑 Rote Warnlampe</button>
+      <button type="button" class="sos-tab" onclick="showSosGuide('tire', this)">🛞 Reifenpanne</button>
+      <button type="button" class="sos-tab" onclick="showSosGuide('noise', this)">⚠️ Plötzliches Geräusch</button>
+    </div>
+    <div id="sosPanel" class="sos-panel"></div>
   </div>
 
   <!-- IN 4 SCHRITTEN ZUM FERTIGEN AUTO -->
@@ -2246,6 +2381,30 @@
   </div>
 </section>
 
+<!-- 1-KLICK-RÜCKRUF-SERVICE -->
+  <div class="callback-strip reveal" style="max-width:1160px; margin: 0 auto 36px;">
+    <div style="font-size:16px;font-weight:900;color:var(--primary);line-height:1.3;">
+      📞 Lieber kurz zurückgerufen werden?
+      <span class="sub-bracket">(Rückruf-Wunsch – wir melden uns zuverlässig im gewünschten Zeitfenster)</span>
+    </div>
+    <div class="callback-grid">
+      <div class="hu-select-group">
+        <label for="cbPhone">Ihre Rückrufnummer</label>
+        <input type="tel" id="cbPhone" class="form-control" placeholder="z. B. 0176 / 12345678">
+      </div>
+      <div class="hu-select-group">
+        <label for="cbWindow">Wann passt es Ihnen?</label>
+        <select id="cbWindow" class="hu-select">
+          <option value="Schnellstmöglich">Schnellstmöglich</option>
+          <option value="Vormittags (09:00 – 13:00 Uhr)">Vormittags (09:00 – 13:00 Uhr)</option>
+          <option value="Nachmittags (13:00 – 17:00 Uhr)">Nachmittags (13:00 – 17:00 Uhr)</option>
+          <option value="Samstag (10:00 – 14:00 Uhr)">Samstag (10:00 – 14:00 Uhr)</option>
+        </select>
+      </div>
+      <button type="button" class="btn" onclick="sendCallbackRequest()">📲 Rückruf anfordern</button>
+    </div>
+  </div>
+
 <!-- Sanfter Nach-Oben-Button (links unten) -->
 <button type="button" class="top-float" id="backToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
 
@@ -2253,6 +2412,13 @@
 <button type="button" class="wa-float" onclick="openQuickTopicWhatsApp('Direktanfrage über WhatsApp-Button')" aria-label="WhatsApp Chat öffnen" title="WhatsApp schreiben">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </button>
+
+<!-- MOBILE SCHNELLZUGRIFF-LEISTE (NUR SMARTPHONE) -->
+<div class="mobile-action-dock" aria-label="Schnellkontakt">
+  <a class="dock-btn dock-call" href="tel:017672625377">📞 Anrufen</a>
+  <button type="button" class="dock-btn dock-wa" onclick="openQuickTopicWhatsApp('Kurzanfrage per Mobilgerät')">💬 WhatsApp</button>
+  <a class="dock-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route</a>
+</div>
 
 <footer>
   <div class="footer-contact">
@@ -2409,11 +2575,46 @@
     }
   }
 
+  function initKpiCounters() {
+    const strip = document.getElementById('kpiStrip');
+    if (!strip) return;
+    let started = false;
+    const runCounters = () => {
+      if (started) return;
+      started = true;
+      strip.querySelectorAll('.kpi-num[data-count]').forEach(el => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 900;
+        const startTime = performance.now();
+        const step = (now) => {
+          const progress = Math.min(1, (now - startTime) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.innerText = Math.round(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    };
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        if (entries.some(e => e.isIntersecting)) {
+          runCounters();
+          obs.disconnect();
+        }
+      }, { threshold: 0.25 });
+      obs.observe(strip);
+    } else {
+      runCounters();
+    }
+  }
+
   window.addEventListener("DOMContentLoaded", function() {
     window.scrollTo(0, 0);
     applyAutomaticOfferSwitch();
     updateWorkshopCapacity();
     initScrollReveal();
+    initKpiCounters();
     updateWhatsAppPreview();
     setTimeout(hideIntroSplash, 2000);
   });
@@ -2786,6 +2987,50 @@
     };
     box.innerHTML = infoMap[step] || '';
     box.classList.add('show');
+  }
+
+  function showSosGuide(mode, btnEl) {
+    const panel = document.getElementById('sosPanel');
+    const wasActive = btnEl.classList.contains('active') && panel.classList.contains('show');
+    document.querySelectorAll('.sos-tab').forEach(b => b.classList.remove('active'));
+    if (wasActive) {
+      panel.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+    btnEl.classList.add('active');
+    const guides = {
+      battery: {
+        title: '🔋 Auto springt nicht an (Batterie / Anlasser):',
+        text: 'Verbraucher (Licht, Heizung, Radio) ausschalten und nicht dauerhaft orgeln. Nach Starthilfe direkt bei uns vorfahren – wir messen Batterie und Lichtmaschine sofort durch.',
+        ctx: 'Soforthilfe: Fahrzeug startet nicht / Batterie-Check'
+      },
+      redlamp: {
+        title: '🛑 Rote Kontrollleuchte (Öldruck, Temperatur, Bremse):',
+        text: 'Sicher am Fahrbahnrand anhalten und Motor sofort abstellen, um teure Motorschäden zu vermeiden. Rufen Sie uns kurz an – wir schätzen direkt ein, ob eine Weiterfahrt zulässig ist.',
+        ctx: 'Soforthilfe: Rote Warnleuchte im Cockpit'
+      },
+      tire: {
+        title: '🛞 Luftverlust oder Reifenpanne:',
+        text: 'Warnblinker einschalten, sicher ausrollen lassen und nicht mit plattem Reifen weiterfahren (Felgenschaden!). Wir prüfen Reifen, Ventil & RDKS und montieren kurzfristig Ersatz.',
+        ctx: 'Soforthilfe: Reifenpanne / Druckverlust'
+      },
+      noise: {
+        title: '⚠️ Plötzliches Schleifen, Klopfen oder Leistungsverlust:',
+        text: 'Tempo reduzieren, abrupte Lenk- und Bremsmanöver vermeiden und zeitnah prüfen lassen. Auf unserer Hebebühne am Mariendorfer Damm 49 klären wir die Ursache direkt.',
+        ctx: 'Soforthilfe: Plötzliches Geräusch / Leistungsverlust'
+      }
+    };
+    const item = guides[mode];
+    panel.innerHTML = `
+      <b style="color:var(--primary);display:block;margin-bottom:4px;">${item.title}</b>
+      <span>${item.text}</span>
+      <div class="sos-actions">
+        <a class="btn" style="padding:9px 14px;font-size:12.5px;" href="tel:017672625377">📞 Direkt anrufen (0176 72625 377)</a>
+        <button type="button" class="wa-btn" onclick="openQuickTopicWhatsApp('${item.ctx}')">💬 Per WhatsApp melden</button>
+      </div>
+    `;
+    panel.classList.add('show');
   }
 
   function showTimeGuide(mode, btnEl) {
@@ -3275,6 +3520,30 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }
+
+  function sendCallbackRequest() {
+    const phoneEl = document.getElementById('cbPhone');
+    const winEl = document.getElementById('cbWindow');
+    const phone = phoneEl ? phoneEl.value.trim() : '';
+    const win = winEl ? winEl.value : 'Schnellstmöglich';
+
+    if (!phone) {
+      if (phoneEl) {
+        phoneEl.style.borderColor = '#dc2626';
+        phoneEl.focus({ preventScroll: true });
+      }
+      return;
+    }
+    if (phoneEl) phoneEl.style.borderColor = '#d1d5db';
+
+    const cbText =
+      `📞 *RÜCKRUF-WUNSCH – A&BS AUTOPROFIS*\n` +
+      `📍 _Mariendorfer Damm 49, 12109 Berlin_\n\n` +
+      `• *Bitte um Rückruf unter:* *${phone}*\n` +
+      `• *Gewünschtes Zeitfenster:* *${win}*`;
+
+    window.open(`https://wa.me/4917672625377?text=${encodeURIComponent(cbText)}`, '_blank', 'noopener');
   }
 
   function copyWorkshopAddress() {
