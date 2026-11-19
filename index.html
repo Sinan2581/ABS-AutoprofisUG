@@ -58,8 +58,18 @@
   .colon-line { display: block; margin-top: 2px; font-weight: 800; color: var(--primary); }
   .colon-line-light { display: block; margin-top: 2px; font-weight: 800; color: var(--gold-light); }
 
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* Gestaffelte Kaskade für Karten-Raster (Premium-Rhythmus) */
+  .repair-grid .reveal:nth-child(3n+2), .grid-3 .reveal:nth-child(2), .news-grid .reveal:nth-child(2), .comfort-grid .reveal:nth-child(2), .steps-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .repair-grid .reveal:nth-child(3n+3), .grid-3 .reveal:nth-child(3), .news-grid .reveal:nth-child(3), .comfort-grid .reveal:nth-child(3), .steps-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .steps-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  /* Präzises Touch- & Klick-Feedback */
+  .btn:active, .wa-btn:active, .photo-wa-btn:active, .rep-select-btn:active, .dock-btn:active, .srv-chip:active, .slot-chip:active {
+    transform: scale(0.975) !important;
+  }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
   /* ===== PROFESSIONELLE, REALISTISCHE MEISTER-DIAGNOSE EINGANGSANIMATION ===== */
@@ -74,7 +84,7 @@
   @keyframes splashAutoHide { 0%, 82% { opacity: 1; visibility: visible; } 99%, 100% { opacity: 0; visibility: hidden; pointer-events: none; } }
 
   .intro-stage {
-    position: relative; width: 320px; max-width: 92vw;
+    position: relative; width: 365px; max-width: 94vw;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
   }
   .intro-logo-ring {
@@ -107,14 +117,18 @@
     padding-bottom: 6px; margin-bottom: 8px;
   }
   .intro-diag-row {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 11.5px; color: #dbe4ff; padding: 3px 0; font-weight: 600;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-size: 11.5px; line-height: 1.35; color: #dbe4ff; padding: 4px 0; font-weight: 600;
     opacity: 0; transform: translateX(-6px);
   }
+  .intro-diag-row span:first-child { text-align: left; min-width: 0; }
   .intro-diag-row.r1 { animation: diagStepIn 0.35s ease 0.2s forwards; }
   .intro-diag-row.r2 { animation: diagStepIn 0.35s ease 0.55s forwards; }
   .intro-diag-row.r3 { animation: diagStepIn 0.35s ease 0.9s forwards; }
-  .intro-diag-ok { color: #4ade80; font-weight: 800; font-size: 11px; letter-spacing: 0.3px; }
+  .intro-diag-ok {
+    color: #4ade80; font-weight: 800; font-size: 10.5px; letter-spacing: 0.35px;
+    white-space: nowrap; flex-shrink: 0; padding-left: 8px;
+  }
   @keyframes diagStepIn { to { opacity: 1; transform: translateX(0); } }
 
   .intro-progress-track {
@@ -515,6 +529,106 @@
     width: 100%; padding: 10px 12px; border-radius: 12px; border: 1.5px solid #cbd5e1;
     background: #fdfbf7; color: var(--primary); font-weight: 700; font-size: 13.5px; font-family: inherit;
   }
+  input[type="date"].form-control { color-scheme: light; accent-color: var(--primary); }
+
+  /* Designpassendes Custom-Select-System (Portal über allen Boxen + Blau-Gold Mobile-Sheet) */
+  .abs-select-wrap { position: relative; width: 100%; }
+  .abs-native-select { display: none !important; }
+  .abs-select-trigger {
+    width: 100%; min-height: 44px; padding: 10px 13px; border-radius: 12px;
+    border: 1.5px solid #d9cfa8; background: linear-gradient(180deg, #ffffff, #fdfbf7); color: var(--primary);
+    font: inherit; font-size: 13.5px; font-weight: 800;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    cursor: pointer; text-align: left;
+    box-shadow: 0 2px 6px rgba(7, 26, 61, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .abs-select-trigger.is-placeholder { color: var(--text-muted); font-weight: 600; }
+  .abs-select-wrap.open .abs-select-trigger,
+  .abs-select-trigger:focus-visible {
+    outline: none; border-color: var(--gold); background: #fff;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.24);
+  }
+  .abs-select-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .abs-select-chevron {
+    width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0;
+    background: #f5eedb; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary);
+    display: grid; place-items: center;
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease, color 0.2s ease;
+  }
+  .abs-select-chevron svg { width: 15px; height: 15px; }
+  .abs-select-wrap.open .abs-select-chevron {
+    transform: rotate(180deg); background: var(--primary); color: var(--gold-light); border-color: var(--gold);
+  }
+
+  .abs-select-backdrop {
+    position: fixed; inset: 0; z-index: 9990;
+    background: rgba(4, 16, 38, 0.56); backdrop-filter: blur(3px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  .abs-select-backdrop.show { opacity: 1; visibility: visible; pointer-events: auto; }
+
+  .abs-select-portal-menu {
+    position: fixed; z-index: 9995;
+    background: linear-gradient(180deg, #071a3d 0%, #0b224f 100%);
+    border: 2px solid var(--gold); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 22px 50px rgba(4, 16, 38, 0.45), 0 0 0 1px rgba(245, 214, 122, 0.25);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateY(-6px) scale(0.98);
+    transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.18s ease;
+  }
+  .abs-select-portal-menu.open {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .abs-select-portal-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 9px 12px; background: rgba(4, 16, 38, 0.65);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold-light); font-size: 11.5px; font-weight: 850; letter-spacing: 0.3px;
+  }
+  .abs-select-portal-close {
+    width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(212, 175, 55, 0.55);
+    background: rgba(255, 255, 255, 0.08); color: var(--gold-light);
+    font-size: 14px; font-weight: 900; line-height: 1; cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .abs-select-portal-list {
+    padding: 6px; max-height: 250px; overflow-y: auto;
+    overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  }
+  .abs-select-option {
+    width: 100%; border: 1px solid transparent; background: rgba(255, 255, 255, 0.05); color: #eef3ff;
+    padding: 10px 12px; border-radius: 10px; font: inherit; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    text-align: left; cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .abs-select-option + .abs-select-option { margin-top: 4px; }
+  .abs-select-option:hover { background: rgba(212, 175, 55, 0.16); border-color: rgba(212, 175, 55, 0.45); color: #fff; }
+  .abs-select-option.selected {
+    background: linear-gradient(135deg, #f9e08a, var(--gold));
+    color: var(--primary); font-weight: 900; border-color: #fff6cc;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+  }
+  .abs-opt-check { font-size: 13px; font-weight: 900; opacity: 0; color: var(--primary); flex-shrink: 0; }
+  .abs-select-option.selected .abs-opt-check { opacity: 1; }
+
+  @media(max-width: 767px) {
+    .abs-select-portal-menu {
+      left: 12px !important; right: 12px !important; top: auto !important;
+      bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+      width: auto !important; border-radius: 20px;
+      transform: translateY(20px);
+    }
+    .abs-select-portal-menu.open { transform: translateY(0); }
+    .abs-select-portal-header { padding: 12px 14px; font-size: 13px; }
+    .abs-select-portal-list { padding: 8px; max-height: 52vh; }
+    .abs-select-option { padding: 12px 13px; font-size: 14px; }
+  }
   .hu-calc-result {
     display: none; max-width: 720px; margin: 14px auto 0; padding: 15px 16px;
     border-radius: 14px; background: #fdfbf7; border: 1.5px solid var(--gold); font-size: 13.5px; line-height: 1.55;
@@ -729,8 +843,18 @@
   .accordion-item summary .acc-title { display: flex; flex-direction: column; align-items: flex-start; text-align: left; line-height: 1.3; min-width: 0; }
   .accordion-item summary .acc-main { font-weight: 800; font-size: clamp(14px, 3.8vw, 16.5px); color: var(--primary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .acc-count-pill { background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
-  .accordion-item summary::after { content: '+'; font-size: 22px; color: var(--gold); font-weight: 900; flex-shrink: 0; }
-  .accordion-item[open] summary::after { content: '−'; }
+  .accordion-item { transition: border-color 0.25s ease, box-shadow 0.25s ease; }
+  .accordion-item[open] { box-shadow: 0 10px 26px rgba(7, 26, 61, 0.08); }
+  .accordion-item summary::after {
+    content: '+'; width: 28px; height: 28px; border-radius: 50%;
+    background: #fdfbf7; border: 1.5px solid rgba(212, 175, 55, 0.55);
+    display: inline-grid; place-items: center;
+    font-size: 18px; line-height: 1; color: var(--primary); font-weight: 900; flex-shrink: 0;
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s ease, color 0.22s ease;
+  }
+  .accordion-item[open] summary::after {
+    transform: rotate(45deg); background: var(--primary); color: var(--gold-light); border-color: var(--gold);
+  }
   .accordion-item[open] summary { background: #fdfbf7; border-bottom: 1px solid #eae5d9; }
   .accordion-content { padding: 16px 18px; background: #fdfbf7; animation: fadeIn 0.22s ease; }
   .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
@@ -853,7 +977,24 @@
   .wa-preview-header div { min-width: 0; line-height: 1.25; }
   .wa-preview-header b { display: block; font-size: 12.5px; color: #fff; }
   .wa-preview-header span { font-size: 10.5px; color: #d1fae5; }
-  .wa-preview-bubble { background: #dcf8c6; color: #111827; border-radius: 0 12px 12px 12px; padding: 10px 12px; font-size: 12px; line-height: 1.5; box-shadow: 0 2px 5px rgba(0,0,0,0.08); white-space: pre-line; }
+  .wa-preview-bubble { background: #dcf8c6; color: #111827; border-radius: 0 12px 12px 12px; padding: 10px 12px; font-size: 12px; line-height: 1.5; box-shadow: 0 2px 5px rgba(0,0,0,0.08); white-space: pre-line; transition: box-shadow 0.35s ease; }
+  .wa-live-preview.updated { animation: previewGoldFlash 0.65s ease; }
+  @keyframes previewGoldFlash {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55); border-color: var(--gold); }
+    100% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); border-color: #c7b9a5; }
+  }
+
+  .abs-toast {
+    position: fixed; left: 50%; bottom: 24px; z-index: 150;
+    transform: translate(-50%, 16px); opacity: 0; visibility: hidden; pointer-events: none;
+    background: rgba(7, 26, 61, 0.96); color: #fff; border: 1.5px solid var(--gold);
+    padding: 9px 16px; border-radius: 999px; font-size: 12.5px; font-weight: 800;
+    box-shadow: 0 12px 28px rgba(4, 16, 38, 0.38); white-space: nowrap; max-width: 92vw;
+    overflow: hidden; text-overflow: ellipsis;
+    transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.24s ease;
+  }
+  .abs-toast.show { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
+  @media(max-width: 767px) { .abs-toast { bottom: 64px; font-size: 11.5px; } }
 
   .form-submit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: stretch; width: 100%; }
 
@@ -2626,6 +2767,8 @@
   <a class="dock-btn" href="https://www.google.com/maps/search/?api=1&query=Mariendorfer+Damm+49+12109+Berlin" target="_blank" rel="noopener">🗺️ Route</a>
 </div>
 
+<div class="abs-toast" id="absToast" role="status" aria-live="polite"></div>
+
 <footer>
   <div class="footer-contact">
     <b>A&amp;BS AUTOPROFIS • Kfz-Meisterwerkstatt Mariendorf</b>
@@ -2815,12 +2958,176 @@
     }
   }
 
+  let absActiveSelectState = null;
+
+  function getAbsSelectBackdrop() {
+    let bd = document.getElementById('absSelectBackdrop');
+    if (!bd) {
+      bd = document.createElement('div');
+      bd.id = 'absSelectBackdrop';
+      bd.className = 'abs-select-backdrop';
+      bd.addEventListener('click', () => closeAllCustomSelects());
+      document.body.appendChild(bd);
+    }
+    return bd;
+  }
+
+  function positionActiveSelectMenu() {
+    if (!absActiveSelectState || window.innerWidth <= 767) return;
+    const { trigger, menu } = absActiveSelectState;
+    const rect = trigger.getBoundingClientRect();
+    const menuHeight = Math.min(menu.offsetHeight || 280, 310);
+    const spaceBelow = window.innerHeight - rect.bottom - 14;
+    const openUp = spaceBelow < menuHeight && rect.top > menuHeight + 14;
+
+    menu.style.width = rect.width + 'px';
+    menu.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - rect.width - 8)) + 'px';
+    menu.style.right = 'auto';
+    menu.style.bottom = 'auto';
+    menu.style.top = (openUp ? Math.max(10, rect.top - menuHeight - 6) : rect.bottom + 6) + 'px';
+  }
+
+  function closeAllCustomSelects(exceptWrap) {
+    document.querySelectorAll('.abs-select-wrap.open').forEach(w => {
+      if (w !== exceptWrap) {
+        w.classList.remove('open');
+        const trig = w.querySelector('.abs-select-trigger');
+        if (trig) trig.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.querySelectorAll('.abs-select-portal-menu.open').forEach(m => {
+      if (!exceptWrap || m._ownerWrap !== exceptWrap) {
+        m.classList.remove('open');
+      }
+    });
+    if (!exceptWrap) {
+      absActiveSelectState = null;
+      const bd = document.getElementById('absSelectBackdrop');
+      if (bd) bd.classList.remove('show');
+    }
+  }
+
+  function initCustomSelects() {
+    const backdrop = getAbsSelectBackdrop();
+
+    document.querySelectorAll('select').forEach(sel => {
+      if (sel.dataset.customInit === '1') return;
+      sel.dataset.customInit = '1';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'abs-select-wrap';
+      sel.parentNode.insertBefore(wrap, sel);
+      wrap.appendChild(sel);
+      sel.classList.add('abs-native-select');
+
+      const assocLabel = sel.id ? document.querySelector(`label[for="${sel.id}"]`) : null;
+      const titleText = assocLabel ? assocLabel.textContent.trim() : 'Bitte auswählen';
+
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'abs-select-trigger';
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'abs-select-label';
+      const chevron = document.createElement('span');
+      chevron.className = 'abs-select-chevron';
+      chevron.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+      trigger.appendChild(labelSpan);
+      trigger.appendChild(chevron);
+
+      const menu = document.createElement('div');
+      menu.className = 'abs-select-portal-menu';
+      menu.setAttribute('role', 'listbox');
+      menu._ownerWrap = wrap;
+      menu.addEventListener('click', (e) => e.stopPropagation());
+
+      const header = document.createElement('div');
+      header.className = 'abs-select-portal-header';
+      header.innerHTML = `<span>${titleText}</span>`;
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'abs-select-portal-close';
+      closeBtn.setAttribute('aria-label', 'Schließen');
+      closeBtn.textContent = '×';
+      closeBtn.addEventListener('click', () => closeAllCustomSelects());
+      header.appendChild(closeBtn);
+
+      const list = document.createElement('div');
+      list.className = 'abs-select-portal-list';
+
+      const syncUI = () => {
+        const selectedOpt = sel.options[sel.selectedIndex];
+        labelSpan.textContent = selectedOpt ? selectedOpt.textContent : 'Bitte wählen...';
+        trigger.classList.toggle('is-placeholder', !sel.value);
+        list.querySelectorAll('.abs-select-option').forEach((optBtn, idx) => {
+          optBtn.classList.toggle('selected', idx === sel.selectedIndex);
+        });
+      };
+
+      Array.from(sel.options).forEach((opt, idx) => {
+        const optBtn = document.createElement('button');
+        optBtn.type = 'button';
+        optBtn.className = 'abs-select-option';
+        optBtn.setAttribute('role', 'option');
+        optBtn.innerHTML = `<span>${opt.textContent}</span><span class="abs-opt-check">✓</span>`;
+        optBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sel.selectedIndex = idx;
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+          syncUI();
+          closeAllCustomSelects();
+        });
+        list.appendChild(optBtn);
+      });
+
+      menu.appendChild(header);
+      menu.appendChild(list);
+      document.body.appendChild(menu);
+
+      const toggleThisSelect = (e) => {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        const willOpen = !wrap.classList.contains('open');
+        closeAllCustomSelects();
+        if (willOpen) {
+          wrap.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          absActiveSelectState = { wrap, trigger, menu };
+          if (window.innerWidth <= 767) {
+            backdrop.classList.add('show');
+          } else {
+            positionActiveSelectMenu();
+          }
+          menu.classList.add('open');
+          const activeOpt = list.querySelector('.abs-select-option.selected');
+          if (activeOpt) activeOpt.scrollIntoView({ block: 'nearest' });
+        }
+      };
+
+      trigger.addEventListener('click', toggleThisSelect);
+      if (assocLabel) assocLabel.addEventListener('click', toggleThisSelect);
+
+      sel.addEventListener('change', syncUI);
+      wrap.appendChild(trigger);
+      syncUI();
+    });
+
+    window.addEventListener('resize', positionActiveSelectMenu, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (absActiveSelectState && window.innerWidth > 767) {
+        positionActiveSelectMenu();
+      }
+    }, { passive: true });
+  }
+
   window.addEventListener("DOMContentLoaded", function() {
     window.scrollTo(0, 0);
     applyAutomaticOfferSwitch();
     updateWorkshopCapacity();
     initScrollReveal();
     initKpiCounters();
+    initCustomSelects();
     updateWhatsAppPreview();
     setTimeout(hideIntroSplash, 2000);
   });
@@ -3013,10 +3320,12 @@
     if (isNowSelected) {
       card.classList.add('selected-repair');
       btnEl.innerText = "✔ Ausgewählt • Erneut tippen zum Abwählen";
+      showAbsToast(`✔ ${serviceName} vorgemerkt`);
     } else {
       card.classList.remove('selected-repair');
       btnEl.innerText = "➕ Für Anfrage auswählen";
       btnEl.blur();
+      showAbsToast(`Auswahl entfernt`);
     }
     updateQuickServiceText();
   }
@@ -3116,12 +3425,23 @@
     actionBtn.setAttribute('onclick', `prefillFromScanner('${data.topic}')`);
   }
 
+  let absToastTimer = null;
+  function showAbsToast(message) {
+    const el = document.getElementById('absToast');
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add('show');
+    if (absToastTimer) clearTimeout(absToastTimer);
+    absToastTimer = setTimeout(() => { el.classList.remove('show'); }, 2400);
+  }
+
   function prefillFromScanner(topic) {
     const msgField = document.getElementById('waMsg');
     if (msgField) {
       const current = msgField.value.trim();
       msgField.value = current ? `${current} | Bereich: ${topic}` : `Anfrage zum Bereich: ${topic}`;
       updateWhatsAppPreview();
+      showAbsToast(`✔ Übernommen: ${topic}`);
     }
   }
 
@@ -3670,6 +3990,12 @@
     const bubble = document.getElementById('waPreviewBubble');
     if (!bubble) return;
     bubble.innerText = buildFormWhatsAppMessage().replace(/\*/g, '').replace(/_/g, '');
+    const previewBox = bubble.closest('.wa-live-preview');
+    if (previewBox) {
+      previewBox.classList.remove('updated');
+      void previewBox.offsetWidth;
+      previewBox.classList.add('updated');
+    }
   }
 
   function sendFormToWhatsApp(event) {
@@ -3840,8 +4166,15 @@
   window.addEventListener("click", function() {
     document.querySelectorAll('.widget-popup, .logo-speech-bubble').forEach(p => p.classList.remove('active'));
     closeMobileNav();
+    closeAllCustomSelects();
     const dock = document.getElementById('scrollDock');
     if (dock) dock.classList.remove('expanded');
+  });
+  window.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      closeAllCustomSelects();
+      closeMobileNav();
+    }
   });
 </script>
 
