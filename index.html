@@ -205,8 +205,57 @@
   .mail-btn { background: linear-gradient(135deg, #f9e08a, var(--gold)) !important; color: var(--primary) !important; padding: 8px 11px; border-radius: 999px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-size: 12.5px; box-shadow: 0 4px 12px rgba(212,175,55,0.3); cursor: pointer; border: 0; }
   .mail-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
+  .hdr-tool-btn {
+    position: relative; background: rgba(255,255,255,0.12); color: #fff !important;
+    border: 1.5px solid rgba(212,175,55,0.55); width: 35px; height: 35px; padding: 0;
+    border-radius: 50%; display: none; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hdr-tool-btn svg { width: 17px; height: 17px; }
+  .hdr-tool-btn.active { background: var(--gold); color: var(--primary) !important; border-color: #fff; }
+  .hdr-count-badge {
+    position: absolute; top: -4px; right: -4px; min-width: 17px; height: 17px; padding: 0 4px;
+    border-radius: 999px; background: var(--success); color: #fff; border: 1.5px solid var(--primary);
+    font-size: 10px; font-weight: 900; display: none; align-items: center; justify-content: center; line-height: 1;
+  }
+  .hdr-count-badge.show { display: inline-flex; animation: popIn 0.2s ease-out; }
+
+  /* Ausklappbares Schnellmenü unter dem Header */
+  .mobile-nav-drawer {
+    display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 115;
+    background: rgba(5, 19, 46, 0.98); backdrop-filter: blur(14px);
+    border-bottom: 2px solid var(--gold); padding: 12px 14px 14px;
+    box-shadow: 0 14px 32px rgba(4, 16, 38, 0.48);
+  }
+  .mobile-nav-drawer.open { display: block; animation: drawerSlideDown 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes drawerSlideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .mobile-nav-grid {
+    max-width: 720px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px;
+  }
+  .mobile-nav-link {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(212,175,55,0.35);
+    color: #fff; border-radius: 11px; padding: 9px 10px; font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; gap: 7px; text-align: left; cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease;
+  }
+  .mobile-nav-link:active, .mobile-nav-link:hover { background: rgba(212,175,55,0.22); border-color: var(--gold-light); color: var(--gold-light); }
+  @media(max-width: 1023px) { .hdr-tool-btn { display: inline-flex; } }
+
   /* Hero */
-  .hero { position: relative; overflow: hidden; background: radial-gradient(950px 420px at 85% 10%, rgba(212,175,55,.36), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
+  .hero { position: relative; overflow: hidden; background: radial-gradient(950px 420px at 85% 10%, rgba(212,175,55,.32), transparent), linear-gradient(135deg, var(--primary), var(--primary-light) 58%, var(--primary)); color: #fff; padding: 48px 24px 44px; }
+  .hero::before {
+    content: ''; position: absolute; top: -35%; right: -15%; width: 65%; height: 150%;
+    background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, rgba(56,189,248,0.06) 45%, transparent 72%);
+    pointer-events: none; z-index: 1;
+    animation: heroShowroomGlow 10s ease-in-out infinite alternate;
+  }
+  @keyframes heroShowroomGlow {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+    100% { transform: translate3d(-4%, 3%, 0) scale(1.08); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
   .hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
   .hero-inner > div { min-width: 0; max-width: 100%; }
   .badge-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -352,7 +401,15 @@
 
   .wrap { max-width: 1200px; width: 100%; margin: 0 auto; padding: 52px 20px; }
   .section-title { font-size: clamp(20px, 5vw, 32px); font-weight: 900; color: var(--primary); margin: 0 0 8px; text-align: center; letter-spacing: -0.4px; line-height: 1.25; }
-  .section-title::after { content: ''; display: block; width: 52px; height: 3.5px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 999px; margin: 8px auto 0; }
+  .section-title::after {
+    content: ''; display: block; width: 56px; height: 3.5px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    border-radius: 999px; margin: 8px auto 0;
+    transform: scaleX(0.25); opacity: 0.4;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s, opacity 0.55s ease;
+  }
+  .section-title.in-view::after { transform: scaleX(1); opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .section-title::after { transform: scaleX(1); opacity: 1; transition: none; } }
   .section-sub { text-align: center; color: var(--text-muted); margin: 0 auto 30px; font-size: 15px; max-width: 680px; }
 
   /* Gratis Fehlerspeicher-Check Box */
@@ -856,11 +913,39 @@
     .dock-btn.dock-wa { background: var(--success); color: #fff; border-color: #86efac; }
     .wa-float { display: none !important; }
     .contact-buttons .wa-btn, .contact-buttons .call-btn { display: none !important; }
-    .top-float { bottom: 56px !important; }
+    .scroll-dock { bottom: 62px !important; }
     footer { padding-bottom: 110px !important; }
   }
-  .top-float { position: fixed; left: 16px; bottom: 16px; z-index: 95; width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: var(--gold-light); border: 2px solid var(--gold); display: grid; place-items: center; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px rgba(7,26,61,0.35); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; -webkit-tap-highlight-color: transparent; }
-  .top-float.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  /* Ausklappbare Scroll-Lasche am linken Rand (überlappt keinen Text) */
+  .scroll-dock {
+    position: fixed; left: 0; bottom: 24px; z-index: 98;
+    display: flex; align-items: center;
+    transform: translateX(-86px);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .scroll-dock.expanded { transform: translateX(0); }
+  .scroll-dock-panel {
+    width: 86px; background: rgba(7, 26, 61, 0.96); backdrop-filter: blur(10px);
+    border: 1.5px solid var(--gold); border-left: 0;
+    padding: 5px 6px; display: flex; align-items: center; justify-content: space-between; gap: 5px;
+    box-shadow: 6px 8px 22px rgba(4, 16, 38, 0.35);
+  }
+  .scroll-dock-act {
+    width: 34px; height: 34px; border-radius: 9px; border: 1px solid rgba(212,175,55,0.55);
+    background: rgba(255,255,255,0.09); color: var(--gold-light); font-size: 15px; font-weight: 900;
+    display: grid; place-items: center; cursor: pointer; transition: background 0.18s ease, transform 0.15s ease;
+  }
+  .scroll-dock-act:hover, .scroll-dock-act:active { background: var(--gold); color: var(--primary); transform: scale(1.04); }
+  .scroll-dock-tab {
+    width: 21px; height: 46px; border-radius: 0 11px 11px 0;
+    background: rgba(7, 26, 61, 0.86); color: var(--gold-light);
+    border: 1.5px solid var(--gold); border-left: 0;
+    display: grid; place-items: center; font-size: 13px; font-weight: 900;
+    cursor: pointer; box-shadow: 4px 4px 14px rgba(4, 16, 38, 0.28);
+    transition: background 0.2s ease, width 0.2s ease;
+  }
+  .scroll-dock.expanded .scroll-dock-tab { background: var(--gold); color: var(--primary); }
 
   footer { background: var(--primary); color: #cbd5ff; padding: 36px 16px 90px; text-align: center; width: 100%; }
   footer b { color: #fff; font-size: clamp(13px, 3.8vw, 16px); }
@@ -1059,13 +1144,33 @@
         <a class="call-btn" href="tel:017672625377" aria-label="Anrufen" title="Jetzt anrufen">
           📞 <span class="label">Anrufen</span>
         </a>
+        <a class="hdr-tool-btn" href="#kontakt" aria-label="Zum Anfrageformular" title="Termin & Auswahl ansehen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="hdr-count-badge" id="hdrSelectedBadge">0</span>
+        </a>
         <a class="mail-btn" href="mailto:info@absprofis.de?subject=Termin-%20oder%20Preisanfrage%20A%26BS%20AUTOPROFIS&body=Hallo%20A%26BS%20AUTOPROFIS%20Team%2C%0A%0Aich%20habe%20folgende%20Anfrage%3A%0A%0A-%20Name%3A%20%0A-%20Telefonnummer%3A%20%0A-%20Fahrzeug%20%2F%20Kennzeichen%3A%20%0A-%20Anliegen%3A%20" aria-label="E-Mail senden" title="E-Mail an info@absprofis.de senden">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           <span class="label">E-Mail</span>
         </a>
+        <button type="button" class="hdr-tool-btn" id="mobileMenuBtn" onclick="toggleMobileNav(event)" aria-label="Menü öffnen" title="Schnellnavigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
       </div>
     </div>
   </div>
+
+  <!-- AUSKLAPPBARE SCHNELLNAVIGATION (MOBIL & TABLET) -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" onclick="event.stopPropagation()">
+    <div class="mobile-nav-grid">
+      <a class="mobile-nav-link" href="#reparaturen" onclick="closeMobileNav()">🔧 Alle Reparaturen</a>
+      <a class="mobile-nav-link" href="#fahrzeugcheck" onclick="closeMobileNav()">🔍 Fahrzeug-Scanner</a>
+      <a class="mobile-nav-link" href="#leistungen" onclick="closeMobileNav()">🛢️ Ölwechsel-Aktion</a>
+      <a class="mobile-nav-link" href="#check21" onclick="closeMobileNav()">✔ 21-Punkte-Check</a>
+      <a class="mobile-nav-link" href="#kontakt" onclick="closeMobileNav()">📅 Termin &amp; Anfrage</a>
+      <button type="button" class="mobile-nav-link" onclick="closeMobileNav(); downloadVCard();">📲 Kontakt speichern</button>
+    </div>
+  </div>
+
   <div class="scroll-progress-track"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 </header>
 </div>
@@ -2500,8 +2605,14 @@
     </div>
   </div>
 
-<!-- Sanfter Nach-Oben-Button (links unten) -->
-<button type="button" class="top-float" id="backToTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
+<!-- AUSKLAPPBARE SCROLL-LASCHE LINKS (OBEN & UNTEN) -->
+<div class="scroll-dock" id="scrollDock" onclick="event.stopPropagation()">
+  <div class="scroll-dock-panel">
+    <button type="button" class="scroll-dock-act" onclick="scrollPageTo('top')" aria-label="Ganz nach oben" title="Ganz nach oben">↑</button>
+    <button type="button" class="scroll-dock-act" onclick="scrollPageTo('bottom')" aria-label="Ganz nach unten" title="Ganz nach unten">↓</button>
+  </div>
+  <button type="button" class="scroll-dock-tab" id="scrollDockTab" onclick="toggleScrollDock(event)" aria-label="Scroll-Menü aufklappen" title="Hoch / Runter ausklappen">↕</button>
+</div>
 
 <!-- Floating WhatsApp Button (rechts unten) -->
 <button type="button" class="wa-float" onclick="openQuickTopicWhatsApp('Direktanfrage über WhatsApp-Button')" aria-label="WhatsApp Chat öffnen" title="WhatsApp schreiben">
@@ -2725,14 +2836,7 @@
     const bar = document.getElementById("scrollProgressBar");
     if (bar) bar.style.width = pct + "%";
 
-    const topBtn = document.getElementById("backToTopBtn");
-    if (topBtn) {
-      if (scrollTop > 420) {
-        topBtn.classList.add("show");
-      } else {
-        topBtn.classList.remove("show");
-      }
-    }
+    /* Scroll-Lasche links bleibt kompakt am Rand und klappt bei Scrollen sauber ein */
 
     const sections = ["reparaturen", "fahrzeugcheck", "leistungen", "check21", "kontakt"];
     let currentSection = "";
@@ -3450,12 +3554,15 @@
     const msgField = document.getElementById('waMsg');
     const countInfo = document.getElementById('selectedCountInfo');
 
+    const hdrBadge = document.getElementById('hdrSelectedBadge');
     if (combined.length > 0) {
       msgField.value = "Wunschleistung: " + combined.join(", ");
       countInfo.innerText = `${combined.length} Auswahl(en) aktiv`;
+      if (hdrBadge) { hdrBadge.innerText = combined.length; hdrBadge.classList.add('show'); }
     } else {
       msgField.value = "";
       countInfo.innerText = "Keine Schnellauswahl aktiv";
+      if (hdrBadge) { hdrBadge.classList.remove('show'); }
     }
     updateWhatsAppPreview();
   }
@@ -3689,8 +3796,52 @@
     target.classList.toggle('active');
   }
 
+  let scrollDockAutoTimer = null;
+
+  function toggleScrollDock(event) {
+    if (event) event.stopPropagation();
+    const dock = document.getElementById('scrollDock');
+    if (!dock) return;
+    const isOpen = dock.classList.toggle('expanded');
+    if (scrollDockAutoTimer) { clearTimeout(scrollDockAutoTimer); scrollDockAutoTimer = null; }
+    if (isOpen) {
+      scrollDockAutoTimer = setTimeout(() => { dock.classList.remove('expanded'); }, 4500);
+    }
+  }
+
+  function scrollPageTo(direction) {
+    const dock = document.getElementById('scrollDock');
+    if (dock) dock.classList.remove('expanded');
+    if (scrollDockAutoTimer) { clearTimeout(scrollDockAutoTimer); scrollDockAutoTimer = null; }
+    if (direction === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    }
+  }
+
+  function toggleMobileNav(event) {
+    if (event) event.stopPropagation();
+    const drawer = document.getElementById('mobileNavDrawer');
+    const btn = document.getElementById('mobileMenuBtn');
+    if (!drawer || !btn) return;
+    document.querySelectorAll('.widget-popup, .logo-speech-bubble').forEach(p => p.classList.remove('active'));
+    const isNowOpen = drawer.classList.toggle('open');
+    btn.classList.toggle('active', isNowOpen);
+  }
+
+  function closeMobileNav() {
+    const drawer = document.getElementById('mobileNavDrawer');
+    const btn = document.getElementById('mobileMenuBtn');
+    if (drawer) drawer.classList.remove('open');
+    if (btn) btn.classList.remove('active');
+  }
+
   window.addEventListener("click", function() {
     document.querySelectorAll('.widget-popup, .logo-speech-bubble').forEach(p => p.classList.remove('active'));
+    closeMobileNav();
+    const dock = document.getElementById('scrollDock');
+    if (dock) dock.classList.remove('expanded');
   });
 </script>
 
