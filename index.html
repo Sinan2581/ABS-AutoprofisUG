@@ -854,7 +854,9 @@
     }
     .dock-btn.dock-call { background: linear-gradient(135deg, #f9e08a, var(--gold)); color: var(--primary); border-color: var(--gold-light); }
     .dock-btn.dock-wa { background: var(--success); color: #fff; border-color: #86efac; }
-    .wa-float, .top-float { bottom: 56px !important; }
+    .wa-float { display: none !important; }
+    .contact-buttons .wa-btn, .contact-buttons .call-btn { display: none !important; }
+    .top-float { bottom: 56px !important; }
     footer { padding-bottom: 110px !important; }
   }
   .top-float { position: fixed; left: 16px; bottom: 16px; z-index: 95; width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: var(--gold-light); border: 2px solid var(--gold); display: grid; place-items: center; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px rgba(7,26,61,0.35); opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; -webkit-tap-highlight-color: transparent; }
@@ -1209,7 +1211,7 @@
         <span class="cap-sub" id="capacityDesc">Gratis Fehlerspeicher-Check &amp; Ölservice aktuell kurzfristig ohne lange Wartezeit möglich.</span>
       </div>
     </div>
-    <span class="capacity-tag" id="capacityTag">● Express-Annahme bereit</span>
+    <span class="capacity-tag" id="capacityTag">Express-Annahme bereit</span>
   </div>
 
   <div class="welcome-pass reveal" id="welcomePassBox">
@@ -2645,7 +2647,7 @@
       bannerEl.classList.remove("afternoon-mode");
       titleEl.innerHTML = `Werkstatt-Planung Mariendorf<span class="colon-line">Termine ab Montag 09:00 Uhr frei</span>`;
       descEl.innerText = "Senden Sie jetzt Ihre Anfrage per WhatsApp oder E-Mail – wir reservieren Ihren Wunschplatz für Montag.";
-      tagEl.innerText = "● Online-Reservierung aktiv";
+      tagEl.innerText = "Online-Reservierung aktiv";
       b1.className = "cap-bar b1 active-green";
       b2.className = "cap-bar b2";
       b3.className = "cap-bar b3";
@@ -2653,7 +2655,7 @@
       bannerEl.classList.add("afternoon-mode");
       titleEl.innerHTML = `Werkstatt-Auslastung ab 12:00 Uhr<span class="colon-line">Nachmittags- &amp; Folgetermin-Slots</span>`;
       descEl.innerText = "Gratis Fehlerspeicher-Check jederzeit direkt möglich • Reparatur- & Öltermine für heute Nachmittag oder morgen kurz anfragen.";
-      tagEl.innerText = "● OBD-Diagnose & Terminplanung";
+      tagEl.innerText = "OBD-Diagnose & Terminplanung";
       b1.className = "cap-bar b1 active-gold";
       b2.className = "cap-bar b2 active-gold";
       b3.className = "cap-bar b3";
@@ -2661,7 +2663,7 @@
       bannerEl.classList.remove("afternoon-mode");
       titleEl.innerHTML = `Werkstatt-Auslastung Mariendorf<span class="colon-line">Freie Kapazitäten am Vormittag</span>`;
       descEl.innerText = "Gratis Fehlerspeicher-Check & Ölservice aktuell kurzfristig ohne lange Wartezeit möglich.";
-      tagEl.innerText = "● Express-Annahme bereit";
+      tagEl.innerText = "Express-Annahme bereit";
       b1.className = "cap-bar b1 active-green";
       b2.className = "cap-bar b2 active-green";
       b3.className = "cap-bar b3";
