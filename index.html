@@ -51,8 +51,10 @@
   img, svg { max-width: 100%; height: auto; display: block; }
 
   .nw { white-space: nowrap; display: inline-block; }
-  .sub-bracket { display: block; font-size: 11.5px; font-weight: 600; color: var(--text-muted); margin-top: 3px; line-height: 1.35; white-space: normal; }
-  .sub-bracket-light { display: block; font-size: 11.5px; font-weight: 600; color: #cbd5ff; margin-top: 3px; line-height: 1.35; white-space: normal; }
+  .sub-bracket { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-top: 3px; line-height: 1.35; white-space: normal; }
+  .sub-bracket-light { display: block; font-size: 12px; font-weight: 600; color: #cbd5ff; margin-top: 3px; line-height: 1.35; white-space: normal; }
+  .colon-line { display: block; margin-top: 2px; font-weight: 800; color: var(--primary); }
+  .colon-line-light { display: block; margin-top: 2px; font-weight: 800; color: var(--gold-light); }
 
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
@@ -233,30 +235,34 @@
   .usp-item b { display: block; color: var(--primary); font-size: 14.5px; margin-bottom: 2px; }
   .usp-item span { font-size: 12px; color: var(--text-muted); display: block; }
 
-  /* NEUHEIT 1: LIVE-WERKSTATT-AUSLASTUNG & EXPRESS-STATUS */
+  /* WERKSTATT-AUSLASTUNG MARIENDORF (MOBIL KOMPAKT + AUTOMATISCHER UMWECHSEL AB 12 UHR) */
   .capacity-banner {
     background: linear-gradient(135deg, #ffffff, #fdfbf7);
     border: 1.5px solid #e6dfcf; border-left: 5px solid var(--success);
-    border-radius: 18px; padding: 14px 18px; margin-bottom: 22px;
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    border-radius: 18px; padding: 13px 15px; margin-bottom: 20px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
     box-shadow: 0 6px 18px rgba(7, 26, 61, 0.04);
   }
-  .capacity-left { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 280px; }
+  .capacity-banner.afternoon-mode { border-left-color: var(--gold); }
+  .capacity-left { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 250px; }
   .capacity-meter {
-    display: flex; gap: 4px; align-items: flex-end; height: 26px; padding: 4px 8px;
+    display: flex; gap: 3.5px; align-items: flex-end; height: 24px; padding: 4px 7px;
     background: #f1f5f9; border-radius: 10px; border: 1px solid #e2e8f0; flex-shrink: 0;
   }
-  .cap-bar { width: 6px; border-radius: 3px; background: #cbd5e1; transition: background 0.3s ease; }
-  .cap-bar.b1 { height: 8px; }
-  .cap-bar.b2 { height: 13px; }
-  .cap-bar.b3 { height: 18px; }
+  .cap-bar { width: 5.5px; border-radius: 3px; background: #cbd5e1; transition: background 0.3s ease; }
+  .cap-bar.b1 { height: 7px; }
+  .cap-bar.b2 { height: 12px; }
+  .cap-bar.b3 { height: 17px; }
   .cap-bar.active-green { background: var(--success); }
-  .cap-bar.active-amber { background: #f59e0b; }
-  .capacity-text b { display: block; font-size: 14px; color: var(--primary); font-weight: 900; }
-  .capacity-text span { display: block; font-size: 12.5px; color: var(--text-muted); font-weight: 600; }
+  .cap-bar.active-gold { background: var(--gold); }
+  .capacity-text b { display: block; font-size: 13.5px; color: var(--primary); font-weight: 900; line-height: 1.3; }
+  .capacity-text span.cap-sub { display: block; font-size: 12px; color: var(--text-muted); font-weight: 600; margin-top: 4px; line-height: 1.4; }
   .capacity-tag {
     background: #f0fdf4; border: 1px solid #86efac; color: #166534;
-    font-size: 11.5px; font-weight: 800; padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+    font-size: 11px; font-weight: 800; padding: 5px 11px; border-radius: 999px; white-space: nowrap;
+  }
+  .capacity-banner.afternoon-mode .capacity-tag {
+    background: #fefce8; border-color: var(--gold); color: #854d0e;
   }
 
   .wrap { max-width: 1200px; width: 100%; margin: 0 auto; padding: 52px 20px; }
@@ -327,16 +333,19 @@
   .scanner-sym-list { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #1e293b; }
   .scanner-sym-list li { background: #fdfbf7; padding: 7px 10px; border-radius: 8px; border: 1px solid #eae5d9; line-height: 1.4; }
 
-  /* NEUHEIT 2: INTERAKTIVER HU / AU PLAKETTEN-RECHNER */
+  /* DETAILLIERTER HU / AU FÄLLIGKEITS-RECHNER (KLAMMER IMMER DRAN/DRUNTER SAUBER) */
   .hu-calc-box {
     background: #fff; border-radius: 22px; padding: 24px 20px; border: 1.5px solid #eae5d9;
     border-top: 4px solid var(--primary); margin-top: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.03);
   }
   .hu-calc-header { text-align: center; margin-bottom: 16px; }
-  .hu-calc-header h3 { margin: 0 0 4px; font-size: clamp(17px, 4.4vw, 22px); color: var(--primary); font-weight: 900; }
-  .hu-calc-header p { margin: 0; font-size: 13.5px; color: var(--text-muted); }
+  .hu-calc-header h3 { margin: 0 0 4px; font-size: clamp(17px, 4.4vw, 22px); color: var(--primary); font-weight: 900; line-height: 1.25; }
+  .hu-calc-header p { margin: 4px auto 0; font-size: 13.5px; color: var(--text-muted); max-width: 600px; }
   .hu-calc-controls {
-    display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; max-width: 680px; margin: 0 auto; align-items: end;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 720px; margin: 0 auto;
+  }
+  .hu-calc-submit-wrap {
+    max-width: 720px; margin: 12px auto 0;
   }
   .hu-select-group label { display: block; font-size: 11.5px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
   .hu-select {
@@ -344,10 +353,12 @@
     background: #fdfbf7; color: var(--primary); font-weight: 700; font-size: 13.5px; font-family: inherit;
   }
   .hu-calc-result {
-    display: none; max-width: 680px; margin: 14px auto 0; padding: 14px 16px;
+    display: none; max-width: 720px; margin: 14px auto 0; padding: 15px 16px;
     border-radius: 14px; background: #fdfbf7; border: 1.5px solid var(--gold); font-size: 13.5px; line-height: 1.55;
   }
-  .hu-calc-result.show { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; animation: fadeIn 0.25s ease; }
+  .hu-calc-result.show { display: block; animation: fadeIn 0.25s ease; }
+  .hu-detail-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
+  .hu-detail-pill { background: #fff; border: 1px solid #e2e8f0; color: var(--primary); font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
 
   /* Kilometerstand-Kompass */
   .km-compass-box { background: #fff; border-radius: 22px; padding: 24px 18px; border: 1.5px solid #eae5d9; margin-top: 30px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.03); width: 100%; }
@@ -361,6 +372,25 @@
   .km-result-box { display: none; margin-top: 16px; background: #fdfbf7; border: 1px solid #eae5d9; border-left: 4px solid var(--gold); border-radius: 14px; padding: 14px 16px; text-align: left; font-size: 13.5px; color: #334155; line-height: 1.55; }
   .km-result-box.show { display: block; animation: fadeIn 0.22s ease; }
 
+  /* NEUIGKEIT A: REPARATUR-ZEIT & DAUER-ORIENTIERUNG */
+  .time-guide-box {
+    background: #fff; border-radius: 22px; padding: 24px 20px; border: 1.5px solid #eae5d9;
+    border-top: 4px solid var(--gold); margin-top: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+  }
+  .time-guide-pills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+  .tg-btn {
+    background: #fdfbf7; border: 1.5px solid #d1d5db; color: var(--primary);
+    padding: 9px 8px; border-radius: 12px; font-size: 12px; font-weight: 800; cursor: pointer;
+    text-align: center; transition: all 0.18s ease;
+  }
+  .tg-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .tg-panel {
+    display: none; margin-top: 14px; background: #fdfbf7; border: 1px solid #eae5d9;
+    border-left: 4px solid var(--gold); border-radius: 14px; padding: 14px 16px;
+    font-size: 13.5px; color: #334155; line-height: 1.55;
+  }
+  .tg-panel.show { display: block; animation: fadeIn 0.22s ease; }
+
   /* Grid & Cards */
   .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; width: 100%; }
   .card { background: #fff; border-radius: 22px; padding: 24px 20px; border: 1px solid #eae5d9; border-top: 4px solid var(--gold); box-shadow: 0 6px 20px rgba(0,0,0,0.03); min-width: 0; transition: transform 0.22s ease, box-shadow 0.22s ease; }
@@ -368,7 +398,7 @@
   .card ul { padding-left: 18px; margin: 10px 0 0; color: #334155; font-size: 14px; line-height: 1.75; }
   .card ul li { margin-bottom: 6px; }
 
-  /* Schauglas-Simulator (Realistische Viskositäts-Darstellung) */
+  /* Schauglas-Simulator */
   .oil-sim-box { background: linear-gradient(135deg, #071a3d, #0d2759); color: #fff; border: 2px solid var(--gold); border-radius: 20px; padding: 18px 20px; margin-top: 22px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; box-shadow: 0 10px 26px rgba(7,26,61,0.16); width: 100%; }
   .oil-glass-wrap { display: flex; align-items: center; gap: 14px; min-width: 0; }
   .oil-glass { width: 52px; height: 68px; border-radius: 10px; border: 2px solid #94a3b8; background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03) 40%, rgba(255,255,255,0.14)); position: relative; overflow: hidden; box-shadow: inset 0 0 12px rgba(0,0,0,0.65); flex-shrink: 0; }
@@ -427,6 +457,19 @@
   .comfort-badge { align-self: flex-start; background: #fdfbf7; border: 1px solid var(--gold); color: var(--primary); font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
   .comfort-card h4 { margin: 2px 0 0; font-size: 16.5px; font-weight: 800; color: var(--primary); }
   .comfort-card p { margin: 0; font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+  /* NEUIGKEIT B: WERKSTATT-ÜBERGABE CHECKLISTE */
+  .prep-check-box {
+    background: #fff; border-radius: 22px; padding: 22px 20px; border: 1.5px solid #eae5d9;
+    margin-top: 24px; box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+  }
+  .prep-check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  .prep-item {
+    display: flex; align-items: center; gap: 10px; background: #fdfbf7;
+    border: 1px solid #e6dfcf; border-radius: 12px; padding: 10px 12px;
+    font-size: 13px; font-weight: 700; color: var(--primary); cursor: pointer; user-select: none;
+  }
+  .prep-item input[type="checkbox"] { accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
 
   /* 6 Cockpit-Warnleuchten */
   .dash-box { background: linear-gradient(135deg, #071a3d, #0f2c66); color: #fff; border-radius: 24px; padding: 28px 18px; border: 2px solid var(--gold); margin-top: 40px; text-align: center; box-shadow: 0 12px 32px rgba(7,26,61,0.18); width: 100%; }
@@ -518,7 +561,7 @@
 
   .faq-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; width: 100%; }
 
-  /* EIGENSTÄNDIGE FOTO-SCHNELLDIAGNOSE KARTE (KLAR VOM FORMULAR GETRENNT) */
+  /* EIGENSTÄNDIGE FOTO-SCHNELLDIAGNOSE KARTE */
   .photo-diag-card {
     background: linear-gradient(135deg, #05132e 0%, #0b224f 60%, #102e68 100%);
     color: #fff; border: 2px solid var(--gold); border-radius: 22px;
@@ -581,7 +624,6 @@
   .wa-preview-header span { font-size: 10.5px; color: #d1fae5; }
   .wa-preview-bubble { background: #dcf8c6; color: #111827; border-radius: 0 12px 12px 12px; padding: 10px 12px; font-size: 12px; line-height: 1.5; box-shadow: 0 2px 5px rgba(0,0,0,0.08); white-space: pre-line; }
 
-  /* NEUHEIT 3: KOMBINIERTE SENDE-ZEILE (WHATSAPP + E-MAIL KOSTENVORANSCHLAG) */
   .form-submit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: stretch; width: 100%; }
   .email-quote-btn {
     background: #fdfbf7; border: 2px solid var(--primary); color: var(--primary);
@@ -645,9 +687,9 @@
   @media(max-width: 1023px) {
     nav { display: none; }
     .hero-inner, .scanner-grid, .info-highlight-box, .contact-grid, .fzs-helper-box, .photo-diag-card { grid-template-columns: 1fr; gap: 20px; }
-    .grid-3, .repair-grid, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3, .repair-grid, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid, .prep-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .dash-lights { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .usp-inner, .advisor-options, .repair-filter-bar, .km-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .usp-inner, .advisor-options, .repair-filter-bar, .km-steps, .time-guide-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .map-card { min-height: 270px; }
     .map-frame-wrap { min-height: 230px; }
   }
@@ -673,18 +715,18 @@
     .hero h1 { font-size: 32px; }
     .cta { flex-direction: column; align-items: stretch; }
     .cta .wa-btn, .cta .btn { width: 100%; justify-content: center; padding: 13px; font-size: 14.5px; }
-    .grid-3, .repair-grid, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid { grid-template-columns: 1fr; }
+    .grid-3, .repair-grid, .benefits-grid, .news-grid, .steps-grid, .season-panel.active, .comfort-grid, .prep-check-grid { grid-template-columns: 1fr; }
     .oil-sim-box { grid-template-columns: 1fr; text-align: left; gap: 12px; padding: 15px; }
     .oil-sim-box .btn, .welcome-pass-btn { width: 100%; text-align: center; justify-content: center; }
     .usp-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .advisor-options, .quick-sym-btns, .repair-filter-bar, .km-steps { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7px; }
+    .advisor-options, .quick-sym-btns, .repair-filter-bar, .km-steps, .time-guide-pills { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7px; }
     .hotspot-bar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; }
     .dash-lights { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
     .slot-chips, .hu-calc-controls, .form-submit-row { grid-template-columns: 1fr; gap: 8px; }
     .service-quick-chips { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; }
     .share-bar .wa-btn { width: 100%; justify-content: center; }
     .wrap { padding: 34px 12px; }
-    .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box, .fzs-helper-box, .scanner-box, .km-compass-box, .hu-calc-box, .photo-diag-card { padding: 18px 13px; border-radius: 20px; }
+    .info-highlight-box, .contact-grid, .advisor-box, .dash-box, .season-box, .fzs-helper-box, .scanner-box, .km-compass-box, .hu-calc-box, .photo-diag-card, .time-guide-box, .prep-check-box { padding: 18px 13px; border-radius: 20px; }
     .car-blueprint { padding: 10px 8px 12px; }
     .info-block { padding: 15px 12px; }
     .map-card { min-height: 250px; }
@@ -926,7 +968,7 @@
   <h2 class="section-title reveal">Unsere Kfz-Reparaturen &amp; Leistungen</h2>
   <p class="section-sub reveal">Ob Verschleißteil, komplexe Motor-Instandsetzung oder Jahresinspektion – wir reparieren Fahrzeuge aller Marken fachgerecht und zu fairen Konditionen:</p>
 
-  <!-- NEUHEIT 1: LIVE-WERKSTATT-AUSLASTUNG & EXPRESS-ANNAHME -->
+  <!-- WERKSTATT-AUSLASTUNG MARIENDORF (MOBIL KOMPAKT + AUTOMATISCHER UMWECHSEL AB 12 UHR) -->
   <div class="capacity-banner reveal" id="capacityBanner">
     <div class="capacity-left">
       <div class="capacity-meter" aria-hidden="true">
@@ -935,8 +977,8 @@
         <span class="cap-bar b3" id="capB3"></span>
       </div>
       <div class="capacity-text">
-        <b id="capacityTitle">Werkstatt-Auslastung Mariendorf: Freie Kapazitäten</b>
-        <span id="capacityDesc">Gratis Fehlerspeicher-Check &amp; Ölservice aktuell kurzfristig ohne lange Wartezeit möglich.</span>
+        <b id="capacityTitle">Werkstatt-Auslastung Mariendorf<span class="colon-line">Freie Kapazitäten</span></b>
+        <span class="cap-sub" id="capacityDesc">Gratis Fehlerspeicher-Check &amp; Ölservice aktuell kurzfristig ohne lange Wartezeit möglich.</span>
       </div>
     </div>
     <span class="capacity-tag" id="capacityTag">● Express-Annahme bereit</span>
@@ -1144,7 +1186,6 @@
           <div class="dir-rear">HECK &amp; ABGASANLAGE ▶</div>
         </div>
 
-        <!-- REALISTISCHE TECHNISCHE SEITENANSICHT (LIMOSINE/KOMBI-SILHOUETTE MIT BREMSSCHEIBEN & SPEICHEN) -->
         <svg class="car-blueprint-svg" viewBox="0 0 540 190" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="chassisGrad" x1="40" y1="45" x2="500" y2="150" gradientUnits="userSpaceOnUse">
@@ -1158,28 +1199,22 @@
             </linearGradient>
           </defs>
 
-          <!-- Bodenlinie & Radstand-Bemaßung -->
           <line x1="20" y1="168" x2="520" y2="168" stroke="rgba(212,175,55,0.45)" stroke-width="1.5"/>
           <line x1="126" y1="173" x2="424" y2="173" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="4 4"/>
           <line x1="126" y1="169" x2="126" y2="177" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
           <line x1="424" y1="169" x2="424" y2="177" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
 
-          <!-- Realistische Fahrzeug-Karosserie -->
           <path d="M32 134 L34 114 C36 105, 44 99, 58 96 L152 82 L212 47 C226 40, 248 38, 338 39 C382 40, 418 53, 456 79 L496 84 C504 86, 508 91, 508 99 L506 135 C506 141, 500 144, 490 144 L456 144 A32 32 0 0 0 392 144 L158 144 A32 32 0 0 0 94 144 L44 144 C36 144, 32 140, 32 134 Z" fill="url(#chassisGrad)" stroke="#d4af37" stroke-width="2.2" stroke-linejoin="round"/>
 
-          <!-- Schulterlinie & Schweller-Kontur -->
           <path d="M52 106 C115 96, 210 92, 502 93" stroke="#f5d67a" stroke-width="1.2" stroke-opacity="0.6"/>
           <path d="M164 137 L386 137" stroke="#d4af37" stroke-width="1.4" stroke-opacity="0.5"/>
-          <!-- Türspalte & B-Säule -->
           <path d="M286 43 L286 136" stroke="rgba(212,175,55,0.35)" stroke-width="1.2"/>
           <path d="M180 84 L176 135" stroke="rgba(212,175,55,0.3)" stroke-width="1.1"/>
           <path d="M396 84 L402 122" stroke="rgba(212,175,55,0.3)" stroke-width="1.1"/>
 
-          <!-- Fensterflächen -->
           <path d="M168 82 L216 51 C227 45, 244 44, 281 44 L281 82 Z" fill="url(#windowGrad)" stroke="#f5d67a" stroke-width="1.3"/>
           <path d="M291 44 C338 45, 378 53, 434 82 L291 82 Z" fill="url(#windowGrad)" stroke="#f5d67a" stroke-width="1.3"/>
 
-          <!-- LED-Scheinwerfer, Lufteinlass, Spiegel, Türgriffe, Rücklicht & Endrohr -->
           <path d="M36 105 L68 99 L63 111 L35 113 Z" fill="#fef9c3" stroke="#ffffff" stroke-width="1.2"/>
           <path d="M34 122 L56 122 L54 136 L34 136 Z" fill="#041026" stroke="#d4af37" stroke-width="1"/>
           <path d="M174 82 L160 75 C156 75, 155 80, 159 84 L172 86 Z" fill="#0d2759" stroke="#d4af37" stroke-width="1.2"/>
@@ -1188,7 +1223,6 @@
           <path d="M490 89 L507 88 L507 104 L488 101 Z" fill="#dc2626" stroke="#fecaca" stroke-width="1.1"/>
           <rect x="494" y="138" width="16" height="6" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
 
-          <!-- Vorderrad mit realistischer Bremsscheibe, Bremssattel & 5-Speichen-Felge -->
           <g>
             <circle cx="126" cy="144" r="24" fill="#040d21" stroke="#d4af37" stroke-width="2.6"/>
             <circle cx="126" cy="144" r="16.5" fill="#1e293b" stroke="#94a3b8" stroke-width="1.2"/>
@@ -1201,7 +1235,6 @@
             <circle cx="126" cy="144" r="4.5" fill="#071a3d" stroke="#d4af37" stroke-width="1.5"/>
           </g>
 
-          <!-- Hinterrad mit Bremsscheibe & Felge -->
           <g>
             <circle cx="424" cy="144" r="24" fill="#040d21" stroke="#d4af37" stroke-width="2.6"/>
             <circle cx="424" cy="144" r="16.5" fill="#1e293b" stroke="#94a3b8" stroke-width="1.2"/>
@@ -1214,7 +1247,6 @@
             <circle cx="424" cy="144" r="4.5" fill="#071a3d" stroke="#d4af37" stroke-width="1.5"/>
           </g>
 
-          <!-- 6 Interaktive Diagnose-Messpunkte -->
           <g class="hs-node active" id="hsNode_motor" onclick="selectCarZone('motor')">
             <circle class="hs-ring" cx="92" cy="103" r="12"/>
             <circle cx="92" cy="103" r="11" fill="#d4af37" stroke="#ffffff" stroke-width="2"/>
@@ -1272,11 +1304,11 @@
     </div>
   </div>
 
-  <!-- NEUHEIT 2: INTERAKTIVER HU / AU PLAKETTEN-RECHNER -->
+  <!-- DETAILLIERTER HU / AU FÄLLIGKEITS-RECHNER -->
   <div class="hu-calc-box reveal">
     <div class="hu-calc-header">
       <h3>🛡️ HU / AU Fälligkeits-Rechner (Plaketten-Check)</h3>
-      <p>Wählen Sie Monat und Jahr auf Ihrer hinteren TÜV-Plakette aus – wir prüfen sofort Ihren Status:</p>
+      <p>Wählen Sie Monat und Jahr auf Ihrer hinteren TÜV-Plakette aus – wir prüfen detailliert Ihren Status und passende Prüf-Schwerpunkte:</p>
     </div>
     <div class="hu-calc-controls">
       <div class="hu-select-group">
@@ -1307,7 +1339,9 @@
           <option value="2028">2028</option>
         </select>
       </div>
-      <button type="button" class="btn" onclick="calculateHuPlakette()">Plakette prüfen</button>
+    </div>
+    <div class="hu-calc-submit-wrap">
+      <button type="button" class="btn" style="width:100%;" onclick="calculateHuPlakette()">Plakette prüfen</button>
     </div>
     <div id="huCalcResult" class="hu-calc-result"></div>
   </div>
@@ -1326,6 +1360,21 @@
       <button type="button" class="km-step-btn" onclick="checkMileage('120k', this)">ab 120.000 km<span>Antrieb &amp; Fahrwerk</span></button>
     </div>
     <div id="kmResultBox" class="km-result-box"></div>
+  </div>
+
+  <!-- NEUIGKEIT A: REPARATUR-ZEIT & DAUER-ORIENTIERUNG -->
+  <div class="time-guide-box reveal">
+    <h3 style="margin:0 0 4px; font-size:clamp(17px, 4.4vw, 22px); color:var(--primary); font-weight:900; text-align:center;">⏱️ Wie viel Zeit sollten Sie einplanen?</h3>
+    <p style="margin:0; font-size:13.5px; color:var(--text-muted); text-align:center;">
+      Realistische Zeitfenster für typische Werkstattarbeiten am Mariendorfer Damm:
+    </p>
+    <div class="time-guide-pills">
+      <button type="button" class="tg-btn" onclick="showTimeGuide('diag', this)">OBD-Diagnose &amp; Check</button>
+      <button type="button" class="tg-btn" onclick="showTimeGuide('oil', this)">Ölwechsel inkl. Filter</button>
+      <button type="button" class="tg-btn" onclick="showTimeGuide('brakes', this)">Bremsen / Fahrwerk</button>
+      <button type="button" class="tg-btn" onclick="showTimeGuide('insp', this)">Inspektion / Riemen</button>
+    </div>
+    <div id="tgPanel" class="tg-panel"></div>
   </div>
 </section>
 
@@ -1638,8 +1687,22 @@
     </div>
   </div>
 
+  <!-- NEUIGKEIT B: WERKSTATT-ÜBERGABE CHECKLISTE -->
+  <div class="prep-check-box reveal">
+    <h3 style="margin:0 0 4px; font-size:clamp(17px, 4.4vw, 21px); color:var(--primary); font-weight:900; text-align:center;">📋 Vor der Werkstatt-Abgabe kurz abhaken</h3>
+    <p style="margin:0; font-size:13px; color:var(--text-muted); text-align:center;">
+      Damit alles reibungslos läuft, hilft diese kleine Merkliste vor Ihrem Termin:
+    </p>
+    <div class="prep-check-grid">
+      <label class="prep-item"><input type="checkbox"> Zulassungsbescheinigung Teil I (Fahrzeugschein) dabei</label>
+      <label class="prep-item"><input type="checkbox"> Radschrauben-Adapter / Felgenschloss griffbereit</label>
+      <label class="prep-item"><input type="checkbox"> Aktuelles Serviceheft / Wartungsnachweise mitnehmen</label>
+      <label class="prep-item"><input type="checkbox"> Geräusche, Warnleuchten oder Besonderheiten notiert</label>
+    </div>
+  </div>
+
   <!-- INTERAKTIVER SCHADENS- & SERVICE-BERATER -->
-  <div id="berater" class="advisor-box reveal" style="margin-top: 50px;">
+  <div id="berater" class="advisor-box reveal" style="margin-top: 42px;">
     <h3>Was fehlt Ihrem Fahrzeug gerade?</h3>
     <p style="margin:0; color:var(--text-muted); font-size:14px;">
       Klicken Sie auf Ihr Anliegen für unsere Sofort-Empfehlung
@@ -1950,7 +2013,7 @@
   <h2 class="section-title reveal">Kontakt, Reparatur- &amp; Terminanfrage</h2>
   <p class="section-sub reveal">Schreiben Sie uns direkt per WhatsApp, per E-Mail oder rufen Sie uns an.</p>
 
-  <!-- EIGENSTÄNDIGE FOTO-SCHNELLDIAGNOSE KARTE (SEPARAT VOM FORMULAR UNTEN) -->
+  <!-- EIGENSTÄNDIGE FOTO-SCHNELLDIAGNOSE KARTE -->
   <div class="photo-diag-card reveal">
     <div class="photo-diag-left">
       <div class="photo-diag-badge">📸 EXPRESS FOTO-SERVICE • OHNE FORMULAR</div>
@@ -2055,7 +2118,6 @@
         <div class="wa-preview-bubble" id="waPreviewBubble">Hallo A&amp;BS AUTOPROFIS, ich möchte gerne einen Termin / Kostenvoranschlag anfragen.</div>
       </div>
 
-      <!-- NEUHEIT 3: ABSENDE-BUTTONS (WHATSAPP DIREKT + E-MAIL-KOSTENVORANSCHLAG) -->
       <div class="form-submit-row">
         <button type="submit" class="btn" style="padding: 14px 18px;">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -2068,7 +2130,6 @@
     </form>
 
     <div class="info-block">
-      <!-- NACH UNTEN VERGRÖSSERTE LIVE-KARTE -->
       <div class="map-card">
         <div class="map-card-header">
           <span class="pin">📍 A&amp;BS AUTOPROFIS</span>
@@ -2169,7 +2230,6 @@
 </footer>
 
 <script>
-  // ===== AUTOMATISCHER ANGEBOTS-SCHALTER AB 01.12.2026 =====
   const OFFER_END_TIMESTAMP = new Date("2026-12-01T00:00:00").getTime();
   let currentDashContext = "Fehlerspeicher / Warnleuchte kostenlos auslesen";
   let selectedPhotoCategory = "Fahrzeugschein (Teil 1)";
@@ -2247,39 +2307,41 @@
     }
   }
 
-  // ===== NEUHEIT 1: ECHTZEIT-WERKSTATT-AUSLASTUNG =====
   function updateWorkshopCapacity() {
     const now = new Date();
     const day = now.getDay();
     const hour = now.getHours();
+    const bannerEl = document.getElementById("capacityBanner");
     const titleEl = document.getElementById("capacityTitle");
     const descEl = document.getElementById("capacityDesc");
     const tagEl = document.getElementById("capacityTag");
     const b1 = document.getElementById("capB1");
     const b2 = document.getElementById("capB2");
     const b3 = document.getElementById("capB3");
-    if (!titleEl || !descEl || !tagEl) return;
+    if (!titleEl || !descEl || !tagEl || !bannerEl) return;
 
-    const isSaturday = day === 6;
     const isSunday = day === 0;
-    const isPeak = (!isSunday && !isSaturday && hour >= 10 && hour <= 13) || (isSaturday && hour >= 10 && hour < 14);
+    const isAfterTwelve = (!isSunday && hour >= 12);
 
     if (isSunday) {
-      titleEl.innerText = "Werkstatt-Planung: Termine ab Montag 09:00 Uhr frei";
+      bannerEl.classList.remove("afternoon-mode");
+      titleEl.innerHTML = `Werkstatt-Planung Mariendorf<span class="colon-line">Termine ab Montag 09:00 Uhr frei</span>`;
       descEl.innerText = "Senden Sie jetzt Ihre Anfrage per WhatsApp oder E-Mail – wir reservieren Ihren Wunschplatz für Montag.";
       tagEl.innerText = "● Online-Reservierung aktiv";
       b1.className = "cap-bar b1 active-green";
       b2.className = "cap-bar b2";
       b3.className = "cap-bar b3";
-    } else if (isPeak) {
-      titleEl.innerText = "Werkstatt-Auslastung: Regulärer Betrieb (2 von 3 Bühnen belegt)";
-      descEl.innerText = "Gratis Fehlerspeicher-Check jederzeit direkt möglich • Reparaturtermine kurzfristig verfügbar.";
-      tagEl.innerText = "● Direkte OBD-Diagnose frei";
-      b1.className = "cap-bar b1 active-amber";
-      b2.className = "cap-bar b2 active-amber";
+    } else if (isAfterTwelve) {
+      bannerEl.classList.add("afternoon-mode");
+      titleEl.innerHTML = `Werkstatt-Auslastung ab 12:00 Uhr<span class="colon-line">Nachmittags- &amp; Folgetermin-Slots</span>`;
+      descEl.innerText = "Gratis Fehlerspeicher-Check jederzeit direkt möglich • Reparatur- & Öltermine für heute Nachmittag oder morgen kurz anfragen.";
+      tagEl.innerText = "● OBD-Diagnose & Terminplanung";
+      b1.className = "cap-bar b1 active-gold";
+      b2.className = "cap-bar b2 active-gold";
       b3.className = "cap-bar b3";
     } else {
-      titleEl.innerText = "Werkstatt-Auslastung Mariendorf: Freie Kapazitäten";
+      bannerEl.classList.remove("afternoon-mode");
+      titleEl.innerHTML = `Werkstatt-Auslastung Mariendorf<span class="colon-line">Freie Kapazitäten am Vormittag</span>`;
       descEl.innerText = "Gratis Fehlerspeicher-Check & Ölservice aktuell kurzfristig ohne lange Wartezeit möglich.";
       tagEl.innerText = "● Express-Annahme bereit";
       b1.className = "cap-bar b1 active-green";
@@ -2330,9 +2392,9 @@
     });
   }, { passive: true });
 
-  // Synchronisierte Live Öffnungszeiten-Logik (Mo-Fr 09:00-17:00 Uhr, Sa 10:00-14:00 Uhr)
   function updateLiveStatus() {
     applyAutomaticOfferSwitch();
+    updateWorkshopCapacity();
 
     const now = new Date();
     const day = now.getDay();
@@ -2424,7 +2486,6 @@
   setInterval(updateLiveStatus, 1000);
   updateLiveStatus();
 
-  // GROSSES FIRMENLOGO SWITCHT IN-PLACE & NACH 5 SEKUNDEN AUTOMATISCH ZURÜCK
   let heroLogoTimer = null;
   function toggleHeroLogoSwitch(event) {
     event.stopPropagation();
@@ -2453,7 +2514,6 @@
     }
   }
 
-  // GRATIS FEHLERSPEICHER-CHECK AKTIVIEREN
   function toggleWelcomePass(btnEl) {
     const passBox = document.getElementById('welcomePassBox');
     const isClaimed = btnEl.classList.toggle('claimed');
@@ -2468,7 +2528,6 @@
     updateQuickServiceText();
   }
 
-  // REPARATUR-KATALOG FILTER
   function filterRepairs(cat, btnEl) {
     document.querySelectorAll('.rep-filter-btn').forEach(b => b.classList.remove('active'));
     btnEl.classList.add('active');
@@ -2483,7 +2542,6 @@
     });
   }
 
-  // REPARATUR-KARTE DIREKT FÜR DIE WHATSAPP-ANFRAGE AUSWÄHLEN
   function toggleCardService(serviceName, btnEl) {
     const card = btnEl.closest('.repair-card');
     if (!card) return;
@@ -2500,7 +2558,6 @@
     updateQuickServiceText();
   }
 
-  // INTERAKTIVER BAUTEIL-SCANNER
   let activeScannerZone = 'motor';
   function selectCarZone(zone) {
     const detailCard = document.getElementById('scannerDetailCard');
@@ -2605,7 +2662,6 @@
     }
   }
 
-  // ===== NEUHEIT 2: INTERAKTIVER HU / AU PLAKETTEN-RECHNER =====
   function calculateHuPlakette() {
     const monthVal = parseInt(document.getElementById('huMonthSelect').value, 10);
     const yearVal = parseInt(document.getElementById('huYearSelect').value, 10);
@@ -2624,20 +2680,33 @@
     const diffMonths = (yearVal - curYear) * 12 + (monthVal - curMonth);
     const padMonth = monthVal < 10 ? '0' + monthVal : monthVal;
 
-    let statusHtml = '';
+    let heading = '';
+    let detailText = '';
     if (diffMonths < 0) {
-      statusHtml = `<div><b style="color:#dc2626;">🚨 Plakette ${padMonth}/${yearVal} ist abgelaufen (${Math.abs(diffMonths)} Mon. überzogen)!</b><br><span style="color:#334155;">Ab über 2 Monaten Überziehung drohen Bußgeld und eine kostenpflichtige Ergänzungsuntersuchung. Wir machen Ihr Auto sofort HU-fertig!</span></div>`;
+      const overMonths = Math.abs(diffMonths);
+      heading = `<b style="color:#dc2626;font-size:15px;">🚨 Plakette ${padMonth}/${yearVal} ist seit ${overMonths} Monat(en) abgelaufen</b>`;
+      detailText = `Bei einer Überziehung von mehr als 2 Monaten fällt in der Regel eine erweiterte Untersuchung an, zudem drohen Verwarnungsgelder. Wir prüfen Ihr Fahrzeug sofort auf typische Mängel und beheben diese vorab.`;
     } else if (diffMonths <= 2) {
-      statusHtml = `<div><b style="color:#d97706;">⚠️ Plakette ${padMonth}/${yearVal} steht unmittelbar an!</b><br><span style="color:#334155;">Jetzt ist der ideale Zeitpunkt für unsere Vorab-Durchsicht, Bremsen- &amp; Lichtcheck sowie das kostenlose Fehlerspeicher-Auslesen.</span></div>`;
+      heading = `<b style="color:#d97706;font-size:15px;">⚠️ Plakette ${padMonth}/${yearVal} steht in Kürze an (${diffMonths === 0 ? 'diesen Monat' : 'in ' + diffMonths + ' Mon.'})</b>`;
+      detailText = `Jetzt ist der ideale Zeitpunkt für unsere HU-Vorab-Durchsicht: Wir kontrollieren Bremsen, Fahrwerk, Lichtanlage, Flüssigkeiten und lesen den Fehlerspeicher kostenlos aus.`;
     } else {
-      statusHtml = `<div><b style="color:#16a34a;">✔ Plakette ${padMonth}/${yearVal} ist noch ${diffMonths} Monate gültig.</b><br><span style="color:#334155;">Alles im grünen Bereich! Bei anstehender Inspektion oder Warnleuchten sind wir jederzeit am Mariendorfer Damm 49 für Sie da.</span></div>`;
+      heading = `<b style="color:#16a34a;font-size:15px;">✔ Plakette ${padMonth}/${yearVal} ist noch ${diffMonths} Monate gültig</b>`;
+      detailText = `Ihre Hauptuntersuchung liegt noch in der Zukunft. Bei aktuellen Geräuschen, Warnlampen oder einem fälligen Ölwechsel stehen wir Ihnen am Mariendorfer Damm 49 jederzeit zur Verfügung.`;
     }
 
-    resultBox.innerHTML = `${statusHtml}<a class="btn" href="#kontakt" onclick="prefillFromScanner('HU/AU Service (Plakette ${padMonth}/${yearVal})')">👇 HU-Check anfragen</a>`;
+    resultBox.innerHTML = `
+      <div>${heading}</div>
+      <p style="margin:6px 0 0;color:#334155;">${detailText}</p>
+      <div class="hu-detail-tags">
+        <span class="hu-detail-pill">✓ Bremsen &amp; Achsen</span>
+        <span class="hu-detail-pill">✓ Beleuchtung &amp; Sicht</span>
+        <span class="hu-detail-pill">✓ Abgas / DPF &amp; Fehlerspeicher</span>
+      </div>
+      <a class="btn" href="#kontakt" onclick="prefillFromScanner('HU/AU Vorab-Check (Plakette ${padMonth}/${yearVal})')">👇 HU-Vorab-Check für Anfrage übernehmen</a>
+    `;
     resultBox.classList.add('show');
   }
 
-  // KILOMETERSTAND-WARTUNGS-KOMPASS
   function checkMileage(step, btnEl) {
     const box = document.getElementById('kmResultBox');
     const wasActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -2660,7 +2729,26 @@
     box.classList.add('show');
   }
 
-  // Altöl -> Frischöl Schauglas-Simulator
+  function showTimeGuide(mode, btnEl) {
+    const panel = document.getElementById('tgPanel');
+    const wasActive = btnEl.classList.contains('active') && panel.classList.contains('show');
+    document.querySelectorAll('.tg-btn').forEach(b => b.classList.remove('active'));
+    if (wasActive) {
+      panel.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+    btnEl.classList.add('active');
+    const guideMap = {
+      diag: `<b>⏱️ Fehlerspeicher &amp; Sichtcheck (ca. 15–30 Min.):</b> Ideal für zwischendurch – wir lesen die Steuergeräte kostenlos aus und besprechen das Ergebnis direkt mit Ihnen.`,
+      oil: `<b>⏱️ Ölwechsel inkl. Filter &amp; Check (ca. 45–60 Min.):</b> Fachgerechter Wechsel von Öl und Filter inklusive 21-Punkte-Sicherheits-Check – auf Wunsch gerne vor Ort oder mit ÖPNV-Anbindung.`,
+      brakes: `<b>⏱️ Bremsen- oder Fahrwerksarbeiten (ca. 1,5–3 Std.):</b> Je nach Achse und Zustand – wir geben Ihnen nach der Prüfung vorab eine klare Zeit- und Kostenübersicht.`,
+      insp: `<b>⏱️ Große Inspektion, Zahnriemen oder Kupplung (nach Absprache / tagesweise):</b> Umfangreichere Wartungen und Motor-/Antriebsarbeiten planen wir passgenau mit Ihnen ein.`
+    };
+    panel.innerHTML = guideMap[mode] || '';
+    panel.classList.add('show');
+  }
+
   function toggleOilSimulation() {
     const box = document.getElementById("oilSimBox");
     const title = document.getElementById("oilSimTitle");
@@ -2681,7 +2769,6 @@
     }
   }
 
-  // Interaktive Automarken-Auswahl
   function selectCarBrand(brandName, pillEl) {
     const msgBox = document.getElementById("brandConfirmMsg");
     const wasActive = pillEl.classList.contains("active") && msgBox.classList.contains("show");
@@ -2701,7 +2788,6 @@
     msgBox.classList.add("show");
   }
 
-  // Alle 21 Prüfpunkte mit 1 Klick auf- und zuklappen
   function toggleAllCheck21() {
     const container = document.getElementById("check21Container");
     const btn = document.getElementById("toggleAllCheck21Btn");
@@ -2713,7 +2799,6 @@
     btn.innerText = !allOpen ? "➖ Alle 21 Punkte zuklappen" : "➕ Alle 21 Punkte aufklappen";
   }
 
-  // 1-Zeilen Ölwechsel-Schnelltest
   function checkOilInterval(state, btnEl) {
     const ans = document.getElementById('quickOilAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -2740,7 +2825,6 @@
     ans.classList.add('show');
   }
 
-  // 1-Zeilen HU / TÜV Vorab-Schnellcheck
   function checkHuStatus(state, btnEl) {
     const ans = document.getElementById('quickHuAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -2763,7 +2847,6 @@
     ans.classList.add('show');
   }
 
-  // Geräusche- & Symptom-Schnellcheck
   function checkSymptom(type, btnEl) {
     const ans = document.getElementById('quickSymAnswer');
     const wasActive = btnEl.classList.contains('active') && ans.classList.contains('show');
@@ -2788,9 +2871,8 @@
     ans.classList.add('show');
   }
 
-  // Saison-Check Umschalter
   function switchSeason(mode, btnEl) {
-    document.querySelectorAll('.season-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.season-tab').forEach(t => b.classList.remove('active'));
     document.querySelectorAll('.season-panel').forEach(p => p.classList.remove('active'));
     btnEl.classList.add('active');
     if (mode === 'winter') {
@@ -2807,7 +2889,6 @@
     }, 450);
   }
 
-  // 6 COCKPIT-WARNLEUCHTEN
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -2942,7 +3023,6 @@
     updateWhatsAppPreview();
   }
 
-  // ===== 1) EIGENSTÄNDIGE FOTO-WHATSAPP-WEITERLEITUNG (OBEN IM FOTO-BEREICH) =====
   function selectPhotoCategory(categoryName, chipEl) {
     selectedPhotoCategory = categoryName;
     document.querySelectorAll('#photoTypePills .photo-type-chip').forEach(c => c.classList.remove('active'));
@@ -2965,7 +3045,6 @@
     window.open(whatsappUrl, '_blank', 'noopener');
   }
 
-  // ===== 2) SCHNELLANFRAGE OHNE FORMULAR-DATEN (HEADER / HERO / WARNLEUCHTEN / FLOAT) =====
   function openQuickTopicWhatsApp(topic) {
     const quickText =
       `🛠️ *A&BS AUTOPROFIS – Kfz-Meisterwerkstatt*\n` +
@@ -2979,7 +3058,6 @@
     window.open(whatsappUrl, '_blank', 'noopener');
   }
 
-  // ===== 3) FORMULAR-DATEN AUFBEREITUNG & EIGENSTÄNDIGE FORMULAR-WEITERLEITUNG (UNTEN) =====
   function buildFormWhatsAppMessage() {
     const nameEl = document.getElementById('waName');
     const phoneEl = document.getElementById('waPhone');
@@ -3035,7 +3113,6 @@
     return false;
   }
 
-  // ===== NEUHEIT 3: FORMULARDATEN ALS FERTIGE E-MAIL AN INFO@ABSPROFIS.DE ÖFFNEN =====
   function sendFormAsEmail() {
     const plainBody = buildFormWhatsAppMessage().replace(/\*/g, '').replace(/_/g, '');
     const carEl = document.getElementById('waCar');
