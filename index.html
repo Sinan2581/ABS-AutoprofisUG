@@ -372,6 +372,12 @@
   .km-result-box { display: none; margin-top: 16px; background: #fdfbf7; border: 1px solid #eae5d9; border-left: 4px solid var(--gold); border-radius: 14px; padding: 14px 16px; text-align: left; font-size: 13.5px; color: #334155; line-height: 1.55; }
   .km-result-box.show { display: block; animation: fadeIn 0.22s ease; }
 
+  .tire-dot-box { background: #fff; border-radius: 22px; padding: 24px 20px; border: 1.5px solid #eae5d9; border-top: 4px solid var(--gold); margin-top: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.03); width: 100%; }
+  .tire-dot-grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; max-width: 720px; margin: 14px auto 0; align-items: end; }
+  .tire-dot-result { display: none; max-width: 720px; margin: 14px auto 0; padding: 14px 16px; border-radius: 14px; background: #fdfbf7; border: 1.5px solid var(--gold); font-size: 13.5px; color: #334155; line-height: 1.55; }
+  .tire-dot-result.show { display: block; animation: fadeIn 0.22s ease; }
+  @media(max-width: 767px) { .tire-dot-grid { grid-template-columns: 1fr; } .tire-dot-box { padding: 18px 13px; border-radius: 20px; } }
+
   /* NEUIGKEIT A: REPARATUR-ZEIT & DAUER-ORIENTIERUNG */
   .time-guide-box {
     background: #fff; border-radius: 22px; padding: 24px 20px; border: 1.5px solid #eae5d9;
@@ -599,6 +605,22 @@
     cursor: pointer; width: 100%; box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
     transition: transform 0.15s ease, box-shadow 0.2s ease;
   }
+
+  .obd-guide-strip {
+    background: #fff; border: 1.5px solid #eae5d9; border-left: 5px solid var(--primary);
+    border-radius: 18px; padding: 16px 18px; margin-bottom: 22px;
+    box-shadow: 0 6px 18px rgba(7, 26, 61, 0.04);
+  }
+  .obd-guide-pills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+  .obd-pill-btn {
+    background: #fdfbf7; border: 1.5px solid #d1d5db; color: var(--primary);
+    border-radius: 11px; padding: 8px 6px; font-size: 11.5px; font-weight: 800;
+    cursor: pointer; text-align: center; transition: all 0.18s ease;
+  }
+  .obd-pill-btn.active { background: var(--primary); color: var(--gold-light); border-color: var(--primary); }
+  .obd-guide-note { display: none; margin-top: 10px; font-size: 12.5px; color: #334155; background: #fdfbf7; padding: 10px 12px; border-radius: 10px; border-left: 3px solid var(--gold); }
+  .obd-guide-note.show { display: block; animation: fadeIn 0.2s ease; }
+  @media(max-width: 767px) { .obd-guide-pills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   /* Kontaktformular & Live-WhatsApp-Logo-Vorschau */
   .contact-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 28px; background: #fff; border-radius: 26px; padding: 32px 28px; border: 1px solid #eae5d9; box-shadow: 0 10px 30px rgba(0,0,0,0.04); align-items: stretch; width: 100%; }
@@ -1307,7 +1329,10 @@
   <!-- DETAILLIERTER HU / AU FÄLLIGKEITS-RECHNER -->
   <div class="hu-calc-box reveal">
     <div class="hu-calc-header">
-      <h3>🛡️ HU / AU Fälligkeits-Rechner (Plaketten-Check)</h3>
+      <h3>
+        🛡️ HU / AU Fälligkeits-Rechner
+        <span class="sub-bracket">(Plaketten-Check)</span>
+      </h3>
       <p>Wählen Sie Monat und Jahr auf Ihrer hinteren TÜV-Plakette aus – wir prüfen detailliert Ihren Status und passende Prüf-Schwerpunkte:</p>
     </div>
     <div class="hu-calc-controls">
@@ -1360,6 +1385,32 @@
       <button type="button" class="km-step-btn" onclick="checkMileage('120k', this)">ab 120.000 km<span>Antrieb &amp; Fahrwerk</span></button>
     </div>
     <div id="kmResultBox" class="km-result-box"></div>
+  </div>
+
+  <!-- REIFENPROFIL- & DOT-ALTERS-CHECK -->
+  <div class="tire-dot-box reveal">
+    <h3 style="margin:0 0 4px; font-size:clamp(17px, 4.4vw, 22px); color:var(--primary); font-weight:900; text-align:center;">
+      🛞 Reifenprofil- &amp; DOT-Alters-Check
+      <span class="sub-bracket">(4-stellige DOT-Nummer auf der Reifenflanke, z. B. 2423)</span>
+    </h3>
+    <p style="margin:0; font-size:13.5px; color:var(--text-muted); text-align:center;">
+      Gesetzliches Mindestprofil sind 1,6 mm – aus Sicherheitsgründen empfehlen wir bei Sommerreifen unter 3 mm und bei Winterreifen unter 4 mm einen Wechsel.
+    </p>
+    <div class="tire-dot-grid">
+      <div class="hu-select-group">
+        <label for="tireSeasonSelect">Reifentyp</label>
+        <select id="tireSeasonSelect" class="hu-select" onchange="checkTireDot()">
+          <option value="summer">Sommerreifen (Empfehlung ≥ 3 mm)</option>
+          <option value="winter">Winter- / Ganzjahresreifen (Empfehlung ≥ 4 mm)</option>
+        </select>
+      </div>
+      <div class="hu-select-group">
+        <label for="tireDotInput">DOT-Code (4 Ziffern, z. B. 2423)</label>
+        <input type="text" id="tireDotInput" class="hu-select" maxlength="4" inputmode="numeric" placeholder="z. B. 2423" oninput="checkTireDot()">
+      </div>
+      <button type="button" class="btn" onclick="checkTireDot()">DOT prüfen</button>
+    </div>
+    <div id="tireDotResult" class="tire-dot-result"></div>
   </div>
 
   <!-- NEUIGKEIT A: REPARATUR-ZEIT & DAUER-ORIENTIERUNG -->
@@ -2064,6 +2115,14 @@
           <input type="text" id="waHsn" class="form-control" maxlength="4" placeholder="Feld 2.1 – z.B. 0603" oninput="updateWhatsAppPreview()">
           <input type="text" id="waTsn" class="form-control" maxlength="8" placeholder="Feld 2.2 – z.B. BQS" oninput="updateWhatsAppPreview()">
         </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Wunschdatum
+          <span class="sub-bracket">(optional – für Ihre Terminplanung)</span>
+        </label>
+        <input type="date" id="waDate" class="form-control" oninput="updateWhatsAppPreview()">
       </div>
 
       <div class="form-group">
@@ -2889,6 +2948,40 @@
     }, 450);
   }
 
+  function checkTireDot() {
+    const rawDot = (document.getElementById('tireDotInput').value || '').replace(/\D/g, '');
+    const season = document.getElementById('tireSeasonSelect').value;
+    const resEl = document.getElementById('tireDotResult');
+    if (!resEl) return;
+
+    if (rawDot.length < 4) {
+      resEl.classList.remove('show');
+      return;
+    }
+
+    const week = parseInt(rawDot.slice(0, 2), 10);
+    const yrTwo = parseInt(rawDot.slice(2, 4), 10);
+    const fullYear = yrTwo >= 70 ? 1900 + yrTwo : 2000 + yrTwo;
+    const nowYear = new Date().getFullYear();
+    const ageYears = nowYear - fullYear;
+    const minMm = season === 'winter' ? '4 mm' : '3 mm';
+
+    if (week < 1 || week > 53 || fullYear < 2010 || fullYear > nowYear + 1) {
+      resEl.innerHTML = `<span style="color:#dc2626;font-weight:700;">⚠️ Bitte einen gültigen 4-stelligen DOT-Code eingeben (KW 01–53 und Produktionsjahr).</span>`;
+      resEl.classList.add('show');
+      return;
+    }
+
+    const ageStatus = ageYears >= 8
+      ? `<b style="color:#dc2626;">Reifenalter ca. ${ageYears} Jahre (KW ${week}/${fullYear}):</b> Gummimischung härtet mit den Jahren aus – Sichtprüfung &amp; ggf. Erneuerung empfohlen.`
+      : ageYears >= 6
+        ? `<b style="color:#d97706;">Reifenalter ca. ${ageYears} Jahre (KW ${week}/${fullYear}):</b> Regelmäßige Prüfung auf Risse, Profiltiefe (Empfehlung ${minMm}) und Luftdruck sinnvoll.`
+        : `<b style="color:#16a34a;">Reifenalter ca. ${ageYears} Jahre (KW ${week}/${fullYear}):</b> Altersmäßig unauffällig – Profiltiefe (Empfehlung ${minMm}), Luftdruck &amp; Wuchtung prüfen wir gerne.`;
+
+    resEl.innerHTML = `${ageStatus} <a class="btn" style="margin-top:10px;" href="#kontakt" onclick="prefillFromScanner('Reifen-Check (DOT ${rawDot}, ${season === 'winter' ? 'Winter/Allwetter' : 'Sommer'})')">👇 Reifen-Service anfragen</a>`;
+    resEl.classList.add('show');
+  }
+
   function showDashInfo(type, btnEl) {
     const box = document.getElementById('dashInfoBox');
     const isAlreadyActive = btnEl.classList.contains('active') && box.classList.contains('show');
@@ -3023,6 +3116,29 @@
     updateWhatsAppPreview();
   }
 
+  function selectObdArea(area, btnEl) {
+    const noteEl = document.getElementById('obdGuideNote');
+    const wasActive = btnEl.classList.contains('active') && noteEl.classList.contains('show');
+    document.querySelectorAll('.obd-pill-btn').forEach(b => b.classList.remove('active'));
+    if (wasActive) {
+      noteEl.classList.remove('show');
+      btnEl.blur();
+      return;
+    }
+    btnEl.classList.add('active');
+    const map = {
+      gemisch: { txt: 'Prüfung von Luftmasse, Lambdasonden, Ansaugtrakt & Kraftstoffversorgung – Gratis Fehlerspeicher-Check inklusive.', topic: 'OBD-Diagnose: Gemisch / Lambda' },
+      zuendung: { txt: 'Diagnose bei Zündaussetzern, Zündspulen, Kerzen oder unrundem Leerlauf – Fehlerspeicher wird kostenlos ausgelesen.', topic: 'OBD-Diagnose: Zündung & Motorlauf' },
+      abgas: { txt: 'Überprüfung von AGR-Ventil, Differenzdrucksensor & Dieselpartikelfilter (DPF) sowie Abgasrelevanz.', topic: 'OBD-Diagnose: AGR / DPF / Abgas' },
+      bordnetz: { txt: 'Auslesen von ABS-/Raddrehzahlsensoren, Batteriespannung & Steuergeräte-Einträgen vor Ort in Mariendorf.', topic: 'OBD-Diagnose: ABS / Sensorik / Batterie' }
+    };
+    const item = map[area];
+    if (item) {
+      noteEl.innerHTML = `<b>${item.txt}</b> <a href="#kontakt" style="font-weight:800;text-decoration:underline;color:var(--primary);" onclick="prefillFromScanner('${item.topic}')">In Nachricht übernehmen</a>`;
+      noteEl.classList.add('show');
+    }
+  }
+
   function selectPhotoCategory(categoryName, chipEl) {
     selectedPhotoCategory = categoryName;
     document.querySelectorAll('#photoTypePills .photo-type-chip').forEach(c => c.classList.remove('active'));
@@ -3064,6 +3180,7 @@
     const carEl = document.getElementById('waCar');
     const hsnEl = document.getElementById('waHsn');
     const tsnEl = document.getElementById('waTsn');
+    const dateEl = document.getElementById('waDate');
     const slotEl = document.getElementById('waSlot');
     const msgEl = document.getElementById('waMsg');
 
@@ -3084,6 +3201,7 @@
     }
 
     const hsnTsnLine = (hsn || tsn) ? `• _Schlüssel-Nr. 2.1 / 2.2:_ _${hsn || '-'} / ${tsn || '-'}_\n\n` : '';
+    const dateLine = (dateEl && dateEl.value) ? `• *Wunschdatum:* *${dateEl.value.split('-').reverse().join('.')}*\n\n` : '';
 
     return `🛠️ *A&BS AUTOPROFIS – Kfz-Meisterwerkstatt*\n` +
            `📍 _Mariendorfer Damm 49, 12109 Berlin_\n` +
@@ -3092,6 +3210,7 @@
            `• *Telefon:* *${phone}*\n\n` +
            `• _Fahrzeug / Kennzeichen:_ _${car}_\n\n` +
            hsnTsnLine +
+           dateLine +
            `• *Wunschzeit:* *${slot}*\n\n` +
            `• *Wunsch / Anliegen:* *${msg}*`;
   }
